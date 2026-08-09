@@ -1,0 +1,25 @@
+{
+  "name": "gabrielaoliveranz.github.io",
+  "private": true,
+  "description": "Automated checks for Gabriela Olivera's portfolio site (static HTML, no build step).",
+  "scripts": {
+    "check:html": "html-validate index.html 404.html",
+    "check:links": "linkinator index.html 404.html --recurse --skip \"linkedin\\.com|terroir\\.streamlit\\.app|apophenia-nz\\.vercel\\.app|gabrielaoliveranz\\.github\\.io\"",
+    "check:a11y": "node scripts/check-a11y.mjs",
+    "check:overflow": "node scripts/check-overflow.mjs",
+    "check:contrast-states": "node scripts/check-contrast-states.mjs",
+    "check:assets": "node scripts/check-assets.mjs",
+    "check:untracked": "node scripts/check-untracked.mjs",
+    "serve": "http-server . -p 8080 -s",
+    "check": "npm run check:html && npm run check:links && npm run check:a11y && npm run check:overflow && npm run check:contrast-states && npm run check:assets && npm run check:untracked"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.10.2",
+    "axe-core": "^4.12.1",
+    "browser-driver-manager": "^2.0.1",
+    "html-validate": "^9.7.1",
+    "http-server": "^14.1.1",
+    "linkinator": "^6.1.2",
+    "selenium-webdriver": "^4.44.0"
+  }
+}

@@ -1,0 +1,25 @@
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node tooling (HTML/link/accessibility checks)
+node_modules/
+npm-debug.log*
+
+# Local-only review artifacts (screenshots etc.) — never committed
+review-screenshots/
+
+# Design-tool scaffolding (from the AI design tool this site was built in) —
+# never part of the shipped site, never committed. See CLAUDE.md.
+support.js
+github.md
+.thumbnail
+uploads/

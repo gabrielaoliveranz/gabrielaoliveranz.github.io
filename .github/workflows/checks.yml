@@ -1,0 +1,39 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: HTML validity
+        run: npm run check:html
+
+      - name: Link check
+        run: npm run check:links
+
+      - name: Accessibility (axe-core)
+        run: npm run check:a11y
+
+      - name: Mobile overflow
+        run: npm run check:overflow
+
+      - name: Contrast in interactive states
+        run: npm run check:contrast-states
+
+      - name: Local asset references (exact case)
+        run: npm run check:assets
+
+      - name: No unexpected untracked files
+        run: npm run check:untracked

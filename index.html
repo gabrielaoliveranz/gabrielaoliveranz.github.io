@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriela Olivera — Data Analyst, Mount Maunganui</title>
+<meta name="description" content="Gabriela Olivera, a data analyst in Mount Maunganui, New Zealand — geospatial and operational-risk analytics projects, built end to end.">
+<link rel="canonical" href="https://gabrielaoliveranz.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gabriela Olivera">
+<meta property="og:url" content="https://gabrielaoliveranz.github.io/">
+<meta property="og:title" content="Gabriela Olivera — Data Analyst, Mount Maunganui">
+<meta property="og:description" content="Geospatial and operational-risk analytics projects, built end to end — pipelines, models, dashboards people actually use.">
+<meta property="og:image" content="https://gabrielaoliveranz.github.io/assets/images/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 13,040 candidates.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gabriela Olivera — Data Analyst, Mount Maunganui">
+<meta name="twitter:description" content="Geospatial and operational-risk analytics projects, built end to end — pipelines, models, dashboards people actually use.">
+<meta name="twitter:image" content="https://gabrielaoliveranz.github.io/assets/images/og-card.png">
+<meta name="twitter:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 13,040 candidates.">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- STATUS LINE — update the moment this changes; nothing else on the page repeats it.
+     See CLAUDE.md, "The status line ages on its own". -->
+<!-- STATUS: open to data analyst roles -->
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <a class="site-header__brand" href="#main-content">
+    <img class="site-header__logo" src="assets/favicon.svg" alt="" width="28" height="28">
+    <span class="site-header__mark">Gabriela Olivera</span>
+  </a>
+  <nav class="site-header__nav" aria-label="Page sections">
+    <a href="#work">Work</a>
+    <a href="#how-i-work">How I work</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__grid">
+      <div>
+        <p class="eyebrow">Data analyst — Mount Maunganui, NZ</p>
+        <h1 id="hero-title" class="hero__title" style="font-family: var(--font-display);">Hi, I'm Gabriela.</h1>
+        <p class="hero__lede">I spent fourteen years in operations and procurement before moving into data, which means I know where operational numbers break before they ever reach a report.</p>
+        <p class="hero__byline">I build the whole thing end to end: pipelines, models, and dashboards people actually use.</p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#work">See the work</a>
+          <a class="button button--secondary" href="assets/cv/gabriela-olivera-cv.pdf">Download CV</a>
+        </div>
+      </div>
+      <div class="hero__photo-frame">
+        <img src="assets/images/headshot.jpg" alt="Gabriela Olivera" width="800" height="800">
+      </div>
+    </div>
+  </section>
+
+  <div class="process-strip">
+    <p class="process-strip__track">
+      <span class="process-strip__step">4 government APIs</span><span class="process-strip__arrow">→</span>
+      <span class="process-strip__step">spatial join across 22,834 parcels</span><span class="process-strip__arrow">→</span>
+      <span class="process-strip__step">weighted scoring model</span><span class="process-strip__arrow">→</span>
+      <span class="process-strip__step process-strip__step--final">6-page dashboard</span>
+    </p>
+  </div>
+
+  <section id="work" aria-label="Work" data-reveal>
+    <div class="project-band">
+      <div class="project-band__inner">
+        <h2 class="work__title work__title--on-dark">Terroir</h2>
+        <article class="project-card">
+          <div class="project-card__media">
+            <img src="assets/images/terroir-screenshot.jpg" alt="Screenshot of the Terroir Streamlit dashboard's suitability map, showing kiwifruit land-suitability parcels colour-coded across the Bay of Plenty coastline" width="1600" height="900">
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Where should kiwifruit grow in Bay of Plenty?</h3>
+            <p class="project-card__eyebrow">Geospatial land-suitability analysis</p>
+            <ul class="stats">
+              <li class="stat"><div class="stat__value"><span data-count-target="22834">22,834</span></div><div class="stat__label">Parcels analysed</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="21491">21,491</span></div><div class="stat__label">Scored</div><div class="stat__note">of 22,834 parcels</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="13040">13,040</span></div><div class="stat__label">Candidates</div><div class="stat__note">of 21,491 scored</div></li>
+            </ul>
+            <p class="project-card__text">I pulled four live sources — <strong>LINZ</strong> cadastral parcels, <strong>S-map</strong> soils, <strong>LCDB</strong> land cover and <strong>Open-Meteo</strong> climate — into a <strong>Python</strong> pipeline, joined them spatially, and scored every rural parcel in four districts for kiwifruit suitability.</p>
+            <div class="project-card__links">
+              <a class="button button--on-dark-primary" href="https://gabrielaoliveranz.github.io/terroir-case-study" target="_blank" rel="noopener">Case study</a>
+              <a class="button button--on-dark-secondary" href="https://terroir.streamlit.app" target="_blank" rel="noopener">Live dashboard</a>
+              <a class="button button--on-dark-secondary" href="https://github.com/gabrielaoliveranz/horticultural-land-suitability-nz" target="_blank" rel="noopener">Code</a>
+            </div>
+            <p class="project-card__wake-note project-card__wake-note--on-dark">The live dashboard runs on a free host and can take about 30 seconds to wake up on first visit — it isn't broken, just warming up. The case study loads instantly.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="project-band">
+      <div class="project-band__inner">
+        <h2 class="work__title work__title--on-dark">Apophenia</h2>
+        <article class="project-card">
+          <div class="project-card__media">
+            <img src="assets/images/apophenia-screenshot.jpg" alt="Screenshot of the Apophenia simulator interface, showing operational-risk sliders and forecast charts for a kiwifruit export season" width="1600" height="900">
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">What happens when an export season goes wrong?</h3>
+            <p class="project-card__eyebrow">Operational risk intelligence simulator</p>
+            <ul class="stats">
+              <li class="stat"><div class="stat__value"><span data-count-target="9">9</span></div><div class="stat__label">Live variables</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="26">26</span>wk</div><div class="stat__label">Forecast</div><div class="stat__note">with 90% confidence intervals</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Data feeds</div><div class="stat__note">each independently guarded</div></li>
+            </ul>
+            <p class="project-card__text">I built a simulator in <strong>Streamlit</strong> where nine operational variables — weather, port congestion, fruit quality, regulatory load — recalculate risk, cost of delay and a 26-week forecast live, against four independent public APIs.</p>
+            <div class="project-card__links project-card__links--split">
+              <a class="button button--on-dark-primary" href="https://apophenia-nz.vercel.app" target="_blank" rel="noopener">Live simulator</a>
+              <a class="button button--on-dark-secondary" href="https://github.com/gabrielaoliveranz/optimising-kiwifruit-export" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-highlight" aria-label="A story about how I work" data-reveal>
+    <div class="quote-highlight__inner">
+      <blockquote>&ldquo;On Terroir I found a bug that had misclassified 19.4% of parcels. I caught it because a filtered subset came out larger than the group it was filtered from — which is impossible. Every fix like that is in the public commit history.&rdquo;</blockquote>
+      <cite>— Gabriela, on the Terroir case study</cite>
+    </div>
+  </section>
+
+  <section id="how-i-work" class="how-i-work" aria-labelledby="how-i-work-title" data-reveal>
+    <h2 id="how-i-work-title" class="how-i-work__title">How I work</h2>
+    <ul class="how-i-work-grid">
+      <li class="how-i-work-item">
+        <span class="how-i-work-item__number" aria-hidden="true">01</span>
+        <h3>Real data, not practice datasets</h3>
+        <p>Both projects run on live government and public sources — with the real data-quality problems that come with them.</p>
+      </li>
+      <li class="how-i-work-item">
+        <span class="how-i-work-item__number" aria-hidden="true">02</span>
+        <h3>Limitations written down, not hidden</h3>
+        <p>Every model states what it doesn't cover, so nobody mistakes a scope decision for an oversight.</p>
+      </li>
+      <li class="how-i-work-item">
+        <span class="how-i-work-item__number" aria-hidden="true">03</span>
+        <h3>Fourteen years of knowing when a number is wrong</h3>
+        <p>Operations and procurement means I read a figure and know whether it's plausible before I ship it.</p>
+      </li>
+      <li class="how-i-work-item">
+        <span class="how-i-work-item__number" aria-hidden="true">04</span>
+        <h3>Technical work, explained plainly</h3>
+        <p>I write for the person who has to act on the analysis, not just the person who built it.</p>
+      </li>
+    </ul>
+  </section>
+
+  <div class="tooling-bar" role="group" aria-label="Tools I use, scrolling ticker">
+    <button type="button" class="tooling-bar__toggle" id="tooling-toggle" aria-pressed="false" aria-label="Pause the tools ticker">
+      <svg id="tooling-icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"></rect><rect x="14" y="4" width="5" height="16" rx="1"></rect></svg>
+      <svg id="tooling-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 4l14 8-14 8V4z"></path></svg>
+    </button>
+    <div class="tooling-bar__viewport">
+      <span class="tooling-bar__track" id="tooling-track">
+        <span class="tooling-bar__item">Python</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item">SQL</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item">Power BI</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item">Streamlit</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item">geopandas</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item">Git</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item" aria-hidden="true">Python</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item" aria-hidden="true">SQL</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item" aria-hidden="true">Power BI</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item" aria-hidden="true">Streamlit</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item" aria-hidden="true">geopandas</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
+        <span class="tooling-bar__item" aria-hidden="true">Git</span>
+      </span>
+    </div>
+  </div>
+
+</main>
+
+<button type="button" class="back-to-top" aria-label="Back to top" id="back-to-top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<footer id="contact" class="site-footer" data-reveal>
+  <div class="wrap">
+    <h2 class="site-footer__title">Get in touch</h2>
+    <div class="email-chip">
+      <a class="email-chip__address" href="mailto:gabriela.olivera.nz@gmail.com">gabriela.olivera.nz@gmail.com</a>
+      <button type="button" class="copy-button" id="copy-email" data-copy="gabriela.olivera.nz@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        Copy
+      </button>
+    </div>
+    <span class="copy-button__status" id="copy-status" role="status" aria-live="polite"></span>
+    <div class="site-footer__actions">
+      <a class="button button--secondary" href="https://www.linkedin.com/in/gabriela-olivera-nz/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="button button--secondary" href="https://github.com/gabrielaoliveranz" target="_blank" rel="noopener">GitHub</a>
+      <a class="button button--primary" href="assets/cv/gabriela-olivera-cv.pdf">Download CV</a>
+    </div>
+    <!-- Update this date every time the CV file is replaced — see CLAUDE.md, "The CV is a seventh copy". -->
+    <p class="site-footer__cv-date">CV last updated: 8 August 2026</p>
+    <div class="site-footer__meta">
+      <p class="site-footer__status"><span class="site-footer__dot" aria-hidden="true"></span> Mount Maunganui, Bay of Plenty · NZ Permanent Resident</p>
+      <p>&copy; 2026 Gabriela Olivera</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
