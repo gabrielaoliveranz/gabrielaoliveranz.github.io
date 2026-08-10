@@ -22,7 +22,7 @@
     "browser-driver-manager": "^2.0.1",
     "html-validate": "^9.7.1",
     "http-server": "^14.1.1",
-    "linkinator": "^6.1.2",
+    "linkinator": "^8.0.3",
     "selenium-webdriver": "^4.44.0"
   }
 }
