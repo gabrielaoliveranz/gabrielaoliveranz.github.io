@@ -30,6 +30,18 @@ would catch. Re-checking this site and the CV PDF is necessary but not
 sufficient: explicitly go and look at LinkedIn and Seek too, in the
 same sitting, because nothing will ever prompt you to otherwise.
 
+**A known-wrong figure is deliberately left uncorrected here, and
+that's a decision, not an oversight:** the Apophenia card's "26wk
+Forecast · with 90% confidence intervals" is wrong at its source —
+in Apophenia, that 90% band is drawn as a fixed ±28% of the base
+score, and the confidence value is a hardcoded string, not a
+statistically derived interval. This site's copy of it is downstream
+of Apophenia the same way the Terroir figures above are downstream of
+the Terroir pipeline, so it gets corrected here only *after*
+Apophenia's own copy is fixed — fixing it here first would let the two
+drift apart in the other direction. Re-check this line when Apophenia's
+methodology or copy changes.
+
 ## The CV is a seventh copy, and a binary one
 
 The "Download CV" link points at a PDF committed to this repo
@@ -242,6 +254,53 @@ previously-undetected bug: `check:contrast-states` crashed outright on
 `.button--secondary` (whose first match, "Download CV", is a real same-tab
 navigation) and was never wired into `checks.yml`, so nothing ever ran it in
 CI to notice.
+
+## Every third-party asset is self-hosted or justified, and either way it's in LICENSE.md
+
+Bricolage Grotesque set the hero headline — arguably the single most
+prominent piece of text on the site — loaded live from
+`fonts.googleapis.com`, while Archivo and Source Sans 3 sat right next
+to it in the same `--font-*` tokens, self-hosted from `assets/fonts/`.
+`LICENSE.md`'s font section named the two self-hosted ones and said
+nothing about the third. None of that made it an infringement — it's
+OFL either way — but a licence file that lists fonts and misses one
+being actively used stops being a document anyone can trust without
+re-auditing it themselves, which defeats the point of having it. This
+is the same both-directions failure the sister repo had with icon
+credits: entries for things not actually used, silence on the one that
+was.
+
+**Check both directions, not just one:** every third-party asset this
+site actually loads (fonts, but the same applies to anything added
+later) is either self-hosted with a stated reason it wasn't, or
+knowingly loaded live with a stated reason why — and either way, it has
+an entry in `LICENSE.md`. And separately: every entry `LICENSE.md`
+makes must name something the repo still actually uses — an entry for
+a font or asset that's been removed is exactly as untrustworthy as a
+missing one, just in the other direction.
+
+## A skip list is a coverage hole — every entry needs a stated reason and the narrowest possible pattern
+
+`check:links`'s `--skip` pattern excluded `gabrielaoliveranz\.github\.io`
+— the entire domain — to avoid `linkinator` re-fetching this site's own
+canonical URL (harmless, but redundant, since it's already being
+crawled directly). That one pattern also silently excluded
+`https://gabrielaoliveranz.github.io/terroir-case-study/`, the Case
+study button on the Terroir project — the only outbound link on this
+page whose target this same person controls, and so the only one
+breakable by a renamed repo, a disabled Pages site, or a domain move
+elsewhere in this person's own GitHub account. LinkedIn (blocks bots)
+and the two slow-to-wake dashboards are genuinely justified skips; nothing
+about that reasoning extends to a second, unrelated path on the same
+domain — the pattern was just wider than any reason for it.
+
+**Every `--skip` entry needs its own stated reason, and a pattern no
+wider than that reason requires.** `gabrielaoliveranz\.github\.io/$` —
+anchored to the bare root, trailing slash, nothing after — covers only
+the actual self-reference, so `/terroir-case-study/` and
+`/assets/images/og-card.png` on the same domain are genuinely checked.
+Verified, not assumed: deliberately pointed the Case study link at a
+path that 404s, confirmed `check:links` reported it, then reverted.
 
 ## Everything else
 
