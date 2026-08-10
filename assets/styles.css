@@ -236,7 +236,15 @@ button:focus-visible {
 .hero { max-width: 1240px; margin: 0 auto; padding: 80px 32px 80px; }
 .hero__title {
   font-family: var(--font-heading);
-  font-weight: 900;
+  /* 800, not 900: the only real usage (index.html's h1, which overrides
+     font-family to --font-display inline) renders in Bricolage
+     Grotesque, whose native max weight is 800 — CSS nearest-weight
+     matching has always silently clamped a declared 900 down to 800
+     here. Stating 800 makes the declaration match what actually
+     renders, rather than a value that's never really applied. See
+     CLAUDE.md, "The figure-staleness chain" — the same failure mode as
+     every stale copied number, just in a CSS property instead of text. */
+  font-weight: 800;
   font-size: clamp(48px, 7vw, 96px);
   line-height: 0.95;
   letter-spacing: -0.03em;
