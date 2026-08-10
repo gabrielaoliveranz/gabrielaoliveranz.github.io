@@ -36,6 +36,11 @@ const TARGETS = [
   // selector to where the CV link actually lives now keeps it pointed at
   // the right element regardless of what else changes in the page.
   ".site-footer__actions .button--primary",
+  // Plain .button--secondary itself: now that the entry above claimed the
+  // CV scenario, this covers the style on its own merits again — its
+  // first match is the footer's LinkedIn link (GitHub, the only other
+  // user of this class, shares the same rules).
+  ".button--secondary",
   ".copy-button",
   ".email-chip__address",
   ".button--on-dark-primary",
