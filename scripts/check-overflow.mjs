@@ -18,7 +18,12 @@ import {
   waitForServer,
 } from "./lib/browser-env.mjs";
 
-const WIDTHS = [320, 390, 768];
+// 1280 added alongside the three mobile widths after the work-section
+// media/aspect-ratio rework: that's the first width the two-column
+// .project-card layout is active at, so it's the narrowest width the
+// image/text-column interaction this session touched can actually be
+// exercised at.
+const WIDTHS = [320, 390, 768, 1280];
 // Tall enough that the full page always fits without a vertical scrollbar:
 // a vertical scrollbar reserves gutter width, which would shrink
 // document.documentElement.clientWidth below window.innerWidth for reasons
