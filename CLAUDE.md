@@ -87,32 +87,65 @@ went stale.
 
 ## sitemap.xml and robots.txt reference the canonical URL, not a copy of it
 
-`sitemap.xml`'s `<loc>` and `robots.txt`'s `Sitemap:` line both carry the
-same absolute URL as `index.html`'s `<link rel="canonical">` — three
-places, one fact. There's no build step to template that from a single
-source (see "hand-written HTML... never a bundled export" below), so
-when either file was written, its URL was copied *from*
-`index.html`'s actual canonical tag, not retyped from memory — and it's
-been checked character-for-character against it since (see the repo's
-own history for the exact comparison).
+The site's canonical URL is repeated in **seven** places across four
+files — one fact, seven copies, no build step tying them together (see
+"hand-written HTML... never a bundled export" below):
+`index.html`'s `<link rel="canonical">`, its `og:url`, `og:image` and
+`twitter:image`, `404.html`'s `<link rel="canonical">`, `sitemap.xml`'s
+`<loc>`, and `robots.txt`'s `Sitemap:` line. When `sitemap.xml` and
+`robots.txt` were first written, their URLs were copied *from*
+`index.html`'s actual canonical tag, not retyped from memory.
 
-**If this site ever moves to a custom domain, all three of these need to
-change together, in the same commit:**
-- `index.html`'s `<link rel="canonical">` and the four `og:`/`twitter:`
-  URLs alongside it
-- `404.html`'s `<link rel="canonical">`
-- `sitemap.xml`'s `<loc>`
-- `robots.txt`'s `Sitemap:` line
+**If this site ever moves to a custom domain, all seven need to change
+together, in the same commit.** Miss any one of them and it goes stale
+exactly like the OG card's accent colour did: no build step will ever
+catch it, and nothing about a wrong-but-valid URL looks broken to a
+casual read of the page.
 
-Miss any one of them and it goes stale exactly like the OG card did:
-no build step will ever catch it, and nothing about a wrong-but-valid
-URL looks broken to a casual read of the page.
+**This is enforced, not just documented:** `npm run check:canonical`
+(`scripts/check-canonical-urls.mjs`, wired into `npm run check` and CI)
+treats `index.html`'s `<link rel="canonical">` as the one source of
+truth, computes what each of the other six *should* say from it, and
+fails naming the exact file and tag if any of them disagree — not just
+that something, somewhere, does. Verified against a real mismatch
+before being trusted: temporarily pointing `404.html`'s canonical at
+the wrong path made it fail with the exact file, the expected value and
+the actual value named, then it was reverted clean.
 
 404.html is deliberately **not** in `sitemap.xml` — it's `noindex`
 (see `404.html` itself), and a sitemap should only list pages meant to
 be indexed. That means this is a one-page sitemap; if a second real
 page is ever added to the site, it belongs in `sitemap.xml` too, with
 its own accurate `lastmod`.
+
+## Google Search Console verification file
+
+`google081f77d423ca3a8e.html`, in the repo root, is not part of the site
+— it's how Google Search Console verifies ownership of this property,
+by re-checking that this exact file is still served at
+`https://gabrielaoliveranz.github.io/google081f77d423ca3a8e.html`.
+
+**It must stay in the repo permanently, byte-for-byte, and never be
+"cleaned up".** Deleting it doesn't error, doesn't 404 anywhere
+visible, and doesn't break any check in this repo — it just silently
+un-verifies the property the next time Google re-checks, with no
+warning to anyone here.
+
+Its content (`google-site-verification: google081f77d423ca3a8e.html`)
+is Google's required format, not a mistake: a single line of plain
+text with an `.html` extension, not an actual HTML document. That
+makes it look like exactly the kind of thing `npm run check:html`
+should flag — it doesn't, in practice (`html-validate`'s recommended
+preset doesn't fault a tag-less file), but rather than depend on that
+holding true forever, it's explicitly listed in `.htmlvalidateignore`
+with a comment explaining why, so it stays excluded by name if
+`check:html`'s scope is ever broadened from the current `index.html
+404.html` to something that walks the directory. No other check in
+this repo needed the same treatment: `check:links`, `check:a11y`,
+`check:overflow`, `check:assets` and `check:og-card` all work from the
+fixed `PAGES` list in `scripts/lib/browser-env.mjs` (or explicit
+filenames), never a directory scan, so none of them touch this file
+either way.
 
 ## The status line
 

@@ -40,3 +40,6 @@ jobs:
 
       - name: OG card matches current accent
         run: npm run check:og-card
+
+      - name: Canonical URL agrees everywhere
+        run: npm run check:canonical

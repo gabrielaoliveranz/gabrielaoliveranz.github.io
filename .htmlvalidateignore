@@ -1,0 +1,7 @@
+# google081f77d423ca3a8e.html is a Google Search Console verification
+# file: its .html extension is required by Google, but its actual content
+# is a single line of plain text ("google-site-verification: ..."), not a
+# real HTML document. Excluded here explicitly, by name — not by loosening
+# any html-validate rule for the rest of the site. See CLAUDE.md, "Google
+# Search Console verification file".
+google081f77d423ca3a8e.html
