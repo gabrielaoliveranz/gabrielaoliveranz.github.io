@@ -302,6 +302,43 @@ the actual self-reference, so `/terroir-case-study/` and
 Verified, not assumed: deliberately pointed the Case study link at a
 path that 404s, confirmed `check:links` reported it, then reverted.
 
+## Line endings are the repo's problem, not core.autocrlf's
+
+Every committed text file is LF. On Windows, Git can transparently
+convert that to CRLF on checkout and back to LF on commit — but only if
+`core.autocrlf` is set, and that setting lives in *this machine's* git
+config, not in the repo. On the machine this site is developed on it
+happened to be set at the system level (`core.autocrlf=true` in Git for
+Windows' own `gitconfig`), which is why editing `assets/styles.css`
+here has never actually produced a stray CRLF-vs-LF diff — checked
+directly (`git diff`, `git status`) rather than assumed, the day this
+section was written, and both were clean. That was this machine's
+config working correctly, not a property of the repository: clone this
+repo somewhere with a different `core.autocrlf` — a teammate's default,
+a different tool, a CI image — and nothing here would have stopped a
+CRLF checkout from turning into a same-content, every-line "modified"
+diff on the next edit, which would have looked like a real change and
+would have destroyed `git blame` on that file if committed.
+
+**`.gitattributes` makes this the repository's guarantee, not each
+contributor's.** `* text=auto eol=lf` normalises every text file to LF
+in the object database regardless of what a given machine's config
+does locally; true binaries (`.woff2`, `.png`, `.jpg`, `.pdf`, `.ico`)
+are marked `binary` explicitly so nothing ever attempts to
+line-ending-normalise them. Verified before committing, not assumed:
+`git add --renormalize .` immediately after adding the file staged
+zero content changes — every already-committed blob already matched
+what the new rules produce, so adding this file is confirmed to be
+pure hardening, not a mass reformat in disguise.
+
+**If a file ever does show as modified with a suspicious 1:1
+insertions-to-deletions count matching its own line count, don't
+commit it** — check `git diff --ignore-cr-at-eol` (or `-w`) first. An
+empty result there against a non-empty plain `git diff` means the
+content is byte-identical and only line endings moved; discard the
+working-tree change (`git restore -- <file>`) rather than commit a
+no-op diff that erases `git blame` for every line in the file.
+
 ## Everything else
 
 Same standard as `terroir-case-study`, plus several checks specific to this
