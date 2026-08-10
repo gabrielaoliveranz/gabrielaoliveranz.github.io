@@ -4,7 +4,7 @@
   "description": "Automated checks for Gabriela Olivera's portfolio site (static HTML, no build step).",
   "scripts": {
     "check:html": "html-validate index.html 404.html",
-    "check:links": "linkinator index.html 404.html --recurse --skip \"linkedin\\.com|terroir\\.streamlit\\.app|apophenia-nz\\.vercel\\.app|gabrielaoliveranz\\.github\\.io\"",
+    "check:links": "linkinator index.html 404.html --recurse --skip \"linkedin\\.com|terroir\\.streamlit\\.app|apophenia-nz\\.vercel\\.app|gabrielaoliveranz\\.github\\.io/$\"",
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:overflow": "node scripts/check-overflow.mjs",
     "check:contrast-states": "node scripts/check-contrast-states.mjs",
