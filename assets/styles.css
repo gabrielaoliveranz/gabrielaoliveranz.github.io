@@ -38,6 +38,39 @@
   src: url("fonts/source-sans-3-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+/* Bricolage Grotesque is a variable font on two axes: wght (weight) and
+   opsz (optical size). font-weight: 600 800 preserves the exact range
+   requested by the Google Fonts URL this replaced
+   (wght@12..96,600..800) — the only weight the three --font-display
+   rules actually use is 800 (assets/styles.css: .work__title,
+   .how-i-work__title, .site-footer__title). The opsz axis has no
+   font-face descriptor of its own; browsers drive it from rendered
+   font-size automatically via font-optical-sizing: auto (the default),
+   and the 12–96 range requested from Google is baked into these files'
+   fvar table, so that continues to work unchanged, self-hosted. Not
+   collapsed to a static instance: verified with fonttools that both
+   axes are still present as real ranges, not single pinned values.
+   Subsetted the same as Archivo/Source Sans 3 (latin + latin-ext) —
+   see CLAUDE.md, "Every third-party asset is either self-hosted or
+   justified". */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 600 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("fonts/bricolage-grotesque-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 600 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("fonts/bricolage-grotesque-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 /* ---------- Tokens ---------- */
 :root {
