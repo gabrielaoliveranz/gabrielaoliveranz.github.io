@@ -18,10 +18,24 @@ import {
   waitForServer,
 } from "./lib/browser-env.mjs";
 
-// Elements to check, by selector. Add new interactive elements here.
+// Elements to check, by selector — each resolves via querySelector, i.e.
+// its first match in document order. Add new interactive elements here.
 const TARGETS = [
   ".button--primary",
-  ".button--secondary",
+  // Deliberately scoped to the Contact section, not the bare class: this
+  // used to be plain ".button--secondary", whose first match was the
+  // hero's "Download CV" link — the real, same-tab-navigating href whose
+  // click-guard bug this script was written to catch (see CLAUDE.md,
+  // "Contrast must hold in every interactive state"). Once that hero
+  // button was removed, ".button--secondary" would have silently started
+  // matching a *different* element (a footer social link) instead — same
+  // selector, same PASS, but no longer exercising the scenario this entry
+  // exists for. A selector that stops matching its intended element
+  // doesn't fail, it silently passes on something else; this repo has
+  // already had two checks go quietly wrong that way. Scoping the
+  // selector to where the CV link actually lives now keeps it pointed at
+  // the right element regardless of what else changes in the page.
+  ".site-footer__actions .button--primary",
   ".copy-button",
   ".email-chip__address",
   ".button--on-dark-primary",
