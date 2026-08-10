@@ -12,6 +12,8 @@ same hand-written semantic HTML, design tokens and CI checks as the
 gabrielaoliveranz.github.io/
 ├── index.html
 ├── 404.html
+├── sitemap.xml
+├── robots.txt
 ├── assets/
 │   ├── styles.css
 │   ├── script.js

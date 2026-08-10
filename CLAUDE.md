@@ -85,6 +85,35 @@ against a real mismatch before being trusted: temporarily reverting
 matching --accent", exactly as it should have failed the first time this
 went stale.
 
+## sitemap.xml and robots.txt reference the canonical URL, not a copy of it
+
+`sitemap.xml`'s `<loc>` and `robots.txt`'s `Sitemap:` line both carry the
+same absolute URL as `index.html`'s `<link rel="canonical">` — three
+places, one fact. There's no build step to template that from a single
+source (see "hand-written HTML... never a bundled export" below), so
+when either file was written, its URL was copied *from*
+`index.html`'s actual canonical tag, not retyped from memory — and it's
+been checked character-for-character against it since (see the repo's
+own history for the exact comparison).
+
+**If this site ever moves to a custom domain, all three of these need to
+change together, in the same commit:**
+- `index.html`'s `<link rel="canonical">` and the four `og:`/`twitter:`
+  URLs alongside it
+- `404.html`'s `<link rel="canonical">`
+- `sitemap.xml`'s `<loc>`
+- `robots.txt`'s `Sitemap:` line
+
+Miss any one of them and it goes stale exactly like the OG card did:
+no build step will ever catch it, and nothing about a wrong-but-valid
+URL looks broken to a casual read of the page.
+
+404.html is deliberately **not** in `sitemap.xml` — it's `noindex`
+(see `404.html` itself), and a sitemap should only list pages meant to
+be indexed. That means this is a one-page sitemap; if a second real
+page is ever added to the site, it belongs in `sitemap.xml` too, with
+its own accurate `lastmod`.
+
 ## The status line
 
 "Open to data analyst roles" will be wrong the day this changes, and is
