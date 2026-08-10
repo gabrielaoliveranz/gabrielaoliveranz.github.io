@@ -37,3 +37,6 @@ jobs:
 
       - name: No unexpected untracked files
         run: npm run check:untracked
+
+      - name: OG card matches current accent
+        run: npm run check:og-card

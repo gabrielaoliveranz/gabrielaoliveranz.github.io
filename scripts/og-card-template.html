@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+  Source template for assets/images/og-card.png. Not part of the shipped
+  site — nothing links here. Regenerate the PNG with
+  `npm run generate:og-card` after editing this file, any of the numbers
+  below, or --accent/--bg/--text* in assets/styles.css. See CLAUDE.md,
+  "The OG card is an eighth copy".
+-->
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<style>
+  html, body { margin: 0; padding: 0; }
+  .card {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .card__bar { position: absolute; left: 0; top: 0; width: 16px; height: 100%; background: var(--accent); }
+  .card__content { position: absolute; left: 80px; top: 138px; right: 80px; }
+  .card__eyebrow {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+  .card__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 68px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0 0 28px;
+  }
+  .card__lede {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--text-muted);
+    max-width: 900px;
+    margin: 0 0 48px;
+  }
+  .card__stats { display: flex; gap: 64px; }
+  .card__stat-value {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 46px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .card__stat-label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-subtle);
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="card__bar"></div>
+    <div class="card__content">
+      <p class="card__eyebrow">Data analyst &middot; Mount Maunganui</p>
+      <h1 class="card__title">Gabriela Olivera</h1>
+      <p class="card__lede">Operational data, end to end &mdash; pipelines, models, dashboards people actually use.</p>
+      <div class="card__stats">
+        <div><div class="card__stat-value">22,834</div><div class="card__stat-label">parcels</div></div>
+        <div><div class="card__stat-value">21,491</div><div class="card__stat-label">scored</div></div>
+        <div><div class="card__stat-value">13,040</div><div class="card__stat-label">candidates</div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

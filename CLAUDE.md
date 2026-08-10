@@ -48,6 +48,43 @@ the PDF is replaced. That line exists so a visitor (or Gabriela,
 months later) can tell at a glance whether the PDF behind the link is
 current, without opening it.
 
+## The OG card carries its own copy of both the tokens and the numbers
+
+`assets/images/og-card.png` (the Open Graph / Twitter preview image) repeats
+the same three Terroir numbers as the `.stats` block above — another place
+in "The figure-staleness chain" that isn't in the numbered list, because it
+isn't HTML — *and* it repeats the site's `--accent` colour as a rendered
+pixel value, which nothing in that chain covers at all. Unlike the numbers
+in HTML, this is a flat PNG: a changed accent, or a changed number, produces
+no diff a reviewer would ever read — the same problem the CV PDF has. It
+already happened once — the site was repainted from Terroir's brown to
+`--accent: #1A4A82`, and the card kept shipping the old brown indefinitely,
+because nothing ever looked at it again.
+
+**Whenever `--accent`/`--bg`/`--text*` in `assets/styles.css` change, or the
+numbers in the card's copy change, regenerate it in the same change:**
+
+```
+npm run generate:og-card
+```
+
+This renders `scripts/og-card-template.html` (a standalone page, linked to
+the real `assets/styles.css` and the same self-hosted fonts as the site, so
+there is nothing to keep in sync by hand) at exactly 1200×630 in a headless
+browser and overwrites `assets/images/og-card.png`. Edit the template — not
+the PNG, and never by hand in an image editor — to change layout or copy.
+
+**This is enforced, not just documented:** `npm run check:og-card`
+(`scripts/check-og-card.mjs`, wired into `npm run check` and CI) reads
+`--accent` straight out of `assets/styles.css`, reads the committed PNG's
+actual pixels, and fails if the colour the bar/eyebrow/numbers were
+rendered in doesn't match — plus fails if the file's real dimensions don't
+match what `og:image:width`/`og:image:height` declare. It was verified
+against a real mismatch before being trusted: temporarily reverting
+`--accent` to Terroir's old brown made it fail with "found 0 pixels
+matching --accent", exactly as it should have failed the first time this
+went stale.
+
 ## The status line
 
 "Open to data analyst roles" will be wrong the day this changes, and is
@@ -146,7 +183,7 @@ CI to notice.
 
 ## Everything else
 
-Same standard as `terroir-case-study`, plus two checks specific to this
+Same standard as `terroir-case-study`, plus several checks specific to this
 site: `lang="en-NZ"`, real title and meta description, Open Graph and
 Twitter cards, `alt` on every image, visible focus states, WCAG AA
 contrast, no horizontal overflow from 320px up verified by measurement
@@ -156,7 +193,10 @@ bundled export. Every local asset reference (`src`/`href` in the HTML,
 `url()` in the CSS) is checked against the real, case-exact filename on
 disk (`npm run check:assets`) — Windows and macOS resolve a wrong-case
 path locally without complaint, then GitHub Pages 404s it, because Linux
-is case-sensitive. And nothing untracked-and-ungitignored can slip into
-a commit unnoticed (`npm run check:untracked`) — see "Design-tool
-scaffolding never leaves the working tree" above. Checks run in CI on
+is case-sensitive. Nothing untracked-and-ungitignored can slip into a
+commit unnoticed (`npm run check:untracked`) — see "Design-tool
+scaffolding never leaves the working tree" above. And the OG card's actual
+pixels are checked against the live `--accent` token and the declared
+`og:image` dimensions (`npm run check:og-card`) — see "The OG card carries
+its own copy of both the tokens and the numbers" above. Checks run in CI on
 every push (`.github/workflows/checks.yml`), same as the case study.

@@ -10,8 +10,10 @@
     "check:contrast-states": "node scripts/check-contrast-states.mjs",
     "check:assets": "node scripts/check-assets.mjs",
     "check:untracked": "node scripts/check-untracked.mjs",
+    "check:og-card": "node scripts/check-og-card.mjs",
+    "generate:og-card": "node scripts/generate-og-card.mjs",
     "serve": "http-server . -p 8080 -s",
-    "check": "npm run check:html && npm run check:links && npm run check:a11y && npm run check:overflow && npm run check:contrast-states && npm run check:assets && npm run check:untracked"
+    "check": "npm run check:html && npm run check:links && npm run check:a11y && npm run check:overflow && npm run check:contrast-states && npm run check:assets && npm run check:untracked && npm run check:og-card"
   },
   "devDependencies": {
     "@axe-core/cli": "^4.10.2",
