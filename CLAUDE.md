@@ -8,7 +8,7 @@ overall approach; this file covers what's specific to this site.
 ## The figure-staleness chain — six copies, one source of truth
 
 The numbers on this page (22,834 parcels · 21,491 scored · 13,040
-expansion candidates, plus Apophenia's 9 / 26wk / 4) exist in **seven**
+expansion candidates, plus Apophenia's 9 / 26wk / 4) exist in **six**
 places now, and only the first is authoritative:
 
 1. **The Terroir pipeline** (`horticultural-land-suitability-nz`) —
@@ -30,19 +30,18 @@ would catch. Re-checking this site and the CV PDF is necessary but not
 sufficient: explicitly go and look at LinkedIn and Seek too, in the
 same sitting, because nothing will ever prompt you to otherwise.
 
-**A known-wrong figure is deliberately left uncorrected here, and
-that's a decision, not an oversight:** the Apophenia card's "26wk
-Forecast · with 90% confidence intervals" is wrong at its source —
-in Apophenia, that 90% band is drawn as a fixed ±28% of the base
-score, and the confidence value is a hardcoded string, not a
-statistically derived interval. This site's copy of it is downstream
-of Apophenia the same way the Terroir figures above are downstream of
-the Terroir pipeline, so it gets corrected here only *after*
-Apophenia's own copy is fixed — fixing it here first would let the two
-drift apart in the other direction. Re-check this line when Apophenia's
-methodology or copy changes.
+**Resolved 2026-08-12:** the Apophenia card's "26wk Forecast · with 90%
+confidence intervals" was wrong at its source — Apophenia's 26-week
+chart draws a fixed ±6/12/18-point band, not a statistically fitted
+interval, and its methodology modal had even attributed the *90-day*
+chart's formula to the 26-week chart. Apophenia's own copy was fixed
+first (all "confidence interval"/"confidence band" language relabelled
+as "projection band" — see that repo's CLAUDE.md), then this card was
+updated to match: "with a fixed-width projection band." Keep fixing in
+that order — source repo first, this site second — so the two don't
+drift apart in the other direction.
 
-## The CV is a seventh copy, and a binary one
+## Copy #4, the CV, is a binary one
 
 The "Download CV" link points at a PDF committed to this repo
 (`assets/cv/gabriela-olivera-cv.pdf`). Unlike the HTML/CSS above, a
