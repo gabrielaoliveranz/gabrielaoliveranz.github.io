@@ -24,6 +24,21 @@
   if (motionEnabled) {
     document.documentElement.classList.add('motion-ready');
 
+    // Seamless-loop marquee: the CSS scroll animation (translateX(-50%))
+    // assumes the track is two pixel-identical halves. Clone the real,
+    // hand-written half instead of hand-writing a second copy in the
+    // HTML — a clone can never drift out of sync with its source the
+    // way two separately edited copies could. See the HTML comment
+    // above #tooling-track and CLAUDE.md, "Tooling-bar ticker".
+    var toolingTrackEl = document.getElementById('tooling-track');
+    if (toolingTrackEl) {
+      Array.prototype.slice.call(toolingTrackEl.children).forEach(function (node) {
+        var clone = node.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        toolingTrackEl.appendChild(clone);
+      });
+    }
+
     var revealObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {

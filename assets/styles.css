@@ -461,15 +461,23 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 .tooling-bar { overflow: hidden; background: var(--bg-dark); padding: 26px 0; display: flex; align-items: center; gap: 20px; }
 .tooling-bar__viewport { flex: 1; overflow: hidden; }
 .tooling-bar__track {
+  --tooling-gap: 56px;
   display: flex;
-  gap: 56px;
+  gap: var(--tooling-gap);
   white-space: nowrap;
   width: max-content;
   font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Menlo', 'Consolas', monospace;
   font-size: 19px;
   letter-spacing: 0.02em;
-  animation: tooling-scroll 20s linear infinite;
 }
+/* The scroll animation only runs once script.js has cloned the track's
+   real content into an identical second half (see the HTML comment
+   above #tooling-track) — without that clone, translateX(-50%) would
+   scroll past the single copy into empty space. No-JS and
+   reduced-motion visitors get the same static, fully-readable list
+   with no animation at all, same as [data-reveal] elsewhere on this
+   page. */
+html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear infinite; }
 .tooling-bar__track.is-paused { animation-play-state: paused; }
 .tooling-bar__item {
   color: var(--neon-blue);
@@ -478,7 +486,14 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 .tooling-bar__sep { color: rgba(231, 238, 246, 0.3); text-shadow: none; }
 @keyframes tooling-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  /* Not a plain -50%: with an odd total gap count (2N-1 gaps across two
+     N-child halves), -50% of the track's total width only carries half
+     of the one boundary gap past the viewport, undershooting a true
+     one-half-width-plus-one-gap shift by exactly half a gap — every
+     time, regardless of list length. Subtracting half of the same
+     --tooling-gap this rule's own `gap` uses keeps the correction tied
+     to that one value, so it can't drift out of sync with it either. */
+  to { transform: translateX(calc(-50% - (var(--tooling-gap) / 2))); }
 }
 .tooling-bar__toggle {
   flex: none;

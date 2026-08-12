@@ -167,6 +167,19 @@
       <svg id="tooling-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 4l14 8-14 8V4z"></path></svg>
     </button>
     <div class="tooling-bar__viewport">
+      <!--
+        Only ONE copy of the tool list belongs here. The seamless-loop
+        marquee (assets/styles.css, @keyframes tooling-scroll) needs two
+        pixel-identical halves; script.js builds the second (aria-hidden)
+        half at runtime by cloning this one, so the two halves can never
+        drift apart the way hand-copying this block twice did before —
+        see CLAUDE.md, "Tooling-bar ticker". The keyframe's shift also
+        isn't a plain -50%: it subtracts half of --tooling-gap (same
+        file) to land exactly on the clone's start, not half the gap
+        short of it — same CLAUDE.md section explains why.
+        To add a tool: edit only this list. Do not paste a second copy
+        below it.
+      -->
       <span class="tooling-bar__track" id="tooling-track">
         <span class="tooling-bar__item">Python</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
         <span class="tooling-bar__item">SQL</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
@@ -175,13 +188,6 @@
         <span class="tooling-bar__item">Streamlit</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
         <span class="tooling-bar__item">geopandas</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
         <span class="tooling-bar__item">Git</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item" aria-hidden="true">Python</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item" aria-hidden="true">SQL</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item" aria-hidden="true">JavaScript</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item" aria-hidden="true">Power BI</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item" aria-hidden="true">Streamlit</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item" aria-hidden="true">geopandas</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item" aria-hidden="true">Git</span>
       </span>
     </div>
   </div>
