@@ -59,6 +59,18 @@ the PDF is replaced. That line exists so a visitor (or Gabriela,
 months later) can tell at a glance whether the PDF behind the link is
 current, without opening it.
 
+The CV's header also carries its own copy of the site's canonical
+URL (`gabrielaolivera.nz`, next to the email and LinkedIn/GitHub
+handles) — an eighth copy that isn't in "sitemap.xml and robots.txt
+reference the canonical URL, not a copy of it" above because none of
+the tooling described there can see it: `check:canonical` reads HTML
+tags with a regex, and a PDF has none. **If this site ever moves
+domains again, the CV's header needs a manual re-export in the same
+change** — no check will ever catch it silently drifting, the same
+blind spot the OG card's accent colour had before `check:og-card`
+existed, except there is no equivalent check possible here short of
+extracting the PDF's text by hand.
+
 ## The OG card carries its own copy of both the tokens and the numbers
 
 `assets/images/og-card.png` (the Open Graph / Twitter preview image) repeats
