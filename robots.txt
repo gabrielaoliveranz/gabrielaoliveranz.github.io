@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gabrielaoliveranz.github.io/sitemap.xml
+Sitemap: https://gabrielaolivera.nz/sitemap.xml

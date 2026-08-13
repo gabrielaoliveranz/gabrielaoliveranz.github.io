@@ -62,7 +62,7 @@ npm run generate:og-card   # after editing the template, its copy, or --accent/-
 
 ## Live
 
-https://gabrielaoliveranz.github.io/
+https://gabrielaolivera.nz/
 
 ## Licence
 
