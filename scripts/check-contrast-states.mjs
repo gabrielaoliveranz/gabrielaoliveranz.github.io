@@ -38,11 +38,18 @@ const TARGETS = [
   ".site-footer__actions .button--primary",
   // Plain .button--secondary itself: now that the entry above claimed the
   // CV scenario, this covers the style on its own merits again — its
-  // first match is the footer's LinkedIn link (GitHub, the only other
-  // user of this class, shares the same rules).
+  // first match is the footer's LinkedIn link (GitHub shares the same
+  // rules, so it doesn't need its own entry).
   ".button--secondary",
-  ".copy-button",
-  ".email-chip__address",
+  // The Email button is also .button--secondary, but unlike LinkedIn/
+  // GitHub it's a real <button>, not an <a> — the same distinction that
+  // used to be covered by the old .copy-button entry before the email
+  // chip was replaced with this button. querySelector(".button--secondary")
+  // always resolves to LinkedIn (first in document order), so without its
+  // own selector this element would go untested with nothing failing to
+  // say so — see CLAUDE.md's "skip list is a coverage hole" pattern,
+  // same shape here.
+  "#copy-email",
   ".button--on-dark-primary",
   ".button--on-dark-secondary",
   ".tooling-bar__toggle",

@@ -171,6 +171,7 @@ button:focus-visible {
   border-radius: 999px;
   text-decoration: none;
   display: inline-block;
+  cursor: pointer;
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 .button--primary { background: var(--accent); color: var(--bg-card); }
@@ -514,52 +515,8 @@ html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear inf
   .tooling-bar__track { animation: none; }
 }
 
-/* ---------- Portfolio-specific: contact email chip + copy control ---------- */
-.email-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 6px 6px 16px;
-  margin: 0 0 20px;
-  max-width: 100%;
-}
-.email-chip__address {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 15px;
-  color: var(--accent);
-  text-decoration: none;
-  letter-spacing: normal;
-  /* Overrides the flex item default of min-width: auto, which otherwise
-     refuses to shrink the address below the full email's unbroken
-     min-content width — at narrow viewports that overflowed the chip
-     (and the viewport) rather than wrapping. See CLAUDE.md /
-     scripts/check-overflow.mjs, "no horizontal overflow from 320px up
-     verified by measurement". */
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-.email-chip__address:hover, .email-chip__address:focus-visible, .email-chip__address:active { color: var(--accent); text-decoration: underline; }
-.copy-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--bg-card);
-  background: var(--accent);
-  border: none;
-  border-radius: 999px;
-  padding: 7px 14px;
-  cursor: pointer;
-}
-.copy-button:hover { box-shadow: 0 2px 8px rgba(31, 78, 95, 0.3); }
-.copy-button:hover, .copy-button:focus-visible, .copy-button:active { color: var(--bg-card); }
-.copy-button__status { font-size: 13px; color: var(--text-muted); display: block; margin: -8px 0 32px; }
+/* ---------- Portfolio-specific: contact email copy control ---------- */
+.copy-button__status { font-size: 13px; color: var(--text-muted); display: block; margin: 0 0 20px; }
 
 /* ---------- Footer ---------- */
 .site-footer { padding: 96px 32px 64px; }
@@ -571,8 +528,8 @@ html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear inf
   margin: 0 0 36px;
   text-wrap: pretty;
 }
-.site-footer__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 44px; }
-.site-footer__cv-date { font-size: 13px; color: var(--text-subtle); margin: -30px 0 44px; }
+.site-footer__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+.site-footer__cv-date { font-size: 13px; color: var(--text-subtle); margin: 0 0 44px; }
 .site-footer__meta {
   display: flex;
   justify-content: space-between;
