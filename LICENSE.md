@@ -46,3 +46,20 @@ covers it, rather than a software licence like MIT.
   -derived data — see the sister repo's own [Data and licensing](https://github.com/gabrielaoliveranz/horticultural-land-suitability-nz#data-and-licensing)
   section for those sources' terms. This repository doesn't hold rights
   over that underlying data any more than the sister repo does.
+- **`assets/icons/`** (`github.png`, `linkedin.png`, `email.png`,
+  `location-pin.png`, `cv.png`) — Flaticon icons under their Free
+  Licence, which requires attribution:
+  - Github icons created by Pixel perfect — [Flaticon](https://www.flaticon.com/free-icons/github)
+  - Linkedin icons created by Magnific — [Flaticon](https://www.flaticon.com/free-icons/linkedin)
+  - Email icons created by Uniconlabs — [Flaticon](https://www.flaticon.com/free-icons/email)
+  - Location pin icons created by Pixel perfect — [Flaticon](https://www.flaticon.com/free-icons/location-pin)
+  - Curriculum vitae icons created by Mayor Icons — [Flaticon](https://www.flaticon.com/free-icons/curriculum-vitae)
+
+  Checked both directions (see CLAUDE.md, "Every third-party asset is
+  self-hosted or justified, and either way it's in LICENSE.md"): every
+  file in `assets/icons/` has a credit above naming
+  it, and every credit above names a file that's actually in
+  `assets/icons/` and actually rendered on the page (as a CSS
+  `mask-image` on a decorative `.icon` span, recoloured via
+  `background-color` — see `assets/styles.css`). No entry for an icon
+  that isn't used, no icon without an entry.

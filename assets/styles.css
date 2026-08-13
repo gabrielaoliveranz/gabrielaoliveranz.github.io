@@ -170,21 +170,16 @@ button:focus-visible {
   padding: 14px 28px;
   border-radius: 999px;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   cursor: pointer;
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 .button--primary { background: var(--accent); color: var(--bg-card); }
 .button--primary:hover { box-shadow: 0 4px 14px rgba(31, 78, 95, 0.28); transform: translateY(-1px); }
 .button--primary:hover, .button--primary:focus-visible, .button--primary:active { color: var(--bg-card); }
-.button--secondary {
-  background: transparent;
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
-  padding: 12.5px 26px;
-}
-.button--secondary:hover { background: rgba(31, 78, 95, 0.06); }
-.button--secondary:hover, .button--secondary:focus-visible, .button--secondary:active { color: var(--accent); }
 
 /* ---------- Header / nav ---------- */
 .site-header {
@@ -518,6 +513,69 @@ html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear inf
 /* ---------- Portfolio-specific: contact email copy control ---------- */
 .copy-button__status { font-size: 13px; color: var(--text-muted); display: block; margin: 0 0 20px; }
 
+/* ---------- Icons (mask-image, not <img>: source PNGs are single-colour
+   silhouettes on transparency, so a CSS mask lets each one pick up
+   currentColor/--accent instead of shipping a separately-coloured asset
+   per use. See LICENSE.md for the Flaticon source of each.) ---------- */
+.icon {
+  display: inline-block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+.icon--github { mask-image: url("icons/github.png"); -webkit-mask-image: url("icons/github.png"); }
+.icon--linkedin { mask-image: url("icons/linkedin.png"); -webkit-mask-image: url("icons/linkedin.png"); }
+.icon--email { mask-image: url("icons/email.png"); -webkit-mask-image: url("icons/email.png"); }
+.icon--cv { mask-image: url("icons/cv.png"); -webkit-mask-image: url("icons/cv.png"); }
+/* Same size as the 9px dot it replaces — a decorative mark next to a small
+   text line, not a button, so it shouldn't read as heavier than the dot
+   was. Colour is hardcoded to --accent, not currentColor: unlike the
+   contact icon-links, this one doesn't sit inside accent-coloured text —
+   the surrounding line is --text-subtle, same as the dot it replaces. */
+.icon--location { width: 10px; height: 10px; background-color: var(--accent); mask-image: url("icons/location-pin.png"); -webkit-mask-image: url("icons/location-pin.png"); }
+
+/* ---------- Contact icon-links: icon is the entire control, no visible
+   label/border. The icon alone can't carry meaning for a screen-reader
+   user (unlike .icon elsewhere on the page, which sits next to text that
+   already says the same thing) — every .icon-link needs its own
+   aria-label, and its child .icon stays aria-hidden so the name isn't
+   announced twice. 52px target well past the 24px WCAG 2.5.8 minimum;
+   sized up from an initial 44px/24px icon because at that size the row
+   read as too light against the "Get in touch" heading above it —
+   this is the section's one call to action, not an incidental icon. ---------- */
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+.icon-link:hover { background-color: rgba(31, 78, 95, 0.08); }
+.icon-link .icon { width: 32px; height: 32px; }
+/* Optical alignment: the visible icon is centred inside a 52px tap target
+   that's wider than it for WCAG 2.5.8 (24px min, 44px target aimed for),
+   so its own left edge sits 10px right of the target's edge — (52-32)/2.
+   Pulling only the first icon-link left by that same 10px lines the
+   visible circle up with "Get in touch"/"CV last updated" above and below
+   it, without shrinking the tap target itself (width/height are untouched
+   — only position moves). Verified by measuring both rects, not by eye. */
+.site-footer__actions .icon-link:first-child { margin-left: -10px; }
+
 /* ---------- Footer ---------- */
 .site-footer { padding: 96px 32px 64px; }
 .site-footer__title {
@@ -525,10 +583,26 @@ html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear inf
   font-weight: 800;
   font-size: clamp(28px, 3vw, 38px);
   letter-spacing: -0.02em;
-  margin: 0 0 36px;
+  margin: 0 0 16px;
   text-wrap: pretty;
 }
-.site-footer__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+.site-footer__actions { display: flex; flex-wrap: wrap; gap: 22px; margin-bottom: 16px; }
+@media (max-width: 480px) {
+  /* At 320px there's ~177px of row width — not enough for four 52px
+     targets plus gaps. Tap targets stay at the 44px WCAG floor (never
+     shrink that), and the icon glyph shrinks with it so the padding
+     stays 10px — (44-24)/2 — same as desktop, so the first-icon
+     alignment fix above still holds without a separate override. Gap
+     shrinks to the minimum that still keeps four in one row: an orphaned
+     icon wrapping to its own row reads as a mistake. This has to come
+     after the base .site-footer__actions rule above (and .icon-link's
+     base rule further up) — same specificity, so source order decides,
+     and a media query earlier in the file loses to a plain rule later in
+     it regardless of which one actually matches. */
+  .site-footer__actions { gap: 2px; }
+  .icon-link { width: 44px; height: 44px; }
+  .icon-link .icon { width: 24px; height: 24px; }
+}
 .site-footer__cv-date { font-size: 13px; color: var(--text-subtle); margin: 0 0 44px; }
 .site-footer__meta {
   display: flex;
@@ -541,7 +615,17 @@ html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear inf
   font-size: 14px;
   color: var(--text-subtle);
 }
-.site-footer__status { display: flex; align-items: center; gap: 10px; }
+/* flex-start, not center: with align-items:center the pin centres against
+   the whole text block, which floats it mid-way down when the line wraps
+   to two or three lines on narrow viewports — it needs to sit at the
+   height of the first line specifically, wrapped or not. */
+.site-footer__status { display: flex; align-items: flex-start; gap: 10px; }
+/* Aligning the icon's own top edge to the line box's top edge isn't
+   enough: at 14px/1.5 line-height the line box is taller than the actual
+   cap-height, so the icon reads as sitting above the text. Nudged down by
+   roughly the top half-leading — (line-height - font-size) / 2 ≈
+   (21 - 14) / 2 — to land level with the caps instead of the line box. */
+.site-footer__status .icon--location { margin-top: 4px; }
 .site-footer__dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
 
 /* ---------- Back to top ---------- */

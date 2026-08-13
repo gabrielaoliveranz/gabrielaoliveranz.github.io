@@ -21,34 +21,36 @@ import {
 // Elements to check, by selector — each resolves via querySelector, i.e.
 // its first match in document order. Add new interactive elements here.
 const TARGETS = [
+  // First match in document order is the hero's "See the work" button —
+  // the only plain .button--primary left after Download CV became an
+  // icon-only .icon-link (see #cv-link below).
   ".button--primary",
-  // Deliberately scoped to the Contact section, not the bare class: this
-  // used to be plain ".button--secondary", whose first match was the
-  // hero's "Download CV" link — the real, same-tab-navigating href whose
-  // click-guard bug this script was written to catch (see CLAUDE.md,
-  // "Contrast must hold in every interactive state"). Once that hero
-  // button was removed, ".button--secondary" would have silently started
-  // matching a *different* element (a footer social link) instead — same
-  // selector, same PASS, but no longer exercising the scenario this entry
-  // exists for. A selector that stops matching its intended element
-  // doesn't fail, it silently passes on something else; this repo has
-  // already had two checks go quietly wrong that way. Scoping the
-  // selector to where the CV link actually lives now keeps it pointed at
-  // the right element regardless of what else changes in the page.
-  ".site-footer__actions .button--primary",
-  // Plain .button--secondary itself: now that the entry above claimed the
-  // CV scenario, this covers the style on its own merits again — its
-  // first match is the footer's LinkedIn link (GitHub shares the same
-  // rules, so it doesn't need its own entry).
-  ".button--secondary",
-  // The Email button is also .button--secondary, but unlike LinkedIn/
-  // GitHub it's a real <button>, not an <a> — the same distinction that
-  // used to be covered by the old .copy-button entry before the email
-  // chip was replaced with this button. querySelector(".button--secondary")
-  // always resolves to LinkedIn (first in document order), so without its
-  // own selector this element would go untested with nothing failing to
-  // say so — see CLAUDE.md's "skip list is a coverage hole" pattern,
-  // same shape here.
+  // Download CV is a real, same-tab-navigating href — the click-guard
+  // bug this script was written to catch (see CLAUDE.md, "Contrast must
+  // hold in every interactive state") only bites elements like this one,
+  // not the target=_blank social links. It used to be reachable via
+  // ".site-footer__actions .button--primary"; now that Download CV is an
+  // .icon-link with no distinguishing class of its own, that selector
+  // would silently match nothing (not fail — just stop testing anything,
+  // the same "coverage hole" shape flagged elsewhere in this repo). Gave
+  // it its own id instead of relying on a class/position that can shift
+  // again.
+  "#cv-link",
+  // Plain .icon-link itself: first match in document order is the
+  // LinkedIn icon (GitHub shares the same rules, so it doesn't need its
+  // own entry). Replaces the old ".button--secondary" entry, which
+  // stopped matching anything once LinkedIn/GitHub/Email/CV dropped the
+  // bordered-button styling for icon-only links — same failure mode as
+  // the #cv-link case above, same fix.
+  ".icon-link",
+  // The Email button is also .icon-link, but unlike LinkedIn/GitHub it's
+  // a real <button>, not an <a> — the same distinction that used to be
+  // covered by the old .copy-button entry before the email chip was
+  // replaced with this button. querySelector(".icon-link") always
+  // resolves to LinkedIn (first in document order), so without its own
+  // selector this element would go untested with nothing failing to say
+  // so — see CLAUDE.md's "skip list is a coverage hole" pattern, same
+  // shape here.
   "#copy-email",
   ".button--on-dark-primary",
   ".button--on-dark-secondary",

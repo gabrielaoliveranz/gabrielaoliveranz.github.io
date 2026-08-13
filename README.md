@@ -20,6 +20,7 @@ gabrielaoliveranz.github.io/
 │   ├── favicon.svg
 │   ├── cv/gabriela-olivera-cv.pdf   # the real CV
 │   ├── fonts/                        # self-hosted Archivo + Source Sans 3
+│   ├── icons/                         # Flaticon mask-image icons — see LICENSE.md
 │   └── images/                       # real headshot + project screenshots
 ├── scripts/                           # html/link/a11y/overflow/contrast/asset
 │   │                                   # checks, plus the OG card generator
