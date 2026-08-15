@@ -138,11 +138,23 @@
     });
   }
 
+  // copy-email is a real mailto: <a> now, not a plain <button> — clicking
+  // it opens a mail client on its own via the href, with no JS required,
+  // same "content/behaviour doesn't depend on script" standard as the rest
+  // of this site. This listener only adds the clipboard copy on top (for
+  // desktop visitors with no mail client configured, where the mailto does
+  // nothing and the button would otherwise look broken) — it never calls
+  // preventDefault, so the mailto navigation always proceeds regardless of
+  // whether the copy succeeds.
   var copyBtn = document.getElementById('copy-email');
   var copyStatus = document.getElementById('copy-status');
   if (copyBtn && copyStatus) {
     copyBtn.addEventListener('click', function () {
-      var value = copyBtn.getAttribute('data-copy');
+      // Read the address from the href actually used to email, rather than
+      // a second hand-typed copy, so the two can't drift apart — same
+      // failure mode as the tooling ticker's old hand-duplicated second
+      // half (CLAUDE.md, "Tooling-bar ticker").
+      var value = copyBtn.getAttribute('href').replace(/^mailto:/, '');
       var announce = function (ok) {
         copyStatus.textContent = ok ? 'Copied' : 'Could not copy — select and copy manually';
         window.clearTimeout(copyBtn._copyTimeout);

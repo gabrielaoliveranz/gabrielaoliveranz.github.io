@@ -43,14 +43,12 @@ const TARGETS = [
   // bordered-button styling for icon-only links — same failure mode as
   // the #cv-link case above, same fix.
   ".icon-link",
-  // The Email button is also .icon-link, but unlike LinkedIn/GitHub it's
-  // a real <button>, not an <a> — the same distinction that used to be
-  // covered by the old .copy-button entry before the email chip was
-  // replaced with this button. querySelector(".icon-link") always
-  // resolves to LinkedIn (first in document order), so without its own
-  // selector this element would go untested with nothing failing to say
-  // so — see CLAUDE.md's "skip list is a coverage hole" pattern, same
-  // shape here.
+  // The Email link is also .icon-link, and now (like LinkedIn/GitHub) a
+  // real <a href="mailto:...">, not a <button> — but querySelector(".icon-link")
+  // always resolves to LinkedIn (first in document order), so without its
+  // own selector this element would still go untested with nothing failing
+  // to say so — see CLAUDE.md's "skip list is a coverage hole" pattern,
+  // same shape here.
   "#copy-email",
   ".button--on-dark-primary",
   ".button--on-dark-secondary",
