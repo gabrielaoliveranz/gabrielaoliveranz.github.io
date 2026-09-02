@@ -182,13 +182,32 @@ button:focus-visible {
 .button--primary:hover, .button--primary:focus-visible, .button--primary:active { color: var(--bg-card); }
 
 /* ---------- Header / nav ---------- */
+/* Frosted-glass sticky header: a semi-transparent light layer over
+   backdrop-filter blur, so whatever section is scrolled underneath
+   (light or dark bands) reads as a soft blur rather than a hard edge.
+   The background alpha is kept high (0.78) specifically so the header's
+   own text colour (var(--text), dark) keeps its contrast regardless of
+   what's blurred behind it — see the sticky-scroll manual check in
+   CLAUDE.md before changing this value. */
 .site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 32px 32px 0;
+  /* Full-bleed bar so the frosted background reaches both edges of the
+     viewport, while the content still lines up with every other
+     section's 1240px column — via padding, not max-width, since the
+     background itself needs to span 100%. */
+  padding: 20px max(32px, calc((100% - 1240px) / 2));
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(32, 28, 23, 0.08);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header { background: var(--bg); }
 }
 .site-header__brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
 .site-header__logo { width: 28px; height: 28px; border-radius: 6px; flex: none; }
@@ -227,6 +246,13 @@ button:focus-visible {
 .site-header__nav a:hover::after { right: 0; }
 .site-header__nav a[aria-current="true"] { color: var(--accent); text-decoration: none; }
 .site-header__nav a[aria-current="true"]::after { right: 0; }
+
+/* Sticky header now overlaps the top of the viewport permanently, so an
+   anchor jump (nav links, skip link) needs to stop short of the header's
+   own height or it tucks the section title underneath it. */
+#main-content, #work, #how-i-work, #contact {
+  scroll-margin-top: 84px;
+}
 
 /* ---------- Hero ---------- */
 .hero { max-width: 1240px; margin: 0 auto; padding: 80px 32px 80px; }
