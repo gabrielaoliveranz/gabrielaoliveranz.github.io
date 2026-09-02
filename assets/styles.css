@@ -466,13 +466,17 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 }
 .how-i-work-item:hover .how-i-work-item__number { color: var(--neon-blue); text-shadow: 0 0 10px rgba(79, 195, 255, 0.5); }
 .how-i-work-item__number {
+  /* Same "hero numeral" treatment as .stat__value (the project stats'
+     big counted-up figures) — same family/weight/letter-spacing formula,
+     scaled up further since this is the only content in its own line. */
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 14px;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1;
   color: var(--accent);
-  letter-spacing: 0.06em;
+  letter-spacing: -0.02em;
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   transition: color 200ms ease, text-shadow 200ms ease;
 }
 .how-i-work-item h3 { font-family: var(--font-heading); font-weight: 700; font-size: 18px; margin: 0 0 10px; }
