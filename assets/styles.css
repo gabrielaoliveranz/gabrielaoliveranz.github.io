@@ -529,44 +529,46 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 .how-i-work-item p { font-size: 15.5px; color: var(--text-muted); margin: 0; }
 @media (max-width: 860px) { .how-i-work-grid { grid-template-columns: minmax(0, 1fr); } }
 
-/* ---------- Portfolio-specific: tooling bar (looping ticker with pause control) ---------- */
+/* ---------- Portfolio-specific: tooling bar (one word falls at a time, Matter.js) ---------- */
 .tooling-bar { overflow: hidden; background: var(--bg-dark); padding: 26px 0; display: flex; align-items: center; gap: 20px; }
 .tooling-bar__viewport { flex: 1; overflow: hidden; }
-.tooling-bar__track {
-  --tooling-gap: 56px;
+.tooling-bar__static {
   display: flex;
-  gap: var(--tooling-gap);
-  white-space: nowrap;
-  width: max-content;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin: 0;
+  padding: 0 4px;
   font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Menlo', 'Consolas', monospace;
   font-size: 19px;
   letter-spacing: 0.02em;
 }
-/* The scroll animation only runs once script.js has cloned the track's
-   real content into an identical second half (see the HTML comment
-   above #tooling-track) — without that clone, translateX(-50%) would
-   scroll past the single copy into empty space. No-JS and
-   reduced-motion visitors get the same static, fully-readable list
-   with no animation at all, same as [data-reveal] elsewhere on this
-   page. */
-html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear infinite; }
-.tooling-bar__track.is-paused { animation-play-state: paused; }
 .tooling-bar__item {
   color: var(--neon-blue);
   text-shadow: 0 0 6px rgba(79, 195, 255, 0.65), 0 0 16px rgba(79, 195, 255, 0.35);
 }
 .tooling-bar__sep { color: rgba(231, 238, 246, 0.3); text-shadow: none; }
-@keyframes tooling-scroll {
-  from { transform: translateX(0); }
-  /* Not a plain -50%: with an odd total gap count (2N-1 gaps across two
-     N-child halves), -50% of the track's total width only carries half
-     of the one boundary gap past the viewport, undershooting a true
-     one-half-width-plus-one-gap shift by exactly half a gap — every
-     time, regardless of list length. Subtracting half of the same
-     --tooling-gap this rule's own `gap` uses keeps the correction tied
-     to that one value, so it can't drift out of sync with it either. */
-  to { transform: translateX(calc(-50% - (var(--tooling-gap) / 2))); }
+
+/* assets/tooling-physics.js only adds .is-active (and moves
+   #tooling-static to .sr-only) once html.motion-ready is present AND
+   the self-hosted Matter.js build actually loaded — until then this
+   stays display: none and #tooling-static above is the only thing
+   rendered, same no-animation fallback contract the old CSS marquee
+   had for no-JS/reduced-motion visitors. */
+.tooling-bar__stage { display: none; position: relative; height: 120px; overflow: hidden; }
+.tooling-bar__stage.is-active { display: block; }
+/* Stays fully opaque for its whole lifetime, including its exit — see
+   assets/tooling-physics.js for why the exit is a second drop (out
+   through the stage's own overflow: hidden) rather than a fade. */
+.tooling-bar__falling-word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
+
 .tooling-bar__toggle {
   flex: none;
   width: 38px;
@@ -582,9 +584,6 @@ html.motion-ready .tooling-bar__track { animation: tooling-scroll 20s linear inf
   cursor: pointer;
 }
 .tooling-bar__toggle:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
-@media (prefers-reduced-motion: reduce) {
-  .tooling-bar__track { animation: none; }
-}
 
 /* ---------- Portfolio-specific: contact email copy control ---------- */
 .copy-button__status { font-size: 13px; color: var(--text-muted); display: block; margin: 0 0 20px; }

@@ -3,14 +3,16 @@
 // Every number and every section is already in the HTML source and
 // fully visible without this file (see index.html and CLAUDE.md,
 // "Hand-written, semantic HTML — never a bundled export"). This script
-// adds the stat count-up, the scroll-reveal fade-ins, the tooling-bar
-// ticker toggle, the copy-email control, and the back-to-top button.
-// None of it hides or delays content by default: the count-up starts
-// from the real number already in the HTML, and the reveal CSS only
-// takes effect once .motion-ready is added below (IntersectionObserver
-// support + motion allowed) — a no-JS visitor, an older browser, or a
-// reduced-motion visitor all see the finished page immediately, never
-// a hidden one.
+// adds the stat count-up, the scroll-reveal fade-ins, the copy-email
+// control, and the back-to-top button. The tooling-bar's own animation
+// (falling-word physics) lives in assets/tooling-physics.js, loaded
+// after this file, since it depends on the .motion-ready class this
+// file sets below. None of it hides or delays content by default: the
+// count-up starts from the real number already in the HTML, and the
+// reveal CSS only takes effect once .motion-ready is added below
+// (IntersectionObserver support + motion allowed) — a no-JS visitor,
+// an older browser, or a reduced-motion visitor all see the finished
+// page immediately, never a hidden one.
 
 (function () {
   'use strict';
@@ -23,21 +25,6 @@
 
   if (motionEnabled) {
     document.documentElement.classList.add('motion-ready');
-
-    // Seamless-loop marquee: the CSS scroll animation (translateX(-50%))
-    // assumes the track is two pixel-identical halves. Clone the real,
-    // hand-written half instead of hand-writing a second copy in the
-    // HTML — a clone can never drift out of sync with its source the
-    // way two separately edited copies could. See the HTML comment
-    // above #tooling-track and CLAUDE.md, "Tooling-bar ticker".
-    var toolingTrackEl = document.getElementById('tooling-track');
-    if (toolingTrackEl) {
-      Array.prototype.slice.call(toolingTrackEl.children).forEach(function (node) {
-        var clone = node.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        toolingTrackEl.appendChild(clone);
-      });
-    }
 
     var revealObserver = new IntersectionObserver(
       function (entries) {
@@ -121,22 +108,8 @@
     sectionMap.forEach(function (m) { navObserver.observe(m.section); });
   }
 
-  var toolingToggle = document.getElementById('tooling-toggle');
-  var toolingTrack = document.getElementById('tooling-track');
-  if (toolingToggle && toolingTrack) {
-    var startPaused = prefersReducedMotion;
-    var setToolingState = function (paused) {
-      toolingTrack.classList.toggle('is-paused', paused);
-      toolingToggle.setAttribute('aria-pressed', String(paused));
-      toolingToggle.setAttribute('aria-label', paused ? 'Play the tools ticker' : 'Pause the tools ticker');
-      document.getElementById('tooling-icon-pause').style.display = paused ? 'none' : '';
-      document.getElementById('tooling-icon-play').style.display = paused ? '' : 'none';
-    };
-    setToolingState(startPaused);
-    toolingToggle.addEventListener('click', function () {
-      setToolingState(!toolingTrack.classList.contains('is-paused'));
-    });
-  }
+  // The tooling-bar's own play/pause wiring now lives in
+  // assets/tooling-physics.js, next to the animation it controls.
 
   // copy-email is a real mailto: <a> now, not a plain <button> — clicking
   // it opens a mail client on its own via the href, with no JS required,

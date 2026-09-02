@@ -221,66 +221,84 @@ used to be manual (`.project-band--a`/`--b`, `.project-card--reverse`)
 until it was replaced with the positional rule specifically so copying
 a block needs zero decisions.
 
-## Tooling-bar ticker: the second half is generated, never hand-duplicated
+## Tooling-bar: one word falls at a time (Matter.js), not a marquee
 
-The scrolling tools ticker (`#tooling-track`) loops seamlessly by
-showing two copies of the list back to back and animating
-`translateX(-50%)` — a technique that only looks seamless if the
-two halves are pixel-identical, because -50% is exactly "half of
-whatever the track's total rendered width turns out to be," not "the
-width of one copy." The second half used to be a second copy typed
-into `index.html` by hand. It drifted out of sync with the first —
-missing one trailing separator span the first half had — so the two
-halves were a different width and the loop visibly hitched once
-every 20-second cycle. That kind of drift isn't a one-time typo to
-fix: it's what happens by default any time two copies of the same
-list are maintained by hand, and it would have recurred the next time
-a tool was added to one copy and forgotten in the other.
+The tools row used to be a CSS `translateX` marquee (two cloned
+halves, looping seamlessly). It's now a physics animation: one tool
+word at a time drops from above the stage under gravity, bounces
+slightly, settles, holds for about 1.4s, then drops on through the
+floor and out of view before the next word falls — driven by
+Matter.js (`assets/vendor/matter.min.js`, self-hosted — see
+LICENSE.md — loaded before `assets/tooling-physics.js` in
+`index.html`).
 
-**The fix removes the second copy rather than repairing it.**
-`index.html` now authors the tool list exactly once, inside
-`#tooling-track`. `assets/script.js` clones each of its real children
-with `cloneNode(true)`, marks the clones `aria-hidden="true"`, and
-appends them to the same track — so the second half is always a
-byte-for-byte structural copy of the first, generated, not typed. The
-CSS animation itself only applies under `html.motion-ready
-.tooling-bar__track` (the same JS-added class that gates
-`[data-reveal]` elsewhere on this page), so a no-JS or
-reduced-motion visitor sees the single authored list, fully static
-and fully readable — never a half-built or blank-looking marquee.
+**`#tooling-static` in `index.html` is still the one authored list** —
+`assets/tooling-physics.js` only *reads* its words (never duplicates
+them by hand) to build the falling sequence, same "single source of
+truth" principle the old marquee's generated clone followed. **To add
+or remove a tool: edit only that list.**
 
-**To add or remove a tool: edit the one list inside `#tooling-track`
-in `index.html`, and nothing else.** Do not paste a second copy below
-it — the clone is generated at runtime specifically so there is no
-second copy to remember.
+**The accessible/no-motion contract is unchanged in spirit, different
+in mechanism.** The old marquee left its single authored copy visible
+and un-animated for no-JS/reduced-motion visitors. The new stage can't
+do that — a falling-word display has nothing sensible to show without
+JS — so instead: `#tooling-stage` starts `display: none`, and
+`assets/tooling-physics.js` only reveals it (adding `.is-active`) once
+`html.motion-ready` is present (IntersectionObserver support and no
+`prefers-reduced-motion`, same gate `script.js` uses for scroll-reveal)
+**and** the self-hosted Matter.js build actually loaded (`typeof
+Matter !== 'undefined'`). Either condition failing leaves
+`#tooling-static` as the plain visible list it already is — the
+tooling bar can never end up blank. When the animation *does* take
+over, `#tooling-static` is moved to `.sr-only` rather than hidden
+outright, so it stays in the accessibility tree; `#tooling-stage` is
+`aria-hidden`, same "one accessible source, one decorative visual
+copy" relationship the marquee's `aria-hidden` clone had.
 
-**Cloning the two halves identical wasn't the whole bug.** Measuring
-the fix (not just eyeballing it) found a second, smaller discontinuity
-that identical halves alone don't remove: `.tooling-bar__track` uses
-`gap: 56px` between *every* adjacent child, including the one pair
-that straddles the two halves — so the track's total width contains
-an odd number of gaps (`2N − 1` for `N` children per half), not an
-even one. Taking exactly 50% of that total therefore always carries
-only half of that one boundary gap past the loop point, undershooting
-"one full half-width plus one full gap" by exactly half a gap — a 28px
-jump measured on the current 7-tool list, and true for any list length
-because the shortfall is always exactly half of `--tooling-gap`,
-independent of how many tools are in it. `@keyframes tooling-scroll`'s
-`to` step is `translateX(calc(-50% - (var(--tooling-gap) / 2)))`, not
-a plain `-50%`, to correct for exactly that — tied to the same
-`--tooling-gap` custom property `.tooling-bar__track`'s own `gap`
-uses, so a future change to the gap can't silently reopen this the
-way two hand-typed copies could.
+**Three real bugs surfaced building this, all caught by measurement
+before it shipped, not by eye:**
 
-**Verified by measurement, not by eye, same standard as the rest of
-this site:** a one-off script drove a live headless browser, confirmed
-the cloned half is byte-for-byte identical to the authored one
-(tag/class/text per child), then compared where the corrected
-`transform` actually lands against where the clone's content actually
-starts — 0.00px apart. Screenshots at `translateX(0)` and at the
-corrected loop point are pixel-identical; the same comparison against
-a plain, uncorrected `-50%` visibly shifts the content right by the
-same ~28px, cutting the last item at the edge.
+1. **Settle-detection false positive.** A freshly spawned body starts
+   at `velocity.y = 0` — indistinguishable, by a naive
+   "`abs(velocity.y) < threshold`" check, from a body that has already
+   landed and stopped. Without a guard, the state machine called the
+   word "settled" within its first ~15 frames, while it was still
+   sitting at its off-stage starting position, never having moved.
+   Fixed with a `hasStartedFalling` flag that only arms the settle
+   check once velocity has actually exceeded the threshold once.
+   Caught by an in-page `requestAnimationFrame` position trace, not a
+   screenshot.
+2. **A fade-out is a real, if brief, contrast violation.** The exit
+   was originally a CSS `opacity` transition. `check:a11y`'s
+   animated-state axe pass caught it: a partially-transparent
+   neon-blue word blended toward the dark background fails WCAG
+   contrast for however many frames it takes to reach 0, and axe
+   audits the actual rendered DOM, not the steady state. Fixed by
+   making the exit a second drop (further down, out through the
+   stage's own `overflow: hidden`) instead of a fade — the word stays
+   fully opaque for its entire lifetime, so there's no low-contrast
+   frame to catch. Verified clean across multiple repeated runs, since
+   the original failure was itself timing-dependent (only a ~260ms
+   window every ~2s cycle).
+3. **Matter's own resting-contact solver ate the bounce.** With an
+   actual static ground body in the Matter world, the falling word
+   stopped dead on first contact with zero rebound, at any restitution
+   up to 0.75 — measured directly via an in-page position trace, not
+   assumed. The fix keeps Matter for what it's verified to do
+   correctly (gravity-driven free fall — `Engine.update` genuinely
+   accelerates the body frame over frame), but resolves the floor
+   contact and bounce by hand against a plain `groundSurfaceY` number
+   instead of a second Matter body, so the "leve rebote" the design
+   calls for is actually visible.
+
+**If you change the fall/bounce/hold timing, re-verify by measurement
+the way this was built**, not by eye: an in-page `requestAnimationFrame`
+recorder logging position to a `window`-level array (Selenium/CDP
+polling at short intervals is itself slow enough to look like a
+stalled animation that isn't actually stalled — caught and ruled out
+here by comparing the two methods directly), then re-run
+`check:contrast-states` and `check:a11y` (both passes, more than
+once — the contrast bug above only reproduced part of the time).
 
 ## Design-tool scaffolding never leaves the working tree
 

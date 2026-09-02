@@ -162,26 +162,27 @@
     </ul>
   </section>
 
-  <div class="tooling-bar" role="group" aria-label="Tools I use, scrolling ticker">
-    <button type="button" class="tooling-bar__toggle" id="tooling-toggle" aria-pressed="false" aria-label="Pause the tools ticker">
+  <div class="tooling-bar" role="group" aria-label="Tools I use">
+    <button type="button" class="tooling-bar__toggle" id="tooling-toggle" aria-pressed="false" aria-label="Pause the tools animation">
       <svg id="tooling-icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"></rect><rect x="14" y="4" width="5" height="16" rx="1"></rect></svg>
       <svg id="tooling-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 4l14 8-14 8V4z"></path></svg>
     </button>
     <div class="tooling-bar__viewport">
       <!--
-        Only ONE copy of the tool list belongs here. The seamless-loop
-        marquee (assets/styles.css, @keyframes tooling-scroll) needs two
-        pixel-identical halves; script.js builds the second (aria-hidden)
-        half at runtime by cloning this one, so the two halves can never
-        drift apart the way hand-copying this block twice did before —
-        see CLAUDE.md, "Tooling-bar ticker". The keyframe's shift also
-        isn't a plain -50%: it subtracts half of --tooling-gap (same
-        file) to land exactly on the clone's start, not half the gap
-        short of it — same CLAUDE.md section explains why.
-        To add a tool: edit only this list. Do not paste a second copy
-        below it.
+        This list is the only source of truth for the tool words, read
+        (never duplicated by hand) by assets/tooling-physics.js — see
+        CLAUDE.md, "Tooling-bar: one word at a time, not a marquee".
+        When physics is running, tooling-physics.js visually hands off
+        to #tooling-stage and moves this list to screen-reader-only
+        (adds .sr-only) rather than hiding it outright, so its content
+        stays in the accessibility tree either way. Without JS, without
+        IntersectionObserver support, or with reduced motion requested,
+        this stays the plain visible list and #tooling-stage never
+        activates — same no-animation fallback contract the old CSS
+        marquee had.
+        To add a tool: edit only this list.
       -->
-      <span class="tooling-bar__track" id="tooling-track">
+      <p class="tooling-bar__static" id="tooling-static">
         <span class="tooling-bar__item">Power BI</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
         <span class="tooling-bar__item">SQL</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
         <span class="tooling-bar__item">Excel</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
@@ -190,8 +191,9 @@
         <span class="tooling-bar__item">Data modelling</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
         <span class="tooling-bar__item">Reporting</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
         <span class="tooling-bar__item">Data quality</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">Git</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-      </span>
+        <span class="tooling-bar__item">Git</span>
+      </p>
+      <div class="tooling-bar__stage" id="tooling-stage" aria-hidden="true"></div>
     </div>
   </div>
 
@@ -221,5 +223,11 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<!-- Self-hosted, not a CDN <script src> — see CLAUDE.md, "Every
+     third-party asset is self-hosted or justified" and LICENSE.md.
+     Loaded after script.js (which sets html.motion-ready) since
+     tooling-physics.js reads that class to decide whether to run. -->
+<script src="assets/vendor/matter.min.js"></script>
+<script src="assets/tooling-physics.js"></script>
 </body>
 </html>
