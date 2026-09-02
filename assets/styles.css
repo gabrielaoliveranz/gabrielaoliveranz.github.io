@@ -430,7 +430,52 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 
 /* ---------- Portfolio-specific: quote highlight (dark) ---------- */
 .quote-highlight { background: var(--bg-dark); color: var(--text-on-dark); padding: 72px 32px; }
-.quote-highlight__inner { max-width: 900px; margin: 0 auto; border-left: 4px solid var(--accent-highlight); padding-left: 32px; }
+.quote-highlight__inner {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8px 40px 8px 64px;
+  /* Clips the giant background quote mark and the diagonal wedge to this
+     block's own box, so neither can ever push the page's scrollWidth
+     past the viewport (check:overflow) regardless of font metrics. */
+  overflow: hidden;
+}
+/* Diagonal accent wedge, replacing the old straight border-left — same
+   clip-path-driven-angle technique as the project bands' seams
+   (#work .project-band:nth-of-type, above), reused here at component
+   scale instead of full-bleed. */
+.quote-highlight__inner::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  background: var(--accent-highlight);
+  clip-path: polygon(0 0, 100% 0, 45% 100%, 0 100%);
+}
+/* Decorative background glyph — purely visual, aria-hidden in the HTML.
+   Negative z-index keeps it painted behind the blockquote/cite without
+   needing z-index on them: a positioned descendant with z-index: -1
+   always paints before its ancestor's own non-positioned in-flow
+   content, no matter its position in the DOM. */
+.quote-highlight__mark {
+  /* top: 0, not a negative offset — the glyph's own ink sits near the
+     top of its em-box already; pushing the box further up ran it past
+     .quote-highlight__inner's overflow: hidden clip, leaving only the
+     bottom tips of the two curl-strokes visible instead of the full
+     mark. Verified by screenshot before landing on 0. */
+  position: absolute;
+  top: 0;
+  left: 40px;
+  z-index: -1;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(160px, 22vw, 280px);
+  line-height: 1;
+  color: var(--text-on-dark);
+  opacity: 0.14;
+}
 .quote-highlight blockquote {
   font-family: var(--font-heading);
   font-weight: 500;
@@ -439,6 +484,7 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
   margin: 0 0 16px;
   text-wrap: pretty;
 }
+.quote-highlight__stat { color: var(--neon-blue); font-weight: 700; }
 .quote-highlight cite { font-size: 15px; color: var(--text-on-dark-body); font-style: normal; }
 
 /* ---------- Portfolio-specific: how I work ---------- */
