@@ -10,11 +10,12 @@ covers it, rather than a software licence like MIT.
 
 - Creative Commons itself recommends against CC licences for software
   — they're not designed for source-code redistribution and carry no
-  patent grant. `assets/script.js` and `assets/tooling-physics.js` are
-  real code, but together they're a small progressive enhancement
-  (count-up, scroll-reveal, a copy-email control, the tooling-bar's
-  falling-word animation and its pause toggle, a back-to-top button —
-  none required for the page's content to work) attached to what is
+  patent grant. `assets/script.js`, `assets/how-i-work-scroll.js` and
+  `assets/signal-stack.js` are real code, but together they're a small
+  progressive enhancement (count-up, scroll-reveal, a copy-email
+  control, the "How I work" scrollytelling canvas, the Signal stack
+  letter-by-letter word carousel, a back-to-top button — none required
+  for the page's content to work) attached to what is
   overwhelmingly prose and design, not a library anyone would import or
   depend on. Splitting it into its own MIT-licensed file the way the
   sister repo splits code from data would be more machinery than this
@@ -70,5 +71,5 @@ covers it, rather than a software licence like MIT.
   0.19.0 by Liam Brummitt, under the [MIT Licence](https://github.com/liabru/matter-js/blob/master/LICENSE).
   Self-hosted rather than loaded from a CDN, same reasoning as the
   self-hosted fonts above — see CLAUDE.md, "Every third-party asset is
-  self-hosted or justified". Drives the tooling-bar's falling-word
-  animation (`assets/tooling-physics.js`).
+  self-hosted or justified". Drives the Signal stack's letter-by-letter
+  word carousel (`assets/signal-stack.js`).
