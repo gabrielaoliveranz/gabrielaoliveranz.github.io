@@ -10,14 +10,18 @@ covers it, rather than a software licence like MIT.
 
 - Creative Commons itself recommends against CC licences for software
   — they're not designed for source-code redistribution and carry no
-  patent grant. `assets/script.js` is real code, but it's a ~170-line
+  patent grant. `assets/script.js`, `assets/how-i-work-scroll.js` and
+  `assets/signal-stack.js` are real code, but together they're a small
   progressive enhancement (count-up, scroll-reveal, a copy-email
-  control, a tooling-bar toggle, a back-to-top button — none required
-  for the page's content to work) attached to what is overwhelmingly
-  prose and design, not a library anyone would import or depend on.
-  Splitting it into its own MIT-licensed file the way the sister repo
-  splits code from data would be more machinery than this amount of
-  code warrants.
+  control, the "How I work" scrollytelling canvas, the Signal stack
+  letter-by-letter word carousel, a back-to-top button — none required
+  for the page's content to work) attached to what is
+  overwhelmingly prose and design, not a library anyone would import or
+  depend on. Splitting it into its own MIT-licensed file the way the
+  sister repo splits code from data would be more machinery than this
+  amount of code warrants. (`assets/vendor/matter.min.js`, the one
+  actual third-party library among them, is separately MIT-licensed —
+  see below.)
 - Of the CC variants, **BY** (attribution only) fits a portfolio piece
   best: the point of publishing this is for it to be read, referenced,
   and reused with credit — not restricted. **NC** (non-commercial) was
@@ -63,3 +67,9 @@ covers it, rather than a software licence like MIT.
   `mask-image` on a decorative `.icon` span, recoloured via
   `background-color` — see `assets/styles.css`). No entry for an icon
   that isn't used, no icon without an entry.
+- **`assets/vendor/matter.min.js`** — [Matter.js](https://brm.io/matter-js/)
+  0.19.0 by Liam Brummitt, under the [MIT Licence](https://github.com/liabru/matter-js/blob/master/LICENSE).
+  Self-hosted rather than loaded from a CDN, same reasoning as the
+  self-hosted fonts above — see CLAUDE.md, "Every third-party asset is
+  self-hosted or justified". Drives the Signal stack's letter-by-letter
+  word carousel (`assets/signal-stack.js`).

@@ -128,69 +128,138 @@
     </div>
   </section>
 
-  <section class="quote-highlight" aria-label="A story about how I work" data-reveal>
-    <div class="quote-highlight__inner">
-      <blockquote>&ldquo;On Terroir I found a bug that had misclassified 19.4% of parcels. I caught it because a filtered subset came out larger than the group it was filtered from — which is impossible. Every fix like that is in the public commit history.&rdquo;</blockquote>
-      <cite>— Gabriela, on the Terroir case study</cite>
+  <section class="quote-band" aria-label="A story about how I work" data-reveal>
+    <div class="quote-band__inner">
+      <span class="quote-band__mark" aria-hidden="true">&ldquo;</span>
+      <blockquote class="quote-band__quote">On Terroir I found a bug that had misclassified <span class="quote-band__stat">19.4%</span> of parcels. I caught it because a filtered subset came out larger than the group it was filtered from — which is impossible. Every fix like that is in the public commit history.</blockquote>
+      <cite class="quote-band__cite">— Gabriela, on the Terroir case study</cite>
     </div>
   </section>
 
-  <section id="how-i-work" class="how-i-work" aria-labelledby="how-i-work-title" data-reveal>
-    <h2 id="how-i-work-title" class="how-i-work__title">How I work</h2>
-    <ul class="how-i-work-grid">
+  <section id="how-i-work" class="how-i-work" aria-labelledby="how-i-work-title">
+    <div class="how-i-work__head">
+      <h2 id="how-i-work-title" class="how-i-work__title">How I work</h2>
+      <p class="how-i-work__subtitle">noise &rarr; processing &rarr; signal</p>
+    </div>
+
+    <!--
+      Two mutually exclusive renderings of the same four items — exactly
+      one is ever visible. #how-i-work-grid (plain static cards) is the
+      real, always-accessible source: it's the whole story for no-JS, no
+      IntersectionObserver, or prefers-reduced-motion visitors, and stays
+      in the accessibility tree (moved to .sr-only, never display:none)
+      even once the scroll version takes over — same "one accessible
+      source, one decorative visual copy" principle as the tooling-bar
+      pattern below. assets/how-i-work-scroll.js only swaps to
+      #how-i-work-scroll (fully aria-hidden — its own text and canvas are
+      a decorative visual duplicate, not a second source of content) once
+      html.motion-ready is present. See CLAUDE.md.
+    -->
+    <ul class="how-i-work-grid" id="how-i-work-grid">
       <li class="how-i-work-item">
-        <span class="how-i-work-item__number" aria-hidden="true">01</span>
+        <div class="how-i-work-item__head">
+          <span class="how-i-work-item__number">01</span>
+          <span class="how-i-work-item__stage">Noise</span>
+        </div>
         <h3>Real data, not practice datasets</h3>
         <p>Both projects run on live government and public sources — with the real data-quality problems that come with them.</p>
       </li>
       <li class="how-i-work-item">
-        <span class="how-i-work-item__number" aria-hidden="true">02</span>
+        <div class="how-i-work-item__head">
+          <span class="how-i-work-item__number">02</span>
+          <span class="how-i-work-item__stage">Processing</span>
+        </div>
         <h3>Limitations written down, not hidden</h3>
         <p>Every model states what it doesn't cover, so nobody mistakes a scope decision for an oversight.</p>
       </li>
       <li class="how-i-work-item">
-        <span class="how-i-work-item__number" aria-hidden="true">03</span>
+        <div class="how-i-work-item__head">
+          <span class="how-i-work-item__number">03</span>
+          <span class="how-i-work-item__stage">Processing</span>
+        </div>
         <h3>Fourteen years of knowing when a number is wrong</h3>
         <p>Operations and procurement means I read a figure and know whether it's plausible before I ship it.</p>
       </li>
       <li class="how-i-work-item">
-        <span class="how-i-work-item__number" aria-hidden="true">04</span>
+        <div class="how-i-work-item__head">
+          <span class="how-i-work-item__number">04</span>
+          <span class="how-i-work-item__stage">Signal</span>
+        </div>
         <h3>Technical work, explained plainly</h3>
         <p>I write for the person who has to act on the analysis, not just the person who built it.</p>
       </li>
     </ul>
+
+    <div class="how-i-work-scroll" id="how-i-work-scroll" aria-hidden="true">
+      <div class="how-i-work-scroll__sticky">
+        <canvas class="how-i-work-scroll__canvas" id="how-i-work-canvas"></canvas>
+        <div class="how-i-work-scroll__gradient"></div>
+        <div class="how-i-work-scroll__text-wrap">
+          <div class="how-i-work-scroll__stage" id="how-i-work-text-stage">
+            <div class="how-i-work-scroll__item">
+              <div class="how-i-work-scroll__head">
+                <span class="how-i-work-scroll__number">01</span>
+                <span class="how-i-work-scroll__stage-label">Noise</span>
+              </div>
+              <h3>Real data, not practice datasets</h3>
+              <p>Both projects run on live government and public sources — with the real data-quality problems that come with them.</p>
+            </div>
+            <div class="how-i-work-scroll__item">
+              <div class="how-i-work-scroll__head">
+                <span class="how-i-work-scroll__number">02</span>
+                <span class="how-i-work-scroll__stage-label">Processing</span>
+              </div>
+              <h3>Limitations written down, not hidden</h3>
+              <p>Every model states what it doesn't cover, so nobody mistakes a scope decision for an oversight.</p>
+            </div>
+            <div class="how-i-work-scroll__item">
+              <div class="how-i-work-scroll__head">
+                <span class="how-i-work-scroll__number">03</span>
+                <span class="how-i-work-scroll__stage-label">Processing</span>
+              </div>
+              <h3>Fourteen years of knowing when a number is wrong</h3>
+              <p>Operations and procurement means I read a figure and know whether it's plausible before I ship it.</p>
+            </div>
+            <div class="how-i-work-scroll__item">
+              <div class="how-i-work-scroll__head">
+                <span class="how-i-work-scroll__number">04</span>
+                <span class="how-i-work-scroll__stage-label">Signal</span>
+              </div>
+              <h3>Technical work, explained plainly</h3>
+              <p>I write for the person who has to act on the analysis, not just the person who built it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <div class="tooling-bar" role="group" aria-label="Tools I use, scrolling ticker">
-    <button type="button" class="tooling-bar__toggle" id="tooling-toggle" aria-pressed="false" aria-label="Pause the tools ticker">
-      <svg id="tooling-icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"></rect><rect x="14" y="4" width="5" height="16" rx="1"></rect></svg>
-      <svg id="tooling-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none"><path d="M6 4l14 8-14 8V4z"></path></svg>
-    </button>
-    <div class="tooling-bar__viewport">
+  <div class="signal-stack" id="signal-stack">
+    <div class="signal-stack__inner">
+      <p class="signal-stack__label">Signal stack</p>
+
       <!--
-        Only ONE copy of the tool list belongs here. The seamless-loop
-        marquee (assets/styles.css, @keyframes tooling-scroll) needs two
-        pixel-identical halves; script.js builds the second (aria-hidden)
-        half at runtime by cloning this one, so the two halves can never
-        drift apart the way hand-copying this block twice did before —
-        see CLAUDE.md, "Tooling-bar ticker". The keyframe's shift also
-        isn't a plain -50%: it subtracts half of --tooling-gap (same
-        file) to land exactly on the clone's start, not half the gap
-        short of it — same CLAUDE.md section explains why.
-        To add a tool: edit only this list. Do not paste a second copy
-        below it.
+        #signal-stack-static is the one accessible source of the tool
+        words, same principle as #how-i-work-grid above. When physics is
+        running, assets/signal-stack.js moves it to .sr-only and reveals
+        #signal-stack-frame (aria-hidden — a decorative letter-by-letter
+        duplicate of the same words), rather than the reverse. See
+        CLAUDE.md.
       -->
-      <span class="tooling-bar__track" id="tooling-track">
-        <span class="tooling-bar__item">Power BI</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">SQL</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">Excel</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">Python</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">ETL</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">Data modelling</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">Reporting</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">Data quality</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-        <span class="tooling-bar__item">Git</span><span class="tooling-bar__sep" aria-hidden="true">·</span>
-      </span>
+      <p class="signal-stack__static" id="signal-stack-static">
+        <span class="signal-stack__word" style="--word-size:clamp(30px,4.4vw,54px);--word-color:#4FC3FF">SQL</span>
+        <span class="signal-stack__word" style="--word-size:clamp(22px,3vw,38px);--word-color:#fff">Python</span>
+        <span class="signal-stack__word" style="--word-size:clamp(26px,3.6vw,42px);--word-color:#4FC3FF">R</span>
+        <span class="signal-stack__word" style="--word-size:clamp(30px,4.4vw,54px);--word-color:#fff">Power BI</span>
+        <span class="signal-stack__word" style="--word-size:clamp(24px,3.2vw,40px);--word-color:#4FC3FF">Excel</span>
+        <span class="signal-stack__word" style="--word-size:clamp(20px,2.6vw,30px);--word-color:#4FC3FF">ETL</span>
+        <span class="signal-stack__word" style="--word-size:clamp(22px,3vw,38px);--word-color:#4FC3FF">Data quality</span>
+        <span class="signal-stack__word" style="--word-size:clamp(28px,4vw,48px);--word-color:#fff">Git</span>
+      </p>
+
+      <div class="signal-stack__physics-frame" id="signal-stack-frame" aria-hidden="true">
+        <div class="signal-stack__physics-track" id="signal-stack-track"></div>
+      </div>
     </div>
   </div>
 
@@ -220,5 +289,12 @@
 </footer>
 
 <script src="assets/script.js"></script>
+<script src="assets/how-i-work-scroll.js"></script>
+<!-- Self-hosted, not a CDN <script src> — see CLAUDE.md, "Every
+     third-party asset is self-hosted or justified" and LICENSE.md.
+     Loaded after script.js (which sets html.motion-ready) since
+     signal-stack.js reads that class to decide whether to run. -->
+<script src="assets/vendor/matter.min.js"></script>
+<script src="assets/signal-stack.js"></script>
 </body>
 </html>

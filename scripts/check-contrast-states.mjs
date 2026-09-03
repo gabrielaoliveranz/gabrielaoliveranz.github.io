@@ -52,7 +52,6 @@ const TARGETS = [
   "#copy-email",
   ".button--on-dark-primary",
   ".button--on-dark-secondary",
-  ".tooling-bar__toggle",
 ];
 
 function relativeLuminance([r, g, b]) {

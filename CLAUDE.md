@@ -221,66 +221,155 @@ used to be manual (`.project-band--a`/`--b`, `.project-card--reverse`)
 until it was replaced with the positional rule specifically so copying
 a block needs zero decisions.
 
-## Tooling-bar ticker: the second half is generated, never hand-duplicated
+## Quote band, "How I work" scrollytelling, and Signal stack — ported from a design reference, not reinterpreted
 
-The scrolling tools ticker (`#tooling-track`) loops seamlessly by
-showing two copies of the list back to back and animating
-`translateX(-50%)` — a technique that only looks seamless if the
-two halves are pixel-identical, because -50% is exactly "half of
-whatever the track's total rendered width turns out to be," not "the
-width of one copy." The second half used to be a second copy typed
-into `index.html` by hand. It drifted out of sync with the first —
-missing one trailing separator span the first half had — so the two
-halves were a different width and the loop visibly hitched once
-every 20-second cycle. That kind of drift isn't a one-time typo to
-fix: it's what happens by default any time two copies of the same
-list are maintained by hand, and it would have recurred the next time
-a tool was added to one copy and forgotten in the other.
+Three sections (the Terroir-bug quote, "How I work", and the tools row —
+renamed Signal stack) were rebuilt to be a close visual match of an
+external design reference (a `.dc.html` file), not a version adapted to
+this site's existing palette. Where the reference's own colours differ
+from this site's design tokens, the reference wins — several new custom
+properties exist in `:root` (`--border-dark-card`, `--text-signal-label`,
+`--text-stage-label`) purely because the reference specified an exact hex
+that didn't map to anything already defined. **If asked to adjust these
+three sections again, treat the reference as the source of truth for
+colour/type/motion, not this site's pre-existing patterns** — the first
+attempt at this work used existing tokens that were close-but-not-exact,
+and had to be redone.
 
-**The fix removes the second copy rather than repairing it.**
-`index.html` now authors the tool list exactly once, inside
-`#tooling-track`. `assets/script.js` clones each of its real children
-with `cloneNode(true)`, marks the clones `aria-hidden="true"`, and
-appends them to the same track — so the second half is always a
-byte-for-byte structural copy of the first, generated, not typed. The
-CSS animation itself only applies under `html.motion-ready
-.tooling-bar__track` (the same JS-added class that gates
-`[data-reveal]` elsewhere on this page), so a no-JS or
-reduced-motion visitor sees the single authored list, fully static
-and fully readable — never a half-built or blank-looking marquee.
+**Quote band** (`.quote-band`, `index.html`'s `<section>` right after
+`#work`): light `--bg-section` background, top/bottom `clip-path` cut
+(not a straight-sided box), navy (`--accent-label`) editorial-weight
+quote in `--font-display`, a giant low-opacity `&ldquo;` glyph
+absolutely positioned behind it, and `"19.4%"` picked out in `--accent`.
+`data-reveal` stays on it for the existing `IntersectionObserver`
+fade-in — the only thing carried over from the pre-rebuild version
+rather than the reference, by explicit request.
 
-**To add or remove a tool: edit the one list inside `#tooling-track`
-in `index.html`, and nothing else.** Do not paste a second copy below
-it — the clone is generated at runtime specifically so there is no
-second copy to remember.
+**"How I work"** (`#how-i-work`) is a `position: sticky` canvas
+scrollytelling piece inside a `min-height: 340vh` container
+(`assets/how-i-work-scroll.js`), not a card grid: a `<canvas>` draws a
+seeded, deterministic point field that morphs through three phases keyed
+to scroll progress (`noise` → aligned `grid` → a single trend `line`,
+right-half-only, cut off before it ever reaches the text column) while
+four text blocks cross-fade in sync, each holding at full opacity before
+the next one takes over. `#how-i-work-grid` (a plain, always-rendered
+card grid, dark-palette per the reference — `--bg-dark-highlight`
+cards, `--border-dark-card` borders, never the light cards this section
+used before) is the **real accessible content**: it never leaves the
+accessibility tree (moved to `.sr-only`, not `display: none`, once the
+scroll version activates) and is the entire experience for
+no-JS/no-`IntersectionObserver`/`prefers-reduced-motion` visitors, same
+gate `html.motion-ready` as everywhere else on this page.
+`#how-i-work-scroll` (the canvas + cross-fading text) is `aria-hidden`
+**unconditionally in the HTML**, not toggled — see the a11y note below
+for why.
 
-**Cloning the two halves identical wasn't the whole bug.** Measuring
-the fix (not just eyeballing it) found a second, smaller discontinuity
-that identical halves alone don't remove: `.tooling-bar__track` uses
-`gap: 56px` between *every* adjacent child, including the one pair
-that straddles the two halves — so the track's total width contains
-an odd number of gaps (`2N − 1` for `N` children per half), not an
-even one. Taking exactly 50% of that total therefore always carries
-only half of that one boundary gap past the loop point, undershooting
-"one full half-width plus one full gap" by exactly half a gap — a 28px
-jump measured on the current 7-tool list, and true for any list length
-because the shortfall is always exactly half of `--tooling-gap`,
-independent of how many tools are in it. `@keyframes tooling-scroll`'s
-`to` step is `translateX(calc(-50% - (var(--tooling-gap) / 2)))`, not
-a plain `-50%`, to correct for exactly that — tied to the same
-`--tooling-gap` custom property `.tooling-bar__track`'s own `gap`
-uses, so a future change to the gap can't silently reopen this the
-way two hand-typed copies could.
+**Signal stack** (`#signal-stack`, replacing the old tooling-bar
+marquee/single-word-drop) spells out one tool word at a time letter by
+letter with real Matter.js physics (`assets/signal-stack.js`): each
+letter drops from above under gravity into its own natural typeset
+position, staggered per letter index so the word cascades in left to
+right, then holds until the whole cycle (2700ms, timed from
+`performance.now()`, never chained `setTimeout`s) swaps in the next
+word. `#signal-stack-static` (a plain flex row of all 8 words, same dark
+palette) is the real accessible content, moved to `.sr-only` rather than
+hidden once physics takes over; `#signal-stack-frame` is `aria-hidden`
+unconditionally, same reasoning as the scrollytelling canvas above.
 
-**Verified by measurement, not by eye, same standard as the rest of
-this site:** a one-off script drove a live headless browser, confirmed
-the cloned half is byte-for-byte identical to the authored one
-(tag/class/text per child), then compared where the corrected
-`transform` actually lands against where the clone's content actually
-starts — 0.00px apart. Screenshots at `translateX(0)` and at the
-corrected loop point are pixel-identical; the same comparison against
-a plain, uncorrected `-50%` visibly shifts the content right by the
-same ~28px, cutting the last item at the edge.
+**Progressive enhancement is unchanged in shape from the rest of this
+site:** both new scripts bail out entirely — leaving their respective
+static/grid fallback as the whole story — unless `html.motion-ready` is
+present (`script.js`'s `IntersectionObserver` + no
+`prefers-reduced-motion` gate) and, for Signal stack, the self-hosted
+Matter.js build actually loaded.
+
+**Why the scrollytelling canvas's text is `aria-hidden` unconditionally,
+not conditionally like the tooling-bar's old falling word was:** the
+text's opacity is a continuous function of scroll progress (a
+cross-fade, by design — two adjacent items are legitimately both
+partially visible mid-transition). A CSS `opacity` transition already
+proved once, on the old tooling-bar exit animation, that axe's
+animated-state pass will flag a partially-transparent text element for
+real (if transient) insufficient contrast — see the git history on this
+file for that incident. Rather than chase a contrast-safe opacity
+threshold for a value that's *supposed* to vary continuously, the
+scrollytelling text and the Signal stack physics letters are both
+`aria-hidden` in the markup itself: axe never audits an aria-hidden
+subtree, and the always-visible plain-text source (`#how-i-work-grid`,
+`#signal-stack-static`) carries the real accessible content regardless.
+Verified clean across repeated `check:a11y` runs (both passes), not just
+once — the contrast bug this avoids was itself timing-dependent.
+
+**Two real Matter.js bugs surfaced building Signal stack, both caught by
+measurement, not by eye:**
+
+1. **Letters collided with each other.** All of a word's letter bodies
+   share one Matter `World`; by default any two bodies in it can
+   collide. Adjacent letters converging on the same baseline row at
+   slightly staggered times shoved each other sideways, breaking
+   legibility on landing (caught by screenshot: "Power BI" landed with
+   overlapping letters). Fixed by giving every letter body the same
+   negative `collisionFilter.group` — Matter's rule is that
+   same-negative-group bodies never collide with each other, while each
+   still collides normally with the (group 0) floor.
+2. **`inertia: Infinity` as a body-creation option didn't reliably lock
+   rotation.** `Matter.Body.setInertia(body, Infinity)`, called
+   explicitly right after `Bodies.rectangle(...)`, does.
+
+**A methodology trap while diagnosing both of the above: repeated
+Selenium screenshots (or `executeScript` polling) can starve the page's
+own `requestAnimationFrame` loop badly enough to make working physics
+look broken or "blank."** Several early diagnostic screenshots showed
+the Signal stack stage completely blank, or a word frozen mid-fall long
+past when it should have settled — that pointed at a real bug, but
+wasn't one. An in-page timer (a `setInterval` logging to a
+`window`-level array, reading real elapsed time with zero Selenium
+round-trips in the loop) proved the actual word-cycle timing was a
+clean, correct 2700ms throughout; the "broken" runs were ones taking
+many screenshots or `executeScript` calls in a tight loop, which measurably
+delayed the page's own animation frames. **The fix for the test, not the
+page: take one screenshot per page load after a single plain
+`sleep()`, or read state via an in-page recorder fetched once at the
+end — never via repeated `executeScript` polling interleaved with
+screenshot capture.** Confirmed all 8 words (`SQL`, `Python`, `R`,
+`Power BI`, `Excel`, `ETL`, `Data quality`, `Git`) land straight and
+legible this way before either fix above was trusted.
+
+## Full-bleed sections use natural block width, not `width: 100vw`
+
+`.project-band` (the Terroir/Apophenia bands) used to break out of its
+container with `width: 100vw; position: relative; left: 50%;
+margin-left: -50vw; margin-right: -50vw` — a common full-bleed trick,
+but unnecessary here: `#work` (its parent) and `<main>` (its
+grandparent) have no `max-width` of their own, so a plain block already
+renders exactly as wide as the viewport with nothing to break out of.
+
+**`100vw` always includes the vertical scrollbar's gutter width; the
+real viewport (`document.documentElement.clientWidth`) doesn't.**
+Whenever a vertical scrollbar is present, `100vw` overshoots the true
+available width by the scrollbar's width — invisible on any page short
+enough to never need a scrollbar, which is exactly what this page was
+before "How I work" gained its 340vh scroll container. That change made
+the page tall enough to need a scrollbar it previously didn't, and
+`.project-band` started overflowing at 320px by exactly the scrollbar's
+width — caught with a real overflow-culprit scan (`clientWidth` 305 vs.
+this element's own `right` at 313, motion enabled), not eyeballed, and
+correctly understood as a regression this session's own change caused,
+not a pre-existing unrelated bug.
+
+**The fix removes the `100vw` trick rather than compensating for it**
+(e.g. with a `calc()` scrollbar-width correction) — `.project-band` is
+now a plain block with no `width`/`position`/`left`/`margin` overrides
+at all, same as `.quote-band`, `.how-i-work` and `.signal-stack`, none
+of which ever needed the trick either. **Before adding a new full-bleed
+section, check whether its ancestor chain up to `<body>` actually has a
+`max-width` to break out of** — on this page, none of them do, so `grep
+-n "100vw" assets/styles.css` should only ever turn up this section's
+own explanation, never a live rule. The header (`.site-header`) is the
+one section that genuinely needs a similar full-bleed effect while
+staying centred — it solves the same problem with `padding: 20px
+max(32px, calc((100% - 1240px) / 2))` instead, which never references
+`100vw` and so was never at risk of this bug.
 
 ## Design-tool scaffolding never leaves the working tree
 
