@@ -221,84 +221,155 @@ used to be manual (`.project-band--a`/`--b`, `.project-card--reverse`)
 until it was replaced with the positional rule specifically so copying
 a block needs zero decisions.
 
-## Tooling-bar: one word falls at a time (Matter.js), not a marquee
+## Quote band, "How I work" scrollytelling, and Signal stack — ported from a design reference, not reinterpreted
 
-The tools row used to be a CSS `translateX` marquee (two cloned
-halves, looping seamlessly). It's now a physics animation: one tool
-word at a time drops from above the stage under gravity, bounces
-slightly, settles, holds for about 1.4s, then drops on through the
-floor and out of view before the next word falls — driven by
-Matter.js (`assets/vendor/matter.min.js`, self-hosted — see
-LICENSE.md — loaded before `assets/tooling-physics.js` in
-`index.html`).
+Three sections (the Terroir-bug quote, "How I work", and the tools row —
+renamed Signal stack) were rebuilt to be a close visual match of an
+external design reference (a `.dc.html` file), not a version adapted to
+this site's existing palette. Where the reference's own colours differ
+from this site's design tokens, the reference wins — several new custom
+properties exist in `:root` (`--border-dark-card`, `--text-signal-label`,
+`--text-stage-label`) purely because the reference specified an exact hex
+that didn't map to anything already defined. **If asked to adjust these
+three sections again, treat the reference as the source of truth for
+colour/type/motion, not this site's pre-existing patterns** — the first
+attempt at this work used existing tokens that were close-but-not-exact,
+and had to be redone.
 
-**`#tooling-static` in `index.html` is still the one authored list** —
-`assets/tooling-physics.js` only *reads* its words (never duplicates
-them by hand) to build the falling sequence, same "single source of
-truth" principle the old marquee's generated clone followed. **To add
-or remove a tool: edit only that list.**
+**Quote band** (`.quote-band`, `index.html`'s `<section>` right after
+`#work`): light `--bg-section` background, top/bottom `clip-path` cut
+(not a straight-sided box), navy (`--accent-label`) editorial-weight
+quote in `--font-display`, a giant low-opacity `&ldquo;` glyph
+absolutely positioned behind it, and `"19.4%"` picked out in `--accent`.
+`data-reveal` stays on it for the existing `IntersectionObserver`
+fade-in — the only thing carried over from the pre-rebuild version
+rather than the reference, by explicit request.
 
-**The accessible/no-motion contract is unchanged in spirit, different
-in mechanism.** The old marquee left its single authored copy visible
-and un-animated for no-JS/reduced-motion visitors. The new stage can't
-do that — a falling-word display has nothing sensible to show without
-JS — so instead: `#tooling-stage` starts `display: none`, and
-`assets/tooling-physics.js` only reveals it (adding `.is-active`) once
-`html.motion-ready` is present (IntersectionObserver support and no
-`prefers-reduced-motion`, same gate `script.js` uses for scroll-reveal)
-**and** the self-hosted Matter.js build actually loaded (`typeof
-Matter !== 'undefined'`). Either condition failing leaves
-`#tooling-static` as the plain visible list it already is — the
-tooling bar can never end up blank. When the animation *does* take
-over, `#tooling-static` is moved to `.sr-only` rather than hidden
-outright, so it stays in the accessibility tree; `#tooling-stage` is
-`aria-hidden`, same "one accessible source, one decorative visual
-copy" relationship the marquee's `aria-hidden` clone had.
+**"How I work"** (`#how-i-work`) is a `position: sticky` canvas
+scrollytelling piece inside a `min-height: 340vh` container
+(`assets/how-i-work-scroll.js`), not a card grid: a `<canvas>` draws a
+seeded, deterministic point field that morphs through three phases keyed
+to scroll progress (`noise` → aligned `grid` → a single trend `line`,
+right-half-only, cut off before it ever reaches the text column) while
+four text blocks cross-fade in sync, each holding at full opacity before
+the next one takes over. `#how-i-work-grid` (a plain, always-rendered
+card grid, dark-palette per the reference — `--bg-dark-highlight`
+cards, `--border-dark-card` borders, never the light cards this section
+used before) is the **real accessible content**: it never leaves the
+accessibility tree (moved to `.sr-only`, not `display: none`, once the
+scroll version activates) and is the entire experience for
+no-JS/no-`IntersectionObserver`/`prefers-reduced-motion` visitors, same
+gate `html.motion-ready` as everywhere else on this page.
+`#how-i-work-scroll` (the canvas + cross-fading text) is `aria-hidden`
+**unconditionally in the HTML**, not toggled — see the a11y note below
+for why.
 
-**Three real bugs surfaced building this, all caught by measurement
-before it shipped, not by eye:**
+**Signal stack** (`#signal-stack`, replacing the old tooling-bar
+marquee/single-word-drop) spells out one tool word at a time letter by
+letter with real Matter.js physics (`assets/signal-stack.js`): each
+letter drops from above under gravity into its own natural typeset
+position, staggered per letter index so the word cascades in left to
+right, then holds until the whole cycle (2700ms, timed from
+`performance.now()`, never chained `setTimeout`s) swaps in the next
+word. `#signal-stack-static` (a plain flex row of all 8 words, same dark
+palette) is the real accessible content, moved to `.sr-only` rather than
+hidden once physics takes over; `#signal-stack-frame` is `aria-hidden`
+unconditionally, same reasoning as the scrollytelling canvas above.
 
-1. **Settle-detection false positive.** A freshly spawned body starts
-   at `velocity.y = 0` — indistinguishable, by a naive
-   "`abs(velocity.y) < threshold`" check, from a body that has already
-   landed and stopped. Without a guard, the state machine called the
-   word "settled" within its first ~15 frames, while it was still
-   sitting at its off-stage starting position, never having moved.
-   Fixed with a `hasStartedFalling` flag that only arms the settle
-   check once velocity has actually exceeded the threshold once.
-   Caught by an in-page `requestAnimationFrame` position trace, not a
-   screenshot.
-2. **A fade-out is a real, if brief, contrast violation.** The exit
-   was originally a CSS `opacity` transition. `check:a11y`'s
-   animated-state axe pass caught it: a partially-transparent
-   neon-blue word blended toward the dark background fails WCAG
-   contrast for however many frames it takes to reach 0, and axe
-   audits the actual rendered DOM, not the steady state. Fixed by
-   making the exit a second drop (further down, out through the
-   stage's own `overflow: hidden`) instead of a fade — the word stays
-   fully opaque for its entire lifetime, so there's no low-contrast
-   frame to catch. Verified clean across multiple repeated runs, since
-   the original failure was itself timing-dependent (only a ~260ms
-   window every ~2s cycle).
-3. **Matter's own resting-contact solver ate the bounce.** With an
-   actual static ground body in the Matter world, the falling word
-   stopped dead on first contact with zero rebound, at any restitution
-   up to 0.75 — measured directly via an in-page position trace, not
-   assumed. The fix keeps Matter for what it's verified to do
-   correctly (gravity-driven free fall — `Engine.update` genuinely
-   accelerates the body frame over frame), but resolves the floor
-   contact and bounce by hand against a plain `groundSurfaceY` number
-   instead of a second Matter body, so the "leve rebote" the design
-   calls for is actually visible.
+**Progressive enhancement is unchanged in shape from the rest of this
+site:** both new scripts bail out entirely — leaving their respective
+static/grid fallback as the whole story — unless `html.motion-ready` is
+present (`script.js`'s `IntersectionObserver` + no
+`prefers-reduced-motion` gate) and, for Signal stack, the self-hosted
+Matter.js build actually loaded.
 
-**If you change the fall/bounce/hold timing, re-verify by measurement
-the way this was built**, not by eye: an in-page `requestAnimationFrame`
-recorder logging position to a `window`-level array (Selenium/CDP
-polling at short intervals is itself slow enough to look like a
-stalled animation that isn't actually stalled — caught and ruled out
-here by comparing the two methods directly), then re-run
-`check:contrast-states` and `check:a11y` (both passes, more than
-once — the contrast bug above only reproduced part of the time).
+**Why the scrollytelling canvas's text is `aria-hidden` unconditionally,
+not conditionally like the tooling-bar's old falling word was:** the
+text's opacity is a continuous function of scroll progress (a
+cross-fade, by design — two adjacent items are legitimately both
+partially visible mid-transition). A CSS `opacity` transition already
+proved once, on the old tooling-bar exit animation, that axe's
+animated-state pass will flag a partially-transparent text element for
+real (if transient) insufficient contrast — see the git history on this
+file for that incident. Rather than chase a contrast-safe opacity
+threshold for a value that's *supposed* to vary continuously, the
+scrollytelling text and the Signal stack physics letters are both
+`aria-hidden` in the markup itself: axe never audits an aria-hidden
+subtree, and the always-visible plain-text source (`#how-i-work-grid`,
+`#signal-stack-static`) carries the real accessible content regardless.
+Verified clean across repeated `check:a11y` runs (both passes), not just
+once — the contrast bug this avoids was itself timing-dependent.
+
+**Two real Matter.js bugs surfaced building Signal stack, both caught by
+measurement, not by eye:**
+
+1. **Letters collided with each other.** All of a word's letter bodies
+   share one Matter `World`; by default any two bodies in it can
+   collide. Adjacent letters converging on the same baseline row at
+   slightly staggered times shoved each other sideways, breaking
+   legibility on landing (caught by screenshot: "Power BI" landed with
+   overlapping letters). Fixed by giving every letter body the same
+   negative `collisionFilter.group` — Matter's rule is that
+   same-negative-group bodies never collide with each other, while each
+   still collides normally with the (group 0) floor.
+2. **`inertia: Infinity` as a body-creation option didn't reliably lock
+   rotation.** `Matter.Body.setInertia(body, Infinity)`, called
+   explicitly right after `Bodies.rectangle(...)`, does.
+
+**A methodology trap while diagnosing both of the above: repeated
+Selenium screenshots (or `executeScript` polling) can starve the page's
+own `requestAnimationFrame` loop badly enough to make working physics
+look broken or "blank."** Several early diagnostic screenshots showed
+the Signal stack stage completely blank, or a word frozen mid-fall long
+past when it should have settled — that pointed at a real bug, but
+wasn't one. An in-page timer (a `setInterval` logging to a
+`window`-level array, reading real elapsed time with zero Selenium
+round-trips in the loop) proved the actual word-cycle timing was a
+clean, correct 2700ms throughout; the "broken" runs were ones taking
+many screenshots or `executeScript` calls in a tight loop, which measurably
+delayed the page's own animation frames. **The fix for the test, not the
+page: take one screenshot per page load after a single plain
+`sleep()`, or read state via an in-page recorder fetched once at the
+end — never via repeated `executeScript` polling interleaved with
+screenshot capture.** Confirmed all 8 words (`SQL`, `Python`, `R`,
+`Power BI`, `Excel`, `ETL`, `Data quality`, `Git`) land straight and
+legible this way before either fix above was trusted.
+
+## Full-bleed sections use natural block width, not `width: 100vw`
+
+`.project-band` (the Terroir/Apophenia bands) used to break out of its
+container with `width: 100vw; position: relative; left: 50%;
+margin-left: -50vw; margin-right: -50vw` — a common full-bleed trick,
+but unnecessary here: `#work` (its parent) and `<main>` (its
+grandparent) have no `max-width` of their own, so a plain block already
+renders exactly as wide as the viewport with nothing to break out of.
+
+**`100vw` always includes the vertical scrollbar's gutter width; the
+real viewport (`document.documentElement.clientWidth`) doesn't.**
+Whenever a vertical scrollbar is present, `100vw` overshoots the true
+available width by the scrollbar's width — invisible on any page short
+enough to never need a scrollbar, which is exactly what this page was
+before "How I work" gained its 340vh scroll container. That change made
+the page tall enough to need a scrollbar it previously didn't, and
+`.project-band` started overflowing at 320px by exactly the scrollbar's
+width — caught with a real overflow-culprit scan (`clientWidth` 305 vs.
+this element's own `right` at 313, motion enabled), not eyeballed, and
+correctly understood as a regression this session's own change caused,
+not a pre-existing unrelated bug.
+
+**The fix removes the `100vw` trick rather than compensating for it**
+(e.g. with a `calc()` scrollbar-width correction) — `.project-band` is
+now a plain block with no `width`/`position`/`left`/`margin` overrides
+at all, same as `.quote-band`, `.how-i-work` and `.signal-stack`, none
+of which ever needed the trick either. **Before adding a new full-bleed
+section, check whether its ancestor chain up to `<body>` actually has a
+`max-width` to break out of** — on this page, none of them do, so `grep
+-n "100vw" assets/styles.css` should only ever turn up this section's
+own explanation, never a live rule. The header (`.site-header`) is the
+one section that genuinely needs a similar full-bleed effect while
+staying centred — it solves the same problem with `padding: 20px
+max(32px, calc((100% - 1240px) / 2))` instead, which never references
+`100vw` and so was never at risk of this bug.
 
 ## Design-tool scaffolding never leaves the working tree
 

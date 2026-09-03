@@ -98,6 +98,12 @@
 
   --border: #C9C6BD;
   --border-dark: #3A352C;
+  --border-dark-card: #2b3a54;
+
+  /* "How I work" scrollytelling + Signal stack — reference-exact values
+     that don't map onto an existing token. */
+  --text-signal-label: #5C8AB8;
+  --text-stage-label: #7FA3C9;
 
   --font-heading: 'Archivo', sans-serif;
   --font-body: 'Source Sans 3', sans-serif;
@@ -325,13 +331,25 @@ button:focus-visible {
 }
 
 /* ---------- Portfolio-specific: work section (full-bleed diagonal bands) ---------- */
+/* Full-bleed via natural block width, not width:100vw — #work (its
+   parent) and <main> (its grandparent) have no max-width of their own to
+   break out of, so a plain block here is already exactly as wide as the
+   viewport, with no `100vw` involved. `100vw` always includes the
+   vertical scrollbar's gutter width, while the viewport itself doesn't —
+   whenever a scrollbar is present, that made this band render measurably
+   wider than the real viewport (`clientWidth`), a mismatch invisible at
+   any width without one. Caught at 320px specifically after How I
+   Work's new 340vh scroll section made the page tall enough to need a
+   scrollbar where the page previously didn't — measured with a real
+   overflow-culprit scan (`clientWidth` 305 vs. this element's `right`
+   at 313 with motion enabled), not eyeballed. See the header's own
+   full-bleed rule (`.site-header`, above) for the same reasoning applied
+   the same way — this is the second place on the page with an ancestor
+   chain unconstrained enough not to need the `100vw` trick at all.
+   Check every full-bleed section here for the same pattern before
+   adding a new one: `grep -n "100vw" assets/styles.css` should only
+   ever turn up this comment. */
 .project-band {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   color: var(--text-on-dark);
 }
 /* Band colour and card image/body order both derive purely from position
@@ -428,162 +446,167 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
   .project-band__inner { padding: 48px 20px 56px; }
 }
 
-/* ---------- Portfolio-specific: quote highlight (dark) ---------- */
-.quote-highlight { background: var(--bg-dark); color: var(--text-on-dark); padding: 72px 32px; }
-.quote-highlight__inner {
-  position: relative;
-  max-width: 900px;
+/* ---------- Portfolio-specific: quote band (light, top/bottom clip) ---------- */
+.quote-band {
+  background: var(--bg-section);
+  clip-path: polygon(0 0, 100% 40px, 100% calc(100% - 40px), 0 100%);
+}
+.quote-band__inner {
+  max-width: 920px;
   margin: 0 auto;
-  padding: 8px 40px 8px 64px;
-  /* Clips the giant background quote mark and the diagonal wedge to this
-     block's own box, so neither can ever push the page's scrollWidth
-     past the viewport (check:overflow) regardless of font metrics. */
-  overflow: hidden;
+  padding: 120px 32px 130px;
+  position: relative;
 }
-/* Diagonal accent wedge, replacing the old straight border-left — same
-   clip-path-driven-angle technique as the project bands' seams
-   (#work .project-band:nth-of-type, above), reused here at component
-   scale instead of full-bleed. */
-.quote-highlight__inner::before {
-  content: "";
+.quote-band__mark {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 32px;
-  background: var(--accent-highlight);
-  clip-path: polygon(0 0, 100% 0, 45% 100%, 0 100%);
-}
-/* Decorative background glyph — purely visual, aria-hidden in the HTML.
-   Negative z-index keeps it painted behind the blockquote/cite without
-   needing z-index on them: a positioned descendant with z-index: -1
-   always paints before its ancestor's own non-positioned in-flow
-   content, no matter its position in the DOM. */
-.quote-highlight__mark {
-  /* top: 0, not a negative offset — the glyph's own ink sits near the
-     top of its em-box already; pushing the box further up ran it past
-     .quote-highlight__inner's overflow: hidden clip, leaving only the
-     bottom tips of the two curl-strokes visible instead of the full
-     mark. Verified by screenshot before landing on 0. */
-  position: absolute;
-  top: 0;
-  left: 40px;
-  z-index: -1;
+  top: 52px;
+  left: 32px;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(160px, 22vw, 280px);
+  font-size: 180px;
   line-height: 1;
-  color: var(--text-on-dark);
-  opacity: 0.14;
+  color: var(--accent);
+  opacity: 0.1;
+  user-select: none;
 }
-.quote-highlight blockquote {
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: clamp(22px, 2.8vw, 32px);
-  line-height: 1.4;
-  margin: 0 0 16px;
+.quote-band__quote {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  margin: 0 0 28px;
+  color: var(--accent-label);
+  max-width: 34ch;
   text-wrap: pretty;
 }
-.quote-highlight__stat { color: var(--neon-blue); font-weight: 700; }
-.quote-highlight cite { font-size: 15px; color: var(--text-on-dark-body); font-style: normal; }
+.quote-band__stat { color: var(--accent); }
+.quote-band__cite {
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  font-style: normal;
+}
+@media (max-width: 640px) {
+  .quote-band__mark { font-size: 120px; }
+}
 
-/* ---------- Portfolio-specific: how I work ---------- */
-.how-i-work { background: var(--bg-section); padding: 88px 32px; }
+/* ---------- Portfolio-specific: how I work (dark scrollytelling canvas) ---------- */
+.how-i-work { background: var(--bg-dark); position: relative; }
+.how-i-work__head { max-width: 1240px; margin: 0 auto; padding: 56px 32px 0; }
 .how-i-work__title {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(32px, 3.6vw, 46px);
   letter-spacing: -0.01em;
-  margin: 0 0 48px;
-  max-width: 700px;
+  margin: 0;
+  color: #fff;
+  max-width: 640px;
 }
-.how-i-work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; list-style: none; margin: 0; padding: 0; max-width: 1240px; margin: 0 auto; }
-.how-i-work-item {
-  background: var(--bg-card);
-  border-radius: 6px;
-  padding: 32px 28px;
-  border: 1px solid var(--border);
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+.how-i-work__subtitle {
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-signal-label);
+  margin: 14px 0 0;
 }
-.how-i-work-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(27, 59, 111, 0.14);
-  border-color: var(--accent);
-}
-.how-i-work-item:hover .how-i-work-item__number { color: var(--neon-blue); text-shadow: 0 0 10px rgba(79, 195, 255, 0.5); }
-.how-i-work-item__number {
-  /* Same "hero numeral" treatment as .stat__value (the project stats'
-     big counted-up figures) — same family/weight/letter-spacing formula,
-     scaled up further since this is the only content in its own line. */
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: clamp(36px, 4.5vw, 56px);
-  line-height: 1;
-  color: var(--accent);
-  letter-spacing: -0.02em;
-  display: block;
-  margin-bottom: 18px;
-  transition: color 200ms ease, text-shadow 200ms ease;
-}
-.how-i-work-item h3 { font-family: var(--font-heading); font-weight: 700; font-size: 18px; margin: 0 0 10px; }
-.how-i-work-item p { font-size: 15.5px; color: var(--text-muted); margin: 0; }
+
+/* The always-accessible source (see the HTML comment above
+   #how-i-work-grid) — visible by default for every visitor, moved to
+   .sr-only rather than hidden once assets/how-i-work-scroll.js takes
+   over for motion-enabled visitors. */
+.how-i-work-grid { max-width: 1240px; margin: 0 auto; padding: 48px 32px 96px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; list-style: none; }
+.how-i-work-item { background: var(--bg-dark-highlight); border-radius: 6px; padding: 32px 28px; border: 1px solid var(--border-dark-card); }
+.how-i-work-item__head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+.how-i-work-item__number { font-family: var(--font-heading); font-weight: 800; font-size: 32px; color: var(--neon-blue); letter-spacing: -0.01em; }
+.how-i-work-item__stage { font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--text-stage-label); text-transform: uppercase; }
+.how-i-work-item h3 { font-family: var(--font-heading); font-weight: 700; font-size: 18px; margin: 0 0 10px; color: #fff; }
+.how-i-work-item p { font-size: 15.5px; color: var(--text-on-dark-body); margin: 0; }
 @media (max-width: 860px) { .how-i-work-grid { grid-template-columns: minmax(0, 1fr); } }
 
-/* ---------- Portfolio-specific: tooling bar (one word falls at a time, Matter.js) ---------- */
-.tooling-bar { overflow: hidden; background: var(--bg-dark); padding: 26px 0; display: flex; align-items: center; gap: 20px; }
-.tooling-bar__viewport { flex: 1; overflow: hidden; }
-.tooling-bar__static {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 28px;
-  margin: 0;
-  padding: 0 4px;
-  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Menlo', 'Consolas', monospace;
-  font-size: 19px;
-  letter-spacing: 0.02em;
-}
-.tooling-bar__item {
-  color: var(--neon-blue);
-  text-shadow: 0 0 6px rgba(79, 195, 255, 0.65), 0 0 16px rgba(79, 195, 255, 0.35);
-}
-.tooling-bar__sep { color: rgba(231, 238, 246, 0.3); text-shadow: none; }
-
-/* assets/tooling-physics.js only adds .is-active (and moves
-   #tooling-static to .sr-only) once html.motion-ready is present AND
-   the self-hosted Matter.js build actually loaded — until then this
-   stays display: none and #tooling-static above is the only thing
-   rendered, same no-animation fallback contract the old CSS marquee
-   had for no-JS/reduced-motion visitors. */
-.tooling-bar__stage { display: none; position: relative; height: 120px; overflow: hidden; }
-.tooling-bar__stage.is-active { display: block; }
-/* Stays fully opaque for its whole lifetime, including its exit — see
-   assets/tooling-physics.js for why the exit is a second drop (out
-   through the stage's own overflow: hidden) rather than a fade. */
-.tooling-bar__falling-word {
+/* The scroll-driven canvas version — display:none by default (and
+   whenever motion is disabled/unsupported), aria-hidden unconditionally
+   in the HTML since #how-i-work-grid above is the real accessible
+   content. assets/how-i-work-scroll.js adds .is-active only once
+   html.motion-ready is present. */
+.how-i-work-scroll { display: none; position: relative; min-height: 340vh; }
+html.motion-ready .how-i-work-scroll.is-active { display: block; }
+.how-i-work-scroll__sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.how-i-work-scroll__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.how-i-work-scroll__gradient {
   position: absolute;
-  left: 0;
-  top: 0;
-  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Menlo', 'Consolas', monospace;
-  font-size: 19px;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(16, 27, 46, 0.82) 0%, rgba(16, 27, 46, 0.5) 38%, rgba(16, 27, 46, 0.08) 58%, rgba(16, 27, 46, 0) 68%);
 }
-
-.tooling-bar__toggle {
-  flex: none;
-  width: 38px;
-  height: 38px;
-  margin-right: 24px;
-  border-radius: 50%;
-  border: 1px solid rgba(231, 238, 246, 0.35);
-  background: transparent;
-  color: var(--text-on-dark);
+.how-i-work-scroll__text-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
 }
-.tooling-bar__toggle:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
+.how-i-work-scroll__stage { position: relative; width: 100%; height: 56vh; }
+/* opacity/transform are set per-frame by assets/how-i-work-scroll.js,
+   keyed to scroll progress — the initial values here only matter before
+   JS runs its first frame. */
+.how-i-work-scroll__item { position: absolute; top: 50%; left: 0; max-width: 23ch; opacity: 0; transform: translate3d(0, -50%, 0); }
+.how-i-work-scroll__head { display: flex; align-items: baseline; gap: 16px; }
+.how-i-work-scroll__number { font-family: var(--font-heading); font-weight: 800; font-size: clamp(38px, 5.4vw, 68px); letter-spacing: -0.02em; line-height: 1; color: var(--neon-blue); }
+.how-i-work-scroll__stage-label { font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace; font-size: 13px; letter-spacing: 0.14em; color: var(--text-stage-label); text-transform: uppercase; }
+.how-i-work-scroll__item h3 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(26px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.015em; margin: 20px 0 0; color: #fff; text-wrap: pretty; }
+.how-i-work-scroll__item p { max-width: 38ch; font-size: 16px; line-height: 1.6; color: var(--text-on-dark-body); margin: 20px 0 0; }
+
+/* ---------- Portfolio-specific: signal stack (dark word carousel, Matter.js) ---------- */
+.signal-stack {
+  background: var(--bg-dark);
+  padding: 72px 32px 40px;
+  border-top: 1px solid rgba(79, 195, 255, 0.12);
+  box-shadow: 0 -1px 18px rgba(79, 195, 255, 0);
+}
+.signal-stack__inner { max-width: 1240px; margin: 0 auto; }
+.signal-stack__label {
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-signal-label);
+  margin: 0 0 12px;
+}
+
+/* The always-accessible source — visible by default, moved to .sr-only
+   once assets/signal-stack.js's physics carousel takes over. */
+.signal-stack__static { display: flex; flex-wrap: wrap; gap: 16px 22px; align-items: baseline; padding: 24px 0 40px; margin: 0; }
+.signal-stack__word {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: var(--word-size, 32px);
+  color: var(--word-color, #fff);
+}
+
+/* The physics carousel — display:none by default, aria-hidden
+   unconditionally since #signal-stack-static above is the real
+   accessible content. assets/signal-stack.js adds .is-active only once
+   html.motion-ready is present and Matter.js has actually loaded. */
+.signal-stack__physics-frame { display: none; height: clamp(140px, 20vw, 240px); align-items: center; justify-content: center; padding: 24px 0 48px; overflow: hidden; }
+.signal-stack__physics-frame.is-active { display: flex; }
+.signal-stack__physics-track { display: flex; }
+.signal-stack__letter {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(48px, 9vw, 120px);
+  line-height: 1;
+}
 
 /* ---------- Portfolio-specific: contact email copy control ---------- */
 .copy-button__status { font-size: 13px; color: var(--text-muted); display: block; margin: 0 0 20px; }

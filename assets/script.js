@@ -4,9 +4,10 @@
 // fully visible without this file (see index.html and CLAUDE.md,
 // "Hand-written, semantic HTML — never a bundled export"). This script
 // adds the stat count-up, the scroll-reveal fade-ins, the copy-email
-// control, and the back-to-top button. The tooling-bar's own animation
-// (falling-word physics) lives in assets/tooling-physics.js, loaded
-// after this file, since it depends on the .motion-ready class this
+// control, and the back-to-top button. The "How I work" scrollytelling
+// canvas (assets/how-i-work-scroll.js) and the "Signal stack" word
+// carousel (assets/signal-stack.js) live in their own files, loaded
+// after this one, since both depend on the .motion-ready class this
 // file sets below. None of it hides or delays content by default: the
 // count-up starts from the real number already in the HTML, and the
 // reveal CSS only takes effect once .motion-ready is added below
@@ -107,9 +108,6 @@
     );
     sectionMap.forEach(function (m) { navObserver.observe(m.section); });
   }
-
-  // The tooling-bar's own play/pause wiring now lives in
-  // assets/tooling-physics.js, next to the animation it controls.
 
   // copy-email is a real mailto: <a> now, not a plain <button> — clicking
   // it opens a mail client on its own via the href, with no JS required,
