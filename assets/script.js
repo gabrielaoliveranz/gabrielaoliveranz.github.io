@@ -35,7 +35,18 @@
           revealObserver.unobserve(entry.target);
         });
       },
-      { threshold: 0.2 }
+      // threshold is a ratio of the TARGET's own area, not the viewport's —
+      // for a [data-reveal] section taller than roughly 5x the viewport
+      // (e.g. #work on a narrow/short mobile viewport, now that its
+      // project cards carry a lot more copy), even full-viewport overlap
+      // can't reach 0.2 of the element's total area, so it would never
+      // fire at all. Measured directly: #work's max achievable ratio on a
+      // 320x700 viewport was 0.194, just under the old 0.2 — a real
+      // permanently-invisible-on-mobile bug, not a hypothetical one. 0.1
+      // leaves comfortable headroom for sections several times taller
+      // still, without changing when short sections reveal in any way a
+      // visitor would notice.
+      { threshold: 0.1 }
     );
     document.querySelectorAll('[data-reveal]').forEach(function (el) {
       revealObserver.observe(el);
