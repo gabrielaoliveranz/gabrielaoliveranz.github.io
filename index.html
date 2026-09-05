@@ -15,13 +15,13 @@
 <meta property="og:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 13,040 candidates.">
+<meta property="og:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 6-page dashboard.">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gabriela Olivera — Data Analyst, Mount Maunganui">
 <meta name="twitter:description" content="Geospatial and operational-risk analytics projects, built end to end — pipelines, models, dashboards people actually use.">
 <meta name="twitter:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
-<meta name="twitter:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 13,040 candidates.">
+<meta name="twitter:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 6-page dashboard.">
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="assets/styles.css">
@@ -51,12 +51,13 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__grid">
       <div>
-        <p class="eyebrow">Data analyst — Mount Maunganui, NZ</p>
-        <h1 id="hero-title" class="hero__title" style="font-family: var(--font-display);">Hi, I'm Gabriela.</h1>
-        <p class="hero__lede">I spent fourteen years in operations and procurement before moving into data, which means I know where operational numbers break before they ever reach a report.</p>
-        <p class="hero__byline">I build the whole thing end to end: pipelines, models, and dashboards people actually use.</p>
+        <p class="eyebrow">Data Analyst</p>
+        <h1 id="hero-title" class="hero__title" style="font-family: var(--font-display);">Gabriela Olivera.</h1>
+        <p class="hero__lede">14 years in operations &amp; procurement. Now building data systems end to end.</p>
+        <p class="hero__byline">I know where operational numbers break before they ever reach a report. I turn messy real-world data into pipelines, models and decision-ready dashboards.</p>
         <div class="hero__actions">
           <a class="button button--primary" href="#work">See the work</a>
+          <a class="button button--secondary" href="assets/cv/gabriela-olivera-cv.pdf">Download CV</a>
         </div>
       </div>
       <div class="hero__photo-frame">
@@ -65,14 +66,13 @@
     </div>
   </section>
 
-  <div class="process-strip">
-    <p class="process-strip__track">
-      <span class="process-strip__step">4 government APIs</span><span class="process-strip__arrow">→</span>
-      <span class="process-strip__step">spatial join across 22,834 parcels</span><span class="process-strip__arrow">→</span>
-      <span class="process-strip__step">weighted scoring model</span><span class="process-strip__arrow">→</span>
-      <span class="process-strip__step process-strip__step--final">6-page dashboard</span>
-    </p>
-  </div>
+  <section class="why-me" aria-labelledby="why-me-title">
+    <div class="why-me__inner">
+      <h2 id="why-me-title" class="why-me__title">Data skills are only half the job.</h2>
+      <p class="why-me__text">Before I worked in data, I spent fourteen years working in operations and procurement. That taught me to question numbers before trusting them, understand how processes create data, and recognise when something looks technically correct but operationally wrong. Now I combine that judgement with SQL, Python, Power BI and modern data workflows.</p>
+      <p class="pull-line">I learned the business before I learned the tools.</p>
+    </div>
+  </section>
 
   <section id="work" aria-label="Work" data-reveal>
     <div class="project-band">
@@ -83,18 +83,43 @@
             <img src="assets/images/terroir-screenshot.jpg" alt="Screenshot of the Terroir Streamlit dashboard's suitability map, showing kiwifruit land-suitability parcels colour-coded across the Bay of Plenty coastline" width="1600" height="900">
           </div>
           <div class="project-card__body">
-            <h3 class="project-card__title">Where should kiwifruit grow in Bay of Plenty?</h3>
+            <h3 class="project-card__title">Where should kiwifruit actually grow in the Bay of Plenty?</h3>
             <p class="project-card__eyebrow">Geospatial land-suitability analysis</p>
-            <ul class="stats">
-              <li class="stat"><div class="stat__value"><span data-count-target="22834">22,834</span></div><div class="stat__label">Parcels analysed</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="21491">21,491</span></div><div class="stat__label">Scored</div><div class="stat__note">of 22,834 parcels</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="13040">13,040</span></div><div class="stat__label">Candidates</div><div class="stat__note">of 16,414 Excellent</div></li>
+            <ul class="stats stats--four">
+              <li class="stat"><div class="stat__value"><span data-count-target="22834">22,834</span></div><div class="stat__label">Parcels Analysed</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="21491">21,491</span></div><div class="stat__label">Successfully Scored</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Live Data Sources</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="6">6</span></div><div class="stat__label">Dashboard Pages</div></li>
             </ul>
-            <p class="project-card__text">I pulled four live sources — <strong>LINZ</strong> cadastral parcels, <strong>S-map</strong> soils, <strong>LCDB</strong> land cover and <strong>Open-Meteo</strong> climate — into a <strong>Python</strong> pipeline, joined them spatially, and scored every rural parcel in four districts for kiwifruit suitability.</p>
+            <p class="project-card__text">Four live government and public datasets — <strong>LINZ</strong> cadastral parcels, <strong>S-map</strong> soils, <strong>LCDB</strong> land cover and <strong>Open-Meteo</strong> climate — feed a <strong>Python</strong> pipeline that joins them spatially and scores every rural parcel across four Bay of Plenty districts for kiwifruit suitability.</p>
+
+            <p class="project-card__eyebrow">What I built</p>
+            <div class="process-strip process-strip--inline process-strip--on-dark">
+              <p class="process-strip__track">
+                <span class="process-strip__step">Source</span><span class="process-strip__arrow">→</span>
+                <span class="process-strip__step">Validate</span><span class="process-strip__arrow">→</span>
+                <span class="process-strip__step">Spatially join</span><span class="process-strip__arrow">→</span>
+                <span class="process-strip__step">Score</span><span class="process-strip__arrow">→</span>
+                <span class="process-strip__step process-strip__step--final">Visualise</span>
+              </p>
+            </div>
+
+            <p class="project-card__text">While validating the results, I found a bug that had misclassified 19.4% of parcels — caught because a filtered subset came out larger than the group it was filtered from, which is impossible. Every fix like that lives in the public commit history.</p>
+            <p class="pull-line pull-line--on-dark">The bug was more valuable than the finished chart.</p>
+
+            <p class="project-card__eyebrow">What this demonstrates</p>
+            <ul class="project-card__list">
+              <li>Four government datasets with different schemas, coordinate systems and update cycles, reconciled into one spatial join rather than assumed compatible.</li>
+              <li>A scoring model with its weights and thresholds stated in the code, not buried in a spreadsheet only I can read.</li>
+              <li>A logic bug caught by checking an invariant — a filtered subset can't be larger than its source — not by scanning the map for something that looked wrong.</li>
+              <li>Every parcel's suitability score traceable back to the exact inputs and rule that produced it.</li>
+              <li>A dashboard built for someone who needs an answer this week, not a data dictionary.</li>
+            </ul>
+
             <div class="project-card__links">
-              <a class="button button--on-dark-primary" href="https://gabrielaolivera.nz/terroir-case-study/" target="_blank" rel="noopener">Case study</a>
-              <a class="button button--on-dark-secondary" href="https://terroir.streamlit.app" target="_blank" rel="noopener">Live dashboard</a>
-              <a class="button button--on-dark-secondary" href="https://github.com/gabrielaoliveranz/horticultural-land-suitability-nz" target="_blank" rel="noopener">Code</a>
+              <a class="button button--on-dark-primary" href="https://gabrielaolivera.nz/terroir-case-study/" target="_blank" rel="noopener">Read the case study</a>
+              <a class="button button--on-dark-secondary" href="https://terroir.streamlit.app" target="_blank" rel="noopener">Open the dashboard</a>
+              <a class="button button--on-dark-secondary" href="https://github.com/gabrielaoliveranz/horticultural-land-suitability-nz" target="_blank" rel="noopener">View the code</a>
             </div>
             <p class="project-card__wake-note project-card__wake-note--on-dark">The live dashboard runs on a free host and can take about 30 seconds to wake up on first visit — it isn't broken, just warming up. The case study loads instantly.</p>
           </div>
@@ -110,14 +135,30 @@
             <img src="assets/images/apophenia-screenshot.jpg" alt="Screenshot of the Apophenia simulator interface, showing operational-risk sliders and forecast charts for a kiwifruit export season" width="1600" height="900">
           </div>
           <div class="project-card__body">
-            <h3 class="project-card__title">What happens when an export season goes wrong?</h3>
+            <h3 class="project-card__title">What happens when an export season starts going wrong?</h3>
             <p class="project-card__eyebrow">Operational risk intelligence simulator</p>
             <ul class="stats">
               <li class="stat"><div class="stat__value"><span data-count-target="9">9</span></div><div class="stat__label">Live variables</div></li>
               <li class="stat"><div class="stat__value"><span data-count-target="26">26</span>wk</div><div class="stat__label">Forecast</div><div class="stat__note">with a fixed-width projection band</div></li>
               <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Data feeds</div><div class="stat__note">each independently guarded</div></li>
             </ul>
-            <p class="project-card__text">I built a simulator in hand-written <strong>JavaScript</strong>, <strong>Chart.js</strong> and <strong>Mapbox GL JS</strong> where nine operational variables — weather, port congestion, fruit quality, regulatory load — recalculate risk, cost of delay and a 26-week forecast live, against four independent public APIs.</p>
+            <p class="project-card__text">Nine live operational variables — weather, port congestion, fruit quality and regulatory load among them — drive a simulator that recalculates risk, cost of delay and a 26-week forecast in real time, against four independent public APIs.</p>
+
+            <p class="project-card__eyebrow">What happens under the hood</p>
+            <div class="process-strip process-strip--inline process-strip--on-dark">
+              <p class="process-strip__track">
+                <span class="process-strip__step process-strip__step--wrap">Weather + port congestion + fruit quality + regulatory load</span><span class="process-strip__arrow">→</span>
+                <span class="process-strip__step">Risk model</span><span class="process-strip__arrow">→</span>
+                <span class="process-strip__step">Cost of delay + forecast</span><span class="process-strip__arrow">→</span>
+                <span class="process-strip__step process-strip__step--final">Interactive scenario</span>
+              </p>
+            </div>
+            <p class="project-card__wake-note project-card__wake-note--on-dark">Built with hand-written JavaScript, Chart.js and Mapbox GL JS.</p>
+
+            <p class="project-card__eyebrow">Why I built it</p>
+            <p class="project-card__text">A static report shows what already happened. This simulator lets someone change one input — a closed port, a quality downgrade — and see the operational and financial consequence before it happens for real.</p>
+            <p class="pull-line pull-line--on-dark">A simulator lets you ask: &ldquo;What happens if this changes?&rdquo;</p>
+
             <div class="project-card__links project-card__links--split">
               <a class="button button--on-dark-primary" href="https://apophenia-nz.vercel.app" target="_blank" rel="noopener">Live simulator</a>
               <a class="button button--on-dark-secondary" href="https://github.com/gabrielaoliveranz/optimising-kiwifruit-export" target="_blank" rel="noopener">Code</a>
@@ -128,11 +169,9 @@
     </div>
   </section>
 
-  <section class="quote-band" aria-label="A story about how I work" data-reveal>
+  <section class="quote-band" aria-label="Two projects, one value chain" data-reveal>
     <div class="quote-band__inner">
-      <span class="quote-band__mark" aria-hidden="true">&ldquo;</span>
-      <blockquote class="quote-band__quote">On Terroir I found a bug that had misclassified <span class="quote-band__stat">19.4%</span> of parcels. I caught it because a filtered subset came out larger than the group it was filtered from — which is impossible. Every fix like that is in the public commit history.</blockquote>
-      <cite class="quote-band__cite">— Gabriela, on the Terroir case study</cite>
+      <p class="quote-band__quote">Two projects. One value chain. Terroir asks where the crop should grow. Apophenia asks what happens once it's being exported. Different points in the same real-world system — production and operations — approached with the same instinct: real data, real constraints, decisions someone can actually act on.</p>
     </div>
   </section>
 
@@ -175,15 +214,15 @@
       <li class="how-i-work-item">
         <div class="how-i-work-item__head">
           <span class="how-i-work-item__number">03</span>
-          <span class="how-i-work-item__stage">Processing</span>
+          <span class="how-i-work-item__stage">Signal</span>
         </div>
-        <h3>Fourteen years of knowing when a number is wrong</h3>
-        <p>Operations and procurement means I read a figure and know whether it's plausible before I ship it.</p>
+        <h3>Find the part that matters.</h3>
+        <p>Analysis should reduce uncertainty, not just produce another chart.</p>
       </li>
       <li class="how-i-work-item">
         <div class="how-i-work-item__head">
           <span class="how-i-work-item__number">04</span>
-          <span class="how-i-work-item__stage">Signal</span>
+          <span class="how-i-work-item__stage">Decision</span>
         </div>
         <h3>Technical work, explained plainly</h3>
         <p>I write for the person who has to act on the analysis, not just the person who built it.</p>
@@ -215,15 +254,15 @@
             <div class="how-i-work-scroll__item">
               <div class="how-i-work-scroll__head">
                 <span class="how-i-work-scroll__number">03</span>
-                <span class="how-i-work-scroll__stage-label">Processing</span>
+                <span class="how-i-work-scroll__stage-label">Signal</span>
               </div>
-              <h3>Fourteen years of knowing when a number is wrong</h3>
-              <p>Operations and procurement means I read a figure and know whether it's plausible before I ship it.</p>
+              <h3>Find the part that matters.</h3>
+              <p>Analysis should reduce uncertainty, not just produce another chart.</p>
             </div>
             <div class="how-i-work-scroll__item">
               <div class="how-i-work-scroll__head">
                 <span class="how-i-work-scroll__number">04</span>
-                <span class="how-i-work-scroll__stage-label">Signal</span>
+                <span class="how-i-work-scroll__stage-label">Decision</span>
               </div>
               <h3>Technical work, explained plainly</h3>
               <p>I write for the person who has to act on the analysis, not just the person who built it.</p>
@@ -231,6 +270,21 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="data-quality" class="data-quality" aria-labelledby="data-quality-title">
+    <div class="data-quality__inner">
+      <h2 id="data-quality-title" class="data-quality__title">Data quality</h2>
+      <p class="data-quality__text">I don't trust a number because a dashboard says it. I trust it after I've asked where it came from, how it was transformed, what assumptions were made, and whether the result behaves the way reality says it should.</p>
+    </div>
+    <div class="process-strip process-strip--on-dark">
+      <p class="process-strip__track">
+        <span class="process-strip__step">Source</span><span class="process-strip__arrow">→</span>
+        <span class="process-strip__step">Transformation</span><span class="process-strip__arrow">→</span>
+        <span class="process-strip__step">Validation</span><span class="process-strip__arrow">→</span>
+        <span class="process-strip__step process-strip__step--final">Result</span>
+      </p>
     </div>
   </section>
 
@@ -260,6 +314,8 @@
       <div class="signal-stack__physics-frame" id="signal-stack-frame" aria-hidden="true">
         <div class="signal-stack__physics-track" id="signal-stack-track"></div>
       </div>
+
+      <p class="pull-line pull-line--on-dark signal-stack__tagline">Tools are the implementation. The real skill is knowing what to do with them.</p>
     </div>
   </div>
 
@@ -271,7 +327,11 @@
 
 <footer id="contact" class="site-footer" data-reveal>
   <div class="wrap">
-    <h2 class="site-footer__title">Get in touch</h2>
+    <h2 class="site-footer__title">Let's talk about data.</h2>
+    <p class="site-footer__lede">If you're looking for someone who can bridge operational reality and analytical work, I'd be happy to talk.</p>
+    <div class="site-footer__cta">
+      <a class="button button--primary" id="footer-cta" href="mailto:gabriela.olivera.nz@gmail.com">Get in touch &rarr;</a>
+    </div>
     <div class="site-footer__actions">
       <a class="icon-link" href="https://www.linkedin.com/in/gabriela-olivera-nz/" target="_blank" rel="noopener" aria-label="Gabriela Olivera on LinkedIn" title="LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a>
       <a class="icon-link" href="https://github.com/gabrielaoliveranz" target="_blank" rel="noopener" aria-label="Gabriela Olivera on GitHub" title="GitHub"><span class="icon icon--github" aria-hidden="true"></span></a>
@@ -279,8 +339,6 @@
       <a class="icon-link" id="cv-link" href="assets/cv/gabriela-olivera-cv.pdf" aria-label="Download CV" title="Download CV"><span class="icon icon--cv" aria-hidden="true"></span></a>
     </div>
     <span class="copy-button__status" id="copy-status" role="status" aria-live="polite"></span>
-    <!-- Update this date every time the CV file is replaced — see CLAUDE.md, "Copy #4, the CV, is a binary one". -->
-    <p class="site-footer__cv-date">CV last updated: 19 August 2026</p>
     <div class="site-footer__meta">
       <p class="site-footer__status"><span class="icon icon--location" aria-hidden="true"></span> Mount Maunganui, Bay of Plenty · NZ Permanent Resident</p>
       <p>&copy; 2026 Gabriela Olivera</p>

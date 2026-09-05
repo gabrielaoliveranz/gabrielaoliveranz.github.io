@@ -7,9 +7,11 @@ overall approach; this file covers what's specific to this site.
 
 ## The figure-staleness chain — six copies, one source of truth
 
-The numbers on this page (22,834 parcels · 21,491 scored · 13,040
-expansion candidates, plus Apophenia's 9 / 26wk / 4) exist in **six**
-places now, and only the first is authoritative:
+The numbers on this page (22,834 parcels · 21,491 scored, plus
+Apophenia's 9 / 26wk / 4) exist in **six** places now, and only the
+first is authoritative. A third Terroir number, 13,040 expansion
+candidates, used to be one of them too — see "Changed 2026-09-05" below
+for why it no longer is:
 
 1. **The Terroir pipeline** (`horticultural-land-suitability-nz`) —
    the single source of truth. Every other copy below is downstream of
@@ -41,6 +43,23 @@ updated to match: "with a fixed-width projection band." Keep fixing in
 that order — source repo first, this site second — so the two don't
 drift apart in the other direction.
 
+**Changed 2026-09-05:** the Terroir card's home-page stats grid grew from
+three numbers to four — 22,834 parcels · 21,491 scored · 4 live data
+sources · 6 dashboard pages — as part of a content rewrite that folded
+the standalone "13,040 candidates" stat into the card's own narrative
+copy instead of a labelled number. **13,040 is no longer displayed
+anywhere on this site** (home page, OG card, and OG/Twitter alt text all
+updated together in this change; the OG card's third stat now reads "6 ·
+dashboard pages", regenerated via `npm run generate:og-card`). It's
+still expected to be correct in the Terroir pipeline and case-study repo
+(untouched by this change, per the instruction that produced it — only
+this site's home cards were in scope) — if the pipeline's own count of
+16,414 Excellent / 13,040 expansion-candidate parcels is ever revisited,
+this site no longer needs updating for it, but the case-study repo,
+CV PDF, LinkedIn and Seek still might, since they weren't touched here
+either. 22,834 and 21,491 are still live in all six places above exactly
+as before — only the third number left this site's chain.
+
 ## Copy #4, the CV, is a binary one
 
 The "Download CV" link points at a PDF committed to this repo
@@ -52,12 +71,16 @@ the same staleness chain as the numbers above.
 **Whenever the CV changes, replace this repo's copy in the same
 change** — never leave the repo's PDF one version behind "for later".
 
-The visible date under the Download CV buttons
-(`.site-footer__cv-date` in `index.html`) is the file's own date, not
-a build timestamp — update it by hand, in the same commit, every time
-the PDF is replaced. That line exists so a visitor (or Gabriela,
-months later) can tell at a glance whether the PDF behind the link is
-current, without opening it.
+**Removed 2026-09-05:** a visible "CV last updated: [date]" line used to
+sit under the Download CV buttons (`.site-footer__cv-date`), by hand-kept
+in sync with the PDF's own date. It was deliberately deleted, not just
+left stale — a hand-maintained date next to a binary file with no
+readable diff is exactly the kind of copy this repo's staleness chain
+keeps catching *after* it drifts, and removing the claim entirely is
+more reliable than trusting anyone to remember the manual update on
+every future CV swap. **The CV-replacement rule above still stands
+regardless** — there's just no visible date left on this site to get
+out of sync when it's followed.
 
 The CV's header also carries its own copy of the site's canonical
 URL (`gabrielaolivera.nz`, next to the email and LinkedIn/GitHub

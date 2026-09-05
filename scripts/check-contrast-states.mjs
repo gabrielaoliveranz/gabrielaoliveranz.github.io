@@ -21,9 +21,10 @@ import {
 // Elements to check, by selector — each resolves via querySelector, i.e.
 // its first match in document order. Add new interactive elements here.
 const TARGETS = [
-  // First match in document order is the hero's "See the work" button —
-  // the only plain .button--primary left after Download CV became an
-  // icon-only .icon-link (see #cv-link below).
+  // First match in document order is the hero's "See the work" button.
+  // The footer's "Get in touch" CTA reuses the same class further down the
+  // page (see #footer-cta below) — same styling, but a shared class only
+  // ever tests its first match, so that one needs its own entry too.
   ".button--primary",
   // Download CV is a real, same-tab-navigating href — the click-guard
   // bug this script was written to catch (see CLAUDE.md, "Contrast must
@@ -38,10 +39,7 @@ const TARGETS = [
   "#cv-link",
   // Plain .icon-link itself: first match in document order is the
   // LinkedIn icon (GitHub shares the same rules, so it doesn't need its
-  // own entry). Replaces the old ".button--secondary" entry, which
-  // stopped matching anything once LinkedIn/GitHub/Email/CV dropped the
-  // bordered-button styling for icon-only links — same failure mode as
-  // the #cv-link case above, same fix.
+  // own entry).
   ".icon-link",
   // The Email link is also .icon-link, and now (like LinkedIn/GitHub) a
   // real <a href="mailto:...">, not a <button> — but querySelector(".icon-link")
@@ -52,6 +50,15 @@ const TARGETS = [
   "#copy-email",
   ".button--on-dark-primary",
   ".button--on-dark-secondary",
+  // Hero's "Download CV" button — a new light-background outline style,
+  // added alongside "See the work". A real same-tab-navigating href, same
+  // click-guard case as #cv-link above.
+  ".button--secondary",
+  // Footer's "Get in touch" CTA — shares .button--primary with the hero's
+  // "See the work" button (see the TARGETS comment above), and like
+  // #cv-link/#copy-email is a real same-tab mailto: navigation, so it
+  // needs its own click-guarded entry.
+  "#footer-cta",
 ];
 
 function relativeLuminance([r, g, b]) {
