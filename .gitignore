@@ -23,3 +23,8 @@ support.js
 github.md
 .thumbnail
 uploads/
+
+# Local design-preview mockups (standalone HTML, inline CSS, live-loaded
+# Google Fonts — never self-hosted or checked, so never fit to ship).
+# Same "scaffolding, not shipped site" reasoning as above.
+Claude outputs/

@@ -406,8 +406,17 @@ scaffolding, not part of the shipped site — so they're gitignored
 rather than deleted, in case the raw `uploads/` screenshots are still
 useful as crop sources later.
 
-**Whenever this site is edited inside a similar tool again, check for
-new scaffolding files before publishing** — `npm run check:untracked`
+**Same treatment for `Claude outputs/`** (added 2026-09-11): standalone
+design-preview mockups — full HTML documents with their own inline CSS
+and live-loaded Google Fonts links, never self-hosted or run through
+this repo's checks — used to compare visual options during a styling
+session, same purpose the design tool's own scaffolding served. Not
+referenced by `index.html`/`404.html` either, so gitignored the same
+way rather than deleted.
+
+**Whenever this site is edited inside a similar tool again, or a
+session leaves its own scratch/preview files behind, check for new
+scaffolding before publishing** — `npm run check:untracked`
 (`scripts/check-untracked.mjs`) fails the moment anything untracked and
 ungitignored shows up, specifically to catch this before a `git add`
 publishes it.

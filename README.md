@@ -19,7 +19,7 @@ gabrielaoliveranz.github.io/
 │   ├── script.js
 │   ├── favicon.svg
 │   ├── cv/gabriela-olivera-cv.pdf   # the real CV
-│   ├── fonts/                        # self-hosted Archivo + Source Sans 3
+│   ├── fonts/                        # self-hosted Archivo, Source Sans 3 + Bricolage Grotesque
 │   ├── icons/                         # Flaticon mask-image icons — see LICENSE.md
 │   └── images/                       # real headshot + project screenshots
 ├── scripts/                           # html/link/a11y/overflow/contrast/asset
@@ -34,9 +34,10 @@ gabrielaoliveranz.github.io/
 - `assets/images/headshot.jpg` — 800×800px, square crop
 - `assets/images/terroir-screenshot.jpg` — 1600×900px (16:9)
 - `assets/images/apophenia-screenshot.jpg` — 1600×900px (16:9)
-- `assets/cv/gabriela-olivera-cv.pdf` — whenever the CV is replaced, update
-  the visible date in `index.html`'s footer in the same change (see
-  CLAUDE.md, "The CV is a seventh copy").
+- `assets/cv/gabriela-olivera-cv.pdf` — whenever the CV is replaced, swap
+  this repo's copy in the same change (no visible "last updated" date to
+  keep in sync — that line was deliberately removed; see CLAUDE.md,
+  "Copy #4, the CV, is a binary one").
 
 ## Local preview
 
