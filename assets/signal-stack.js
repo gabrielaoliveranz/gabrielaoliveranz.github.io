@@ -51,7 +51,7 @@
 
   function buildWord(index) {
     var word = TOOLS[index % TOOLS.length];
-    var color = index % 2 === 0 ? '#4FC3FF' : '#fff';
+    var color = index % 2 === 0 ? '#4FC3FF' : '#FFFFFF';
     track.innerHTML = '';
     for (var i = 0; i < word.length; i++) {
       var ch = word.charAt(i);

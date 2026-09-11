@@ -525,48 +525,47 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 .project-card__eyebrow--divided::after { content: ''; flex: 1 1 auto; height: 1px; background: var(--eyebrow-divider-color); }
 /* Reused everywhere the site needs one standalone "punch" line — Why
    Me's closing line, the Terroir/Apophenia pull-quotes, the Signal Stack
-   tagline. One shared rule so the three --on-dark instances can never
-   drift apart from each other again (they briefly did, being styled
-   per-instance during preview iteration) — weight/style/size live here
+   tagline. One shared rule so all four instances can never drift apart
+   from each other again (they briefly did, being styled per-instance
+   during preview iteration) — weight/style/size/structure live here
    once, not per element. Dropped from weight 800 to 600 (still
    Bricolage Grotesque, still --font-display — its self-hosted range is
    600-800, so 600 is the lightest available, and it has no italic face
    of its own, so font-style: italic here is a browser-synthesized
    oblique, not a true design italic) so these read as a quieter aside,
-   not a second bold headline competing with the big stat numbers. Only
-   colour (and, on dark backgrounds, centring) varies by context. */
+   not a second bold headline competing with the big stat numbers.
+   --text-subtle is the light-background equivalent of the on-dark
+   override's off-white below: the same move away from a solid, bold
+   accent colour toward a quieter one, just on the light-bg side of the
+   palette. --accent-muted (defined in :root, unused anywhere else) was
+   tried here first but measures only ~3:1 against --bg — below WCAG AA
+   for this text size — caught by npm run check:a11y, not eyeballed;
+   --text-subtle clears it comfortably (~5.9:1). position:
+   relative + the ::before below turn every pull-line into a small
+   pull-quote: a large, low-opacity opening quotation mark painted
+   behind the text (z-index: -1), left-aligned with it by default to
+   match this rule's left-aligned text. Only colour, and on dark
+   backgrounds text-align + the mark's own centring, vary by context —
+   see .pull-line--on-dark below, and its Terroir override further
+   down. */
 .pull-line {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 600;
   font-size: clamp(18px, 2vw, 22px);
-  color: var(--accent);
   margin: 0 0 22px;
-}
-/* --text-on-dark: the same off-white already used for on-dark headings
-   elsewhere on this page — not a new colour, and deliberately not
-   --neon-blue, which stays reserved for the bold stat numbers these
-   lines used to visually compete with. position: relative + the ::before
-   below turn every on-dark pull-line into a small pull-quote: a large,
-   low-opacity opening quotation mark centred above the text, painted
-   behind it (z-index: -1). Same structure on all three instances
-   (Terroir, Apophenia, Signal Stack) — only the mark's colour varies,
-   via --pull-line-quote-color (neutral --border-dark-card by default;
-   Terroir overrides it below, same as its eyebrow dividers). */
-.pull-line--on-dark {
   position: relative;
-  padding-top: 28px;
-  color: var(--text-on-dark);
-  text-align: center;
-  --pull-line-quote-color: var(--border-dark-card);
+  padding-top: 26px;
+  color: var(--text-subtle);
+  --pull-line-quote-color: var(--border);
 }
-.pull-line--on-dark::before {
+.pull-line::before {
   content: '\201C';
   position: absolute;
   z-index: -1;
-  left: 50%;
+  left: 0;
   top: 0;
-  transform: translate(-50%, -42%);
+  transform: translateY(-42%);
   font-family: var(--font-display);
   font-style: normal;
   font-weight: 800;
@@ -575,6 +574,23 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
   color: var(--pull-line-quote-color);
   opacity: 0.22;
   pointer-events: none;
+}
+/* --text-on-dark: the same off-white already used for on-dark headings
+   elsewhere on this page — not a new colour, and deliberately not
+   --neon-blue, which stays reserved for the bold stat numbers these
+   lines used to visually compete with. --border-dark-card (quote mark)
+   is the on-dark equivalent of --border above. Same structure on all
+   three on-dark instances (Terroir, Apophenia, Signal Stack) — only the
+   mark's colour varies, via --pull-line-quote-color; Terroir overrides
+   it below, same as its eyebrow dividers. */
+.pull-line--on-dark {
+  color: var(--text-on-dark);
+  text-align: center;
+  --pull-line-quote-color: var(--border-dark-card);
+}
+.pull-line--on-dark::before {
+  left: 50%;
+  transform: translate(-50%, -42%);
 }
 /* Terroir's own project-identity accent (--terroir-accent, defined in
    :root) on its two things that carry colour on this component: the
@@ -641,7 +657,7 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
   font-size: clamp(32px, 3.6vw, 46px);
   letter-spacing: -0.01em;
   margin: 0;
-  color: #fff;
+  color: #FFFFFF;
   max-width: 640px;
 }
 .how-i-work__subtitle {
@@ -662,7 +678,7 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 .how-i-work-item__head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
 .how-i-work-item__number { font-family: var(--font-heading); font-weight: 800; font-size: 32px; color: var(--neon-blue); letter-spacing: -0.01em; }
 .how-i-work-item__stage { font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--text-stage-label); text-transform: uppercase; }
-.how-i-work-item h3 { font-family: var(--font-heading); font-weight: 700; font-size: 18px; margin: 0 0 10px; color: #fff; }
+.how-i-work-item h3 { font-family: var(--font-heading); font-weight: 700; font-size: 18px; margin: 0 0 10px; color: #FFFFFF; }
 .how-i-work-item p { font-size: 15.5px; color: var(--text-on-dark-body); margin: 0; }
 @media (max-width: 860px) { .how-i-work-grid { grid-template-columns: minmax(0, 1fr); } }
 
@@ -699,7 +715,7 @@ html.motion-ready .how-i-work-scroll.is-active { display: block; }
 .how-i-work-scroll__head { display: flex; align-items: baseline; gap: 16px; }
 .how-i-work-scroll__number { font-family: var(--font-heading); font-weight: 800; font-size: clamp(38px, 5.4vw, 68px); letter-spacing: -0.02em; line-height: 1; color: var(--neon-blue); }
 .how-i-work-scroll__stage-label { font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace; font-size: 13px; letter-spacing: 0.14em; color: var(--text-stage-label); text-transform: uppercase; }
-.how-i-work-scroll__item h3 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(26px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.015em; margin: 20px 0 0; color: #fff; text-wrap: pretty; }
+.how-i-work-scroll__item h3 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(26px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.015em; margin: 20px 0 0; color: #FFFFFF; text-wrap: pretty; }
 .how-i-work-scroll__item p { max-width: 38ch; font-size: 16px; line-height: 1.6; color: var(--text-on-dark-body); margin: 20px 0 0; }
 
 /* ---------- Portfolio-specific: data quality (dark, sits between How I
@@ -745,7 +761,7 @@ html.motion-ready .how-i-work-scroll.is-active { display: block; }
   font-weight: 800;
   letter-spacing: -0.02em;
   font-size: var(--word-size, 32px);
-  color: var(--word-color, #fff);
+  color: var(--word-color, #FFFFFF);
 }
 
 /* The physics carousel — display:none by default, aria-hidden
