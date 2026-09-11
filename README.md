@@ -1,5 +1,7 @@
 # Gabriela Olivera — Portfolio
 
+![Portfolio homepage hero](assets/preview/hero.png)
+
 [![Checks](https://github.com/gabrielaoliveranz/gabrielaoliveranz.github.io/actions/workflows/checks.yml/badge.svg)](https://github.com/gabrielaoliveranz/gabrielaoliveranz.github.io/actions/workflows/checks.yml)
 
 Personal portfolio — one page, no blog, no build step. Built on the
@@ -21,7 +23,8 @@ gabrielaoliveranz.github.io/
 │   ├── cv/gabriela-olivera-cv.pdf   # the real CV
 │   ├── fonts/                        # self-hosted Archivo, Source Sans 3 + Bricolage Grotesque
 │   ├── icons/                         # Flaticon mask-image icons — see LICENSE.md
-│   └── images/                       # real headshot + project screenshots
+│   ├── images/                       # real headshot + project screenshots
+│   └── preview/hero.png              # this README's cover image (homepage hero)
 ├── scripts/                           # html/link/a11y/overflow/contrast/asset
 │   │                                   # checks, plus the OG card generator
 ├── package.json
