@@ -69,7 +69,7 @@
   <section class="why-me" aria-labelledby="why-me-title">
     <div class="why-me__inner">
       <h2 id="why-me-title" class="why-me__title">Data skills are only half the job.</h2>
-      <p class="why-me__text">Before I worked in data, I spent fourteen years working in operations and procurement. That taught me to question numbers before trusting them, understand how processes create data, and recognise when something looks technically correct but operationally wrong. Now I combine that judgement with SQL, Python, Power BI and modern data workflows.</p>
+      <p class="why-me__text">Before I worked in data, I spent 14 years working in operations and procurement. That taught me to question numbers before trusting them, understand how processes create data, and recognise when something looks technically correct but operationally wrong. Now I combine that judgement with SQL, Python, Power BI and modern data workflows.</p>
       <p class="pull-line">I learned the business before I learned the tools.</p>
     </div>
   </section>
@@ -93,7 +93,7 @@
             </ul>
             <p class="project-card__text">Four live government and public datasets — <strong>LINZ</strong> cadastral parcels, <strong>S-map</strong> soils, <strong>LCDB</strong> land cover and <strong>Open-Meteo</strong> climate — feed a <strong>Python</strong> pipeline that joins them spatially and scores every rural parcel across four Bay of Plenty districts for kiwifruit suitability.</p>
 
-            <p class="project-card__eyebrow">What I built</p>
+            <p class="project-card__eyebrow project-card__eyebrow--divided">What I built</p>
             <div class="process-strip process-strip--inline process-strip--on-dark">
               <p class="process-strip__track">
                 <span class="process-strip__step">Source</span><span class="process-strip__arrow">→</span>
@@ -107,7 +107,7 @@
             <p class="project-card__text">While validating the results, I found a bug that had misclassified 19.4% of parcels — caught because a filtered subset came out larger than the group it was filtered from, which is impossible. Every fix like that lives in the public commit history.</p>
             <p class="pull-line pull-line--on-dark">The bug was more valuable than the finished chart.</p>
 
-            <p class="project-card__eyebrow">What this demonstrates</p>
+            <p class="project-card__eyebrow project-card__eyebrow--divided">What this demonstrates</p>
             <ul class="project-card__list">
               <li>Four government datasets with different schemas, coordinate systems and update cycles, reconciled into one spatial join rather than assumed compatible.</li>
               <li>A scoring model with its weights and thresholds stated in the code, not buried in a spreadsheet only I can read.</li>
@@ -138,13 +138,13 @@
             <h3 class="project-card__title">What happens when an export season starts going wrong?</h3>
             <p class="project-card__eyebrow">Operational risk intelligence simulator</p>
             <ul class="stats">
-              <li class="stat"><div class="stat__value"><span data-count-target="9">9</span></div><div class="stat__label">Live variables</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="9">9</span></div><div class="stat__label">Live Variables</div></li>
               <li class="stat"><div class="stat__value"><span data-count-target="26">26</span>wk</div><div class="stat__label">Forecast</div><div class="stat__note">with a fixed-width projection band</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Data feeds</div><div class="stat__note">each independently guarded</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Data Feeds</div><div class="stat__note">each independently guarded</div></li>
             </ul>
             <p class="project-card__text">Nine live operational variables — weather, port congestion, fruit quality and regulatory load among them — drive a simulator that recalculates risk, cost of delay and a 26-week forecast in real time, against four independent public APIs.</p>
 
-            <p class="project-card__eyebrow">What happens under the hood</p>
+            <p class="project-card__eyebrow project-card__eyebrow--divided">What happens under the hood</p>
             <div class="process-strip process-strip--inline process-strip--on-dark">
               <p class="process-strip__track">
                 <span class="process-strip__step process-strip__step--wrap">Weather + port congestion + fruit quality + regulatory load</span><span class="process-strip__arrow">→</span>
@@ -155,7 +155,7 @@
             </div>
             <p class="project-card__wake-note project-card__wake-note--on-dark">Built with hand-written JavaScript, Chart.js and Mapbox GL JS.</p>
 
-            <p class="project-card__eyebrow">Why I built it</p>
+            <p class="project-card__eyebrow project-card__eyebrow--divided">Why I built it</p>
             <p class="project-card__text">A static report shows what already happened. This simulator lets someone change one input — a closed port, a quality downgrade — and see the operational and financial consequence before it happens for real.</p>
             <p class="pull-line pull-line--on-dark">A simulator lets you ask: &ldquo;What happens if this changes?&rdquo;</p>
 
@@ -178,7 +178,7 @@
   <section id="how-i-work" class="how-i-work" aria-labelledby="how-i-work-title">
     <div class="how-i-work__head">
       <h2 id="how-i-work-title" class="how-i-work__title">How I work</h2>
-      <p class="how-i-work__subtitle">noise &rarr; processing &rarr; signal</p>
+      <p class="how-i-work__subtitle">noise &rarr; processing &rarr; signal &rarr; decision</p>
     </div>
 
     <!--

@@ -105,6 +105,16 @@
   --text-signal-label: #5C8AB8;
   --text-stage-label: #7FA3C9;
 
+  /* Terroir's own project-identity accent — a desaturated teal, between
+     the site's own celeste and a full sage/olive green (tried first,
+     then judged too far from the palette). Keeps enough of the
+     land/growth association to still read as "not just another blue"
+     while sitting closer to the rest of the page. Scoped to Terroir's
+     own section dividers and pull-line quote mark only — see
+     #work .project-band:nth-of-type(odd) overrides below. Not used
+     anywhere Apophenia or Signal Stack render. */
+  --terroir-accent: #4F9B8C;
+
   --font-heading: 'Archivo', sans-serif;
   --font-body: 'Source Sans 3', sans-serif;
   --font-display: 'Bricolage Grotesque', 'Archivo', sans-serif;
@@ -499,18 +509,84 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 .project-card__list { margin: 0 0 22px; padding-left: 20px; color: var(--text-on-dark-body); font-size: 15.5px; line-height: 1.6; }
 .project-card__list li { margin-bottom: 8px; }
 .project-card__list li:last-child { margin-bottom: 0; }
-/* Reused everywhere the site needs one bold standalone "punch" line —
-   Why Me's closing line, the Terroir/Apophenia pull-quotes, the Signal
-   Stack tagline. Same treatment throughout, only the colour swaps between
-   light-background (default) and dark-background (--on-dark) contexts. */
+/* One consistent section-break treatment for every
+   sub-heading inside a case study body (Terroir's "What I built"/"What
+   this demonstrates", Apophenia's "What happens under the hood"/"Why I
+   built it"): the eyebrow text centred between two thin, low-contrast
+   rules, same shape as a classic "OR" divider. Font-size/weight/colour
+   are untouched — inherited from the base .project-card__eyebrow rule
+   above — only layout (flex + centring) and the two rule segments are
+   added. The rule colour is a custom property (--eyebrow-divider-color,
+   defaulting to --border-dark-card, the same subtle divider colour
+   already used on the dark "How I work" cards) so Terroir can override
+   it below without a second copy of this rule. */
+.project-card__eyebrow--divided { display: flex; align-items: center; gap: 14px; text-align: center; margin-top: 34px; --eyebrow-divider-color: var(--border-dark-card); }
+.project-card__eyebrow--divided::before,
+.project-card__eyebrow--divided::after { content: ''; flex: 1 1 auto; height: 1px; background: var(--eyebrow-divider-color); }
+/* Reused everywhere the site needs one standalone "punch" line — Why
+   Me's closing line, the Terroir/Apophenia pull-quotes, the Signal Stack
+   tagline. One shared rule so the three --on-dark instances can never
+   drift apart from each other again (they briefly did, being styled
+   per-instance during preview iteration) — weight/style/size live here
+   once, not per element. Dropped from weight 800 to 600 (still
+   Bricolage Grotesque, still --font-display — its self-hosted range is
+   600-800, so 600 is the lightest available, and it has no italic face
+   of its own, so font-style: italic here is a browser-synthesized
+   oblique, not a true design italic) so these read as a quieter aside,
+   not a second bold headline competing with the big stat numbers. Only
+   colour (and, on dark backgrounds, centring) varies by context. */
 .pull-line {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-style: italic;
+  font-weight: 600;
   font-size: clamp(18px, 2vw, 22px);
   color: var(--accent);
   margin: 0 0 22px;
 }
-.pull-line--on-dark { color: var(--neon-blue); }
+/* --text-on-dark: the same off-white already used for on-dark headings
+   elsewhere on this page — not a new colour, and deliberately not
+   --neon-blue, which stays reserved for the bold stat numbers these
+   lines used to visually compete with. position: relative + the ::before
+   below turn every on-dark pull-line into a small pull-quote: a large,
+   low-opacity opening quotation mark centred above the text, painted
+   behind it (z-index: -1). Same structure on all three instances
+   (Terroir, Apophenia, Signal Stack) — only the mark's colour varies,
+   via --pull-line-quote-color (neutral --border-dark-card by default;
+   Terroir overrides it below, same as its eyebrow dividers). */
+.pull-line--on-dark {
+  position: relative;
+  padding-top: 28px;
+  color: var(--text-on-dark);
+  text-align: center;
+  --pull-line-quote-color: var(--border-dark-card);
+}
+.pull-line--on-dark::before {
+  content: '\201C';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -42%);
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 3.6em;
+  line-height: 1;
+  color: var(--pull-line-quote-color);
+  opacity: 0.22;
+  pointer-events: none;
+}
+/* Terroir's own project-identity accent (--terroir-accent, defined in
+   :root) on its two things that carry colour on this component: the
+   eyebrow dividers and the pull-line quote mark. Scoped by band
+   position — #work .project-band:nth-of-type(odd) is Terroir, same
+   convention already used for band background/layout (see CLAUDE.md,
+   "Adding a project") — not a new HTML class, so nothing to remember to
+   add if this project's block ever moves. Apophenia (even) and the
+   Signal Stack pull-line (outside #work entirely) never match this
+   selector, so they keep the neutral defaults above untouched. */
+#work .project-band:nth-of-type(odd) .project-card__eyebrow--divided { --eyebrow-divider-color: var(--terroir-accent); }
+#work .project-band:nth-of-type(odd) .pull-line--on-dark { --pull-line-quote-color: var(--terroir-accent); }
 .button--on-dark-primary { background: #FFFFFF; color: var(--accent-label); border-radius: 999px; font-family: var(--font-heading); font-weight: 700; padding: 11px 20px; font-size: 14px; text-decoration: none; }
 .button--on-dark-primary:hover, .button--on-dark-primary:focus-visible, .button--on-dark-primary:active { color: var(--accent-label); }
 .button--on-dark-secondary { background: transparent; color: #FFFFFF; border: 1.5px solid rgba(255, 255, 255, 0.55); border-radius: 999px; font-family: var(--font-heading); font-weight: 700; padding: 9.5px 20px; font-size: 14px; text-decoration: none; }
