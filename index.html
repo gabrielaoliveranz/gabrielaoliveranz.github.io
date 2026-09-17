@@ -15,13 +15,13 @@
 <meta property="og:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 6-page dashboard.">
+<meta property="og:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 16,072 scored · 6-page dashboard.">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gabriela Olivera — Data Analyst, Mount Maunganui">
 <meta name="twitter:description" content="Geospatial and operational-risk analytics projects, built end to end — pipelines, models, dashboards people actually use.">
 <meta name="twitter:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
-<meta name="twitter:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 21,491 scored · 6-page dashboard.">
+<meta name="twitter:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 16,072 scored · 6-page dashboard.">
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="assets/styles.css">
@@ -87,11 +87,11 @@
             <p class="project-card__eyebrow">Geospatial land-suitability analysis</p>
             <ul class="stats stats--four">
               <li class="stat"><div class="stat__value"><span data-count-target="22834">22,834</span></div><div class="stat__label">Parcels Analysed</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="21491">21,491</span></div><div class="stat__label">Successfully Scored</div></li>
+              <li class="stat"><div class="stat__value"><span data-count-target="16072">16,072</span></div><div class="stat__label">Successfully Scored</div></li>
               <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Live Data Sources</div></li>
               <li class="stat"><div class="stat__value"><span data-count-target="6">6</span></div><div class="stat__label">Dashboard Pages</div></li>
             </ul>
-            <p class="project-card__text">Four live government and public datasets — <strong>LINZ</strong> cadastral parcels, <strong>S-map</strong> soils, <strong>LCDB</strong> land cover and <strong>Open-Meteo</strong> climate — feed a <strong>Python</strong> pipeline that joins them spatially and scores every rural parcel across four Bay of Plenty districts for kiwifruit suitability.</p>
+            <p class="project-card__text">Four live New Zealand government datasets — property boundaries, soil surveys, land-cover maps and climate records — are lined up against each other and used to score every rural parcel across four Bay of Plenty districts for how well suited it is to growing kiwifruit.</p>
 
             <p class="project-card__eyebrow project-card__eyebrow--divided">What I built</p>
             <div class="process-strip process-strip--inline process-strip--on-dark">
@@ -104,16 +104,16 @@
               </p>
             </div>
 
-            <p class="project-card__text">While validating the results, I found a bug that had misclassified 19.4% of parcels — caught because a filtered subset came out larger than the group it was filtered from, which is impossible. Every fix like that lives in the public commit history.</p>
+            <p class="project-card__text">While double-checking the results, I caught something that couldn’t be true: a smaller, more exclusive group of high-scoring land had more parcels in it than the larger group it was supposed to fit inside. That’s mathematically impossible, and tracing it back showed the scoring logic had been quietly filing 21.7% of parcels into the wrong tier. I fixed it, and every step of that fix is in the public commit history.</p>
             <p class="pull-line pull-line--on-dark">The bug was more valuable than the finished chart.</p>
 
             <p class="project-card__eyebrow project-card__eyebrow--divided">What this demonstrates</p>
             <ul class="project-card__list">
-              <li>Four government datasets with different schemas, coordinate systems and update cycles, reconciled into one spatial join rather than assumed compatible.</li>
-              <li>A scoring model with its weights and thresholds stated in the code, not buried in a spreadsheet only I can read.</li>
-              <li>A logic bug caught by checking an invariant — a filtered subset can't be larger than its source — not by scanning the map for something that looked wrong.</li>
-              <li>Every parcel's suitability score traceable back to the exact inputs and rule that produced it.</li>
-              <li>A dashboard built for someone who needs an answer this week, not a data dictionary.</li>
+              <li>Four different government datasets, each with its own format and quirks, combined into one picture instead of just assumed to line up.</li>
+              <li>A scoring model where every rule and cut-off is written into the code itself — not buried in a spreadsheet that only I could explain.</li>
+              <li>A bug caught by testing a simple rule of logic (a smaller group can't be bigger than the group it came from), not by squinting at a map and hoping something looked off.</li>
+              <li>Every parcel's score can be traced back to exactly which inputs and rule produced it — nothing is a black box.</li>
+              <li>A dashboard built for someone who needs an answer this week, not a wall of technical documentation.</li>
             </ul>
 
             <div class="project-card__links">
