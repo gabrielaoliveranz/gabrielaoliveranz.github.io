@@ -783,10 +783,12 @@ html.motion-ready .how-i-work-scroll.is-active { display: block; }
 /* ---------- Portfolio-specific: contact email copy control ---------- */
 .copy-button__status { font-size: 13px; color: var(--text-muted); display: block; margin: 0 0 20px; }
 
-/* ---------- Icons (mask-image, not <img>: source PNGs are single-colour
-   silhouettes on transparency, so a CSS mask lets each one pick up
-   currentColor/--accent instead of shipping a separately-coloured asset
-   per use. See LICENSE.md for the Flaticon source of each.) ---------- */
+/* ---------- Icons (mask-image, not <img>: source PNGs/SVGs are
+   single-colour silhouettes (or, for the Lucide set, currentColor
+   strokes — a mask reads either the same way) on transparency, so a CSS
+   mask lets each one pick up currentColor/--accent instead of shipping
+   a separately-coloured asset per use. See LICENSE.md for the source —
+   Flaticon or Lucide — of each.) ---------- */
 .icon {
   display: inline-block;
   flex: none;
@@ -810,6 +812,28 @@ html.motion-ready .how-i-work-scroll.is-active { display: block; }
    contact icon-links, this one doesn't sit inside accent-coloured text —
    the surrounding line is --text-subtle, same as the dot it replaces. */
 .icon--location { width: 10px; height: 10px; background-color: var(--accent); mask-image: url("icons/location-pin.png"); -webkit-mask-image: url("icons/location-pin.png"); }
+
+/* Lucide icons (small-business/index.html only) — ISC-licensed, no
+   attribution required, self-hosted the same way as the Flaticon set
+   above rather than loaded from a CDN (see CLAUDE.md, "Every
+   third-party asset is self-hosted or justified"). */
+.icon--lucide-activity { mask-image: url("icons/lucide-activity.svg"); -webkit-mask-image: url("icons/lucide-activity.svg"); }
+.icon--lucide-layout-dashboard { mask-image: url("icons/lucide-layout-dashboard.svg"); -webkit-mask-image: url("icons/lucide-layout-dashboard.svg"); }
+.icon--lucide-search { mask-image: url("icons/lucide-search.svg"); -webkit-mask-image: url("icons/lucide-search.svg"); }
+.icon--lucide-shield-check { mask-image: url("icons/lucide-shield-check.svg"); -webkit-mask-image: url("icons/lucide-shield-check.svg"); }
+.icon--lucide-lock { mask-image: url("icons/lucide-lock.svg"); -webkit-mask-image: url("icons/lucide-lock.svg"); }
+.icon--lucide-trash-2 { mask-image: url("icons/lucide-trash-2.svg"); -webkit-mask-image: url("icons/lucide-trash-2.svg"); }
+.icon--lucide-scale { mask-image: url("icons/lucide-scale.svg"); -webkit-mask-image: url("icons/lucide-scale.svg"); }
+.icon--lucide-user { mask-image: url("icons/lucide-user.svg"); -webkit-mask-image: url("icons/lucide-user.svg"); }
+.icon--lucide-mail { mask-image: url("icons/lucide-mail.svg"); -webkit-mask-image: url("icons/lucide-mail.svg"); }
+.icon--lucide-message-square { mask-image: url("icons/lucide-message-square.svg"); -webkit-mask-image: url("icons/lucide-message-square.svg"); }
+.icon--lucide-x { mask-image: url("icons/lucide-x.svg"); -webkit-mask-image: url("icons/lucide-x.svg"); }
+.icon--lucide-tag { mask-image: url("icons/lucide-tag.svg"); -webkit-mask-image: url("icons/lucide-tag.svg"); }
+.icon--lucide-clipboard-list { mask-image: url("icons/lucide-clipboard-list.svg"); -webkit-mask-image: url("icons/lucide-clipboard-list.svg"); }
+.icon--lucide-list-checks { mask-image: url("icons/lucide-list-checks.svg"); -webkit-mask-image: url("icons/lucide-list-checks.svg"); }
+.icon--lucide-flask-conical { mask-image: url("icons/lucide-flask-conical.svg"); -webkit-mask-image: url("icons/lucide-flask-conical.svg"); }
+.icon--lucide-lightbulb { mask-image: url("icons/lucide-lightbulb.svg"); -webkit-mask-image: url("icons/lucide-lightbulb.svg"); }
+.icon--lucide-handshake { mask-image: url("icons/lucide-handshake.svg"); -webkit-mask-image: url("icons/lucide-handshake.svg"); }
 
 /* ---------- Contact icon-links: icon is the entire control, no visible
    label/border. The icon alone can't carry meaning for a screen-reader
@@ -946,3 +970,389 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
   .back-to-top { transition: none; }
   html.motion-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---------- small-business/index.html only ----------
+   Not linked from the header nav or sitemap.xml yet — see that file's
+   own header comment. Deliberately NOT one repeated component down the
+   page: each section below gets its own visual treatment (solid-navy
+   cards, an editorial icon row, a horizontal carousel, an image-led blog
+   card) so the page has rhythm rather than the same box ten times.
+   Section title/intro is the one thing shared across most of them.
+   Nothing here is used anywhere else on the site. */
+/* 64px top padding, not the original 8px: each of these three sections
+   immediately follows a diagonal section-cut (.sme-questions,
+   .sme-transition, .sme-cases respectively), and 8px read as the
+   heading sitting right on top of the cut rather than clear of it. */
+.sme-services, .sme-process, .sme-privacy {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 64px 32px 72px;
+}
+.sme-questions__inner, .sme-privacy__inner { max-width: 720px; }
+.sme-section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.sme-section-title--on-dark { color: #FFFFFF; }
+.sme-section-intro { font-size: 17px; line-height: 1.6; color: var(--text-body); margin: 0 0 32px; max-width: 64ch; }
+.sme-section-intro--on-dark { color: var(--text-on-dark-body); }
+
+/* "The questions this usually starts with" — full-bleed dark section,
+   solid-navy cards. Built from a reference Gaby supplied (Zespri's "Our
+   purpose and values" pattern): unlike every other section on this page,
+   the section itself carries colour (--bg-dark, full-bleed — see
+   CLAUDE.md, "Full-bleed sections use natural block width" for why no
+   100vw trick is needed), not just a band inside a card. Cards sit one
+   tone lighter (--accent-label) so they read as distinct raised blocks
+   against the section's own backdrop, the same two-tone relationship
+   `.how-i-work`/`.how-i-work-item` already uses on the homepage — see
+   CLAUDE.md, "The small-business page" for why this and the transition
+   band further down are the page's two deliberate dark moments, not a
+   spreading pattern. Diagonal top/bottom edges reuse the homepage's own
+   full-bleed-band device (`.quote-band`'s exact parallelogram formula —
+   `#work .project-band` cuts one edge at a time instead, since its bands
+   sit flush against each other with no gap; this page's sections don't,
+   so both edges need their own cut, same as `.quote-band`), rather than
+   the flat horizontal edges every section here had before. Padding-top
+   grew from 64px to 80px to keep "The questions..." clear of the
+   steeper top cut. */
+.sme-questions { background: var(--bg-dark); padding: 80px 0 72px; clip-path: polygon(0 0, 100% 40px, 100% calc(100% - 40px), 0 100%); }
+.sme-questions__band { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.sme-card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; list-style: none; padding: 0; margin: 0; }
+/* Grid stretch (the default) already makes both cards in a row match;
+   .sme-card itself carries no visual styling beyond that box model — it
+   only exists so JS has a stable element to set a whole-grid min-height
+   on (see assets/small-business.js) and so overflow:hidden can round
+   .sme-card__shape's sharp clip-path corners back off on three sides. */
+.sme-card { display: flex; border-radius: 10px; overflow: hidden; }
+.sme-card:focus-visible { outline: 2.5px solid var(--neon-blue); outline-offset: 3px; }
+.sme-card__shape {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--accent-label);
+  border: 1px solid var(--border-dark-card);
+  /* Same diagonal-cut formula the light-background version used on its
+     card heads (`clip-path: polygon(0 16px, 100% 0, 100% 100%, 0
+     100%)`), just applied to the whole card now that head and body
+     share one colour — brings the shape back without needing a second
+     tone to express it. */
+  clip-path: polygon(0 18px, 100% 0, 100% 100%, 0 100%);
+  padding: 34px 26px 26px;
+}
+/* Neon-blue read as too cold/clashing against the navy in practice
+   (design feedback, not a contrast failure — axe was fine with 7.48:1).
+   --bg-card is the site's cream tone, normally a background, reused here
+   as warm off-white heading text on dark — reads as a considered
+   two-tone pairing with the neon-blue hover accent below, rather than
+   the single loud blue the earlier version leaned on. */
+.sme-card__title {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 19px;
+  line-height: 1.3;
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  color: var(--bg-card);
+}
+/* Hover underline draws in from 0, the same device
+   `.work__title::after` uses on the homepage (there triggered by
+   scroll-reveal, here by :hover/:focus-within) — reused rather than
+   invented so this still reads as the same design system. Neon-blue
+   reclaims its usual job (an accent mark, not the primary text colour)
+   instead of carrying the whole heading. */
+.sme-card__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--neon-blue);
+  transition: width 250ms ease;
+}
+.sme-card:hover .sme-card__title::after,
+.sme-card:focus-within .sme-card__title::after {
+  width: 36px;
+}
+.sme-card__text { font-size: 15px; line-height: 1.6; color: var(--text-on-dark-body); margin: 0; }
+@media (max-width: 760px) { .sme-card-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* "How I can help" — editorial rows, not cards. Deliberately lighter
+   than the questions section above: a Lucide icon in --accent, title
+   and description beside it, rows separated by a plain 1px rule rather
+   than a bordered/coloured box. margin:-20px + padding:20px on the
+   horizontal axis is a standard "wider hit area, same content position"
+   trick: the two cancel out so the icon/text sit exactly where they did
+   before, but the row's own box (and its hover tint) extends a bit
+   past the text on both sides instead of hugging it tightly. 20px is
+   comfortably inside .sme-services' own 32px side padding, so this
+   can't cause horizontal overflow (verified with check:overflow). */
+.sme-service-list { list-style: none; padding: 0; margin: 0; }
+.sme-service-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 20px;
+  margin: 0 -20px;
+  border-bottom: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: default;
+  transition: background-color 200ms ease;
+}
+.sme-service-row:first-child { padding-top: 0; }
+.sme-service-row:last-child { padding-bottom: 0; border-bottom: none; }
+.sme-service-row:hover, .sme-service-row:focus-within { background-color: var(--bg-card); }
+.sme-service-row:focus-visible { outline: 2.5px solid var(--accent-highlight); outline-offset: 2px; }
+.sme-service-row__icon { flex: none; width: 34px; height: 34px; background-color: var(--accent); margin-top: 4px; transition: background-color 200ms ease; }
+.sme-service-row:hover .sme-service-row__icon, .sme-service-row:focus-within .sme-service-row__icon { background-color: var(--accent-highlight); }
+.sme-service-row__title { font-family: var(--font-heading); font-weight: 800; font-size: 19px; margin: 0 0 8px; color: var(--text); transition: color 200ms ease; }
+.sme-service-row:hover .sme-service-row__title, .sme-service-row:focus-within .sme-service-row__title { color: var(--accent); }
+.sme-service-row__text { font-size: 15.5px; line-height: 1.6; color: var(--text-body); margin: 0; max-width: 62ch; }
+@media (max-width: 560px) {
+  .sme-service-row { flex-direction: column; gap: 12px; }
+  .sme-service-row__icon { width: 28px; height: 28px; }
+}
+
+/* The one deliberate full-bleed colour break besides the questions
+   section above — a single short line marking the shift from "what I
+   offer" to "how it happens", not a full section with its own heading.
+   Kept brief on purpose: two dark moments on one page reads as rhythm,
+   a third would start reading as a pattern. See CLAUDE.md, "The
+   small-business page". Smaller diagonal offset (22px, vs. 40px on the
+   two taller sections) than `.sme-questions`/`.sme-cases` — this band is
+   much shorter, so the same 40px cut would eat a disproportionate share
+   of its own height; padding grew from 56px to 64px to keep the line
+   clear of it either way. */
+.sme-transition { background: var(--accent-label); padding: 64px 32px; clip-path: polygon(0 0, 100% 22px, 100% calc(100% - 22px), 0 100%); }
+.sme-transition__inner { max-width: 860px; margin: 0 auto; text-align: center; }
+.sme-transition__line {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* "How it works" — a hover/focus-reveal card grid, built from a
+   reference Gaby supplied (jere.my/intellectual-property's "Other Areas
+   of Expertise" pattern). Replaces the horizontal carousel from the
+   previous round. Each card: a large decorative icon fills the resting
+   state as a backdrop, number + title sit on a bottom gradient so
+   they're legible over it; hovering or focusing the card fades in a
+   near-opaque overlay with the description. No CTA in the overlay and
+   no link on the card — deliberately not wired to per-step subpages
+   (asked, and Gaby chose hover-reveal only) — see this section's own
+   HTML comment. Numbers are still the site's one earned use of section
+   numbering — a real
+   ordered sequence, not a set of independent options. */
+.sme-expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; list-style: none; padding: 0; margin: 0; }
+.sme-expertise-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-dark);
+  cursor: pointer;
+}
+.sme-expertise-card__icon-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+/* --bg-dark-highlight (the first colour tried) sits too close to the
+   card's own --bg-dark backdrop in luminance to read as a watermark at
+   all — the two are barely distinguishable, which is exactly what "too
+   transparent/faint" was. --accent-soft is meaningfully lighter, and
+   opacity (rather than picking a still-darker solid colour) keeps it
+   controllable as a deliberate "faint but legible" backdrop instead of
+   a guessing game between fixed tones. */
+.sme-expertise-card__icon-bg .icon { width: 60%; height: 60%; background-color: var(--accent-soft); opacity: 0.55; }
+.sme-expertise-card__base {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 20px;
+  background: linear-gradient(to top, rgba(16, 27, 46, 0.9), rgba(16, 27, 46, 0));
+}
+.sme-expertise-card__number { display: block; font-family: var(--font-heading); font-weight: 800; font-size: 13px; color: var(--neon-blue); letter-spacing: -0.01em; margin-bottom: 4px; }
+.sme-expertise-card__title { font-family: var(--font-heading); font-weight: 800; font-size: 17px; line-height: 1.25; margin: 0; color: #FFFFFF; }
+.sme-expertise-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 39, 74, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 22px 24px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.sme-expertise-card:hover .sme-expertise-card__overlay,
+.sme-expertise-card:focus-visible .sme-expertise-card__overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sme-expertise-card:focus-visible { outline: 2.5px solid var(--accent-highlight); outline-offset: 3px; }
+.sme-expertise-card__text { font-size: 14.5px; line-height: 1.55; color: var(--text-on-dark-body); margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .sme-expertise-card__overlay { transition: none; }
+}
+@media (max-width: 860px) { .sme-expertise-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) {
+  .sme-expertise-grid { grid-template-columns: minmax(0, 1fr); }
+  .sme-expertise-card { aspect-ratio: 16 / 10; }
+}
+
+/* "Case studies" — image-led blog cards, the one treatment on the page
+   built around a picture rather than colour-blocked type, and the only
+   section with its own full-bleed backdrop besides the two deliberate
+   dark moments (see this section's own HTML comment). A fixed-ratio
+   media box (currently an inline SVG placeholder graphic; swap for a
+   real <img> in the same box once a case exists) sits above a
+   solid-colour caption band holding the title, tag line and CTA —
+   greyscale at rest, full colour and a slight zoom on hover/focus, the
+   same interaction jere.my's "Latest Articles" cards use. Same diagonal
+   top/bottom cut as the two dark sections above (see .sme-questions'
+   own comment) — the going-in edge especially was the priority, so this
+   section doesn't run flush into "How it works" above it. */
+.sme-cases { background: var(--bg-section); padding: 80px 0 72px; clip-path: polygon(0 0, 100% 40px, 100% calc(100% - 40px), 0 100%); }
+.sme-cases__band { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+/* Narrower than the 1240px column every other section uses, and smaller
+   individual cards within it — see this section's own HTML comment for
+   why. Deliberately NOT staggered like the homepage's project bands —
+   asked for that first, then asked for an even aligned pair instead;
+   plain Grid stretch (the default) already matches both cards' heights
+   since nothing here forces them to differ, so no min-height JS is
+   needed the way the four "questions" cards above needed one. */
+.sme-case-grid { max-width: 780px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; list-style: none; padding: 0; margin: 0; }
+.sme-case-card { display: flex; flex-direction: column; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); cursor: default; }
+.sme-case-card:focus-visible { outline: 2.5px solid var(--accent-highlight); outline-offset: 3px; }
+.sme-case-card__media { aspect-ratio: 16 / 9; overflow: hidden; }
+.sme-case-card__media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(1);
+  transform: scale(1);
+  transition: filter 350ms ease, transform 350ms ease;
+}
+.sme-case-card:hover .sme-case-card__media svg,
+.sme-case-card:focus-visible .sme-case-card__media svg {
+  filter: grayscale(0);
+  transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sme-case-card__media svg { transition: filter 350ms ease; }
+}
+/* flex: 1 1 auto — if the grid ever stretches this card taller than its
+   own content (e.g. a future real case with a longer title than its
+   pair), the band absorbs the extra space instead of leaving a gap
+   under a fixed-height media box. */
+.sme-case-card__band { background: var(--accent); padding: 18px 20px 22px; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+.sme-case-card__band--soft { background: var(--accent-soft); }
+/* White, not --text-on-dark-body: that token is tuned for --bg-dark
+   (near-black), and measurably fails WCAG AA against --accent-soft's
+   lighter blue band (caught by axe, not eyeballed) — white holds
+   >=6:1 against every blue this card can use, accent through
+   accent-highlight. */
+.sme-case-card__tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  margin: 0 0 8px;
+}
+.sme-case-card__tag .icon { background-color: #FFFFFF; width: 13px; height: 13px; }
+.sme-case-card__title { font-family: var(--font-heading); font-weight: 800; font-size: 17px; margin: 0 0 14px; color: #FFFFFF; }
+.sme-case-card__cta { padding: 9px 16px; font-size: 13px; cursor: default; }
+@media (max-width: 700px) {
+  .sme-case-grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; }
+}
+
+.sme-privacy__list { list-style: none; padding: 0; margin: 0; font-size: 16px; color: var(--text-body); }
+.sme-privacy__list li { display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; margin-bottom: 14px; }
+.sme-privacy__list li:last-child { margin-bottom: 0; }
+.sme-privacy__icon { flex: none; width: 20px; height: 20px; background-color: var(--accent); margin-top: 2px; }
+
+/* ---------- small-business/index.html only: contact modal ----------
+   Progressive enhancement over a real mailto: link — see
+   assets/small-business.js's own header comment for how the no-JS
+   fallback works. */
+/* [hidden] on its own, not just the hidden attribute doing its native
+   job: an author display:flex rule below has the same specificity as
+   the UA stylesheet's [hidden]{display:none} and comes later in source
+   order, so it would otherwise win and defeat `hidden` entirely —
+   caught for real by a headless click landing on the "hidden" overlay
+   instead of the trigger button underneath it, not spotted by eye. */
+.sme-modal-overlay[hidden] { display: none; }
+.sme-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 27, 46, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+}
+.sme-modal {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 440px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 40px 32px 32px;
+  box-shadow: 0 20px 60px rgba(16, 27, 46, 0.35);
+}
+.sme-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.sme-modal__close:hover { background: var(--bg-section); }
+.sme-modal__close .icon { width: 18px; height: 18px; }
+.sme-modal__logo { display: block; margin: 0 auto 16px; border-radius: 8px; }
+.sme-modal__title { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.25; text-align: center; margin: 0 0 10px; color: var(--text); }
+.sme-modal__lede { font-size: 15px; line-height: 1.5; color: var(--text-body); text-align: center; margin: 0 0 26px; }
+.sme-modal__form { display: flex; flex-direction: column; gap: 16px; }
+.sme-field { display: flex; flex-direction: column; gap: 6px; }
+.sme-field__label { display: flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--text); }
+.sme-field__label .icon { background-color: var(--accent); }
+.sme-field__input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: #FFFFFF;
+  color: var(--text);
+}
+.sme-field__input:focus-visible { outline: 2.5px solid var(--accent-highlight); outline-offset: 1px; }
+.sme-field__input--textarea { resize: vertical; min-height: 96px; font-family: var(--font-body); }
+.sme-modal__submit { margin-top: 6px; width: 100%; }

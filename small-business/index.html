@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data help for small businesses — Gabriela Olivera</title>
+<meta name="description" content="Data analysis for Bay of Plenty small businesses in agriculture, horticulture, food and logistics. Plain-English answers from the data you already have.">
+<link rel="canonical" href="https://gabrielaolivera.nz/small-business/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gabriela Olivera">
+<meta property="og:url" content="https://gabrielaolivera.nz/small-business/">
+<meta property="og:title" content="Data help for small businesses — Gabriela Olivera">
+<meta property="og:description" content="Plain-English answers from the data you already have (Xero, spreadsheets), for Bay of Plenty agriculture, horticulture, food and logistics businesses.">
+<meta property="og:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gabriela Olivera, Data Analyst, Mount Maunganui, New Zealand.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Data help for small businesses — Gabriela Olivera">
+<meta name="twitter:description" content="Plain-English answers from the data you already have (Xero, spreadsheets), for Bay of Plenty agriculture, horticulture, food and logistics businesses.">
+<meta name="twitter:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
+<meta name="twitter:image:alt" content="Gabriela Olivera, Data Analyst, Mount Maunganui, New Zealand.">
+
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!--
+  This page is deliberately not linked from the site nav or sitemap.xml
+  yet (see CLAUDE.md-style note: it goes live once there's a first real
+  testimonial to put in the section below). The header below matches
+  404.html's minimal pattern (brand only, no section nav) rather than
+  index.html's, since none of index.html's #work/#how-i-work/#contact
+  anchors exist on this page.
+
+  Three other things are tied to this page's not-yet-published state and
+  need to move together with it when it does go live:
+  - package.json's check:links --skip pattern has a
+    "gabrielaolivera.nz/small-business/$" entry, because this page's own
+    canonical URL 404s for real until the page is actually deployed.
+    Remove that skip entry in the same change that links this page in.
+  - scripts/check-canonical-urls.mjs checks this page's canonical/og:url
+    against origin + "small-business/" directly, not via sitemap.xml (see
+    that script's own header comment) — add a matching sitemap.xml <url>
+    entry when this page goes live.
+  - README.md's file-tree note ("not linked from nav/sitemap.xml yet")
+    stops being true at the same moment.
+-->
+<header class="site-header">
+  <a class="site-header__brand" href="/" style="text-decoration:none;">
+    <img class="site-header__logo" src="../assets/favicon.png" alt="" width="28" height="28">
+    <span class="site-header__mark">Gabriela Olivera</span>
+  </a>
+</header>
+
+<main id="main-content">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow">For small businesses</p>
+    <h1 id="hero-title" class="hero__title" style="font-family: var(--font-display);">Straight answers from the numbers you already have.</h1>
+    <p class="hero__lede">You don't need a new system. You need someone who can look at your Xero data and your spreadsheets and tell you, plainly, what's going on.</p>
+    <p class="hero__byline">I spent 14 years in operations and procurement before moving into data analysis, so I know how small teams actually run. I build analysis that fits how you already work, not the other way round.</p>
+    <div class="hero__actions">
+      <a class="button button--primary js-contact-trigger" href="mailto:hello@gabrielaolivera.nz">Get in touch &rarr;</a>
+      <a class="button button--secondary" href="#how-it-works">See how it works</a>
+    </div>
+  </section>
+
+  <!--
+    Redone to match a reference pattern Gaby supplied (Zespri's "Our
+    purpose and values" section): full-bleed dark section (--bg-dark),
+    solid-navy cards (--accent-label) as distinct blocks rather than the
+    old diagonal-band-plus-cream-body treatment. .sme-card__shape carries
+    the diagonal top-left cut (clip-path) as its own inner layer so the
+    card can still have rounded corners overall (the outer .sme-card
+    clips it at a rounded rect via overflow:hidden) — same layering
+    trick the earlier light-background version used, just with one
+    colour instead of two now that head and body share the same navy.
+    Card heights are equalized across all four (not just within a CSS
+    Grid row — the two rows have different content lengths) by
+    assets/small-business.js; without JS they still stretch evenly
+    within each row via plain Grid default behaviour, just not to each
+    other. This section and the transition band further down are the
+    page's two deliberate dark moments — see CLAUDE.md, "The
+    small-business page".
+  -->
+  <section class="sme-questions" aria-labelledby="sme-questions-title" data-reveal>
+    <div class="sme-questions__band">
+      <div class="sme-questions__inner">
+        <h2 id="sme-questions-title" class="sme-section-title sme-section-title--on-dark">The questions this usually starts with</h2>
+        <p class="sme-section-intro sme-section-intro--on-dark">Most of the time, the answer is already sitting in your own numbers. It just hasn't been pulled together yet.</p>
+      </div>
+      <ul class="sme-card-grid">
+        <li class="sme-card" tabindex="0"><div class="sme-card__shape">
+          <h3 class="sme-card__title">Are sales actually growing, or does it just feel that way?</h3>
+          <p class="sme-card__text">The real trend behind the headline number, once seasonality and one-off spikes are stripped out.</p>
+        </div></li>
+        <li class="sme-card" tabindex="0"><div class="sme-card__shape">
+          <h3 class="sme-card__title">Which customers have quietly started ordering less?</h3>
+          <p class="sme-card__text">An early warning on customers drifting away, before they're gone for good.</p>
+        </div></li>
+        <li class="sme-card" tabindex="0"><div class="sme-card__shape">
+          <h3 class="sme-card__title">Which products or customers are actually making you money?</h3>
+          <p class="sme-card__text">Profitability by product and by customer, not just top-line revenue.</p>
+        </div></li>
+        <li class="sme-card" tabindex="0"><div class="sme-card__shape">
+          <h3 class="sme-card__title">Why is delivery costing more than it used to?</h3>
+          <p class="sme-card__text">Cost per order, per route and per customer, so you can see exactly where it's coming from.</p>
+        </div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sme-services" aria-labelledby="sme-services-title" data-reveal>
+    <div class="sme-questions__inner">
+      <h2 id="sme-services-title" class="sme-section-title">How I can help</h2>
+    </div>
+    <ul class="sme-service-list">
+      <li class="sme-service-row" tabindex="0">
+        <span class="icon icon--lucide-activity sme-service-row__icon" aria-hidden="true"></span>
+        <div class="sme-service-row__body">
+          <h3 class="sme-service-row__title">Data Health Check</h3>
+          <p class="sme-service-row__text">A first look at what data you already have (Xero, spreadsheets, POS, whatever you're using) and what shape it's in. You get a plain-English summary of what's usable now, what's missing, and what it would take to get real answers out of it.</p>
+        </div>
+      </li>
+      <li class="sme-service-row" tabindex="0">
+        <span class="icon icon--lucide-layout-dashboard sme-service-row__icon" aria-hidden="true"></span>
+        <div class="sme-service-row__body">
+          <h3 class="sme-service-row__title">Insight Dashboard</h3>
+          <p class="sme-service-row__text">A simple, ongoing view of the numbers that matter to your business (sales, margins, customers, delivery costs), easy to refresh each month with your latest data.</p>
+        </div>
+      </li>
+      <li class="sme-service-row" tabindex="0">
+        <span class="icon icon--lucide-search sme-service-row__icon" aria-hidden="true"></span>
+        <div class="sme-service-row__body">
+          <h3 class="sme-service-row__title">Custom Analysis</h3>
+          <p class="sme-service-row__text">A specific question, answered properly, such as "why did margins drop last quarter" or "which customers should we call before we lose them". A focused piece of analysis with a clear answer, not a generic report.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!--
+    The one deliberate full-bleed colour break on this page (see
+    CLAUDE.md, "The small-business page") — everything else here sits on
+    the same light background, so this needs to stay singular to read as
+    an accent rather than a pattern.
+  -->
+  <section class="sme-transition" aria-label="From services to process" data-reveal>
+    <div class="sme-transition__inner">
+      <p class="sme-transition__line">From your numbers to a decision you can act on.</p>
+    </div>
+  </section>
+
+  <!--
+    Hover/focus-reveal card grid, built from a reference Gaby supplied
+    (jere.my/intellectual-property's "Other Areas of Expertise" pattern):
+    replaces the carousel from the previous round, which she didn't like.
+    Deliberately not linked to per-step subpages — asked, and Gaby chose
+    hover-reveal only: a six-step process explainer doesn't need six
+    separate pages of "more explanation". Each card is a plain focusable
+    <li> (tabindex="0", not an <a>) rather than a link to nowhere. No CTA
+    inside the overlay either, for the same reason: the description
+    already shown on hover/focus IS the full explanation, so a "Learn
+    more" button with nothing further to show would be a control that
+    lies about what it does.
+  -->
+  <section id="how-it-works" class="sme-process" aria-labelledby="sme-process-title" data-reveal>
+    <div class="sme-questions__inner">
+      <h2 id="sme-process-title" class="sme-section-title">How it works</h2>
+    </div>
+    <ol class="sme-expertise-grid">
+      <li class="sme-expertise-card" tabindex="0">
+        <span class="sme-expertise-card__icon-bg" aria-hidden="true"><span class="icon icon--lucide-clipboard-list"></span></span>
+        <div class="sme-expertise-card__base">
+          <span class="sme-expertise-card__number" aria-hidden="true">01</span>
+          <h3 class="sme-expertise-card__title">Questionnaire</h3>
+        </div>
+        <div class="sme-expertise-card__overlay">
+          <p class="sme-expertise-card__text">A short set of questions about your business and what you want to know.</p>
+        </div>
+      </li>
+      <li class="sme-expertise-card" tabindex="0">
+        <span class="sme-expertise-card__icon-bg" aria-hidden="true"><span class="icon icon--lucide-list-checks"></span></span>
+        <div class="sme-expertise-card__base">
+          <span class="sme-expertise-card__number" aria-hidden="true">02</span>
+          <h3 class="sme-expertise-card__title">Data checklist</h3>
+        </div>
+        <div class="sme-expertise-card__overlay">
+          <p class="sme-expertise-card__text">I tell you exactly what to pull together, and where to get it from. No guessing.</p>
+        </div>
+      </li>
+      <li class="sme-expertise-card" tabindex="0">
+        <span class="sme-expertise-card__icon-bg" aria-hidden="true"><span class="icon icon--lucide-flask-conical"></span></span>
+        <div class="sme-expertise-card__base">
+          <span class="sme-expertise-card__number" aria-hidden="true">03</span>
+          <h3 class="sme-expertise-card__title">Analysis</h3>
+        </div>
+        <div class="sme-expertise-card__overlay">
+          <p class="sme-expertise-card__text">I clean it up, check it, and build the real picture from what you've given me.</p>
+        </div>
+      </li>
+      <li class="sme-expertise-card" tabindex="0">
+        <span class="sme-expertise-card__icon-bg" aria-hidden="true"><span class="icon icon--lucide-lightbulb"></span></span>
+        <div class="sme-expertise-card__base">
+          <span class="sme-expertise-card__number" aria-hidden="true">04</span>
+          <h3 class="sme-expertise-card__title">First findings, within 2 weeks</h3>
+        </div>
+        <div class="sme-expertise-card__overlay">
+          <p class="sme-expertise-card__text">An early look at what the data is showing, so you're not waiting in the dark.</p>
+        </div>
+      </li>
+      <li class="sme-expertise-card" tabindex="0">
+        <span class="sme-expertise-card__icon-bg" aria-hidden="true"><span class="icon icon--lucide-layout-dashboard"></span></span>
+        <div class="sme-expertise-card__base">
+          <span class="sme-expertise-card__number" aria-hidden="true">05</span>
+          <h3 class="sme-expertise-card__title">Final dashboard, within 4 weeks</h3>
+        </div>
+        <div class="sme-expertise-card__overlay">
+          <p class="sme-expertise-card__text">The finished view, built around your business and ready to use.</p>
+        </div>
+      </li>
+      <li class="sme-expertise-card" tabindex="0">
+        <span class="sme-expertise-card__icon-bg" aria-hidden="true"><span class="icon icon--lucide-handshake"></span></span>
+        <div class="sme-expertise-card__base">
+          <span class="sme-expertise-card__number" aria-hidden="true">06</span>
+          <h3 class="sme-expertise-card__title">Handover and 30-day follow-up</h3>
+        </div>
+        <div class="sme-expertise-card__overlay">
+          <p class="sme-expertise-card__text">I walk you through it, then check in a month later to make sure it's still answering your questions.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!--
+    Placeholder case studies: no completed real client project exists yet
+    to show (see NEXT-STEPS.md and CLAUDE.md, "The small-business page" —
+    the first real one, Litchfields Grain, is pending the client's own
+    approval to publish). These two cards are deliberately generic
+    templates, not a stand-in for real content: no invented client name,
+    no invented result. .sme-case-card__media is a fixed-ratio box holding
+    an inline SVG placeholder graphic now; swap its contents for a real
+    <img> (same box, same class, no CSS changes needed) once a case is
+    approved — the greyscale-by-default/colour-on-hover treatment works
+    the same on a real photo as it does on this placeholder SVG. The
+    "Read more" control is a plain, non-interactive <span> styled as a
+    button, not a real link with nowhere to go — replace it with a real
+    <a href> to the case's own write-up at the same time. tabindex="0" on
+    each card exists purely so the hover reveal (greyscale image,
+    slightly-scaled zoom) has a keyboard-reachable equivalent even before
+    these become real links.
+
+    Full-bleed --bg-section backdrop (see CLAUDE.md, "Full-bleed sections
+    use natural block width") gives this section a clear break from "How
+    it works" above rather than the two running together on the same
+    plain background — a light break, not a third dark one; see CLAUDE.md,
+    "The small-business page" on why dark stays capped at two moments.
+    The grid itself stays within the normal 1240px column (not full-bleed
+    like the section backdrop) and caps narrower still, at 780px, so the
+    cards read as a smaller, deliberately understated pair rather than
+    spanning the whole width like every other section's content. Not
+    staggered like the homepage's project bands: tried that first, then
+    asked for an evenly-aligned pair instead — same top edge, same
+    height, via plain Grid stretch (the two cards' content is already
+    symmetric enough that nothing forces them to differ).
+  -->
+  <section class="sme-cases" aria-labelledby="sme-cases-title" data-reveal>
+    <div class="sme-cases__band">
+      <div class="sme-questions__inner">
+        <h2 id="sme-cases-title" class="sme-section-title">Case studies</h2>
+        <p class="sme-section-intro">Real client projects, published here once they're complete and the client has approved sharing them. Two examples of the shape they'll take:</p>
+      </div>
+      <ul class="sme-case-grid">
+        <li class="sme-case-card" tabindex="0">
+          <div class="sme-case-card__media" aria-hidden="true">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid meet" role="presentation">
+              <rect width="400" height="225" fill="var(--bg-card-alt)"></rect>
+              <line x1="32" y1="32" x2="32" y2="178" stroke="var(--border)" stroke-width="1.5"></line>
+              <line x1="32" y1="178" x2="372" y2="178" stroke="var(--border)" stroke-width="1.5"></line>
+              <rect x="60" y="116" width="36" height="62" rx="3" fill="var(--accent-soft)"></rect>
+              <rect x="118" y="90" width="36" height="88" rx="3" fill="var(--accent)"></rect>
+              <rect x="176" y="110" width="36" height="68" rx="3" fill="var(--accent-soft)"></rect>
+              <rect x="234" y="74" width="36" height="104" rx="3" fill="var(--accent)"></rect>
+              <rect x="292" y="58" width="36" height="120" rx="3" fill="var(--accent-highlight)"></rect>
+            </svg>
+          </div>
+          <div class="sme-case-card__band">
+            <p class="sme-case-card__tag"><span class="icon icon--lucide-tag" aria-hidden="true"></span>Agriculture &middot; coming soon</p>
+            <h3 class="sme-case-card__title">Case study title</h3>
+            <span class="button button--on-dark-secondary sme-case-card__cta">Read more &rarr;</span>
+          </div>
+        </li>
+        <li class="sme-case-card" tabindex="0">
+          <div class="sme-case-card__media" aria-hidden="true">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid meet" role="presentation">
+              <rect width="400" height="225" fill="var(--bg-card-alt)"></rect>
+              <line x1="32" y1="32" x2="32" y2="178" stroke="var(--border)" stroke-width="1.5"></line>
+              <line x1="32" y1="178" x2="372" y2="178" stroke="var(--border)" stroke-width="1.5"></line>
+              <polyline points="48,150 110,128 172,108 234,90 296,72 358,58" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></polyline>
+              <circle cx="48" cy="150" r="5" fill="var(--accent-highlight)"></circle>
+              <circle cx="110" cy="128" r="5" fill="var(--accent-highlight)"></circle>
+              <circle cx="172" cy="108" r="5" fill="var(--accent-highlight)"></circle>
+              <circle cx="234" cy="90" r="5" fill="var(--accent-highlight)"></circle>
+              <circle cx="296" cy="72" r="5" fill="var(--accent-highlight)"></circle>
+              <circle cx="358" cy="58" r="5" fill="var(--accent-highlight)"></circle>
+            </svg>
+          </div>
+          <div class="sme-case-card__band sme-case-card__band--soft">
+            <p class="sme-case-card__tag"><span class="icon icon--lucide-tag" aria-hidden="true"></span>Logistics &middot; coming soon</p>
+            <h3 class="sme-case-card__title">Case study title</h3>
+            <span class="button button--on-dark-secondary sme-case-card__cta">Read more &rarr;</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sme-privacy" aria-labelledby="sme-privacy-title" data-reveal>
+    <div class="sme-privacy__inner">
+      <h2 id="sme-privacy-title" class="sme-section-title">Your data stays yours</h2>
+      <ul class="sme-privacy__list">
+        <li><span class="icon icon--lucide-shield-check sme-privacy__icon" aria-hidden="true"></span>Your data is never entered into AI tools.</li>
+        <li><span class="icon icon--lucide-lock sme-privacy__icon" aria-hidden="true"></span>Everything is shared through a secure, private folder, not loose email attachments.</li>
+        <li><span class="icon icon--lucide-trash-2 sme-privacy__icon" aria-hidden="true"></span>Your data is deleted within 30 days of the project finishing.</li>
+        <li><span class="icon icon--lucide-scale sme-privacy__icon" aria-hidden="true"></span>Everything is handled in line with the Privacy Act 2020.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!--
+    TESTIMONIALS: planned but not built. This section stays out of the
+    shipped markup entirely (not a hidden/placeholder block with empty
+    quotes) until there's a first real client testimonial to put in it.
+    Structure agreed for when that happens: a "sme-testimonials" section
+    here, matching the sme-card-grid pattern above, one card per
+    testimonial (quote, name, business, town). Add it, then link this
+    page from the header nav and sitemap.xml at the same time — see this
+    file's own header comment above.
+  -->
+
+</main>
+
+<button type="button" class="back-to-top" aria-label="Back to top" id="back-to-top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<footer id="contact" class="site-footer" data-reveal>
+  <div class="wrap">
+    <h2 class="site-footer__title">Let's find out what your numbers are telling you.</h2>
+    <p class="site-footer__lede">If you're not sure where to start, send me an email and tell me a bit about your business. I'll tell you honestly whether I can help.</p>
+    <div class="site-footer__cta">
+      <a class="button button--primary js-contact-trigger" id="footer-cta" href="mailto:hello@gabrielaolivera.nz">Get in touch &rarr;</a>
+    </div>
+    <div class="site-footer__actions">
+      <a class="icon-link" href="https://www.linkedin.com/in/gabriela-olivera-nz/" target="_blank" rel="noopener" aria-label="Gabriela Olivera on LinkedIn" title="LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a>
+      <a class="icon-link" href="https://github.com/gabrielaoliveranz" target="_blank" rel="noopener" aria-label="Gabriela Olivera on GitHub" title="GitHub"><span class="icon icon--github" aria-hidden="true"></span></a>
+      <a class="icon-link" id="copy-email" href="mailto:hello@gabrielaolivera.nz" aria-label="Email me — also copies the address to your clipboard" title="Email (also copies address)"><span class="icon icon--email" aria-hidden="true"></span></a>
+      <a class="icon-link" id="cv-link" href="../assets/cv/gabriela-olivera-cv.pdf" aria-label="Download CV" title="Download CV"><span class="icon icon--cv" aria-hidden="true"></span></a>
+    </div>
+    <span class="copy-button__status" id="copy-status" role="status" aria-live="polite"></span>
+    <div class="site-footer__meta">
+      <p class="site-footer__status"><span class="icon icon--location" aria-hidden="true"></span> Mount Maunganui, Bay of Plenty · NZ Permanent Resident</p>
+      <p>&copy; 2026 Gabriela Olivera</p>
+    </div>
+  </div>
+</footer>
+
+<!--
+  Contact modal: progressive enhancement over the real mailto: links
+  above (.js-contact-trigger) — see assets/small-business.js's own
+  header comment. Hidden by default; assets/small-business.js is what
+  makes it reachable at all, so a no-JS visitor never sees it and
+  relies entirely on the plain mailto: links instead, same as before.
+-->
+<div class="sme-modal-overlay" id="contact-modal-overlay" hidden>
+  <div class="sme-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" id="contact-modal">
+    <button type="button" class="sme-modal__close" id="contact-modal-close" aria-label="Close">
+      <span class="icon icon--lucide-x" aria-hidden="true"></span>
+    </button>
+    <img class="sme-modal__logo" src="../assets/favicon.png" alt="" width="36" height="36">
+    <h2 id="contact-modal-title" class="sme-modal__title">Let's find out what your numbers are telling you.</h2>
+    <p class="sme-modal__lede">Tell me a bit about your business and I'll get back to you.</p>
+    <!--
+      action="mailto:..." + enctype="text/plain" is a plain-HTML trick,
+      not a real form submission: it opens the visitor's own mail client
+      with these fields assembled into the message body. There's no
+      backend on this static site to receive a true submission — see
+      CLAUDE.md-style reasoning in NEXT-STEPS.md/this file's own header
+      comment if that ever needs to change to a real form service.
+    -->
+    <form class="sme-modal__form" action="mailto:hello@gabrielaolivera.nz" method="post" enctype="text/plain">
+      <label class="sme-field">
+        <span class="sme-field__label"><span class="icon icon--lucide-user" aria-hidden="true"></span>Name</span>
+        <input class="sme-field__input" type="text" name="name" autocomplete="name" required>
+      </label>
+      <label class="sme-field">
+        <span class="sme-field__label"><span class="icon icon--lucide-mail" aria-hidden="true"></span>Email</span>
+        <input class="sme-field__input" type="email" name="email" autocomplete="email" required>
+      </label>
+      <label class="sme-field">
+        <span class="sme-field__label"><span class="icon icon--lucide-message-square" aria-hidden="true"></span>Message</span>
+        <textarea class="sme-field__input sme-field__input--textarea" name="message" rows="4" required></textarea>
+      </label>
+      <button type="submit" class="button button--primary sme-modal__submit">Send message &rarr;</button>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/script.js"></script>
+<script src="../assets/small-business.js"></script>
+</body>
+</html>

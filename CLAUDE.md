@@ -84,7 +84,7 @@ out of sync when it's followed.
 
 The CV's header also carries its own copy of the site's canonical
 URL (`gabrielaolivera.nz`, next to the email and LinkedIn/GitHub
-handles) — an eighth copy that isn't in "sitemap.xml and robots.txt
+handles) — a tenth copy that isn't in "sitemap.xml and robots.txt
 reference the canonical URL, not a copy of it" above because none of
 the tooling described there can see it: `check:canonical` reads HTML
 tags with a regex, and a PDF has none. **If this site ever moves
@@ -133,36 +133,46 @@ went stale.
 
 ## sitemap.xml and robots.txt reference the canonical URL, not a copy of it
 
-The site's canonical URL is repeated in **seven** places across four
-files — one fact, seven copies, no build step tying them together (see
+The site's canonical URL is repeated in **nine** places across five
+files — one fact, nine copies, no build step tying them together (see
 "hand-written HTML... never a bundled export" below):
 `index.html`'s `<link rel="canonical">`, its `og:url`, `og:image` and
-`twitter:image`, `404.html`'s `<link rel="canonical">`, `sitemap.xml`'s
-`<loc>`, and `robots.txt`'s `Sitemap:` line. When `sitemap.xml` and
-`robots.txt` were first written, their URLs were copied *from*
-`index.html`'s actual canonical tag, not retyped from memory.
+`twitter:image`, `404.html`'s `<link rel="canonical">`,
+`small-business/index.html`'s `<link rel="canonical">` and `og:url`,
+`sitemap.xml`'s `<loc>`, and `robots.txt`'s `Sitemap:` line. When
+`sitemap.xml` and `robots.txt` were first written, their URLs were
+copied *from* `index.html`'s actual canonical tag, not retyped from
+memory.
 
-**If this site ever moves to a custom domain, all seven need to change
-together, in the same commit.** Miss any one of them and it goes stale
-exactly like the OG card's accent colour did: no build step will ever
-catch it, and nothing about a wrong-but-valid URL looks broken to a
-casual read of the page.
+**If this site ever moves to a custom domain, all nine need to change
+together, in the same commit** — including `small-business/index.html`,
+even while it stays unpublished; see "The small-business page" below.
+Miss any one of them and it goes stale exactly like the OG card's
+accent colour did: no build step will ever catch it, and nothing about
+a wrong-but-valid URL looks broken to a casual read of the page.
 
 **This is enforced, not just documented:** `npm run check:canonical`
 (`scripts/check-canonical-urls.mjs`, wired into `npm run check` and CI)
 treats `index.html`'s `<link rel="canonical">` as the one source of
-truth, computes what each of the other six *should* say from it, and
+truth, computes what each of the other eight *should* say from it, and
 fails naming the exact file and tag if any of them disagree — not just
-that something, somewhere, does. Verified against a real mismatch
-before being trusted: temporarily pointing `404.html`'s canonical at
-the wrong path made it fail with the exact file, the expected value and
-the actual value named, then it was reverted clean.
+that something, somewhere, does. `small-business/index.html`'s two
+copies are the one pair not derived from `sitemap.xml` the way the
+others are: since that page isn't in the sitemap yet (see below), its
+expected value is computed as `origin + "small-business/"` directly.
+Verified against a real mismatch before being trusted: temporarily
+pointing `404.html`'s canonical at the wrong path made it fail with the
+exact file, the expected value and the actual value named, then it was
+reverted clean.
 
 404.html is deliberately **not** in `sitemap.xml` — it's `noindex`
 (see `404.html` itself), and a sitemap should only list pages meant to
-be indexed. That means this is a one-page sitemap; if a second real
-page is ever added to the site, it belongs in `sitemap.xml` too, with
-its own accurate `lastmod`.
+be indexed. `small-business/index.html` is also deliberately not in it
+yet, for a different reason: the page is real and built, not a draft,
+but not published or linked from anywhere on the site — see "The
+small-business page" below for why, and what has to change together
+when that stops being true. That makes this a one-page sitemap for now
+by choice, not because a second page has never existed.
 
 ## Google Search Console verification file
 
@@ -531,6 +541,61 @@ empty result there against a non-empty plain `git diff` means the
 content is byte-identical and only line endings moved; discard the
 working-tree change (`git restore -- <file>`) rather than commit a
 no-op diff that erases `git blame` for every line in the file.
+
+## The small-business page
+
+`small-business/index.html` (added 2026-09-23) is a real, checked page
+committed on the `small-business-page` branch — not a draft or a mockup
+— that's deliberately not linked from anywhere yet: no entry in
+`index.html`'s header nav, no entry in `sitemap.xml`, and its own
+canonical URL sits in a narrow, named `--skip` entry in `check:links`
+(see `package.json`) because it 404s for real until the page is
+actually deployed. All three of those, plus `README.md`'s Pages table
+and file-tree note, are meant to change together in one commit when the
+page goes live — the page's own header comment names all four, and see
+"To publish this page" below for the exact steps.
+
+**No shared header/footer partial exists in this repo** (see
+"hand-written HTML... never a bundled export" below) — this page's
+header and footer are copy-pasted from `index.html`/`404.html`, the
+same as every page on this site, and have to be kept in sync by hand
+the same way. Its header intentionally matches `404.html`'s minimal
+pattern (brand only, no section nav) rather than `index.html`'s full
+nav, since none of `index.html`'s `#work`/`#how-i-work`/`#contact`
+anchors exist on this page.
+
+**Testimonials are planned but not built.** The section isn't in the
+page as an empty or placeholder block — it's a single HTML comment
+marking where it goes, with the agreed structure already decided (one
+card per testimonial: quote, name, business, town), deliberately left
+out until there's a first real client testimonial to put in it. Keep
+that same standard — no placeholder content — for two more sections
+planned on this page but not yet built or scheduled (see `NEXT-STEPS.md`
+for the full detail on both):
+
+- A hidden "Case studies" section (client, named or anonymous per that
+  client's preference; the challenge; what was done; a measurable
+  result; a dashboard screenshot using sample/masked data, never the
+  client's real figures; a testimonial quote) — unpublished until the
+  first real case (Litchfields Grain) is approved by the client for
+  publication.
+- No "Clients" logo row until there are several clients who've each
+  given written permission to use their name/logo that way. One client
+  isn't a credible logo row, and a logo without written permission is a
+  real problem, not just a design one.
+
+**To publish this page, in one commit:**
+1. Add "Small business" (or similar) to `index.html`'s
+   `<nav class="site-header__nav">`.
+2. Add a `<url>` entry for `https://gabrielaolivera.nz/small-business/`
+   to `sitemap.xml`, with a real `lastmod`.
+3. Remove the `gabrielaolivera\.nz/small-business/$` entry from
+   `check:links`'s `--skip` pattern in `package.json` — its canonical
+   URL resolves for real once it's deployed, so verifying it properly
+   is no longer optional.
+
+Update `README.md`'s Pages table and file-tree note in the same change
+— both currently say this page isn't linked or published yet.
 
 ## Everything else
 

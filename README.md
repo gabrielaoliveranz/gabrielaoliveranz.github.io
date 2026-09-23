@@ -4,9 +4,17 @@
 
 [![Checks](https://github.com/gabrielaoliveranz/gabrielaoliveranz.github.io/actions/workflows/checks.yml/badge.svg)](https://github.com/gabrielaoliveranz/gabrielaoliveranz.github.io/actions/workflows/checks.yml)
 
-Personal portfolio — one page, no blog, no build step. Built on the
-same hand-written semantic HTML, design tokens and CI checks as the
+Personal portfolio, no blog, no build step. Built on the same
+hand-written semantic HTML, design tokens and CI checks as the
 [Terroir case study](https://github.com/gabrielaoliveranz/terroir-case-study).
+
+## Pages
+
+| Page | Status |
+| --- | --- |
+| `index.html` (`/`) | Live |
+| `404.html` | Live — deliberately not in `sitemap.xml` (`noindex`) |
+| `small-business/index.html` (`/small-business/`) | Built, not linked or published yet — see CLAUDE.md, "The small-business page" |
 
 ## Structure
 
@@ -14,6 +22,7 @@ same hand-written semantic HTML, design tokens and CI checks as the
 gabrielaoliveranz.github.io/
 ├── index.html
 ├── 404.html
+├── small-business/index.html          # not linked from nav/sitemap.xml yet — see its own header comment
 ├── sitemap.xml
 ├── robots.txt
 ├── assets/
