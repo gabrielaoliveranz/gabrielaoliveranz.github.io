@@ -10,12 +10,13 @@ covers it, rather than a software licence like MIT.
 
 - Creative Commons itself recommends against CC licences for software
   — they're not designed for source-code redistribution and carry no
-  patent grant. `assets/script.js`, `assets/how-i-work-scroll.js` and
-  `assets/signal-stack.js` are real code, but together they're a small
-  progressive enhancement (count-up, scroll-reveal, a copy-email
-  control, the "How I work" scrollytelling canvas, the Signal stack
-  letter-by-letter word carousel, a back-to-top button — none required
-  for the page's content to work) attached to what is
+  patent grant. `assets/script.js`, `assets/how-i-work-scroll.js`,
+  `assets/signal-stack.js` and `assets/small-business.js` are real
+  code, but together they're a small progressive enhancement (count-up,
+  scroll-reveal, a copy-email control, the "How I work" scrollytelling
+  canvas, the Signal stack letter-by-letter word carousel, a
+  back-to-top button, the small-business page's contact modal — none
+  required for the page's content to work) attached to what is
   overwhelmingly prose and design, not a library anyone would import or
   depend on. Splitting it into its own MIT-licensed file the way the
   sister repo splits code from data would be more machinery than this
@@ -73,6 +74,16 @@ covers it, rather than a software licence like MIT.
   `mask-image` on a decorative `.icon` span, recoloured via
   `background-color` — see `assets/styles.css`). No entry for an icon
   that isn't used, no icon without an entry.
+- **`assets/icons/lucide-*.svg`** (small-business/index.html only) —
+  [Lucide](https://lucide.dev) icons, under the
+  [ISC Licence](https://github.com/lucide-icons/lucide/blob/main/LICENSE)
+  (permissive, no attribution required — the ISC-vs-MIT difference is
+  wording, not restriction; noted here as ISC rather than MIT for
+  accuracy). Self-hosted rather than loaded from a CDN, same reasoning
+  as the self-hosted fonts and Matter.js below — see CLAUDE.md, "Every
+  third-party asset is self-hosted or justified". Same
+  `mask-image`/`.icon` technique as the Flaticon set above, styled in
+  `--accent` throughout.
 - **`assets/vendor/matter.min.js`** — [Matter.js](https://brm.io/matter-js/)
   0.19.0 by Liam Brummitt, under the [MIT Licence](https://github.com/liabru/matter-js/blob/master/LICENSE).
   Self-hosted rather than loaded from a CDN, same reasoning as the
