@@ -145,8 +145,7 @@ copied *from* `index.html`'s actual canonical tag, not retyped from
 memory.
 
 **If this site ever moves to a custom domain, all nine need to change
-together, in the same commit** — including `small-business/index.html`,
-even while it stays unpublished; see "The small-business page" below.
+together, in the same commit** — including `small-business/index.html`.
 Miss any one of them and it goes stale exactly like the OG card's
 accent colour did: no build step will ever catch it, and nothing about
 a wrong-but-valid URL looks broken to a casual read of the page.
@@ -158,21 +157,23 @@ truth, computes what each of the other eight *should* say from it, and
 fails naming the exact file and tag if any of them disagree — not just
 that something, somewhere, does. `small-business/index.html`'s two
 copies are the one pair not derived from `sitemap.xml` the way the
-others are: since that page isn't in the sitemap yet (see below), its
-expected value is computed as `origin + "small-business/"` directly.
-Verified against a real mismatch before being trusted: temporarily
-pointing `404.html`'s canonical at the wrong path made it fail with the
-exact file, the expected value and the actual value named, then it was
-reverted clean.
+others are — the script computes their expected value as
+`origin + "small-business/"` directly rather than reading it back out
+of `sitemap.xml`'s (now two) `<loc>` entries, a holdover from before
+this page was published, when it genuinely wasn't in the sitemap yet.
+Still correct today (verified: `npm run check:canonical` passes with
+this page listed in `sitemap.xml`), just not as uniform a mechanism as
+the other seven — worth revisiting if a third page is ever added and
+this pattern needs to generalise. Verified against a real mismatch
+before being trusted: temporarily pointing `404.html`'s canonical at
+the wrong path made it fail with the exact file, the expected value and
+the actual value named, then it was reverted clean.
 
 404.html is deliberately **not** in `sitemap.xml` — it's `noindex`
 (see `404.html` itself), and a sitemap should only list pages meant to
-be indexed. `small-business/index.html` is also deliberately not in it
-yet, for a different reason: the page is real and built, not a draft,
-but not published or linked from anywhere on the site — see "The
-small-business page" below for why, and what has to change together
-when that stops being true. That makes this a one-page sitemap for now
-by choice, not because a second page has never existed.
+be indexed. `small-business/index.html` is: published 2026-09-24,
+linked from `index.html`'s header nav — see "The small-business page"
+below.
 
 ## Google Search Console verification file
 
@@ -544,16 +545,17 @@ no-op diff that erases `git blame` for every line in the file.
 
 ## The small-business page
 
-`small-business/index.html` (added 2026-09-23) is a real, checked page
-committed on the `small-business-page` branch — not a draft or a mockup
-— that's deliberately not linked from anywhere yet: no entry in
-`index.html`'s header nav, no entry in `sitemap.xml`, and its own
-canonical URL sits in a narrow, named `--skip` entry in `check:links`
-(see `package.json`) because it 404s for real until the page is
-actually deployed. All three of those, plus `README.md`'s Pages table
-and file-tree note, are meant to change together in one commit when the
-page goes live — the page's own header comment names all four, and see
-"To publish this page" below for the exact steps.
+`small-business/index.html` (added 2026-09-23, published 2026-09-24) is
+a real page linked from `index.html`'s header nav and listed in
+`sitemap.xml`. It was built and reviewed on the `small-business-page`
+branch first, deliberately unlinked while in progress (no nav entry, no
+sitemap entry, its own canonical URL sitting in a narrow, named
+`--skip` entry in `check:links` since it 404d for real before the page
+was deployed) — all of that was undone together in the merge/publish
+commit that brought it live, per the checklist this section used to
+carry. If this page is ever taken offline or rebuilt from scratch
+unlinked again, that same three-item checklist (nav entry, sitemap
+entry, `check:links` skip) is the thing to reverse.
 
 **No shared header/footer partial exists in this repo** (see
 "hand-written HTML... never a bundled export" below) — this page's
@@ -584,18 +586,17 @@ for the full detail on both):
   isn't a credible logo row, and a logo without written permission is a
   real problem, not just a design one.
 
-**To publish this page, in one commit:**
-1. Add "Small business" (or similar) to `index.html`'s
-   `<nav class="site-header__nav">`.
-2. Add a `<url>` entry for `https://gabrielaolivera.nz/small-business/`
-   to `sitemap.xml`, with a real `lastmod`.
-3. Remove the `gabrielaolivera\.nz/small-business/$` entry from
-   `check:links`'s `--skip` pattern in `package.json` — its canonical
-   URL resolves for real once it's deployed, so verifying it properly
-   is no longer optional.
+**Published 2026-09-24.** For the record, this is what "publishing" a
+new page on this site means — the same three steps apply to the next
+one:
+1. Add it to `index.html`'s `<nav class="site-header__nav">`.
+2. Add a `<url>` entry for its own canonical URL to `sitemap.xml`, with
+   a real `lastmod`.
+3. Remove its `--skip` entry from `check:links` in `package.json`, if
+   it had one — its canonical URL resolves for real once it's deployed,
+   so verifying it properly stops being optional.
 
-Update `README.md`'s Pages table and file-tree note in the same change
-— both currently say this page isn't linked or published yet.
+Update `README.md`'s Pages table and file-tree note in the same change.
 
 ## Everything else
 

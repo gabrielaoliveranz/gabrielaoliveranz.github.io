@@ -14,7 +14,7 @@ hand-written semantic HTML, design tokens and CI checks as the
 | --- | --- |
 | `index.html` (`/`) | Live |
 | `404.html` | Live — deliberately not in `sitemap.xml` (`noindex`) |
-| `small-business/index.html` (`/small-business/`) | Built, not linked or published yet — see CLAUDE.md, "The small-business page" |
+| `small-business/index.html` (`/small-business/`) | Live — published 2026-09-24, linked from the header nav |
 
 ## Structure
 
@@ -22,7 +22,7 @@ hand-written semantic HTML, design tokens and CI checks as the
 gabrielaoliveranz.github.io/
 ├── index.html
 ├── 404.html
-├── small-business/index.html          # not linked from nav/sitemap.xml yet — see its own header comment
+├── small-business/index.html
 ├── sitemap.xml
 ├── robots.txt
 ├── assets/

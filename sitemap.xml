@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 404.html is deliberately not listed: it is noindex (see 404.html
      itself), and a sitemap should only list indexable pages. lastmod is
-     the real last commit date that touched index.html, not a build
-     timestamp — update it by hand whenever index.html's content
+     the real last commit date that touched each page's own content, not
+     a build timestamp — update it by hand whenever that page's content
      changes. See CLAUDE.md, "sitemap.xml and robots.txt reference the
      canonical URL, not a copy of it". -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gabrielaolivera.nz/</loc>
     <lastmod>2026-09-11</lastmod>
+  </url>
+  <url>
+    <loc>https://gabrielaolivera.nz/small-business/</loc>
+    <lastmod>2026-09-24</lastmod>
   </url>
 </urlset>

@@ -31,25 +31,15 @@
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!--
-  This page is deliberately not linked from the site nav or sitemap.xml
-  yet (see CLAUDE.md-style note: it goes live once there's a first real
-  testimonial to put in the section below). The header below matches
-  404.html's minimal pattern (brand only, no section nav) rather than
-  index.html's, since none of index.html's #work/#how-i-work/#contact
-  anchors exist on this page.
+  Published 2026-09-24 — linked from index.html's header nav and listed
+  in sitemap.xml. The header below still matches 404.html's minimal
+  pattern (brand only, no section nav) rather than index.html's, since
+  none of index.html's #work/#how-i-work/#contact anchors exist on this
+  page — that part was never about publish status and still holds.
 
-  Three other things are tied to this page's not-yet-published state and
-  need to move together with it when it does go live:
-  - package.json's check:links --skip pattern has a
-    "gabrielaolivera.nz/small-business/$" entry, because this page's own
-    canonical URL 404s for real until the page is actually deployed.
-    Remove that skip entry in the same change that links this page in.
-  - scripts/check-canonical-urls.mjs checks this page's canonical/og:url
-    against origin + "small-business/" directly, not via sitemap.xml (see
-    that script's own header comment) — add a matching sitemap.xml <url>
-    entry when this page goes live.
-  - README.md's file-tree note ("not linked from nav/sitemap.xml yet")
-    stops being true at the same moment.
+  Testimonials (see the HTML comment further down this file) and the
+  planned Case studies content are still pending real material — see
+  NEXT-STEPS.md and CLAUDE.md, "The small-business page".
 -->
 <header class="site-header">
   <a class="site-header__brand" href="/" style="text-decoration:none;">
@@ -339,9 +329,10 @@
     quotes) until there's a first real client testimonial to put in it.
     Structure agreed for when that happens: a "sme-testimonials" section
     here, matching the sme-card-grid pattern above, one card per
-    testimonial (quote, name, business, town). Add it, then link this
-    page from the header nav and sitemap.xml at the same time — see this
-    file's own header comment above.
+    testimonial (quote, name, business, town). This page is already
+    published and linked (see this file's own header comment) — adding
+    this section later is just adding the section, nothing else to wire
+    up.
   -->
 
 </main>
