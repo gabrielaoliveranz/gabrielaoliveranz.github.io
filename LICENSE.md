@@ -42,6 +42,12 @@ covers it, rather than a software licence like MIT.
 - **`assets/images/headshot.jpg`** — a personal photo of Gabriela
   Olivera. All rights reserved; it isn't available for reuse under
   CC BY like the rest of this repository.
+- **`assets/favicon.png`** — Gabriela Olivera's own personal logo mark
+  (the bar-chart-and-dot icon, on its dark-navy square), supplied by
+  her directly rather than designed for this repo, and used unchanged
+  for both the browser favicon and the header brand mark. Same
+  treatment as the headshot above: all rights reserved, not available
+  for reuse under CC BY like the rest of this repository.
 - **`assets/cv/gabriela-olivera-cv.pdf`** — a personal document, not
   creative work being offered for reuse. All rights reserved.
 - **The project screenshots** (`assets/images/terroir-screenshot.jpg`,

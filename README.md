@@ -19,7 +19,7 @@ gabrielaoliveranz.github.io/
 ├── assets/
 │   ├── styles.css
 │   ├── script.js
-│   ├── favicon.svg
+│   ├── favicon.png
 │   ├── cv/gabriela-olivera-cv.pdf   # the real CV
 │   ├── fonts/                        # self-hosted Archivo, Source Sans 3 + Bricolage Grotesque
 │   ├── icons/                         # Flaticon mask-image icons — see LICENSE.md
