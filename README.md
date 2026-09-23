@@ -14,6 +14,7 @@ same hand-written semantic HTML, design tokens and CI checks as the
 gabrielaoliveranz.github.io/
 ├── index.html
 ├── 404.html
+├── small-business/index.html          # not linked from nav/sitemap.xml yet — see its own header comment
 ├── sitemap.xml
 ├── robots.txt
 ├── assets/

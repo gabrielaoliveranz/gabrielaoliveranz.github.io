@@ -74,11 +74,16 @@ function main() {
 
   for (const page of PAGES) {
     const html = readFileSync(join(ROOT, page), "utf8");
+    // A relative ref in a nested page (e.g. small-business/index.html)
+    // resolves against that page's own directory in the browser, not the
+    // repo root — so this has to match, or a correct "../assets/..." ref
+    // from a nested page would be misjudged as broken.
+    const baseDir = posix.dirname(page);
     for (const match of html.matchAll(ATTR_RE)) {
       const ref = match[1];
       if (!isLocalRelativePath(ref)) continue;
       checked++;
-      if (!check(page, ref, ".")) failed = true;
+      if (!check(page, ref, baseDir)) failed = true;
     }
   }
 

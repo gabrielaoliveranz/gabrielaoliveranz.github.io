@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data help for small businesses — Gabriela Olivera</title>
+<meta name="description" content="Data analysis for Bay of Plenty small businesses in agriculture, horticulture, food and logistics. Plain-English answers from the data you already have.">
+<link rel="canonical" href="https://gabrielaolivera.nz/small-business/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gabriela Olivera">
+<meta property="og:url" content="https://gabrielaolivera.nz/small-business/">
+<meta property="og:title" content="Data help for small businesses — Gabriela Olivera">
+<meta property="og:description" content="Plain-English answers from the data you already have (Xero, spreadsheets), for Bay of Plenty agriculture, horticulture, food and logistics businesses.">
+<meta property="og:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gabriela Olivera, Data Analyst, Mount Maunganui, New Zealand.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Data help for small businesses — Gabriela Olivera">
+<meta name="twitter:description" content="Plain-English answers from the data you already have (Xero, spreadsheets), for Bay of Plenty agriculture, horticulture, food and logistics businesses.">
+<meta name="twitter:image" content="https://gabrielaolivera.nz/assets/images/og-card.png">
+<meta name="twitter:image:alt" content="Gabriela Olivera, Data Analyst, Mount Maunganui, New Zealand.">
+
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!--
+  This page is deliberately not linked from the site nav or sitemap.xml
+  yet (see CLAUDE.md-style note: it goes live once there's a first real
+  testimonial to put in the section below). The header below matches
+  404.html's minimal pattern (brand only, no section nav) rather than
+  index.html's, since none of index.html's #work/#how-i-work/#contact
+  anchors exist on this page.
+
+  Three other things are tied to this page's not-yet-published state and
+  need to move together with it when it does go live:
+  - package.json's check:links --skip pattern has a
+    "gabrielaolivera.nz/small-business/$" entry, because this page's own
+    canonical URL 404s for real until the page is actually deployed.
+    Remove that skip entry in the same change that links this page in.
+  - scripts/check-canonical-urls.mjs checks this page's canonical/og:url
+    against origin + "small-business/" directly, not via sitemap.xml (see
+    that script's own header comment) — add a matching sitemap.xml <url>
+    entry when this page goes live.
+  - README.md's file-tree note ("not linked from nav/sitemap.xml yet")
+    stops being true at the same moment.
+-->
+<header class="site-header">
+  <a class="site-header__brand" href="/" style="text-decoration:none;">
+    <img class="site-header__logo" src="../assets/favicon.png" alt="" width="28" height="28">
+    <span class="site-header__mark">Gabriela Olivera</span>
+  </a>
+</header>
+
+<main id="main-content">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow">For small businesses</p>
+    <h1 id="hero-title" class="hero__title" style="font-family: var(--font-display);">Straight answers from the numbers you already have.</h1>
+    <p class="hero__lede">You don't need a new system. You need someone who can look at your Xero data and your spreadsheets and tell you, plainly, what's going on.</p>
+    <p class="hero__byline">I spent 14 years in operations and procurement before moving into data analysis, so I know how small teams actually run. I build analysis that fits how you already work, not the other way round.</p>
+    <div class="hero__actions">
+      <a class="button button--primary" href="mailto:gabriela.olivera.nz@gmail.com">Get in touch &rarr;</a>
+      <a class="button button--secondary" href="#how-it-works">See how it works</a>
+    </div>
+  </section>
+
+  <section class="sme-questions" aria-labelledby="sme-questions-title" data-reveal>
+    <div class="sme-questions__inner">
+      <h2 id="sme-questions-title" class="sme-section-title">The questions this usually starts with</h2>
+      <p class="sme-section-intro">Most of the time, the answer is already sitting in your own numbers. It just hasn't been pulled together yet.</p>
+    </div>
+    <ul class="sme-card-grid sme-card-grid--four">
+      <li class="sme-card">
+        <h3 class="sme-card__title">Are sales actually growing, or does it just feel that way?</h3>
+        <p class="sme-card__text">The real trend behind the headline number, once seasonality and one-off spikes are stripped out.</p>
+      </li>
+      <li class="sme-card">
+        <h3 class="sme-card__title">Which customers have quietly started ordering less?</h3>
+        <p class="sme-card__text">An early warning on customers drifting away, before they're gone for good.</p>
+      </li>
+      <li class="sme-card">
+        <h3 class="sme-card__title">Which products or customers are actually making you money?</h3>
+        <p class="sme-card__text">Profitability by product and by customer, not just top-line revenue.</p>
+      </li>
+      <li class="sme-card">
+        <h3 class="sme-card__title">Why is delivery costing more than it used to?</h3>
+        <p class="sme-card__text">Cost per order, per route and per customer, so you can see exactly where it's coming from.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="sme-services" aria-labelledby="sme-services-title" data-reveal>
+    <div class="sme-questions__inner">
+      <h2 id="sme-services-title" class="sme-section-title">How I can help</h2>
+    </div>
+    <ul class="sme-card-grid sme-card-grid--three">
+      <li class="sme-card sme-card--service">
+        <h3 class="sme-card__title">Data Health Check</h3>
+        <p class="sme-card__text">A first look at what data you already have (Xero, spreadsheets, POS, whatever you're using) and what shape it's in. You get a plain-English summary of what's usable now, what's missing, and what it would take to get real answers out of it.</p>
+      </li>
+      <li class="sme-card sme-card--service">
+        <h3 class="sme-card__title">Insight Dashboard</h3>
+        <p class="sme-card__text">A simple, ongoing view of the numbers that matter to your business (sales, margins, customers, delivery costs), easy to refresh each month with your latest data.</p>
+      </li>
+      <li class="sme-card sme-card--service">
+        <h3 class="sme-card__title">Custom Analysis</h3>
+        <p class="sme-card__text">A specific question, answered properly, such as "why did margins drop last quarter" or "which customers should we call before we lose them". A focused piece of analysis with a clear answer, not a generic report.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="how-it-works" class="sme-process" aria-labelledby="sme-process-title" data-reveal>
+    <div class="sme-questions__inner">
+      <h2 id="sme-process-title" class="sme-section-title">How it works</h2>
+      <p class="sme-section-intro">questionnaire &rarr; data checklist &rarr; analysis &rarr; first findings &rarr; final dashboard &rarr; handover</p>
+    </div>
+    <ol class="sme-process__grid">
+      <li class="sme-process-step">
+        <span class="sme-process-step__number">01</span>
+        <h3>Questionnaire</h3>
+        <p>A short set of questions about your business and what you want to know.</p>
+      </li>
+      <li class="sme-process-step">
+        <span class="sme-process-step__number">02</span>
+        <h3>Data checklist</h3>
+        <p>I tell you exactly what to pull together, and where to get it from. No guessing.</p>
+      </li>
+      <li class="sme-process-step">
+        <span class="sme-process-step__number">03</span>
+        <h3>Analysis</h3>
+        <p>I clean it up, check it, and build the real picture from what you've given me.</p>
+      </li>
+      <li class="sme-process-step">
+        <span class="sme-process-step__number">04</span>
+        <h3>First findings, within 2 weeks</h3>
+        <p>An early look at what the data is showing, so you're not waiting in the dark.</p>
+      </li>
+      <li class="sme-process-step">
+        <span class="sme-process-step__number">05</span>
+        <h3>Final dashboard, within 4 weeks</h3>
+        <p>The finished view, built around your business and ready to use.</p>
+      </li>
+      <li class="sme-process-step">
+        <span class="sme-process-step__number">06</span>
+        <h3>Handover and 30-day follow-up</h3>
+        <p>I walk you through it, then check in a month later to make sure it's still answering your questions.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="sme-privacy" aria-labelledby="sme-privacy-title" data-reveal>
+    <div class="sme-privacy__inner">
+      <h2 id="sme-privacy-title" class="sme-section-title">Your data stays yours</h2>
+      <ul class="sme-privacy__list">
+        <li>Your data is never entered into AI tools.</li>
+        <li>Everything is shared through a secure, private folder, not loose email attachments.</li>
+        <li>Your data is deleted within 30 days of the project finishing.</li>
+        <li>Everything is handled in line with the Privacy Act 2020.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!--
+    TESTIMONIALS: planned but not built. This section stays out of the
+    shipped markup entirely (not a hidden/placeholder block with empty
+    quotes) until there's a first real client testimonial to put in it.
+    Structure agreed for when that happens: a "sme-testimonials" section
+    here, matching the sme-card-grid pattern above, one card per
+    testimonial (quote, name, business, town). Add it, then link this
+    page from the header nav and sitemap.xml at the same time — see this
+    file's own header comment above.
+  -->
+
+</main>
+
+<button type="button" class="back-to-top" aria-label="Back to top" id="back-to-top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<footer id="contact" class="site-footer" data-reveal>
+  <div class="wrap">
+    <h2 class="site-footer__title">Let's find out what your numbers are telling you.</h2>
+    <p class="site-footer__lede">If you're not sure where to start, send me an email and tell me a bit about your business. I'll tell you honestly whether I can help.</p>
+    <div class="site-footer__cta">
+      <a class="button button--primary" id="footer-cta" href="mailto:gabriela.olivera.nz@gmail.com">Get in touch &rarr;</a>
+    </div>
+    <div class="site-footer__actions">
+      <a class="icon-link" href="https://www.linkedin.com/in/gabriela-olivera-nz/" target="_blank" rel="noopener" aria-label="Gabriela Olivera on LinkedIn" title="LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a>
+      <a class="icon-link" href="https://github.com/gabrielaoliveranz" target="_blank" rel="noopener" aria-label="Gabriela Olivera on GitHub" title="GitHub"><span class="icon icon--github" aria-hidden="true"></span></a>
+      <a class="icon-link" id="copy-email" href="mailto:gabriela.olivera.nz@gmail.com" aria-label="Email me — also copies the address to your clipboard" title="Email (also copies address)"><span class="icon icon--email" aria-hidden="true"></span></a>
+      <a class="icon-link" id="cv-link" href="../assets/cv/gabriela-olivera-cv.pdf" aria-label="Download CV" title="Download CV"><span class="icon icon--cv" aria-hidden="true"></span></a>
+    </div>
+    <span class="copy-button__status" id="copy-status" role="status" aria-live="polite"></span>
+    <div class="site-footer__meta">
+      <p class="site-footer__status"><span class="icon icon--location" aria-hidden="true"></span> Mount Maunganui, Bay of Plenty · NZ Permanent Resident</p>
+      <p>&copy; 2026 Gabriela Olivera</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/script.js"></script>
+</body>
+</html>

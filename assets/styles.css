@@ -946,3 +946,58 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
   .back-to-top { transition: none; }
   html.motion-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---------- small-business/index.html only ----------
+   Not linked from the header nav or sitemap.xml yet — see that file's
+   own header comment. Section title/intro and the card-grid pattern are
+   shared across the "questions", "services" and "how it works" sections
+   on that page; nothing here is used anywhere else on the site. */
+.sme-questions, .sme-services, .sme-process, .sme-privacy {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 8px 32px 72px;
+}
+.sme-questions__inner, .sme-privacy__inner { max-width: 720px; }
+.sme-section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.sme-section-intro { font-size: 17px; line-height: 1.6; color: var(--text-body); margin: 0 0 32px; max-width: 64ch; }
+
+.sme-card-grid { display: grid; gap: 20px; list-style: none; padding: 0; margin: 0; }
+.sme-card-grid--four { grid-template-columns: repeat(2, 1fr); }
+.sme-card-grid--three { grid-template-columns: repeat(3, 1fr); }
+.sme-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+}
+.sme-card__title { font-family: var(--font-heading); font-weight: 800; font-size: 18px; line-height: 1.3; margin: 0 0 10px; color: var(--text); }
+.sme-card--service .sme-card__title { color: var(--accent-label); }
+.sme-card__text { font-size: 15px; line-height: 1.6; color: var(--text-body); margin: 0; }
+@media (max-width: 760px) {
+  .sme-card-grid--four, .sme-card-grid--three { grid-template-columns: minmax(0, 1fr); }
+}
+
+.sme-process__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sme-process-step__number { display: block; font-family: var(--font-heading); font-weight: 800; font-size: 28px; color: var(--accent); letter-spacing: -0.01em; margin-bottom: 10px; }
+.sme-process-step h3 { font-family: var(--font-heading); font-weight: 700; font-size: 17px; margin: 0 0 8px; color: var(--text); }
+.sme-process-step p { font-size: 15px; line-height: 1.6; color: var(--text-body); margin: 0; }
+@media (max-width: 860px) { .sme-process__grid { grid-template-columns: minmax(0, 1fr); } }
+
+.sme-privacy__list { padding-left: 20px; margin: 0; font-size: 16px; line-height: 1.6; color: var(--text-body); }
+.sme-privacy__list li { margin-bottom: 10px; }
+.sme-privacy__list li:last-child { margin-bottom: 0; }
