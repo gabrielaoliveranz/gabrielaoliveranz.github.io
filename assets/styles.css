@@ -979,10 +979,14 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
    card) so the page has rhythm rather than the same box ten times.
    Section title/intro is the one thing shared across most of them.
    Nothing here is used anywhere else on the site. */
+/* 64px top padding, not the original 8px: each of these three sections
+   immediately follows a diagonal section-cut (.sme-questions,
+   .sme-transition, .sme-cases respectively), and 8px read as the
+   heading sitting right on top of the cut rather than clear of it. */
 .sme-services, .sme-process, .sme-privacy {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 8px 32px 72px;
+  padding: 64px 32px 72px;
 }
 .sme-questions__inner, .sme-privacy__inner { max-width: 720px; }
 .sme-section-title {
