@@ -20,11 +20,14 @@
   if (!triggers.length || !overlay || !modal || !closeBtn) return;
 
   var lastFocused = null;
+  var resetForm = function () {};
 
   function focusableElements() {
-    return modal.querySelectorAll(
+    // Visible ones only: the form and the success panel swap places, and
+    // the hidden one's controls mustn't count as the trap's first/last.
+    return Array.prototype.filter.call(modal.querySelectorAll(
       'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
-    );
+    ), function (el) { return el.offsetParent !== null; });
   }
 
   function onKeydown(event) {
@@ -51,6 +54,7 @@
     lastFocused = document.activeElement;
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
+    resetForm();
     var focusables = focusableElements();
     if (focusables.length) focusables[0].focus();
     document.addEventListener('keydown', onKeydown);
@@ -77,8 +81,19 @@
   var form = document.getElementById('contact-form');
   var status = document.getElementById('contact-form-status');
   if (!form || !status || !window.fetch || !window.FormData) return;
+  var success = document.getElementById('contact-form-success');
+  var doneBtn = document.getElementById('contact-form-done');
   var submitBtn = form.querySelector('button[type="submit"]');
   var submitLabel = submitBtn.innerHTML;
+
+  // Each time the modal opens, start from the form again, not from the
+  // previous visit's "Message sent" panel.
+  resetForm = function () {
+    if (success) success.hidden = true;
+    form.hidden = false;
+    setStatus('', null);
+  };
+  if (doneBtn) doneBtn.addEventListener('click', closeModal);
 
   function setStatus(message, kind) {
     status.textContent = message;
@@ -98,7 +113,13 @@
     }).then(function (response) {
       if (!response.ok) throw new Error('HTTP ' + response.status);
       form.reset();
-      setStatus("Thanks, your message is on its way. I'll get back to you soon.", 'success');
+      if (success) {
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+      } else {
+        setStatus("Thanks, your message has been sent. I'll get back to you soon.", 'success');
+      }
     }).catch(function () {
       setStatus("Sorry, that didn't send. Please try again, or email hello@gabrielaolivera.nz directly.", 'error');
     }).then(function () {

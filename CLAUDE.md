@@ -600,6 +600,24 @@ a plain POST to Formspree's own thank-you page. The `.js-contact-trigger`
 buttons are still real `mailto:` links underneath, as the no-JS
 fallback.
 
+**On a successful send, the form is replaced by a "Message sent" panel**
+(`#contact-form-success`: a tick, a heading and a Close button). It
+used to be one line of text under the submit button, which was easy to
+miss and could sit below the fold on a phone. Reopening the modal
+brings the empty form back. Errors still show inline in
+`#contact-form-status`, with the form left in place so the visitor can
+retry.
+
+**`styles.css` and `contact-modal.js` are linked with a `?v=` version
+(e.g. `?v=20260924b`) on both pages, and it has to change whenever
+either file does.** GitHub Pages serves everything with
+`Cache-Control: max-age=600`, so a returning visitor can get new HTML
+with an old cached script or stylesheet (or old HTML entirely) for a
+while after a deploy. That made the live site look like it was still
+missing the fixes right after they shipped. Bumping the version forces
+a fresh copy of the asset, but it can't do anything about the HTML's
+own 10-minute cache.
+
 It replaced an `action="mailto:..."` + `enctype="text/plain"` form,
 which triggered browser "not secure" warnings and, on mobile, opened
 the visitor's own mail app with raw `name=`/`email=`/`message=` text.

@@ -1377,6 +1377,16 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
 .sme-modal__status:empty { display: none; }
 .sme-modal__status--success { color: var(--accent); font-weight: 700; }
 .sme-modal__status--error { color: #A3261B; }
+.sme-modal__form[hidden], .sme-modal__success[hidden] { display: none; }
+.sme-modal__success { text-align: center; padding: 8px 0 0; outline: none; }
+.sme-modal__success-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--accent); color: var(--bg-card);
+  font-size: 28px; font-weight: 800; margin-bottom: 14px;
+}
+.sme-modal__success-title { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--accent-label); margin: 0 0 8px; }
+.sme-modal__success-text { font-size: 16px; line-height: 1.5; color: var(--text-body); margin: 0 0 22px; }
 /* Formspree honeypot: off-screen, not display:none, so bots that skip
    hidden inputs still fill it. aria-hidden + tabindex="-1" in the HTML
    keep it away from real visitors. */

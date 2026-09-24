@@ -24,7 +24,7 @@
 <meta name="twitter:image:alt" content="Gabriela Olivera, Data Analyst, Mount Maunganui, New Zealand.">
 
 <link rel="icon" type="image/png" href="../assets/favicon.png">
-<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/styles.css?v=20260924b">
 </head>
 <body>
 
@@ -387,7 +387,8 @@
       Submits to Formspree (free tier). This static site has no backend,
       and Formspree emails each submission to hello@gabrielaolivera.nz.
       assets/small-business.js sends it with fetch so the visitor stays
-      on this page and sees the result in #contact-form-status. Without
+      on this page. Success replaces the form with #contact-form-success;
+      an error shows in #contact-form-status. Without
       JS it's a normal POST, and Formspree shows its own thank-you page.
       This replaced action="mailto:..." + enctype="text/plain", which
       triggered "not secure" warnings and, on mobile, opened the
@@ -413,11 +414,20 @@
       <button type="submit" class="button button--primary sme-modal__submit">Send message &rarr;</button>
       <p class="sme-modal__status" id="contact-form-status" role="status" aria-live="polite"></p>
     </form>
+    <!-- Shown in place of the form once Formspree confirms the send (see
+         assets/contact-modal.js), so the confirmation can't be missed or
+         end up below the fold on a phone. -->
+    <div class="sme-modal__success" id="contact-form-success" tabindex="-1" hidden>
+      <span class="sme-modal__success-icon" aria-hidden="true">&#10003;</span>
+      <p class="sme-modal__success-title">Message sent</p>
+      <p class="sme-modal__success-text">Thanks, your message has been sent successfully. I'll get back to you soon.</p>
+      <button type="button" class="button button--primary sme-modal__submit" id="contact-form-done">Close</button>
+    </div>
   </div>
 </div>
 
 <script src="../assets/script.js"></script>
-<script src="../assets/contact-modal.js"></script>
+<script src="../assets/contact-modal.js?v=20260924b"></script>
 <script src="../assets/small-business.js"></script>
 </body>
 </html>
