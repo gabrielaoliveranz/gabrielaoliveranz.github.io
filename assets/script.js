@@ -100,6 +100,7 @@
   var navLinks = document.querySelectorAll('.site-header__nav a[href^="#"]');
   if (navLinks.length && 'IntersectionObserver' in window) {
     var sectionMap = [];
+    var hasPageLink = !!document.querySelector('.site-header__nav a[aria-current="page"]');
     navLinks.forEach(function (link) {
       var section = document.querySelector(link.getAttribute('href'));
       if (section) sectionMap.push({ link: link, section: section });
@@ -112,6 +113,10 @@
           if (entry.isIntersecting) {
             navLinks.forEach(function (l) { l.removeAttribute('aria-current'); });
             match.link.setAttribute('aria-current', 'true');
+          } else if (hasPageLink && match.link.getAttribute('aria-current') === 'true') {
+            // Leaving the section hands the highlight back to the page's
+            // own link (see styles.css, .site-header__nav).
+            match.link.removeAttribute('aria-current');
           }
         });
       },

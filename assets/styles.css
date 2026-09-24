@@ -263,10 +263,13 @@ button:focus-visible {
 }
 .site-header__nav a:hover { text-decoration: none; color: var(--accent); }
 .site-header__nav a:hover::after { right: 0; }
+/* A page-level link (aria-current="page", e.g. "Small business" on its
+   own page) only shows as active while no in-page section link is — so
+   scrolling to #contact moves the highlight rather than adding a second. */
 .site-header__nav a[aria-current="true"],
-.site-header__nav a[aria-current="page"] { color: var(--accent); text-decoration: none; }
+.site-header__nav:not(:has(a[aria-current="true"])) a[aria-current="page"] { color: var(--accent); text-decoration: none; }
 .site-header__nav a[aria-current="true"]::after,
-.site-header__nav a[aria-current="page"]::after { right: 0; }
+.site-header__nav:not(:has(a[aria-current="true"])) a[aria-current="page"]::after { right: 0; }
 
 /* Sticky header now overlaps the top of the viewport permanently, so an
    anchor jump (nav links, skip link) needs to stop short of the header's
@@ -1299,6 +1302,17 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
   .sme-case-grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; }
 }
 
+/* Same 64px --neon-blue rule as the Terroir heading (.work__title--on-dark::after). */
+.sme-privacy .sme-section-title { margin-bottom: 28px; }
+.sme-privacy .sme-section-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 2px;
+  background: var(--neon-blue);
+}
 .sme-privacy__list { list-style: none; padding: 0; margin: 0; font-size: 16px; color: var(--text-body); }
 .sme-privacy__list li { display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; margin-bottom: 14px; }
 .sme-privacy__list li:last-child { margin-bottom: 0; }
