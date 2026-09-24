@@ -1356,3 +1356,12 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
 .sme-field__input:focus-visible { outline: 2.5px solid var(--accent-highlight); outline-offset: 1px; }
 .sme-field__input--textarea { resize: vertical; min-height: 96px; font-family: var(--font-body); }
 .sme-modal__submit { margin-top: 6px; width: 100%; }
+.sme-modal__submit:disabled { opacity: 0.7; cursor: wait; }
+.sme-modal__status { font-size: 14px; line-height: 1.5; color: var(--text-body); text-align: center; margin: 0; }
+.sme-modal__status:empty { display: none; }
+.sme-modal__status--success { color: var(--accent); font-weight: 700; }
+.sme-modal__status--error { color: #A3261B; }
+/* Formspree honeypot: off-screen, not display:none, so bots that skip
+   hidden inputs still fill it. aria-hidden + tabindex="-1" in the HTML
+   keep it away from real visitors. */
+.sme-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

@@ -364,8 +364,8 @@
 
 <!--
   Contact modal: progressive enhancement over the real mailto: links
-  above (.js-contact-trigger) — see assets/small-business.js's own
-  header comment. Hidden by default; assets/small-business.js is what
+  above (.js-contact-trigger) — see assets/contact-modal.js's own
+  header comment. Hidden by default; assets/contact-modal.js is what
   makes it reachable at all, so a no-JS visitor never sees it and
   relies entirely on the plain mailto: links instead, same as before.
 -->
@@ -378,14 +378,20 @@
     <h2 id="contact-modal-title" class="sme-modal__title">Let's find out what your numbers are telling you.</h2>
     <p class="sme-modal__lede">Tell me a bit about your business and I'll get back to you.</p>
     <!--
-      action="mailto:..." + enctype="text/plain" is a plain-HTML trick,
-      not a real form submission: it opens the visitor's own mail client
-      with these fields assembled into the message body. There's no
-      backend on this static site to receive a true submission — see
-      CLAUDE.md-style reasoning in NEXT-STEPS.md/this file's own header
-      comment if that ever needs to change to a real form service.
+      Submits to Formspree (free tier). This static site has no backend,
+      and Formspree emails each submission to hello@gabrielaolivera.nz.
+      assets/small-business.js sends it with fetch so the visitor stays
+      on this page and sees the result in #contact-form-status. Without
+      JS it's a normal POST, and Formspree shows its own thank-you page.
+      This replaced action="mailto:..." + enctype="text/plain", which
+      triggered "not secure" warnings and, on mobile, opened the
+      visitor's own mail app with raw name=/email=/message= text. See
+      CLAUDE.md, "The small-business page".
     -->
-    <form class="sme-modal__form" action="mailto:hello@gabrielaolivera.nz" method="post" enctype="text/plain">
+    <form class="sme-modal__form" id="contact-form" action="https://formspree.io/f/xljdnvzr" method="post">
+      <input type="hidden" name="_subject" value="New enquiry from gabrielaolivera.nz/small-business">
+      <!-- Formspree's honeypot: real visitors never see or fill it; bots that do are dropped. -->
+      <input type="text" name="_gotcha" class="sme-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="sme-field">
         <span class="sme-field__label"><span class="icon icon--lucide-user" aria-hidden="true"></span>Name</span>
         <input class="sme-field__input" type="text" name="name" autocomplete="name" required>
@@ -399,11 +405,13 @@
         <textarea class="sme-field__input sme-field__input--textarea" name="message" rows="4" required></textarea>
       </label>
       <button type="submit" class="button button--primary sme-modal__submit">Send message &rarr;</button>
+      <p class="sme-modal__status" id="contact-form-status" role="status" aria-live="polite"></p>
     </form>
   </div>
 </div>
 
 <script src="../assets/script.js"></script>
+<script src="../assets/contact-modal.js"></script>
 <script src="../assets/small-business.js"></script>
 </body>
 </html>

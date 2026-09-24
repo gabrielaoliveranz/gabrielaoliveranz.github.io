@@ -11,11 +11,12 @@ covers it, rather than a software licence like MIT.
 - Creative Commons itself recommends against CC licences for software
   — they're not designed for source-code redistribution and carry no
   patent grant. `assets/script.js`, `assets/how-i-work-scroll.js`,
-  `assets/signal-stack.js` and `assets/small-business.js` are real
+  `assets/signal-stack.js`, `assets/small-business.js` and
+  `assets/contact-modal.js` are real
   code, but together they're a small progressive enhancement (count-up,
   scroll-reveal, a copy-email control, the "How I work" scrollytelling
   canvas, the Signal stack letter-by-letter word carousel, a
-  back-to-top button, the small-business page's contact modal — none
+  back-to-top button, the contact modal — none
   required for the page's content to work) attached to what is
   overwhelmingly prose and design, not a library anyone would import or
   depend on. Splitting it into its own MIT-licensed file the way the

@@ -566,6 +566,26 @@ pattern (brand only, no section nav) rather than `index.html`'s full
 nav, since none of `index.html`'s `#work`/`#how-i-work`/`#contact`
 anchors exist on this page.
 
+**The contact modal posts to Formspree** (free tier, form `xljdnvzr`,
+endpoint in the `<form action>`), not `mailto:`. The same modal also
+opens from `index.html`'s footer "Get in touch" button. Its markup is
+copy-pasted into both pages, with a different title, lede and
+`_subject` on each, so a change to the form fields needs making in
+both. `assets/contact-modal.js` (shared by both pages) submits it with
+`fetch` and shows the success or error message inline. Without JS it's
+a plain POST to Formspree's own thank-you page. The `.js-contact-trigger`
+buttons are still real `mailto:` links underneath, as the no-JS
+fallback.
+
+It replaced an `action="mailto:..."` + `enctype="text/plain"` form,
+which triggered browser "not secure" warnings and, on mobile, opened
+the visitor's own mail app with raw `name=`/`email=`/`message=` text.
+
+Enquiries pass through Formspree's servers, and that's deliberate.
+The "Your data stays yours" section is about client project files,
+which are uploaded to a dedicated cloud folder, never sent by email or
+through this form. The form is only for first enquiries.
+
 **Testimonials are planned but not built.** The section isn't in the
 page as an empty or placeholder block — it's a single HTML comment
 marking where it goes, with the agreed structure already decided (one
