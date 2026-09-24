@@ -27,7 +27,12 @@ gabrielaoliveranz.github.io/
 ├── robots.txt
 ├── assets/
 │   ├── styles.css
-│   ├── script.js
+│   ├── script.js                     # count-up, scroll-reveal, copy-email, back-to-top
+│   ├── contact-modal.js              # "Get in touch" modal + Formspree form (both pages)
+│   ├── how-i-work-scroll.js          # "How I work" scrollytelling canvas
+│   ├── signal-stack.js               # Signal Stack letter-drop words (Matter.js)
+│   ├── small-business.js             # /small-business/ card-height equaliser
+│   ├── vendor/matter.min.js          # self-hosted Matter.js — see LICENSE.md
 │   ├── favicon.png
 │   ├── cv/gabriela-olivera-cv.pdf   # the real CV
 │   ├── fonts/                        # self-hosted Archivo, Source Sans 3 + Bricolage Grotesque
