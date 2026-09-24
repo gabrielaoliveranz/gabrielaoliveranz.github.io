@@ -263,8 +263,10 @@ button:focus-visible {
 }
 .site-header__nav a:hover { text-decoration: none; color: var(--accent); }
 .site-header__nav a:hover::after { right: 0; }
-.site-header__nav a[aria-current="true"] { color: var(--accent); text-decoration: none; }
-.site-header__nav a[aria-current="true"]::after { right: 0; }
+.site-header__nav a[aria-current="true"],
+.site-header__nav a[aria-current="page"] { color: var(--accent); text-decoration: none; }
+.site-header__nav a[aria-current="true"]::after,
+.site-header__nav a[aria-current="page"]::after { right: 0; }
 
 /* Sticky header now overlaps the top of the viewport permanently, so an
    anchor jump (nav links, skip link) needs to stop short of the header's
@@ -406,8 +408,11 @@ button:focus-visible {
    among sibling .project-band elements — never from a modifier class — so
    pasting in another project block just works, in either rhythm. See
    CLAUDE.md, "Adding a project". */
-#work .project-band:nth-of-type(odd) { background: var(--accent); clip-path: polygon(0 36px, 100% 0, 100% 100%, 0 100%); padding-top: 36px; }
-#work .project-band:nth-of-type(even) { background: var(--bg-dark); clip-path: polygon(0 0, 100% 36px, 100% 100%, 0 100%); padding-top: 36px; }
+/* Both bands use the small-business page's diagonal cut (.sme-questions:
+   40px, sloping down to the right), so every section transition on the
+   home page has the same shape. They used to alternate direction at 36px. */
+#work .project-band:nth-of-type(odd) { background: var(--accent); clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%); padding-top: 40px; }
+#work .project-band:nth-of-type(even) { background: var(--bg-dark); clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%); padding-top: 40px; }
 .project-band__inner { max-width: 1240px; margin: 0 auto; padding: 64px 32px 80px; }
 .work__title--on-dark { color: #FFFFFF; }
 .work__title {
@@ -649,8 +654,16 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 }
 
 /* ---------- Portfolio-specific: how I work (dark scrollytelling canvas) ---------- */
-.how-i-work { background: var(--bg-dark); position: relative; }
-.how-i-work__head { max-width: 1240px; margin: 0 auto; padding: 56px 32px 0; }
+.how-i-work {
+  background: var(--bg-dark);
+  position: relative;
+  /* Bottom edge only: the top edge already sits under the quote band's
+     own bottom cut, and cutting both would leave a double wedge. */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%);
+}
+/* 64px top: this heading follows a diagonal cut (the quote band's), the
+   same spacing fix as .sme-services/.sme-process/.sme-privacy. */
+.how-i-work__head { max-width: 1240px; margin: 0 auto; padding: 64px 32px 0; }
 .how-i-work__title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -718,29 +731,33 @@ html.motion-ready .how-i-work-scroll.is-active { display: block; }
 .how-i-work-scroll__item h3 { font-family: var(--font-heading); font-weight: 800; font-size: clamp(26px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.015em; margin: 20px 0 0; color: #FFFFFF; text-wrap: pretty; }
 .how-i-work-scroll__item p { max-width: 38ch; font-size: 16px; line-height: 1.6; color: var(--text-on-dark-body); margin: 20px 0 0; }
 
-/* ---------- Portfolio-specific: data quality (dark, sits between How I
-   Work and Signal Stack — same dark flow, no new visual language: heading
-   type matches .how-i-work__title, body copy matches
-   .how-i-work-scroll__item p, and the flow line reuses .process-strip. ---------- */
-.data-quality { background: var(--bg-dark); }
-.data-quality__inner { max-width: 1240px; margin: 0 auto; padding: 72px 32px 24px; }
+/* ---------- Portfolio-specific: data quality (plain --bg section between
+   two dark bands). How I Work's bottom cut and Signal Stack's top cut are
+   what separate it, the same way .sme-services sits between cut bands on
+   the small-business page. It has to be plain --bg, not --bg-section, so
+   the wedges those cuts reveal match it. Heading type matches
+   .how-i-work__title; the flow line is the light-background .process-strip. ---------- */
+.data-quality { background: var(--bg); }
+/* 64px top: follows How I Work's diagonal cut (see .sme-services). */
+.data-quality__inner { max-width: 1240px; margin: 0 auto; padding: 64px 32px 24px; }
 .data-quality__title {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(32px, 3.6vw, 46px);
   letter-spacing: -0.01em;
   margin: 0 0 20px;
-  color: #FFFFFF;
+  color: var(--accent-label);
 }
-.data-quality__text { max-width: 62ch; font-size: 17px; line-height: 1.6; color: var(--text-on-dark-body); margin: 0; }
-.data-quality .process-strip__track { padding: 24px 32px 56px; }
+.data-quality__text { max-width: 62ch; font-size: 17px; line-height: 1.6; color: var(--text-body); margin: 0; }
+.data-quality .process-strip__track { padding: 24px 32px 64px; }
 
-/* ---------- Portfolio-specific: signal stack (dark word carousel, Matter.js) ---------- */
+/* ---------- Portfolio-specific: signal stack (dark word carousel, Matter.js) ----------
+   Full-width dark band with the small-business page's diagonal cut on
+   both edges and the same 80px/72px padding as .sme-questions. */
 .signal-stack {
   background: var(--bg-dark);
-  padding: 72px 32px 40px;
-  border-top: 1px solid rgba(79, 195, 255, 0.12);
-  box-shadow: 0 -1px 18px rgba(79, 195, 255, 0);
+  padding: 80px 32px 72px;
+  clip-path: polygon(0 0, 100% 40px, 100% calc(100% - 40px), 0 100%);
 }
 .signal-stack__inner { max-width: 1240px; margin: 0 auto; }
 .signal-stack__label {
@@ -751,7 +768,6 @@ html.motion-ready .how-i-work-scroll.is-active { display: block; }
   color: var(--text-signal-label);
   margin: 0 0 12px;
 }
-.signal-stack__tagline { margin: 8px 0 0; }
 
 /* The always-accessible source — visible by default, moved to .sr-only
    once assets/signal-stack.js's physics carousel takes over. */

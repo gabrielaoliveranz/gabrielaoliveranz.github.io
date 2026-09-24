@@ -32,10 +32,10 @@
 
 <!--
   Published 2026-09-24 — linked from index.html's header nav and listed
-  in sitemap.xml. The header below still matches 404.html's minimal
-  pattern (brand only, no section nav) rather than index.html's, since
-  none of index.html's #work/#how-i-work/#contact anchors exist on this
-  page — that part was never about publish status and still holds.
+  in sitemap.xml. The header below carries index.html's full nav, with
+  Work / How I work pointing back at the home page's own anchors
+  (/#work, /#how-i-work) and Contact at this page's own footer
+  (#contact), so visitors can always get back to the rest of the site.
 
   Testimonials (see the HTML comment further down this file) and the
   planned Case studies content are still pending real material — see
@@ -46,6 +46,12 @@
     <img class="site-header__logo" src="../assets/favicon.png" alt="" width="28" height="28">
     <span class="site-header__mark">Gabriela Olivera</span>
   </a>
+  <nav class="site-header__nav" aria-label="Main navigation">
+    <a href="/#work">Work</a>
+    <a href="/#how-i-work">How I work</a>
+    <a href="/small-business/" aria-current="page">Small business</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <main id="main-content">

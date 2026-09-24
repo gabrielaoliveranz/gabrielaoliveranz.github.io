@@ -32,7 +32,6 @@
   var scrollSection = document.getElementById('how-i-work-scroll');
   var canvas = document.getElementById('how-i-work-canvas');
   var textStage = document.getElementById('how-i-work-text-stage');
-  var signalStack = document.getElementById('signal-stack');
 
   if (!motionReady || !grid || !scrollSection || !canvas || !textStage) return;
 
@@ -88,13 +87,6 @@
     }
   }
 
-  function updateGlow() {
-    if (!signalStack) return;
-    var atEnd = progress >= 0.98;
-    signalStack.style.borderTopColor = atEnd ? 'rgba(79,195,255,0.55)' : 'rgba(79,195,255,0.12)';
-    signalStack.style.boxShadow = atEnd ? '0 -1px 18px rgba(79,195,255,0.35)' : '0 -1px 18px rgba(79,195,255,0)';
-  }
-
   var scrollQueued = false;
   function onScroll() {
     if (scrollQueued) return;
@@ -103,14 +95,12 @@
       scrollQueued = false;
       updateProgress();
       updateText();
-      updateGlow();
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   updateProgress();
   updateText();
-  updateGlow();
 
   function draw() {
     var rect = canvas.getBoundingClientRect();

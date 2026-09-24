@@ -405,6 +405,27 @@ staying centred — it solves the same problem with `padding: 20px
 max(32px, calc((100% - 1240px) / 2))` instead, which never references
 `100vw` and so was never at risk of this bug.
 
+## Section transitions use one diagonal cut, shared with the small-business page
+
+Every home-page section change is the small-business page's diagonal
+cut (`.sme-questions`: a 40px `clip-path` edge sloping down to the
+right), not a mix of shapes. **Changed 2026-09-24:** the project bands
+used to alternate direction at 36px. Signal Stack was a flat dark block
+with a cyan border-and-glow that `how-i-work-scroll.js` lit up at the
+end of the scroll. That glow was removed by request, and Signal Stack
+is now a full-width band cut on both edges. Data quality sits on plain
+`--bg` between the two dark bands, like `.sme-services`. It has to be
+`--bg`: the wedges the cuts reveal are the body background, so any
+other colour there would show mismatched triangles.
+
+Two rules carried over from the small-business page:
+- **Never cut both edges where two cut sections meet.** How I Work only
+  cuts its bottom edge, because its top already sits under the quote
+  band's bottom cut, and two cuts together leave a double wedge.
+- **A heading that follows a cut gets at least 64px of top padding**
+  (the `.sme-services`/`.sme-process`/`.sme-privacy` fix). A section
+  that is itself cut on top gets 80px, like `.sme-questions`.
+
 ## Design-tool scaffolding never leaves the working tree
 
 This site was originally built inside an AI design tool, which left its
@@ -561,10 +582,12 @@ entry, `check:links` skip) is the thing to reverse.
 "hand-written HTML... never a bundled export" below) — this page's
 header and footer are copy-pasted from `index.html`/`404.html`, the
 same as every page on this site, and have to be kept in sync by hand
-the same way. Its header intentionally matches `404.html`'s minimal
-pattern (brand only, no section nav) rather than `index.html`'s full
-nav, since none of `index.html`'s `#work`/`#how-i-work`/`#contact`
-anchors exist on this page.
+the same way. **Changed 2026-09-24:** its header used to match
+`404.html`'s minimal pattern (brand only). Visitors had no way back
+to the rest of the site, so it now carries `index.html`'s full nav:
+Work and How I work point at `/#work` and `/#how-i-work`, Small business
+is `aria-current="page"`, and Contact is this page's own `#contact`
+footer. **If `index.html`'s nav changes, change this one too.**
 
 **The contact modal posts to Formspree** (free tier, form `xljdnvzr`,
 endpoint in the `<form action>`), not `mailto:`. The same modal also
