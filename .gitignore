@@ -28,3 +28,6 @@ uploads/
 # Google Fonts — never self-hosted or checked, so never fit to ship).
 # Same "scaffolding, not shipped site" reasoning as above.
 Claude outputs/
+
+# Claude Code working notes — kept locally, not published with the site.
+CLAUDE.md
