@@ -505,7 +505,7 @@ html.motion-ready [data-reveal].is-visible .work__title::after { width: 64px; }
 .stat__label { font-size: 15px; font-weight: 700; color: #FFFFFF; margin-top: 4px; }
 .stat__note { font-size: 12px; color: var(--text-on-dark-body); margin-top: 3px; }
 /* Terroir's card has four stats, not three — a plain repeat(4, 1fr) at the
-   same 3-column breakpoints squeezes "22,834" and "21,491" too tight on
+   same 3-column breakpoints squeezes "22,834" and "16,072" too tight on
    narrow viewports (see the min-width:0/clamp comment above), so it drops
    to two columns earlier than the single-column project-card layout does. */
 .stats--four { grid-template-columns: repeat(4, 1fr); }
@@ -891,6 +891,21 @@ html.motion-ready .how-i-work-scroll.is-active { display: block; }
 
 /* ---------- Footer ---------- */
 .site-footer { padding: 96px 32px 64px; }
+/* The contact footer (both pages, not 404's meta-only one) sits on
+   --bg-section so it reads as its own closing section rather than
+   running on from the section above on the same --bg. Straight top
+   edge, deliberately: nearly every other section boundary is already a
+   diagonal cut, and a cut here too left a sliver of --bg between two
+   diagonals under the home page's dark Signal stack section. Light, not
+   --bg-dark: the small-business page's dark moments stay capped at two
+   (see CLAUDE.md, "The small-business page"). Pulled up 40px under
+   <main> (the same depth as every section's diagonal cut) so that when
+   the last section above ends in a cut — the home page's Signal stack —
+   the gap under the diagonal shows this footer's colour instead of a
+   sliver of --bg; <main> sits above it via z-index for that reason.
+   Extra 40px top padding keeps the content where it was. */
+main { position: relative; z-index: 1; }
+#contact.site-footer { background: var(--bg-section); margin-top: -40px; padding-top: 136px; }
 .site-footer__title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -1302,9 +1317,13 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
   .sme-case-grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; }
 }
 
-/* Same 64px --neon-blue rule as the Terroir heading (.work__title--on-dark::after). */
-.sme-privacy .sme-section-title { margin-bottom: 28px; }
-.sme-privacy .sme-section-title::after {
+/* Same 64px --neon-blue rule as the Terroir heading
+   (.work__title--on-dark::after), on every light-background section title
+   on the small-business page — not just "Your data stays yours", where it
+   was first added and read as a one-off rather than a pattern. The dark
+   .sme-questions title keeps none. */
+.sme-section-title:not(.sme-section-title--on-dark) { margin-bottom: 28px; }
+.sme-section-title:not(.sme-section-title--on-dark)::after {
   content: "";
   display: block;
   width: 64px;
