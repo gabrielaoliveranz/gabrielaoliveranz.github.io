@@ -11,10 +11,12 @@
     "check:assets": "node scripts/check-assets.mjs",
     "check:untracked": "node scripts/check-untracked.mjs",
     "check:og-card": "node scripts/check-og-card.mjs",
+    "check:og-card:small-business": "node scripts/check-og-card.mjs assets/images/og-card-small-business.png small-business/index.html",
     "check:canonical": "node scripts/check-canonical-urls.mjs",
     "generate:og-card": "node scripts/generate-og-card.mjs",
+    "generate:og-card:small-business": "node scripts/generate-og-card.mjs scripts/og-card-small-business-template.html assets/images/og-card-small-business.png",
     "serve": "http-server . -p 8080 -s",
-    "check": "npm run check:html && npm run check:links && npm run check:a11y && npm run check:overflow && npm run check:contrast-states && npm run check:assets && npm run check:untracked && npm run check:og-card && npm run check:canonical"
+    "check": "npm run check:html && npm run check:links && npm run check:a11y && npm run check:overflow && npm run check:contrast-states && npm run check:assets && npm run check:untracked && npm run check:og-card && npm run check:og-card:small-business && npm run check:canonical"
   },
   "devDependencies": {
     "@axe-core/cli": "^4.10.2",

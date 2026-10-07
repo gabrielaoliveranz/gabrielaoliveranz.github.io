@@ -23,7 +23,13 @@ import {
   waitForServer,
 } from "./lib/browser-env.mjs";
 
-const IMAGE_PATH = "assets/images/og-card.png";
+// Image path and the HTML file to read declared og:image:width/height
+// from can be overridden via CLI args, so this same check also covers
+// assets/images/og-card-small-business.png against small-business/index.html
+// — see "check:og-card:small-business" in package.json. With no args it
+// behaves exactly as before.
+const IMAGE_PATH = process.argv[2] || "assets/images/og-card.png";
+const SOURCE_HTML = process.argv[3] || "index.html";
 const IMAGE_URL = `${BASE}/${IMAGE_PATH}`;
 
 // The bar alone is a solid 16x630 rectangle — ~10,000 exact-match pixels
@@ -38,7 +44,7 @@ function readAccent() {
 }
 
 function readDeclaredDimensions() {
-  const html = readFileSync("index.html", "utf8");
+  const html = readFileSync(SOURCE_HTML, "utf8");
   const width = html.match(/property="og:image:width"\s+content="(\d+)"/);
   const height = html.match(/property="og:image:height"\s+content="(\d+)"/);
   if (!width || !height) throw new Error("Could not find og:image:width/height in index.html");

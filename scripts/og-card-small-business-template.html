@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+  Source template for assets/images/og-card-small-business.png — the
+  small-business/index.html-only counterpart to og-card-template.html
+  (which still covers index.html and 404.html's shared card). Not part of
+  the shipped site — nothing links here. Regenerate the PNG with
+  `npm run generate:og-card:small-business` after editing this file, any
+  of the copy below, assets/images/logo-mark.png, or --accent/--bg/--text*
+  in assets/styles.css. See CLAUDE.md, "The small-business page has its
+  own OG card".
+-->
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<title>OG card template — small business (not a real page)</title>
+<link rel="stylesheet" href="../assets/styles.css">
+<style>
+  html, body { margin: 0; padding: 0; }
+  .card {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .card__bar { position: absolute; left: 0; top: 0; width: 16px; height: 100%; background: var(--accent); }
+  .card__content { position: absolute; left: 80px; top: 64px; right: 80px; }
+  .card__logo { height: 108px; margin-bottom: 30px; display: block; }
+  .card__eyebrow {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+  .card__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 50px;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin: 0 0 22px;
+    max-width: 980px;
+  }
+  .card__lede {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--text-muted);
+    max-width: 880px;
+    margin: 0 0 36px;
+  }
+  .card__badges { display: flex; gap: 14px; }
+  .card__badge {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: 999px;
+    padding: 8px 18px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="card__bar"></div>
+    <div class="card__content">
+      <img class="card__logo" src="../assets/images/logo-mark.png" alt="">
+      <p class="card__eyebrow">For small businesses &middot; Bay of Plenty</p>
+      <h1 class="card__title">Straight answers from the numbers you already have.</h1>
+      <p class="card__lede">Plain-English answers from the data you already have &mdash; Xero, spreadsheets &mdash; for agriculture, horticulture, food and logistics businesses.</p>
+      <div class="card__badges">
+        <div class="card__badge">Xero &amp; Excel</div>
+        <div class="card__badge">Fixed scope, clear price</div>
+        <div class="card__badge">Your data stays yours</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

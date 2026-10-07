@@ -20,8 +20,15 @@ import {
   waitForServer,
 } from "./lib/browser-env.mjs";
 
-const TEMPLATE_URL = `${BASE}/scripts/og-card-template.html`;
-const OUTPUT_PATH = "assets/images/og-card.png";
+// Template path and output path can be overridden via CLI args so this
+// same script also generates assets/images/og-card-small-business.png
+// from scripts/og-card-small-business-template.html — see
+// "generate:og-card:small-business" in package.json and CLAUDE.md, "The
+// small-business page has its own OG card". With no args it behaves
+// exactly as before.
+const TEMPLATE_PATH = process.argv[2] || "scripts/og-card-template.html";
+const OUTPUT_PATH = process.argv[3] || "assets/images/og-card.png";
+const TEMPLATE_URL = `${BASE}/${TEMPLATE_PATH}`;
 
 installMatchedChrome();
 const { chromePath, chromedriverPath } = readDriverPaths();
