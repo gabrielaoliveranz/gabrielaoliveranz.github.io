@@ -846,6 +846,8 @@ h1,h2,h3{text-wrap:balance}
 .flow .xl,.flow .grp span{opacity:1}
 .xl .fn{color:var(--on-dark)}
 .xl .fn b{background:var(--neon);color:var(--navy)}
+/* link and button colours switch instantly: a cross-fade passes through low-contrast frames (CLAUDE.md, contrast in every state) */
+.nav ul a,.site-foot .soc,.site-foot nav a{transition:none}
 /* the demo's tilt-in transform must never add sideways scroll */
 .demo{overflow-x:clip}
 .nav .brand img{width:auto}
