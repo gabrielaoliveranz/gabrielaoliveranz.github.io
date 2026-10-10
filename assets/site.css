@@ -844,6 +844,8 @@ h1,h2,h3{text-wrap:balance}
 @media (max-width:400px){.pipe .lbls b{font-size:14px;letter-spacing:-.01em}.ex .eyebrow{font-size:11.5px;letter-spacing:.1em;overflow-wrap:anywhere}.nums{gap:12px 24px}}
 /* text in 'Works with' never fades (a half-faded frame fails contrast on slow machines); it slides in instead */
 .flow .xl,.flow .grp span{opacity:1}
+.xl .fn{color:var(--on-dark)}
+.xl .fn b{background:var(--neon);color:var(--navy)}
 /* the demo's tilt-in transform must never add sideways scroll */
 .demo{overflow-x:clip}
 .nav .brand img{width:auto}

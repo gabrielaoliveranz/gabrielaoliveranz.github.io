@@ -121,6 +121,9 @@ function reportViolations(label, url, results) {
     console.error(`  [${label}] ${url}: "${v.id}" — ${v.help} (${v.nodes.length} node${v.nodes.length === 1 ? "" : "s"})`);
     for (const n of v.nodes) {
       console.error(`      ${n.target.join(" ")}`);
+      // The failure summary carries the measured colours and ratio, so a CI
+      // failure can be fixed from the log alone.
+      if (n.failureSummary) console.error(`        ${n.failureSummary.replace(/\n/g, "\n        ")}`);
     }
   }
   return true;
