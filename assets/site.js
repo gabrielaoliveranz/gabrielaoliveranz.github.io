@@ -112,7 +112,7 @@
 
   /* statement: words light up as you read */
   const q=document.getElementById('quote');
-  q.innerHTML=q.textContent.trim().split(' ').map(w=>`<span class="w${/business|tools/.test(w)?' k':''}">${w}</span>`).join(' ');
+  { const t=q.textContent.trim(); q.innerHTML='<span class="sr-only">'+t+'</span><span aria-hidden="true">'+t.split(' ').map(w=>`<span class="w${/business|tools/.test(w)?' k':''}${reduce?' on':''}">${w}</span>`).join(' ')+'</span>'; }
   const qw=[...q.querySelectorAll('.w')];
 
   /* counters */
@@ -288,7 +288,7 @@
 
   /* statement words */
   const bq=document.getElementById('bizQuote');
-  bq.innerHTML=bq.textContent.trim().split(' ').map(w=>`<span class="w${/decision|act/.test(w)?' k':''}">${w}</span>`).join(' ');
+  { const t=bq.textContent.trim(); bq.innerHTML='<span class="sr-only">'+t+'</span><span aria-hidden="true">'+t.split(' ').map(w=>`<span class="w${/decision|act/.test(w)?' k':''}${reduce?' on':''}">${w}</span>`).join(' ')+'</span>'; }
   const bqw=[...bq.querySelectorAll('.w')];
 
   /* plans replay their animation when they come into view */
