@@ -357,7 +357,7 @@
         const s=text.toLowerCase(), q=match(s), p=P[plan(s)];
         const left = q ? `<span class="lab">YOUR NUMBERS CAN ANSWER THIS</span><h3>${esc(q.t)}</h3><p>${esc(q.a)}</p><div class="acts"><button type="button" class="btn btn-light" data-slide="${q.i}">See this question →</button></div>`
                        : `<span class="lab">GOOD QUESTION</span><h3>That one needs a quick chat.</h3><p>If your numbers can answer it, I'll tell you how, and what it would take.</p>`;
-        out.innerHTML=`<div class="res"><div class="l">${left}</div><div class="r"><span class="lab">BEST FIT</span><div class="plan-n">${esc(p.n)}</div><p>${esc(p.why)}</p><div class="acts"><a class="btn btn-light" href="#bizContact" data-ask="1">Ask me this →</a><a class="btn ghost" href="#plans">Compare plans</a></div></div></div>`;
+        out.innerHTML=`<div class="res"><div class="l">${left}</div><div class="r"><span class="lab">BEST FIT</span><div class="plan-n">${esc(p.n)}</div><p>${esc(p.why)}</p><div class="acts"><a class="btn btn-light" href="#bizContact" data-ask="1">Ask me this →</a><a class="btn btn-ghost" href="#plans">Compare plans</a></div></div></div>`;
         const go=out.querySelector('[data-slide]'); if(go) go.addEventListener('click',()=>{ const car=document.getElementById('car'); document.getElementById('questions').scrollIntoView({behavior:reduce?'auto':'smooth'}); setTimeout(()=>document.querySelectorAll('#carBar button')[+go.dataset.slide].click(),reduce?0:500); });
       }, reduce?0:700);
     }
