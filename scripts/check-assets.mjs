@@ -87,15 +87,19 @@ function main() {
     }
   }
 
-  const cssPath = "assets/styles.css";
-  const css = readFileSync(join(ROOT, cssPath), "utf8");
-  for (const match of css.matchAll(CSS_URL_RE)) {
-    if (!isLocalRelativePath(match[1])) continue;
-    checked++;
-    if (!check(cssPath, match[1], "assets")) failed = true;
+  // Both stylesheets: styles.css (still used by the case-study pages) and
+  // site.css (the October 2026 redesign, used by the main pages).
+  const cssPaths = ["assets/styles.css", "assets/site.css"];
+  for (const cssPath of cssPaths) {
+    const css = readFileSync(join(ROOT, cssPath), "utf8");
+    for (const match of css.matchAll(CSS_URL_RE)) {
+      if (!isLocalRelativePath(match[1])) continue;
+      checked++;
+      if (!check(cssPath, match[1], "assets")) failed = true;
+    }
   }
 
-  console.log(`${failed ? "FAIL" : "OK"}  checked ${checked} local asset reference(s) across ${[...PAGES, cssPath].join(", ")}`);
+  console.log(`${failed ? "FAIL" : "OK"}  checked ${checked} local asset reference(s) across ${[...PAGES, "assets/styles.css", "assets/site.css"].join(", ")}`);
   process.exit(failed ? 1 : 0);
 }
 

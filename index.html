@@ -24,393 +24,271 @@
 <meta name="twitter:image:alt" content="Gabriela Olivera — Data Analyst, Mount Maunganui. 22,834 parcels · 16,072 scored · 6-page dashboard.">
 
 <link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="stylesheet" href="assets/styles.css?v=20260924e">
+<link rel="stylesheet" href="assets/site.css?v=20261011a">
+<!--
+  Cookie-free analytics (GoatCounter), switched off until the account
+  exists. To switch it on: replace YOUR-CODE with the GoatCounter site code
+  and remove the comment markers, on every page. The privacy policy already
+  describes it.
+  <script data-goatcounter="https://YOUR-CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gabriela Olivera",
+  "jobTitle": "Data Analyst",
+  "url": "https://gabrielaolivera.nz/",
+  "image": "https://gabrielaolivera.nz/assets/images/headshot.jpg",
+  "email": "hello@gabrielaolivera.nz",
+  "address": { "@type": "PostalAddress", "addressLocality": "Mount Maunganui", "addressRegion": "Bay of Plenty", "addressCountry": "NZ" },
+  "sameAs": ["https://www.linkedin.com/in/gabriela-olivera-nz/", "https://github.com/gabrielaoliveranz"]
+}
+</script>
 </head>
 <body>
-
-<!-- STATUS LINE — update the moment this changes; nothing else on the page repeats it.
-     See CLAUDE.md, "The status line ages on its own". -->
-<!-- STATUS: open to data analyst roles -->
-
-<a class="skip-link" href="#main-content">Skip to main content</a>
-
-<header class="site-header">
-  <a class="site-header__brand" href="#main-content">
-    <img class="site-header__logo" src="assets/favicon.png" alt="" width="28" height="28">
-    <span class="site-header__mark">Gabriela Olivera</span>
-  </a>
-  <nav class="site-header__nav" aria-label="Main navigation">
-    <a href="#work">Work</a>
-    <a href="#how-i-work">How I work</a>
-    <a href="/small-business/">Small business</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Gabriela Olivera, home"><img class="logo-light" src="assets/images/logo-wordmark.png" alt="" width="256" height="112"><img class="logo-dark" src="assets/images/logo-wordmark-dark.png" alt="" width="380" height="190"></a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#how-i-work">How I work</a></li>
+      <li><a href="/small-business/">Small business</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </header>
 
-<main id="main-content">
-
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__grid">
+<!-- STATUS: open to data analyst roles (see CLAUDE.md, "The status line") -->
+<main id="main">
+<span id="top"></span>
+  <section class="hero" aria-label="Introduction">
+    <canvas id="heroField" aria-hidden="true"></canvas>
+    <div class="floats" aria-hidden="true">
+      <div class="fl" data-depth="0.6" style="left:39%;top:10%"><div class="card" style="--w:240px;--d0:.7s;--d:0s">
+        <div class="k">TERROIR<i></i></div>
+        <div class="big">22,834</div>
+        <div class="sub">rural parcels analysed for kiwifruit</div>
+        <div class="meter"><b></b></div>
+        <div class="row"><span>16,072 scored</span><span>70%</span></div>
+      </div></div>
+      <div class="fl" data-depth="1.1" style="left:58%;top:7%"><div class="card" style="--w:230px;--d0:.9s;--d:-2s">
+        <div class="k">APOPHENIA · RISK<i></i></div>
+        <div class="sub" style="margin-top:6px">Export season, 26-week forecast</div>
+        <svg viewBox="0 0 200 64" aria-hidden="true"><path d="M0 50 L20 46 L40 48 L60 40 L80 42 L100 34 L120 30" fill="none" stroke="#5c8ab8" stroke-width="2.5" stroke-linejoin="round"/><path d="M120 30 L200 12 L200 34 Z" fill="#4fc3ff" opacity=".18"/><path d="M120 30 L200 22" fill="none" stroke="#4fc3ff" stroke-width="2.5" stroke-dasharray="5 5"/><line x1="120" y1="4" x2="120" y2="60" stroke="#c9c6bd" stroke-dasharray="3 4"/></svg>
+        <div class="row"><span>9 live variables</span><span>4 feeds</span></div>
+      </div></div>
+      <div class="fl" data-depth="0.85" style="left:78%;top:20%"><div class="card" style="--w:220px;--d0:1.1s;--d:-4s">
+        <div class="k">SNAPSHOT · EXAMPLE<i></i></div>
+        <div class="q">Which customers are ordering less?</div>
+        <div class="bars"><span><i style="width:80%"></i></span><span class="dn"><i style="width:34%"></i>less</span><span><i style="width:66%"></i></span><span class="dn"><i style="width:28%"></i>less</span></div>
+      </div></div>
+    </div>
+    <div class="wrap">
       <div>
-        <p class="eyebrow">Data Analyst</p>
-        <h1 id="hero-title" class="hero__title" style="font-family: var(--font-display);">Gabriela Olivera.</h1>
-        <p class="hero__lede">14 years in operations &amp; procurement. Now building data systems end to end.</p>
-        <p class="hero__byline">I know where operational numbers break before they ever reach a report. I turn messy real-world data into pipelines, models and decision-ready dashboards.</p>
-        <div class="hero__actions">
-          <a class="button button--primary" href="#work">See the work</a>
-          <a class="button button--secondary" href="assets/cv/gabriela-olivera-cv.pdf">Download CV</a>
-        </div>
+        <div class="eyebrow fade" style="animation-delay:.1s;margin-bottom:18px">Data analyst · Mount Maunganui</div>
+        <h1 class="disp"><span class="ln"><span style="animation-delay:.15s">Gabriela</span></span><span class="ln"><span style="animation-delay:.27s">Olivera<span class="dot">.</span></span></span></h1>
       </div>
-      <div class="hero__photo-frame">
-        <img src="assets/images/headshot.jpg" alt="Gabriela Olivera" width="800" height="800">
+      <div class="portrait"><img src="assets/images/headshot.jpg" alt="Gabriela Olivera" width="800" height="800"></div>
+      <div class="hero-meta fade">
+        <p class="lede"><b>14 years in operations &amp; procurement.</b> Now building data systems end to end.</p>
+        <p class="intro">I know where operational numbers break before they ever reach a report. I turn messy real-world data into pipelines, models and decision-ready dashboards.</p>
+        <div class="cue" aria-hidden="true"><i></i>SCROLL</div>
       </div>
     </div>
   </section>
 
-  <section class="why-me" aria-labelledby="why-me-title">
-    <div class="why-me__inner">
-      <h2 id="why-me-title" class="why-me__title">Data skills are only half the job.</h2>
-      <p class="why-me__text">Before I worked in data, I spent 14 years working in operations and procurement. That taught me to question numbers before trusting them, understand how processes create data, and recognise when something looks technically correct but operationally wrong. Now I combine that judgement with SQL, Python, Power BI and modern data workflows.</p>
-      <p class="pull-line">I learned the business before I learned the tools.</p>
-    </div>
-  </section>
 
-  <section id="work" aria-label="Work" data-reveal>
-    <div class="project-band">
-      <div class="project-band__inner">
-        <h2 class="work__title work__title--on-dark">Terroir</h2>
-        <article class="project-card">
-          <div class="project-card__media">
-            <img src="assets/images/terroir-screenshot.jpg" alt="Screenshot of the Terroir Streamlit dashboard's suitability map, showing kiwifruit land-suitability parcels colour-coded across the Bay of Plenty coastline" width="1600" height="900">
-          </div>
-          <div class="project-card__body">
-            <h3 class="project-card__title">Where should kiwifruit actually grow in the Bay of Plenty?</h3>
-            <p class="project-card__eyebrow">Geospatial land-suitability analysis</p>
-            <ul class="stats stats--four">
-              <li class="stat"><div class="stat__value"><span data-count-target="22834">22,834</span></div><div class="stat__label">Parcels Analysed</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="16072">16,072</span></div><div class="stat__label">Successfully Scored</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Live Data Sources</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="6">6</span></div><div class="stat__label">Dashboard Pages</div></li>
-            </ul>
-            <p class="project-card__text">Four live New Zealand government datasets — property boundaries, soil surveys, land-cover maps and climate records — are lined up against each other and used to score every rural parcel across four Bay of Plenty districts for how well suited it is to growing kiwifruit.</p>
+  <nav class="doors" aria-label="Choose your path">
+    <a class="door" href="#work">
+      <span class="eyebrow">For employers</span>
+      <span class="q">Hiring a data analyst?</span>
+      <span class="foot"><span><span class="d">End-to-end projects on real New Zealand data, how I work, and my CV.</span><span class="go">See the work</span></span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+    </a>
+    <a class="door" href="/small-business/">
+      <span class="eyebrow">For small businesses</span>
+      <span class="q">Running a small business?</span>
+      <span class="foot"><span><span class="d">Straight answers from the numbers you already have. Fixed price, confirmed before any work starts.</span><span class="go">How I can help</span></span><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+    </a>
+  </nav>
 
-            <p class="project-card__eyebrow project-card__eyebrow--divided">What I built</p>
-            <div class="process-strip process-strip--inline process-strip--on-dark">
-              <p class="process-strip__track">
-                <span class="process-strip__step">Source</span><span class="process-strip__arrow">→</span>
-                <span class="process-strip__step">Validate</span><span class="process-strip__arrow">→</span>
-                <span class="process-strip__step">Spatially join</span><span class="process-strip__arrow">→</span>
-                <span class="process-strip__step">Score</span><span class="process-strip__arrow">→</span>
-                <span class="process-strip__step process-strip__step--final">Visualise</span>
-              </p>
-            </div>
-
-            <p class="project-card__text">While double-checking the results, I caught something that couldn’t be true: a smaller, more exclusive group of high-scoring land had more parcels in it than the larger group it was supposed to fit inside. That’s mathematically impossible, and tracing it back showed the scoring logic had been quietly filing 21.7% of parcels into the wrong tier. I fixed it, and every step of that fix is in the public commit history.</p>
-            <p class="pull-line pull-line--on-dark">The bug was more valuable than the finished chart.</p>
-
-            <p class="project-card__eyebrow project-card__eyebrow--divided">What this demonstrates</p>
-            <ul class="project-card__list">
-              <li>Four different government datasets, each with its own format and quirks, combined into one picture instead of just assumed to line up.</li>
-              <li>A scoring model where every rule and cut-off is written into the code itself — not buried in a spreadsheet that only I could explain.</li>
-              <li>A bug caught by testing a simple rule of logic (a smaller group can't be bigger than the group it came from), not by squinting at a map and hoping something looked off.</li>
-              <li>Every parcel's score can be traced back to exactly which inputs and rule produced it — nothing is a black box.</li>
-              <li>A dashboard built for someone who needs an answer this week, not a wall of technical documentation.</li>
-            </ul>
-
-            <div class="project-card__links">
-              <a class="button button--on-dark-primary" href="https://gabrielaolivera.nz/terroir-case-study/" target="_blank" rel="noopener">Read the case study</a>
-              <a class="button button--on-dark-secondary" href="https://terroir.streamlit.app" target="_blank" rel="noopener">Open the dashboard</a>
-              <a class="button button--on-dark-secondary" href="https://github.com/gabrielaoliveranz/horticultural-land-suitability-nz" target="_blank" rel="noopener">View the code</a>
-            </div>
-            <p class="project-card__wake-note project-card__wake-note--on-dark">The live dashboard runs on a free host and can take about 30 seconds to wake up on first visit — it isn't broken, just warming up. The case study loads instantly.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div class="project-band">
-      <div class="project-band__inner">
-        <h2 class="work__title work__title--on-dark">Apophenia</h2>
-        <article class="project-card">
-          <div class="project-card__media">
-            <img src="assets/images/apophenia-screenshot.jpg" alt="Screenshot of the Apophenia simulator interface, showing operational-risk sliders and forecast charts for a kiwifruit export season" width="1600" height="900">
-          </div>
-          <div class="project-card__body">
-            <h3 class="project-card__title">What happens when an export season starts going wrong?</h3>
-            <p class="project-card__eyebrow">Operational risk intelligence simulator</p>
-            <ul class="stats">
-              <li class="stat"><div class="stat__value"><span data-count-target="9">9</span></div><div class="stat__label">Live Variables</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="26">26</span>wk</div><div class="stat__label">Forecast</div><div class="stat__note">with a fixed-width projection band</div></li>
-              <li class="stat"><div class="stat__value"><span data-count-target="4">4</span></div><div class="stat__label">Data Feeds</div><div class="stat__note">each independently guarded</div></li>
-            </ul>
-            <p class="project-card__text">Nine live operational variables — weather, port congestion, fruit quality and regulatory load among them — drive a simulator that recalculates risk, cost of delay and a 26-week forecast in real time, against four independent public APIs.</p>
-
-            <p class="project-card__eyebrow project-card__eyebrow--divided">What happens under the hood</p>
-            <div class="process-strip process-strip--inline process-strip--on-dark">
-              <p class="process-strip__track">
-                <span class="process-strip__step process-strip__step--wrap">Weather + port congestion + fruit quality + regulatory load</span><span class="process-strip__arrow">→</span>
-                <span class="process-strip__step">Risk model</span><span class="process-strip__arrow">→</span>
-                <span class="process-strip__step">Cost of delay + forecast</span><span class="process-strip__arrow">→</span>
-                <span class="process-strip__step process-strip__step--final">Interactive scenario</span>
-              </p>
-            </div>
-            <p class="project-card__wake-note project-card__wake-note--on-dark">Built with hand-written JavaScript, Chart.js and Mapbox GL JS.</p>
-
-            <p class="project-card__eyebrow project-card__eyebrow--divided">Why I built it</p>
-            <p class="project-card__text">A static report shows what already happened. This simulator lets someone change one input — a closed port, a quality downgrade — and see the operational and financial consequence before it happens for real.</p>
-            <p class="pull-line pull-line--on-dark">A simulator lets you ask: &ldquo;What happens if this changes?&rdquo;</p>
-
-            <div class="project-card__links project-card__links--split">
-              <a class="button button--on-dark-primary" href="https://apophenia-nz.vercel.app" target="_blank" rel="noopener">Live simulator</a>
-              <a class="button button--on-dark-secondary" href="https://github.com/gabrielaoliveranz/optimising-kiwifruit-export" target="_blank" rel="noopener">Code</a>
-            </div>
-          </div>
-        </article>
+  <section class="statement" aria-label="Background">
+    <div class="wrap">
+      <p class="big" id="quote">I learned the business before I learned the tools.</p>
+      <div class="side">
+        <span class="eyebrow">Data skills are only half the job</span>
+        <p>Before I worked in data, I spent 14 years working in operations and procurement. That taught me to question numbers before trusting them, understand how processes create data, and recognise when something looks technically correct but operationally wrong. Now I combine that judgement with SQL, Python, Power BI and modern data workflows.</p>
       </div>
     </div>
   </section>
 
-  <section class="quote-band" aria-label="Two projects, one value chain" data-reveal>
-    <div class="quote-band__inner">
-      <p class="quote-band__quote">Two projects. One value chain. Terroir asks where the crop should grow. Apophenia asks what happens once it's being exported. Different points in the same real-world system — production and operations — approached with the same instinct: real data, real constraints, decisions someone can actually act on.</p>
+  <section class="work" id="work" aria-label="Selected work">
+    <div class="wrap">
+      <div class="work-head"><h2 class="disp">Selected work</h2><span class="eyebrow">Real data · 3 projects</span></div>
+      <article class="ex">
+        <div class="copy">
+          <span class="idx" aria-hidden="true">01</span>
+          <span class="eyebrow">Terroir · Geospatial land-suitability analysis</span>
+          <h3>Where should kiwifruit actually grow in the Bay of Plenty?</h3>
+          <div class="nums">
+            <div><b data-count="22834">22,834</b><small>Parcels analysed</small></div>
+            <div><b data-count="16072">16,072</b><small>Scored</small></div>
+            <div><b data-count="4">4</b><small>Live sources</small></div>
+          </div>
+          <p>Four live New Zealand government datasets combined to score how well each rural parcel suits kiwifruit.</p>
+          <div class="links"><a class="btn" href="https://gabrielaolivera.nz/terroir-case-study/">Read the case study →</a><a class="tlink" href="https://terroir.streamlit.app" target="_blank" rel="noopener">Open the dashboard</a><a class="tlink" href="https://github.com/gabrielaoliveranz/horticultural-land-suitability-nz" target="_blank" rel="noopener">See the code</a></div>
+        </div>
+        <div class="shot reveal-shot"><div class="inner"><img src="assets/images/terroir-screenshot.jpg" alt="Screenshot of the Terroir Streamlit dashboard's suitability map, showing kiwifruit land-suitability parcels colour-coded across the Bay of Plenty coastline" width="1600" height="900" loading="lazy"></div><span class="tag">LIVE DASHBOARD</span></div>
+      </article>
+      <article class="ex flip">
+        <div class="copy">
+          <span class="idx" aria-hidden="true">02</span>
+          <span class="eyebrow">Apophenia · Operational risk simulator</span>
+          <h3>What happens when an export season starts going wrong?</h3>
+          <div class="nums">
+            <div><b data-count="9">9</b><small>Live variables</small></div>
+            <div><b data-count="26" data-suffix="wk">26wk</b><small>Forecast</small></div>
+            <div><b data-count="4">4</b><small>Data feeds</small></div>
+          </div>
+          <p>Weather, port congestion, fruit quality and regulatory load drive a simulator of risk, cost of delay and a 26-week forecast.</p>
+          <div class="links"><a class="btn" href="https://apophenia-nz.vercel.app" target="_blank" rel="noopener">Open the simulator →</a><a class="tlink" href="https://github.com/gabrielaoliveranz/optimising-kiwifruit-export" target="_blank" rel="noopener">See the code</a></div>
+        </div>
+        <div class="shot reveal-shot"><div class="inner"><img class="crop-b" src="assets/images/apophenia-screenshot.jpg" alt="Screenshot of the Apophenia simulator interface, showing operational-risk sliders and forecast charts for a kiwifruit export season" width="1600" height="900" loading="lazy"></div><span class="tag">LIVE DASHBOARD</span></div>
+      </article>
+      <article class="ex">
+        <div class="copy">
+          <span class="idx" aria-hidden="true">03</span>
+          <span class="eyebrow">Catchment · NZ school rolls analysis · In progress</span>
+          <h3>New Zealand schools, read through public data.</h3>
+          <p>Public Ministry of Education data on New Zealand schools, modelled and analysed in SQL. The write-up follows once the analysis is finished.</p>
+          <div class="wipchips"><span>SQL</span><span>Public NZ data</span><span class="maybe">R (planned)</span></div>
+          <div class="links"><span class="soon-btn" aria-disabled="true">Case study coming soon</span></div>
+        </div>
+        <div class="shot reveal-shot wip"><div class="inner"></div>
+          <span class="pulse" style="left:22%;top:30%"></span><span class="pulse" style="left:61%;top:22%;animation-delay:.8s"></span><span class="pulse" style="left:44%;top:56%;animation-delay:1.5s"></span><span class="pulse" style="left:78%;top:48%;animation-delay:.4s"></span>
+          <div class="wipmsg"><small>NOW BUILDING</small><b>Catchment</b></div>
+          <span class="tag">IN PROGRESS</span></div>
+      </article>
     </div>
   </section>
 
-  <section id="how-i-work" class="how-i-work" aria-labelledby="how-i-work-title">
-    <div class="how-i-work__head">
-      <h2 id="how-i-work-title" class="how-i-work__title">How I work</h2>
-      <p class="how-i-work__subtitle">noise &rarr; processing &rarr; signal &rarr; decision</p>
-    </div>
-
-    <!--
-      Two mutually exclusive renderings of the same four items — exactly
-      one is ever visible. #how-i-work-grid (plain static cards) is the
-      real, always-accessible source: it's the whole story for no-JS, no
-      IntersectionObserver, or prefers-reduced-motion visitors, and stays
-      in the accessibility tree (moved to .sr-only, never display:none)
-      even once the scroll version takes over — same "one accessible
-      source, one decorative visual copy" principle as the tooling-bar
-      pattern below. assets/how-i-work-scroll.js only swaps to
-      #how-i-work-scroll (fully aria-hidden — its own text and canvas are
-      a decorative visual duplicate, not a second source of content) once
-      html.motion-ready is present. See CLAUDE.md.
-    -->
-    <ul class="how-i-work-grid" id="how-i-work-grid">
-      <li class="how-i-work-item">
-        <div class="how-i-work-item__head">
-          <span class="how-i-work-item__number">01</span>
-          <span class="how-i-work-item__stage">Noise</span>
-        </div>
-        <h3>Real data, not practice datasets</h3>
-        <p>Both projects run on live government and public sources — with the real data-quality problems that come with them.</p>
-      </li>
-      <li class="how-i-work-item">
-        <div class="how-i-work-item__head">
-          <span class="how-i-work-item__number">02</span>
-          <span class="how-i-work-item__stage">Processing</span>
-        </div>
-        <h3>Limitations written down, not hidden</h3>
-        <p>Every model states what it doesn't cover, so nobody mistakes a scope decision for an oversight.</p>
-      </li>
-      <li class="how-i-work-item">
-        <div class="how-i-work-item__head">
-          <span class="how-i-work-item__number">03</span>
-          <span class="how-i-work-item__stage">Signal</span>
-        </div>
-        <h3>Find the part that matters.</h3>
-        <p>Analysis should reduce uncertainty, not just produce another chart.</p>
-      </li>
-      <li class="how-i-work-item">
-        <div class="how-i-work-item__head">
-          <span class="how-i-work-item__number">04</span>
-          <span class="how-i-work-item__stage">Decision</span>
-        </div>
-        <h3>Technical work, explained plainly</h3>
-        <p>I write for the person who has to act on the analysis, not just the person who built it.</p>
-      </li>
-    </ul>
-
-    <div class="how-i-work-scroll" id="how-i-work-scroll" aria-hidden="true">
-      <div class="how-i-work-scroll__sticky">
-        <canvas class="how-i-work-scroll__canvas" id="how-i-work-canvas"></canvas>
-        <div class="how-i-work-scroll__gradient"></div>
-        <div class="how-i-work-scroll__text-wrap">
-          <div class="how-i-work-scroll__stage" id="how-i-work-text-stage">
-            <div class="how-i-work-scroll__item">
-              <div class="how-i-work-scroll__head">
-                <span class="how-i-work-scroll__number">01</span>
-                <span class="how-i-work-scroll__stage-label">Noise</span>
-              </div>
-              <h3>Real data, not practice datasets</h3>
-              <p>Both projects run on live government and public sources — with the real data-quality problems that come with them.</p>
-            </div>
-            <div class="how-i-work-scroll__item">
-              <div class="how-i-work-scroll__head">
-                <span class="how-i-work-scroll__number">02</span>
-                <span class="how-i-work-scroll__stage-label">Processing</span>
-              </div>
-              <h3>Limitations written down, not hidden</h3>
-              <p>Every model states what it doesn't cover, so nobody mistakes a scope decision for an oversight.</p>
-            </div>
-            <div class="how-i-work-scroll__item">
-              <div class="how-i-work-scroll__head">
-                <span class="how-i-work-scroll__number">03</span>
-                <span class="how-i-work-scroll__stage-label">Signal</span>
-              </div>
-              <h3>Find the part that matters.</h3>
-              <p>Analysis should reduce uncertainty, not just produce another chart.</p>
-            </div>
-            <div class="how-i-work-scroll__item">
-              <div class="how-i-work-scroll__head">
-                <span class="how-i-work-scroll__number">04</span>
-                <span class="how-i-work-scroll__stage-label">Decision</span>
-              </div>
-              <h3>Technical work, explained plainly</h3>
-              <p>I write for the person who has to act on the analysis, not just the person who built it.</p>
-            </div>
+  <section class="how" id="how-i-work" aria-label="How I work">
+    <div class="how-track" id="howTrack">
+      <div class="how-stick">
+        <canvas id="howField" role="img" aria-label="Scattered points arrange into a grid, then a rising trend, then a bar chart where one bar lights up as the decision"></canvas>
+        <div class="ghost" id="ghost" aria-hidden="true">01</div>
+        <div class="how-ui">
+          <div class="how-top">
+            <div><span class="eyebrow">How I work</span><h2>From noise<br>to a decision.</h2></div>
+            <div class="ticks" id="ticks" aria-hidden="true"><span class="on"><i></i>NOISE</span><span><i></i>PROCESSING</span><span><i></i>SIGNAL</span><span><i></i>DECISION</span></div>
+          </div>
+          <div class="steps">
+            <div class="step on"><span class="n">01 · NOISE</span><h3>Real data, not practice datasets</h3><p>Both projects run on live government and public sources, with the real data-quality problems that come with them.</p></div>
+            <div class="step"><span class="n">02 · PROCESSING</span><h3>Limitations written down, not hidden</h3><p>Every model states what it doesn't cover, so nobody mistakes a scope decision for an oversight.</p></div>
+            <div class="step"><span class="n">03 · SIGNAL</span><h3>Find the part that matters.</h3><p>Analysis should reduce uncertainty, not just produce another chart.</p></div>
+            <div class="step"><span class="n">04 · DECISION</span><h3>Technical work, explained plainly</h3><p>I write for the person who has to act on the analysis, not just the person who built it.</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="data-quality" class="data-quality" aria-labelledby="data-quality-title">
-    <div class="data-quality__inner">
-      <h2 id="data-quality-title" class="data-quality__title">Data quality</h2>
-      <p class="data-quality__text">I don't trust a number because a dashboard says it. I trust it after I've asked where it came from, how it was transformed, what assumptions were made, and whether the result behaves the way reality says it should.</p>
+  <section class="dq" aria-label="Data quality">
+    <div class="wrap">
+      <span class="eyebrow">Data quality</span>
+      <h2 class="disp" style="margin-top:18px">I don't trust a number because a dashboard says it.</h2>
+      <p class="sub">I trust it after I've asked where it came from, how it was transformed, what assumptions were made, and whether the result behaves the way reality says it should.</p>
+      <div class="pipe" id="pipe">
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="125" y1="40" x2="875" y2="40" stroke="#c9c6bd" stroke-width="2" vector-effect="non-scaling-stroke"/>
+          <line id="pipeFill" x1="125" y1="40" x2="125" y2="40" stroke="#1a4a82" stroke-width="3" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div class="lbls" id="pipeLbls">
+          <div><b>Source</b><small>Where it came from</small></div>
+          <div><b>Transformation</b><small>What was done to it</small></div>
+          <div><b>Validation</b><small>Does it behave like reality?</small></div>
+          <div><b>Result</b><small>A number I can stand behind</small></div>
+        </div>
+        <div class="pipe-dots" id="pipeDots" aria-hidden="true"></div>
+      </div>
+      <div class="tools-head"><span class="eyebrow">The tools I use</span><span class="eyebrow" style="color:var(--subtle)">Every day, on real data</span></div>
+      <p class="sr">Tools: SQL, Python, R, Power BI, Excel, Power Query, ETL, data quality checks, Git.</p>
     </div>
-    <div class="process-strip">
-      <p class="process-strip__track">
-        <span class="process-strip__step">Source</span><span class="process-strip__arrow">→</span>
-        <span class="process-strip__step">Transformation</span><span class="process-strip__arrow">→</span>
-        <span class="process-strip__step">Validation</span><span class="process-strip__arrow">→</span>
-        <span class="process-strip__step process-strip__step--final">Result</span>
-      </p>
-    </div>
+    <div class="marquee" aria-hidden="true"><div class="row" id="marq"></div></div>
   </section>
 
-  <div class="signal-stack" id="signal-stack">
-    <div class="signal-stack__inner">
-      <p class="signal-stack__label">Signal stack</p>
-
-      <!--
-        #signal-stack-static is the one accessible source of the tool
-        words, same principle as #how-i-work-grid above. When physics is
-        running, assets/signal-stack.js moves it to .sr-only and reveals
-        #signal-stack-frame (aria-hidden — a decorative letter-by-letter
-        duplicate of the same words), rather than the reverse. See
-        CLAUDE.md.
-      -->
-      <p class="signal-stack__static" id="signal-stack-static">
-        <span class="signal-stack__word" style="--word-size:clamp(30px,4.4vw,54px);--word-color:#4FC3FF">SQL</span>
-        <span class="signal-stack__word" style="--word-size:clamp(22px,3vw,38px);--word-color:#FFFFFF">Python</span>
-        <span class="signal-stack__word" style="--word-size:clamp(26px,3.6vw,42px);--word-color:#4FC3FF">R</span>
-        <span class="signal-stack__word" style="--word-size:clamp(30px,4.4vw,54px);--word-color:#FFFFFF">Power BI</span>
-        <span class="signal-stack__word" style="--word-size:clamp(24px,3.2vw,40px);--word-color:#4FC3FF">Excel</span>
-        <span class="signal-stack__word" style="--word-size:clamp(20px,2.6vw,30px);--word-color:#4FC3FF">ETL</span>
-        <span class="signal-stack__word" style="--word-size:clamp(22px,3vw,38px);--word-color:#4FC3FF">Data quality</span>
-        <span class="signal-stack__word" style="--word-size:clamp(28px,4vw,48px);--word-color:#FFFFFF">Git</span>
-      </p>
-
-      <div class="signal-stack__physics-frame" id="signal-stack-frame" aria-hidden="true">
-        <div class="signal-stack__physics-track" id="signal-stack-track"></div>
+  <section class="sb" id="business" aria-label="For small businesses">
+    <div class="wrap sb-grid">
+      <div>
+        <span class="eyebrow">For small businesses</span>
+        <h2 class="disp" style="margin-top:18px">Straight answers from the numbers you already have.</h2>
+        <p class="lede">You don't need a new system. You need someone who can look at your Xero data and your spreadsheets and tell you, plainly, what's going on.</p>
+        <div class="cta"><a class="btn" href="/small-business/">See how I can help →</a><span class="note">Fixed price, confirmed in writing before any work starts.</span></div>
+      </div>
+      <div>
+        <div class="dash-wrap"><div class="dash" id="dash">
+          <div class="top"><small>SNAPSHOT REPORT · EXAMPLE</small><strong>How is your business tracking this year?</strong></div>
+          <div class="body">
+            <div class="tiles"><div class="tile"><span>SALES</span><i></i></div><div class="tile"><span>MARGIN</span><i></i></div><div class="tile"><span>CUSTOMERS</span><i></i></div><div class="tile"><span>DELIVERY</span><i></i></div></div>
+            <div class="band"></div>
+            <div class="charts"><div class="cols" id="cols"></div><div class="hbars" id="hbars"><i style="width:92%"></i><i style="width:74%"></i><i style="width:58%"></i><i style="width:40%"></i></div></div>
+          </div>
+        </div></div>
+        <p class="dash-cap">Example dashboard with invented data. Yours is built around your own questions.</p>
       </div>
     </div>
-  </div>
 
+  </section>
+
+  <section class="contact" id="contact" aria-label="Contact">
+    <canvas id="endField" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h2>Let's talk about data<span class="dot">.</span></h2>
+      <div class="ways">
+        <div class="way"><span class="eyebrow">Hiring</span><p>If you're looking for someone who can bridge operational reality and analytical work, I'd be happy to talk.</p><div class="row"><a class="btn btn-light" href="mailto:hello@gabrielaolivera.nz">Get in touch →</a><a class="btn btn-ghost" href="assets/cv/gabriela-olivera-cv.pdf">Download CV</a></div></div>
+        <div class="way"><span class="eyebrow">For your business</span><p>Want to know what your own numbers are telling you? Start with a fixed-price Snapshot Report.</p><div class="row"><a class="btn btn-ghost" href="/small-business/">See how it works →</a></div></div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<button type="button" class="back-to-top" aria-label="Back to top" id="back-to-top">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-</button>
-
-<footer id="contact" class="site-footer" data-reveal>
+<button type="button" class="totop" id="totop" aria-label="Back to top"><svg class="ring" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34" fill="none" stroke="#4fc3ff" stroke-width="2.5" stroke-dasharray="213.6" stroke-dashoffset="213.6" id="totopRing"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<footer class="site-foot" aria-label="Site">
   <div class="wrap">
-    <h2 class="site-footer__title">Let's talk about data.</h2>
-    <p class="site-footer__lede">If you're looking for someone who can bridge operational reality and analytical work, I'd be happy to talk.</p>
-    <div class="site-footer__cta">
-      <a class="button button--primary js-contact-trigger" id="footer-cta" href="mailto:hello@gabrielaolivera.nz">Get in touch &rarr;</a>
+    <div class="sf-grid">
+      <div class="sf-brand"><img src="assets/images/logo-wordmark-dark.png" alt="Gabriela Olivera, data analyst" width="380" height="190"><p>Data analysis for small businesses and teams in New Zealand, from someone who learned the business before the tools.</p>
+      <div class="socials">
+        <a class="soc" href="https://www.linkedin.com/in/gabriela-olivera-nz/" target="_blank" rel="noopener" aria-label="Gabriela Olivera on LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></a>
+        <a class="soc" href="https://github.com/gabrielaoliveranz" target="_blank" rel="noopener" aria-label="Gabriela Olivera on GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg><span>GitHub</span></a>
+        <a class="soc" href="mailto:hello@gabrielaolivera.nz" aria-label="Email: hello@gabrielaolivera.nz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>hello@gabrielaolivera.nz</span></a>
+        <a class="soc" href="assets/cv/gabriela-olivera-cv.pdf" aria-label="Download CV"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><span>Download CV</span></a>
+      </div></div>
+      <nav aria-label="Explore"><h3>Explore</h3><a href="/">Home</a><a href="/#work">Work</a><a href="/#how-i-work">How I work</a><a href="/small-business/">Small business</a></nav>
+      <nav aria-label="For business"><h3>For business</h3><a href="/small-business/#plans">Plans</a><a href="/small-business/#ask">Ask your numbers</a><a href="/small-business/#faq">FAQ</a><a href="/small-business/#bizPriv">Your data stays yours</a></nav>
     </div>
-    <div class="site-footer__actions">
-      <a class="icon-link" href="https://www.linkedin.com/in/gabriela-olivera-nz/" target="_blank" rel="noopener" aria-label="Gabriela Olivera on LinkedIn" title="LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a>
-      <a class="icon-link" href="https://github.com/gabrielaoliveranz" target="_blank" rel="noopener" aria-label="Gabriela Olivera on GitHub" title="GitHub"><span class="icon icon--github" aria-hidden="true"></span></a>
-      <a class="icon-link" id="copy-email" href="mailto:hello@gabrielaolivera.nz" aria-label="Email me — also copies the address to your clipboard" title="Email (also copies address)"><span class="icon icon--email" aria-hidden="true"></span></a>
-      <a class="icon-link" id="cv-link" href="assets/cv/gabriela-olivera-cv.pdf" aria-label="Download CV" title="Download CV"><span class="icon icon--cv" aria-hidden="true"></span></a>
-    </div>
-    <span class="copy-button__status" id="copy-status" role="status" aria-live="polite"></span>
-    <div class="site-footer__meta">
-      <p class="site-footer__status"><span class="icon icon--location" aria-hidden="true"></span> Mount Maunganui, Bay of Plenty · New Zealand</p>
-      <p>&copy; 2026 Gabriela Olivera</p>
-    </div>
+    <div class="sf-bottom"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Mount Maunganui, Bay of Plenty · New Zealand</span><span class="sf-legal"><a href="/privacy/">Privacy policy</a><span>© 2026 Gabriela Olivera</span></span></div>
   </div>
 </footer>
-
-<!--
-  Contact modal: progressive enhancement over the real mailto: links
-  above (.js-contact-trigger) — see assets/contact-modal.js's own
-  header comment. Hidden by default; assets/contact-modal.js is what
-  makes it reachable at all, so a no-JS visitor never sees it and
-  relies entirely on the plain mailto: links instead, same as before.
--->
-<div class="sme-modal-overlay" id="contact-modal-overlay" hidden>
-  <div class="sme-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" id="contact-modal">
-    <button type="button" class="sme-modal__close" id="contact-modal-close" aria-label="Close">
-      <span class="icon icon--lucide-x" aria-hidden="true"></span>
-    </button>
-    <img class="sme-modal__logo" src="assets/favicon.png" alt="" width="36" height="36">
-    <h2 id="contact-modal-title" class="sme-modal__title">Let's talk about data.</h2>
-    <p class="sme-modal__lede">Tell me a bit about what you're looking for and I'll get back to you.</p>
-    <!--
-      Submits to Formspree (free tier). This static site has no backend,
-      and Formspree emails each submission to hello@gabrielaolivera.nz.
-      assets/small-business.js sends it with fetch so the visitor stays
-      on this page. Success replaces the form with #contact-form-success;
-      an error shows in #contact-form-status. Without
-      JS it's a normal POST, and Formspree shows its own thank-you page.
-      This replaced action="mailto:..." + enctype="text/plain", which
-      triggered "not secure" warnings and, on mobile, opened the
-      visitor's own mail app with raw name=/email=/message= text. See
-      CLAUDE.md, "The small-business page".
-    -->
-    <form class="sme-modal__form" id="contact-form" action="https://formspree.io/f/xljdnvzr" method="post">
+<div class="modal" id="cmodal" role="dialog" aria-modal="true" aria-labelledby="cmTitle" aria-hidden="true" inert>
+  <div class="mbox">
+    <button type="button" class="mclose" id="cmClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="mmark"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="5" y="17" width="5" height="9" rx="1.5" fill="#5c8ab8"/><rect x="12.5" y="12" width="5" height="14" rx="1.5" fill="#2e6fb0"/><rect x="20" y="8" width="5" height="18" rx="1.5" fill="#7fa3c9"/><circle cx="22.5" cy="4" r="2.6" fill="#4fc3ff"/></svg></div>
+    <h2 id="cmTitle">Let's find out what your numbers are telling you.</h2>
+    <p class="msub">Tell me a bit about your business. I reply within 2 working days.</p>
+    <form class="mform" id="cmForm" action="https://formspree.io/f/xljdnvzr" method="post">
       <input type="hidden" name="_subject" value="New enquiry from gabrielaolivera.nz">
-      <!-- Formspree's honeypot: real visitors never see or fill it; bots that do are dropped. -->
-      <input type="text" name="_gotcha" class="sme-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label class="sme-field">
-        <span class="sme-field__label"><span class="icon icon--lucide-user" aria-hidden="true"></span>Name</span>
-        <input class="sme-field__input" type="text" name="name" autocomplete="name" required>
-      </label>
-      <label class="sme-field">
-        <span class="sme-field__label"><span class="icon icon--lucide-mail" aria-hidden="true"></span>Email</span>
-        <input class="sme-field__input" type="email" name="email" autocomplete="email" required>
-      </label>
-      <label class="sme-field">
-        <span class="sme-field__label"><span class="icon icon--lucide-message-square" aria-hidden="true"></span>Message</span>
-        <textarea class="sme-field__input sme-field__input--textarea" name="message" rows="4" required></textarea>
-      </label>
-      <button type="submit" class="button button--primary sme-modal__submit">Send message &rarr;</button>
-      <p class="sme-modal__status" id="contact-form-status" role="status" aria-live="polite"></p>
+      <!-- Formspree honeypot: real visitors never see or fill it. -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+      <div><label for="cmName"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Name</label><input id="cmName" type="text" name="name" required autocomplete="name"></div>
+      <div><label for="cmEmail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Email</label><input id="cmEmail" name="email" type="email" required autocomplete="email"></div>
+      <div><label for="cmMsg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Message</label><textarea id="cmMsg" name="message" required></textarea></div>
+      <button class="btn" type="submit">Send message →</button>
+      <p class="mnote" id="cmNote" role="status" aria-live="polite"></p>
     </form>
-    <!-- Shown in place of the form once Formspree confirms the send (see
-         assets/contact-modal.js), so the confirmation can't be missed or
-         end up below the fold on a phone. -->
-    <div class="sme-modal__success" id="contact-form-success" tabindex="-1" hidden>
-      <span class="sme-modal__success-icon" aria-hidden="true">&#10003;</span>
-      <p class="sme-modal__success-title">Message sent</p>
-      <p class="sme-modal__success-text">Thanks, your message has been sent successfully. I'll get back to you soon.</p>
-      <button type="button" class="button button--primary sme-modal__submit" id="contact-form-done">Close</button>
-    </div>
   </div>
 </div>
-
-<script src="assets/script.js"></script>
-<script src="assets/contact-modal.js?v=20260924b"></script>
-<script src="assets/how-i-work-scroll.js"></script>
-<!-- Self-hosted, not a CDN <script src> — see CLAUDE.md, "Every
-     third-party asset is self-hosted or justified" and LICENSE.md.
-     Loaded after script.js (which sets html.motion-ready) since
-     signal-stack.js reads that class to decide whether to run. -->
-<script src="assets/vendor/matter.min.js"></script>
-<script src="assets/signal-stack.js"></script>
+<script src="assets/site.js?v=20261011a"></script>
 </body>
 </html>

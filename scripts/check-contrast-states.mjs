@@ -21,44 +21,22 @@ import {
 // Elements to check, by selector — each resolves via querySelector, i.e.
 // its first match in document order. Add new interactive elements here.
 const TARGETS = [
-  // First match in document order is the hero's "See the work" button.
-  // The footer's "Get in touch" CTA reuses the same class further down the
-  // page (see #footer-cta below) — same styling, but a shared class only
-  // ever tests its first match, so that one needs its own entry too.
-  ".button--primary",
-  // Download CV is a real, same-tab-navigating href — the click-guard
-  // bug this script was written to catch (see CLAUDE.md, "Contrast must
-  // hold in every interactive state") only bites elements like this one,
-  // not the target=_blank social links. It used to be reachable via
-  // ".site-footer__actions .button--primary"; now that Download CV is an
-  // .icon-link with no distinguishing class of its own, that selector
-  // would silently match nothing (not fail — just stop testing anything,
-  // the same "coverage hole" shape flagged elsewhere in this repo). Gave
-  // it its own id instead of relying on a class/position that can shift
-  // again.
-  "#cv-link",
-  // Plain .icon-link itself: first match in document order is the
-  // LinkedIn icon (GitHub shares the same rules, so it doesn't need its
-  // own entry).
-  ".icon-link",
-  // The Email link is also .icon-link, and now (like LinkedIn/GitHub) a
-  // real <a href="mailto:...">, not a <button> — but querySelector(".icon-link")
-  // always resolves to LinkedIn (first in document order), so without its
-  // own selector this element would still go untested with nothing failing
-  // to say so — see CLAUDE.md's "skip list is a coverage hole" pattern,
-  // same shape here.
-  "#copy-email",
-  ".button--on-dark-primary",
-  ".button--on-dark-secondary",
-  // Hero's "Download CV" button — a new light-background outline style,
-  // added alongside "See the work". A real same-tab-navigating href, same
-  // click-guard case as #cv-link above.
-  ".button--secondary",
-  // Footer's "Get in touch" CTA — shares .button--primary with the hero's
-  // "See the work" button (see the TARGETS comment above), and like
-  // #cv-link/#copy-email is a real same-tab mailto: navigation, so it
-  // needs its own click-guarded entry.
-  "#footer-cta",
+  // Rebuilt 2026-10-11 for the October 2026 redesign (assets/site.css).
+  // Each selector resolves to its first match in document order on
+  // index.html. Add new interactive elements here.
+  // Primary pill: first match is Terroir's "Read the case study".
+  ".btn",
+  // Text link: first match is "Open the dashboard".
+  ".tlink",
+  // Main navigation link (light header at the top of the page).
+  ".nav ul a",
+  // Contact section, on the dark band: "Get in touch" (white pill) and
+  // "Download CV" (outline). Both real same-tab hrefs, so click-guarded.
+  ".btn-light",
+  ".btn-ghost",
+  // Footer social icon (first is LinkedIn) and the footer text links.
+  ".site-foot .soc",
+  ".site-foot nav a",
 ];
 
 function relativeLuminance([r, g, b]) {

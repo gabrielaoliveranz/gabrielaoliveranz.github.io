@@ -15,6 +15,7 @@ hand-written semantic HTML, design tokens and CI checks as the
 | `index.html` (`/`) | Live |
 | `404.html` | Live — deliberately not in `sitemap.xml` (`noindex`) |
 | `small-business/index.html` (`/small-business/`) | Live — published 2026-09-24, linked from the header nav |
+| `privacy/index.html` (`/privacy/`) | Added 2026-10-11 — linked from every page's footer, listed in `sitemap.xml` |
 
 ## Structure
 
@@ -23,15 +24,17 @@ gabrielaoliveranz.github.io/
 ├── index.html
 ├── 404.html
 ├── small-business/index.html
+├── privacy/index.html
 ├── sitemap.xml
 ├── robots.txt
 ├── assets/
-│   ├── styles.css
+│   ├── styles.css                    # previous design, still used by case-studies/ pages
 │   ├── script.js                     # count-up, scroll-reveal, copy-email, back-to-top
 │   ├── contact-modal.js              # "Get in touch" modal + Formspree form (both pages)
 │   ├── how-i-work-scroll.js          # "How I work" scrollytelling canvas
 │   ├── signal-stack.js               # Signal Stack letter-drop words (Matter.js)
 │   ├── small-business.js             # /small-business/ card-height equaliser
+│   ├── site.css / site.js            # October 2026 redesign: every main page (index, small-business, privacy, 404)
 │   ├── vendor/matter.min.js          # self-hosted Matter.js — see LICENSE.md
 │   ├── favicon.png
 │   ├── cv/gabriela-olivera-cv.pdf   # the real CV
