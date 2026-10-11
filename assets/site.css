@@ -870,3 +870,6 @@ h1,h2,h3{text-wrap:balance}
   .nav.open ul a{color:var(--ink);padding:14px 16px}
   .nav.open ul a.on,.nav.open ul a:hover{background:var(--navy);color:var(--on-dark)}
 }
+/* contact form: one-line privacy notice under the Send button */
+.mform .mpriv{margin:2px 0 0;font-size:13.5px;line-height:1.4;color:var(--muted);text-align:center}
+.mform .mpriv a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
