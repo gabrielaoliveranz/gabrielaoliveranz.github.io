@@ -857,3 +857,16 @@ h1,h2,h3{text-wrap:balance}
 .pp-body h2.pp-h4{margin:0;font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--label)}
 /* phones: pipeline labels alternate between two rows so long words (Transformation, Validation) don't touch */
 @media (max-width:560px){.pipe .lbls div:nth-child(odd){padding-bottom:30px}}
+
+/* phone menu: the nav links fold into a Menu button below 860px */
+.nav-toggle{display:none}
+@media (max-width:860px){
+  .nav-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:46px;height:46px;border:1px solid var(--line);border-radius:999px;background:rgba(250,248,243,.92);cursor:pointer;padding:0}
+  .nav-toggle span{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:transform .25s}
+  .nav.open .nav-toggle span:first-child{transform:translateY(4px) rotate(45deg)}
+  .nav.open .nav-toggle span:last-child{transform:translateY(-4px) rotate(-45deg)}
+  .nav .wrap{position:relative}
+  .nav.open ul{display:flex;flex-direction:column;gap:4px;position:absolute;top:calc(100% - 4px);left:16px;right:16px;padding:10px;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(16,27,46,.18);font-size:17px}
+  .nav.open ul a{color:var(--ink);padding:14px 16px}
+  .nav.open ul a.on,.nav.open ul a:hover{background:var(--navy);color:var(--on-dark)}
+}

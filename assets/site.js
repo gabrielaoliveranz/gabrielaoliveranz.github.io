@@ -521,3 +521,13 @@
 
   }
 })();
+
+// phone menu: open/close the nav links (button only shows below 860px)
+(function(){
+  const n=document.getElementById('nav'), b=n&&n.querySelector('.nav-toggle'); if(!b) return;
+  const set=o=>{n.classList.toggle('open',o); b.setAttribute('aria-expanded',String(o)); b.setAttribute('aria-label',o?'Close menu':'Open menu');};
+  b.addEventListener('click',()=>set(!n.classList.contains('open')));
+  n.querySelectorAll('ul a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&n.classList.contains('open')){ set(false); b.focus(); } });
+  document.addEventListener('click',e=>{ if(!n.contains(e.target)) set(false); });
+})();
