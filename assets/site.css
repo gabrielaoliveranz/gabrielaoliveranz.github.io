@@ -855,3 +855,5 @@ h1,h2,h3{text-wrap:balance}
 .nav.dark .brand .logo-light{display:none}
 .nav.dark .brand .logo-dark{display:block;height:46px}
 .pp-body h2.pp-h4{margin:0;font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--label)}
+/* phones: pipeline labels alternate between two rows so long words (Transformation, Validation) don't touch */
+@media (max-width:560px){.pipe .lbls div:nth-child(odd){padding-bottom:30px}}
