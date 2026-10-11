@@ -48,14 +48,22 @@
     const cmForm=document.getElementById('cmForm'), cmMsg=document.getElementById('cmMsg'), cmNote=document.getElementById('cmNote'), cmSend=cmForm.querySelector('button[type="submit"]');
     let lastFocus=null; window.__askedQ='';
     const note=(t,err)=>{ cmNote.textContent=t; cmNote.className='mnote on'+(err?' err':''); };
+    /* after a successful send the box switches to a clear "Message sent" view */
+    const mbox=cm.querySelector('.mbox'), cmTitle=document.getElementById('cmTitle'), cmSub=mbox.querySelector('.msub'), mmark=mbox.querySelector('.mmark');
+    const title0=cmTitle.textContent, sub0=cmSub.textContent;
+    const check=document.createElement('span'); check.className='mcheck'; check.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'; mmark.appendChild(check);
+    const done=document.createElement('div'); done.className='mdone'; done.innerHTML='<button class="btn" type="button">Close</button>'; mbox.appendChild(done);
+    function showSent(){ mbox.classList.add('sent'); cmTitle.textContent='Message sent'; cmSub.textContent="Thanks for getting in touch. I'll reply within 2 working days."; cmNote.className='mnote'; cmNote.textContent=''; mbox.scrollTop=0; cmTitle.setAttribute('tabindex','-1'); cmTitle.focus(); }
+    function resetSent(){ if(!mbox.classList.contains('sent')) return; mbox.classList.remove('sent'); cmTitle.textContent=title0; cmSub.textContent=sub0; cmTitle.removeAttribute('tabindex'); }
     function openModal(prefill){
-      lastFocus=document.activeElement; cmNote.className='mnote'; cmNote.textContent='';
+      lastFocus=document.activeElement; resetSent(); cmNote.className='mnote'; cmNote.textContent='';
       if(prefill){ cmMsg.value='Hi Gabriela, I\'d like to know: '+prefill+'\n\nA bit about my business: '; cmMsg.classList.remove('pre'); void cmMsg.offsetWidth; cmMsg.classList.add('pre'); }
       cm.removeAttribute('inert'); cm.classList.add('open'); cm.setAttribute('aria-hidden','false'); document.documentElement.style.overflow='hidden';
       setTimeout(()=>document.getElementById('cmName').focus(),60);
     }
     function closeModal(){ cm.classList.remove('open'); cm.setAttribute('aria-hidden','true'); cm.setAttribute('inert',''); document.documentElement.style.overflow=''; if(lastFocus) lastFocus.focus(); }
     document.getElementById('cmClose').addEventListener('click',closeModal);
+    done.querySelector('button').addEventListener('click',closeModal);
     cm.addEventListener('click',e=>{ if(e.target===cm) closeModal(); });
     cm.addEventListener('keydown',e=>{
       if(e.key==='Escape') return closeModal();
@@ -65,8 +73,8 @@
     cmForm.addEventListener('submit',e=>{
       if(!window.fetch||!window.FormData) return; e.preventDefault(); cmSend.disabled=true; note('Sending…');
       fetch(cmForm.action,{method:'POST',body:new FormData(cmForm),headers:{Accept:'application/json'}})
-        .then(r=>{ if(!r.ok) throw new Error(r.status); cmForm.reset(); note("Thanks, your message has been sent. I'll reply within 2 working days."); })
-        .catch(()=>note("Sorry, that didn't send. Please email me at hello@gabrielaolivera.nz.",true))
+        .then(r=>{ if(!r.ok) throw new Error(r.status); cmForm.reset(); showSent(); })
+        .catch(()=>{ note("Sorry, that didn't send. Please email me at hello@gabrielaolivera.nz.",true); cmNote.scrollIntoView({block:'nearest'}); })
         .finally(()=>{ cmSend.disabled=false; });
     });
     document.addEventListener('click',e=>{

@@ -873,3 +873,13 @@ h1,h2,h3{text-wrap:balance}
 /* contact form: one-line privacy notice under the Send button */
 .mform .mpriv{margin:2px 0 0;font-size:13.5px;line-height:1.4;color:var(--muted);text-align:center}
 .mform .mpriv a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+/* contact form: "Message sent" view replaces the form after a successful send */
+.mmark .mcheck{display:none}
+.mbox.sent .mmark svg:not(.mcheck svg){display:none}
+.mbox.sent .mmark .mcheck{display:grid;place-items:center;width:56px;height:56px;margin:0 auto;border-radius:50%;background:var(--accent);color:#fff}
+.mbox.sent .mmark .mcheck svg{width:30px;height:30px;display:block}
+.mbox.sent .mform{display:none}
+.mdone{display:none;text-align:center;margin-top:22px}
+.mbox.sent .mdone{display:block}
+.mbox.sent .msub{font-size:17px}
+.mbox.sent .mmark{width:auto;height:auto;background:none;border-radius:0;margin-bottom:14px}
