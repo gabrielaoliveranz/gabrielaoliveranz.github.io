@@ -91,3 +91,10 @@ covers it, rather than a software licence like MIT.
   self-hosted fonts above — see CLAUDE.md, "Every third-party asset is
   self-hosted or justified". Drives the Signal stack's letter-by-letter
   word carousel (`assets/signal-stack.js`).
+- **GoatCounter** (every page's `<head>`) — cookie-free visit counting by
+  [GoatCounter](https://www.goatcounter.com), whose `count.js` is under the
+  [EUPL 1.2](https://github.com/arp242/goatcounter/blob/master/LICENSE).
+  Loaded from `gc.zgo.at` rather than self-hosted: the visits are sent to
+  GoatCounter's server anyway, so a local copy would add a file to keep in
+  sync without keeping any traffic off a third party. Described in the
+  privacy policy (sections 02 and 06).
