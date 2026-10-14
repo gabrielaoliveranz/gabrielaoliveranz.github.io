@@ -181,14 +181,14 @@
 
   /* data quality: a dot travels the pipeline */
   const pipe=document.getElementById('pipe'), fill=document.getElementById('pipeFill'), lbls=[...document.querySelectorAll('#pipeLbls div')];
-  const svg=pipe.querySelector('svg');
-  const nodes=[125,375,625,875].map(cx=>{const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('cx',cx); c.setAttribute('cy',40); c.setAttribute('r',9); c.setAttribute('fill','#e8e8e3'); c.setAttribute('stroke','#c9c6bd'); c.setAttribute('stroke-width','2'); c.setAttribute('vector-effect','non-scaling-stroke'); svg.appendChild(c); return c;});
-  const runner=document.createElementNS('http://www.w3.org/2000/svg','circle'); runner.setAttribute('cy',40); runner.setAttribute('r',7); runner.setAttribute('fill','#4fc3ff'); svg.appendChild(runner);
+  const svg=pipe&&pipe.querySelector('svg');
+  const nodes=!svg?[]:[125,375,625,875].map(cx=>{const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('cx',cx); c.setAttribute('cy',40); c.setAttribute('r',9); c.setAttribute('fill','#e8e8e3'); c.setAttribute('stroke','#c9c6bd'); c.setAttribute('stroke-width','2'); c.setAttribute('vector-effect','non-scaling-stroke'); svg.appendChild(c); return c;});
+  const runner=document.createElementNS('http://www.w3.org/2000/svg','circle'); runner.setAttribute('cy',40); runner.setAttribute('r',7); runner.setAttribute('fill','#4fc3ff'); if(svg) svg.appendChild(runner);
 
   /* small business: dashboard tilts flat and builds itself */
   const dash=document.getElementById('dash'), cols=document.getElementById('cols');
-  [38,46,42,55,60,57,66,72,64,78,84,94].forEach(h=>{const i=document.createElement('i'); i.style.height=h+'%'; cols.appendChild(i);});
-  const colEls=[...cols.children], tiles=[...dash.querySelectorAll('.tile')], band=dash.querySelector('.band'), hb=[...document.querySelectorAll('#hbars i')];
+  if(cols) [38,46,42,55,60,57,66,72,64,78,84,94].forEach(h=>{const i=document.createElement('i'); i.style.height=h+'%'; cols.appendChild(i);});
+  const colEls=cols?[...cols.children]:[], tiles=dash?[...dash.querySelectorAll('.tile')]:[], band=dash&&dash.querySelector('.band'), hb=[...document.querySelectorAll('#hbars i')];
 
   /* contact: every dot converges on one */
   const ec=document.getElementById('endField'); let E=fit(ec);
@@ -221,9 +221,9 @@
 
     if(inView(track)) howDraw(time);
 
-    if(inView(pipe)){ const r=pipe.getBoundingClientRect(); const p=reduce?1:clamp((vh()*.85-r.top)/(vh()*.55),0,1); const xx=125+750*p; fill.setAttribute('x2',xx); runner.setAttribute('cx',xx); nodes.forEach((n,i)=>{const on=p>=i/3-.001; n.setAttribute('fill',on?'#1a4a82':'#e8e8e3'); n.setAttribute('stroke',on?'#1a4a82':'#c9c6bd'); lbls[i].classList.toggle('on',on);}); }
+    if(pipe&&inView(pipe)){ const r=pipe.getBoundingClientRect(); const p=reduce?1:clamp((vh()*.85-r.top)/(vh()*.55),0,1); const xx=125+750*p; fill.setAttribute('x2',xx); runner.setAttribute('cx',xx); nodes.forEach((n,i)=>{const on=p>=i/3-.001; n.setAttribute('fill',on?'#1a4a82':'#e8e8e3'); n.setAttribute('stroke',on?'#1a4a82':'#c9c6bd'); lbls[i].classList.toggle('on',on);}); }
 
-    if(inView(dash)){ const r=dash.getBoundingClientRect(); const p=reduce?1:clamp((vh()-r.top)/(vh()*.8),0,1);
+    if(dash&&inView(dash)){ const r=dash.getBoundingClientRect(); const p=reduce?1:clamp((vh()-r.top)/(vh()*.8),0,1);
       dash.style.setProperty('--t',(1-ease(clamp(p*1.3,0,1))).toFixed(3));
       tiles.forEach((t,i)=>t.style.setProperty('--o',clamp((p-.15-i*.06)/.2,0,1).toFixed(3)));
       band.style.setProperty('--b',clamp((p-.35)/.25,0,1).toFixed(3));

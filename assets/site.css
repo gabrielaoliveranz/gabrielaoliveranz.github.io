@@ -883,3 +883,9 @@ h1,h2,h3{text-wrap:balance}
 .mbox.sent .mdone{display:block}
 .mbox.sent .msub{font-size:17px}
 .mbox.sent .mmark{width:auto;height:auto;background:none;border-radius:0;margin-bottom:14px}
+
+/* Home: tools-only strip and single-column small-business block (Oct 2026 trim) */
+.dq{padding-block:clamp(56px,7vw,96px)}
+.dq .tools-head{margin-top:0}
+.sb .sb-grid{grid-template-columns:minmax(0,1fr)}
+.sb{padding-block:clamp(72px,9vw,120px)}
