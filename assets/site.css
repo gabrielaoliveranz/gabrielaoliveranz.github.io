@@ -50,7 +50,9 @@ h1,h2,h3{text-wrap:balance}
 .hero h1 .ln>span{display:inline-block;animation:up 1s cubic-bezier(.16,.84,.24,1) both}
 .hero h1 .dot{color:var(--accent)}
 @keyframes up{from{transform:translateY(105%)}to{transform:none}}
-.hero-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:20px 48px;align-items:flex-end;justify-content:space-between;margin-top:8px}
+.hero-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:20px 48px;align-items:flex-start;justify-content:space-between;margin-top:8px}
+.hero-meta .cue{align-self:flex-end}
+.hero .lede{padding-top:2px}
 .hero .lede{font-family:var(--f-head);font-weight:500;font-size:clamp(19px,2vw,25px);line-height:1.35;color:var(--ink);max-width:34ch}
 .hero .lede b{font-weight:800}
 .hero .intro{max-width:52ch;color:var(--muted);font-size:16px}

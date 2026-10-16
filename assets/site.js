@@ -120,7 +120,7 @@
 
   /* statement: words light up as you read */
   const q=document.getElementById('quote');
-  { const t=q.textContent.trim(); q.innerHTML='<span class="sr-only">'+t+'</span><span aria-hidden="true">'+t.split(' ').map(w=>`<span class="w${/business|tools/.test(w)?' k':''}${reduce?' on':''}">${w}</span>`).join(' ')+'</span>'; }
+  { const t=q.textContent.trim(); q.innerHTML='<span class="sr-only">'+t+'</span><span aria-hidden="true">'+t.split(' ').map(w=>`<span class="w${/useful/.test(w)?' k':''}${reduce?' on':''}">${w}</span>`).join(' ')+'</span>'; }
   const qw=[...q.querySelectorAll('.w')];
 
   /* counters */
