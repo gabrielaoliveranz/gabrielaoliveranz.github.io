@@ -400,6 +400,27 @@ h1,h2,h3{text-wrap:balance}
 @keyframes shimmer{to{background-position:-150% 0}}
 .cs .rm{font-family:var(--f-head);font-weight:700;font-size:15px;color:#a29e92}
 
+.cs--live{text-decoration:none;color:inherit;border-top-color:var(--accent);cursor:pointer}
+.cs-live-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:center}
+.cs-live-text{display:flex;flex-direction:column;gap:10px}
+.cs--live .cs-title{font-family:var(--f-display);font-weight:800;font-size:18px;line-height:1.3;color:var(--ink)}
+.cs--live .cs-blurb{font-size:13.5px;line-height:1.5;color:var(--muted)}
+.cs-point{display:flex;align-items:center;gap:8px;margin-top:4px;font-family:var(--f-head);font-weight:700;font-size:13.5px;color:var(--accent);transition:color .25s ease}
+.cs-point .dot{width:8px;height:8px;border-radius:50%;background:var(--hilite);flex:none}
+.cs--live:hover .cs-point,.cs--live:focus-visible .cs-point{color:var(--hilite)}
+
+.cs-live-visual{position:relative;aspect-ratio:16/11;background:var(--navy);border-radius:3px;overflow:hidden;clip-path:polygon(0 12px,100% 0,100% 100%,0 100%);display:grid;place-items:center;padding:18px}
+.cs-live-deco{position:absolute;inset:0;background:radial-gradient(circle at 78% 18%,rgba(79,195,255,.14),transparent 55%),radial-gradient(circle at 10% 90%,rgba(46,111,176,.18),transparent 50%)}
+.cs-logo-pill{position:relative;z-index:2;width:100%;max-width:86%;background:var(--card);padding:18px 22px 14px;display:flex;align-items:center;box-shadow:0 12px 28px rgba(0,0,0,.32);clip-path:polygon(0 8px,100% 0,100% 100%,0 100%)}
+.cs-logo{display:block;width:100%;height:auto;max-height:52px;object-fit:contain;transition:transform .4s ease}
+.cs--live:hover .cs-logo,.cs--live:focus-visible .cs-logo{transform:scale(1.04)}
+
+.cs-soon-visual{aspect-ratio:16/11;margin:0}
+.cs .cs-live-text .redact{margin-top:2px}
+.cs .cs-live-text .cs-blurb{color:var(--subtle)}
+
+@media (max-width:560px){.cs-live-grid{grid-template-columns:1fr}.cs-live-visual{aspect-ratio:16/9}.cs-soon-visual{aspect-ratio:16/9}}
+
 /* privacy */
 .priv{background:var(--pale);padding-block:clamp(96px,11vw,150px)}
 .priv-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start}
@@ -590,6 +611,7 @@ h1,h2,h3{text-wrap:balance}
 .sf-legal{display:flex;flex-wrap:wrap;gap:20px}
 .sf-legal a{color:var(--on-dark);text-decoration:underline;text-underline-offset:3px}
 @media (max-width:860px){.faq-grid,.sf-grid{grid-template-columns:minmax(0,1fr)}.faq-left{position:static}}
+@media (max-width:640px){.sf-bottom{flex-direction:column;align-items:flex-start;gap:14px;padding-bottom:84px}}
 
 /* live demo dashboard */
 .demo{padding-block:clamp(72px,9vw,130px);background:var(--bg-2)}
@@ -891,3 +913,9 @@ h1,h2,h3{text-wrap:balance}
 .dq .tools-head{margin-top:0}
 .sb .sb-grid{grid-template-columns:minmax(0,1fr)}
 .sb{padding-block:clamp(72px,9vw,120px)}
+
+/* Work screenshots that must show whole (client dashboards): fit inside the frame instead of cropping */
+.shot .inner img.contain{object-fit:contain;object-position:center}
+
+/* phone: keep the footer's last line clear of the floating back-to-top button */
+@media (max-width:860px){.site-foot{padding-bottom:88px}}

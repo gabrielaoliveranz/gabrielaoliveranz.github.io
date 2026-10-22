@@ -10,10 +10,17 @@
   const mobile=()=>innerWidth<=860;
   const isHome=!!document.getElementById('heroField'), isBiz=!!document.getElementById('bizField');
 
+  /* counters: data-count, with optional data-prefix, data-suffix and data-dec (decimals) */
+  const counted=new WeakSet();
+  function countUp(el){ if(counted.has(el))return; counted.add(el); if(reduce)return; const end=+el.dataset.count, pre=el.dataset.prefix||'', suf=el.dataset.suffix||'', dec=+el.dataset.dec||0, t0=performance.now(), fmt=v=>pre+v.toLocaleString('en-NZ',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;
+    (function f(t){const p=Math.min(1,(t-t0)/1300); el.textContent=fmt(end*ease(p)); if(p<1) requestAnimationFrame(f);})(t0); }
+  /* pages without the home scroll loop (case studies) count up when the numbers scroll into view */
+  if(!isHome && 'IntersectionObserver' in window){ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ countUp(e.target); io.unobserve(e.target); } }),{threshold:.6}); document.querySelectorAll('[data-count]').forEach(el=>io.observe(el)); }
+
   /* nav, reading progress and the active link */
   const nav=document.getElementById('nav'), bar=document.getElementById('progress');
   const navLinks=[...document.querySelectorAll('.nav ul a')].filter(a=>a.getAttribute('href').charAt(0)==='#');
-  const darkSecs=[...document.querySelectorAll('#how-i-work,#contact,.tl,#bizContact')];
+  const darkSecs=[...document.querySelectorAll('#how-i-work,#contact,.tl,#bizContact,.cs2-findings,.cs2-method,.site-foot')];
   function navFrame(){
     const y=scrollY;
     bar.style.transform=`scaleX(${clamp(y/Math.max(1,document.documentElement.scrollHeight-vh()),0,1)})`;
@@ -122,11 +129,6 @@
   const q=document.getElementById('quote');
   { const t=q.textContent.trim(); q.innerHTML='<span class="sr-only">'+t+'</span><span aria-hidden="true">'+t.split(' ').map(w=>`<span class="w${/useful/.test(w)?' k':''}${reduce?' on':''}">${w}</span>`).join(' ')+'</span>'; }
   const qw=[...q.querySelectorAll('.w')];
-
-  /* counters */
-  const counted=new WeakSet();
-  function countUp(el){ if(counted.has(el))return; counted.add(el); if(reduce)return; const end=+el.dataset.count, suf=el.dataset.suffix||'', t0=performance.now();
-    (function f(t){const p=Math.min(1,(t-t0)/1300); el.textContent=Math.round(end*ease(p)).toLocaleString('en-NZ')+suf; if(p<1) requestAnimationFrame(f);})(t0); }
 
   /* how I work: full-screen story */
   const track=document.getElementById('howTrack'), hcv=document.getElementById('howField'); let S=fit(hcv);
