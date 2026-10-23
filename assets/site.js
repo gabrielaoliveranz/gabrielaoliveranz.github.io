@@ -217,7 +217,7 @@
     if(inView(hc)) heroDraw();
     if(!reduce){ mx-=.8+Math.min(30,Math.abs(vel)*.4); const third=marq.scrollWidth/3; if(-mx>third) mx+=third; marq.style.transform=`translateX(${mx}px)`; }
 
-    if(inView(q)){ const r=q.getBoundingClientRect(); const p=reduce?1:clamp((vh()*.85-r.top)/(r.height+vh()*.35),0,1); const n=Math.round(p*qw.length); qw.forEach((w,i)=>w.classList.toggle('on',i<n)); }
+    if(inView(q)||q.getBoundingClientRect().bottom<=0){ const r=q.getBoundingClientRect(); const p=reduce?1:clamp((vh()*.85-r.top)/(r.height+vh()*.35),0,1); const n=Math.round(p*qw.length); qw.forEach((w,i)=>w.classList.toggle('on',i<n)); }
 
     shots.forEach(s=>{ if(!inView(s))return; const r=s.getBoundingClientRect(); const p=reduce?1:clamp((vh()-r.top)/(vh()*.7),0,1); s.style.setProperty('--c',((1-ease(p))*100).toFixed(1)+'%'); s.style.setProperty('--py',((r.top+r.height/2-vh()/2)*-.06).toFixed(1)+'px'); if(p>.4) s.closest('.ex').querySelectorAll('[data-count]').forEach(countUp); });
 
@@ -326,7 +326,7 @@
   function bizFrame(time){
     {
       if(inView(bc)) bizHero();
-      if(inView(bq)){ const r=bq.getBoundingClientRect(); const p=reduce?1:clamp((vh()*.85-r.top)/(r.height+vh()*.35),0,1); const n=Math.round(p*bqw.length); bqw.forEach((w,i)=>w.classList.toggle('on',i<n)); }
+      if(inView(bq)||bq.getBoundingClientRect().bottom<=0){ const r=bq.getBoundingClientRect(); const p=reduce?1:clamp((vh()*.85-r.top)/(r.height+vh()*.35),0,1); const n=Math.round(p*bqw.length); bqw.forEach((w,i)=>w.classList.toggle('on',i<n)); }
       if(!mobile() && inView(tlTrack)){
         const r=tlTrack.getBoundingClientRect(), total=r.height-vh(); const p=clamp(-r.top/Math.max(1,total),0,1);
         const max=Math.max(0,tlStrip.scrollWidth-innerWidth); tlStrip.style.transform=`translateX(${(-max*p).toFixed(1)}px)`;
@@ -540,4 +540,12 @@
   n.querySelectorAll('ul a').forEach(a=>a.addEventListener('click',()=>set(false)));
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&n.classList.contains('open')){ set(false); b.focus(); } });
   document.addEventListener('click',e=>{ if(!n.contains(e.target)) set(false); });
+})();
+
+/* The MailerLite form injects an h4 straight after the section's h2, which skips a heading level.
+   Announce it as a level 3 once the embed has rendered (we do not control its markup). */
+(function(){
+  var host=document.querySelector('.ml-embedded'); if(!host) return;
+  function fix(){ host.querySelectorAll('.ml-form-embedContent > h4').forEach(function(h){ h.setAttribute('aria-level','3'); }); }
+  fix(); new MutationObserver(fix).observe(host,{childList:true,subtree:true});
 })();
