@@ -16,9 +16,9 @@ approved, with sample or masked figures, never real client data.
 
 ## Testimonials
 
-Planned, not built. Add the section once there's a first real client
-testimonial (a LinkedIn Services review has been requested from
-Litchfields Grain).
+Done 2026-10-24: Adriana Litchfield's Google review is on the Litchfields case
+study page (only there, by choice). Add more `.tst` cards as clients give
+permission.
 
 ## No "Clients" logo row yet
 
