@@ -919,3 +919,11 @@ h1,h2,h3{text-wrap:balance}
 
 /* phone: keep the footer's last line clear of the floating back-to-top button */
 @media (max-width:860px){.site-foot{padding-bottom:88px}}
+
+/* Newsletter sign-up section (home and small-business pages). Moved here from an inline <style> inside the section, which isn't valid HTML there. */
+.pn{padding-block:clamp(72px,10vw,130px);border-top:1px solid var(--line)}
+.pn .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:clamp(28px,5vw,72px);align-items:center}
+.pn h2{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,4.6vw,64px);line-height:.98;letter-spacing:-.035em;color:var(--ink);margin-top:14px}
+.pn h2 .dot{color:var(--accent)}
+.pn p{color:var(--muted);max-width:46ch;margin-top:18px}
+@media (max-width:820px){.pn .wrap{grid-template-columns:minmax(0,1fr)}}
