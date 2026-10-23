@@ -1,21 +1,25 @@
-# Gabriela Olivera — Portfolio
+# Gabriela Olivera, Portfolio
 
 ![Portfolio homepage hero](assets/preview/hero.png)
 
 [![Checks](https://github.com/gabrielaoliveranz/gabrielaoliveranz.github.io/actions/workflows/checks.yml/badge.svg)](https://github.com/gabrielaoliveranz/gabrielaoliveranz.github.io/actions/workflows/checks.yml)
 
-Personal portfolio, no blog, no build step. Built on the same
-hand-written semantic HTML, design tokens and CI checks as the
-[Terroir case study](https://github.com/gabrielaoliveranz/terroir-case-study).
+Personal portfolio and small-business site for a data analyst in
+Mount Maunganui, New Zealand. No blog, no build step: hand-written
+semantic HTML, shared design tokens and CI checks, the same approach as
+the [Terroir case study](https://github.com/gabrielaoliveranz/terroir-case-study).
 
 ## Pages
 
 | Page | Status |
 | --- | --- |
 | `index.html` (`/`) | Live |
-| `404.html` | Live — deliberately not in `sitemap.xml` (`noindex`) |
-| `small-business/index.html` (`/small-business/`) | Live — published 2026-09-24, linked from the header nav |
-| `privacy/index.html` (`/privacy/`) | Added 2026-10-11 — linked from every page's footer, listed in `sitemap.xml` |
+| `small-business/index.html` (`/small-business/`) | Live, linked from the header nav |
+| `case-studies/litchfields-grain/index.html` (`/case-studies/litchfields-grain/`) | Live, linked from the home page and the small-business page |
+| `privacy/index.html` (`/privacy/`) | Live, linked from every page's footer |
+| `404.html` | Live, deliberately not in `sitemap.xml` (`noindex`) |
+
+Every indexable page is listed in `sitemap.xml`.
 
 ## Structure
 
@@ -24,40 +28,45 @@ gabrielaoliveranz.github.io/
 ├── index.html
 ├── 404.html
 ├── small-business/index.html
+├── case-studies/litchfields-grain/index.html
 ├── privacy/index.html
+├── favicon.ico                        # root icon for search engines (the pages link assets/favicon.png)
+├── CNAME                              # custom domain: gabrielaolivera.nz
+├── google081f77d423ca3a8e.html        # Google Search Console verification, keep as is
 ├── sitemap.xml
 ├── robots.txt
 ├── assets/
-│   ├── styles.css                    # previous design, still used by case-studies/ pages
-│   ├── script.js                     # count-up, scroll-reveal, copy-email, back-to-top
-│   ├── contact-modal.js              # "Get in touch" modal + Formspree form (both pages)
-│   ├── how-i-work-scroll.js          # "How I work" scrollytelling canvas
-│   ├── signal-stack.js               # Signal Stack letter-drop words (Matter.js)
-│   ├── small-business.js             # /small-business/ card-height equaliser
-│   ├── site.css / site.js            # October 2026 redesign: every main page (index, small-business, privacy, 404)
-│   ├── vendor/matter.min.js          # self-hosted Matter.js — see LICENSE.md
+│   ├── site.css / site.js             # current design, used by every page
+│   ├── case-study-v2.css              # extra styles for the case study page
 │   ├── favicon.png
-│   ├── cv/gabriela-olivera-cv.pdf   # the real CV
-│   ├── fonts/                        # self-hosted Archivo, Source Sans 3 + Bricolage Grotesque
-│   ├── icons/                         # Flaticon mask-image icons — see LICENSE.md
-│   ├── images/                       # real headshot + project screenshots
-│   └── preview/hero.png              # this README's cover image (homepage hero)
-├── scripts/                           # html/link/a11y/overflow/contrast/asset
-│   │                                   # checks, plus the OG card generator
+│   ├── cv/gabriela-olivera-cv.pdf     # the real CV
+│   ├── case-studies/                  # downloadable case study PDF
+│   ├── email/                         # images used by the newsletter emails
+│   ├── fonts/                         # self-hosted Archivo, Source Sans 3 and Bricolage Grotesque
+│   ├── images/                        # headshot, project screenshots, logos, OG cards
+│   ├── preview/hero.png               # this README's cover image
+│   └── (legacy) styles.css, script.js, contact-modal.js, how-i-work-scroll.js,
+│       signal-stack.js, small-business.js, vendor/, icons/
+│                                      # from the previous design, not loaded by any page
+├── scripts/                           # html, link, a11y, overflow, contrast, asset,
+│                                      # canonical, footer and OG card checks, plus the OG card generator
+├── .github/workflows/checks.yml       # runs the checks on every push
 ├── package.json
 ├── .htmlvalidate.json
-└── CLAUDE.md                          # working conventions — read before editing
+├── LICENSE.md
+└── NEXT-STEPS.md                      # what's pending
 ```
+
+Working notes for editing the site (`CLAUDE.md`) are kept locally and
+are not part of this repository.
 
 ## Replacing content later
 
-- `assets/images/headshot.jpg` — 800×800px, square crop
-- `assets/images/terroir-screenshot.jpg` — 1600×900px (16:9)
-- `assets/images/apophenia-screenshot.jpg` — 1600×900px (16:9)
-- `assets/cv/gabriela-olivera-cv.pdf` — whenever the CV is replaced, swap
-  this repo's copy in the same change (no visible "last updated" date to
-  keep in sync — that line was deliberately removed; see CLAUDE.md,
-  "Copy #4, the CV, is a binary one").
+- `assets/images/headshot.jpg`: 800×800px, square crop
+- Project screenshots in `assets/images/`: 1600×900px (16:9) or 1600×1000px
+- `assets/cv/gabriela-olivera-cv.pdf`: whenever the CV is replaced, swap
+  this repo's copy in the same change. There is no visible "last updated"
+  date on the site to keep in sync.
 
 ## Local preview
 
@@ -69,17 +78,18 @@ npm run serve   # http://localhost:8080
 ## Checks
 
 ```bash
-npm run check   # html-validate, linkinator, axe-core, overflow, contrast states, asset paths, untracked files, OG card — same as CI
+npm run check   # html-validate, linkinator, axe-core, overflow, contrast states, asset paths,
+                # untracked files, OG cards, canonical URLs, footer: same as CI
 ```
 
-## Regenerating the OG card
+## Regenerating the OG cards
 
-`assets/images/og-card.png` is rendered from `scripts/og-card-template.html`,
-not hand-edited — see CLAUDE.md, "The OG card carries its own copy of both
-the tokens and the numbers".
+`assets/images/og-card.png` and `assets/images/og-card-small-business.png`
+are rendered from templates in `scripts/`, not hand-edited.
 
 ```bash
-npm run generate:og-card   # after editing the template, its copy, or --accent/--bg/--text* in styles.css
+npm run generate:og-card                  # home page card
+npm run generate:og-card:small-business   # small-business page card
 ```
 
 ## Live
@@ -88,4 +98,4 @@ https://gabrielaolivera.nz/
 
 ## Licence
 
-CC BY 4.0 — see [LICENSE.md](LICENSE.md).
+CC BY 4.0, see [LICENSE.md](LICENSE.md).
