@@ -10,20 +10,14 @@ covers it, rather than a software licence like MIT.
 
 - Creative Commons itself recommends against CC licences for software
   — they're not designed for source-code redistribution and carry no
-  patent grant. `assets/script.js`, `assets/how-i-work-scroll.js`,
-  `assets/signal-stack.js`, `assets/small-business.js` and
-  `assets/contact-modal.js` are real
-  code, but together they're a small progressive enhancement (count-up,
-  scroll-reveal, a copy-email control, the "How I work" scrollytelling
-  canvas, the Signal stack letter-by-letter word carousel, a
-  back-to-top button, the contact modal — none
-  required for the page's content to work) attached to what is
+  patent grant. `assets/site.js` is real code, but it's a small
+  progressive enhancement (animations, the contact form, a copy-email
+  control and similar, none required for the page's content to work)
+  attached to what is
   overwhelmingly prose and design, not a library anyone would import or
   depend on. Splitting it into its own MIT-licensed file the way the
   sister repo splits code from data would be more machinery than this
-  amount of code warrants. (`assets/vendor/matter.min.js`, the one
-  actual third-party library among them, is separately MIT-licensed —
-  see below.)
+  amount of code warrants.
 - Of the CC variants, **BY** (attribution only) fits a portfolio piece
   best: the point of publishing this is for it to be read, referenced,
   and reused with credit — not restricted. **NC** (non-commercial) was
@@ -58,39 +52,6 @@ covers it, rather than a software licence like MIT.
   -derived data — see the sister repo's own [Data and licensing](https://github.com/gabrielaoliveranz/horticultural-land-suitability-nz#data-and-licensing)
   section for those sources' terms. This repository doesn't hold rights
   over that underlying data any more than the sister repo does.
-- **`assets/icons/`** (`github.png`, `linkedin.png`, `email.png`,
-  `location-pin.png`, `cv.png`) — Flaticon icons under their Free
-  Licence, which requires attribution:
-  - Github icons created by Pixel perfect — [Flaticon](https://www.flaticon.com/free-icons/github)
-  - Linkedin icons created by Magnific — [Flaticon](https://www.flaticon.com/free-icons/linkedin)
-  - Email icons created by Uniconlabs — [Flaticon](https://www.flaticon.com/free-icons/email)
-  - Location pin icons created by Pixel perfect — [Flaticon](https://www.flaticon.com/free-icons/location-pin)
-  - Curriculum vitae icons created by Mayor Icons — [Flaticon](https://www.flaticon.com/free-icons/curriculum-vitae)
-
-  Checked both directions (see CLAUDE.md, "Every third-party asset is
-  self-hosted or justified, and either way it's in LICENSE.md"): every
-  file in `assets/icons/` has a credit above naming
-  it, and every credit above names a file that's actually in
-  `assets/icons/` and actually rendered on the page (as a CSS
-  `mask-image` on a decorative `.icon` span, recoloured via
-  `background-color` — see `assets/styles.css`). No entry for an icon
-  that isn't used, no icon without an entry.
-- **`assets/icons/lucide-*.svg`** (small-business/index.html only) —
-  [Lucide](https://lucide.dev) icons, under the
-  [ISC Licence](https://github.com/lucide-icons/lucide/blob/main/LICENSE)
-  (permissive, no attribution required — the ISC-vs-MIT difference is
-  wording, not restriction; noted here as ISC rather than MIT for
-  accuracy). Self-hosted rather than loaded from a CDN, same reasoning
-  as the self-hosted fonts and Matter.js below — see CLAUDE.md, "Every
-  third-party asset is self-hosted or justified". Same
-  `mask-image`/`.icon` technique as the Flaticon set above, styled in
-  `--accent` throughout.
-- **`assets/vendor/matter.min.js`** — [Matter.js](https://brm.io/matter-js/)
-  0.19.0 by Liam Brummitt, under the [MIT Licence](https://github.com/liabru/matter-js/blob/master/LICENSE).
-  Self-hosted rather than loaded from a CDN, same reasoning as the
-  self-hosted fonts above — see CLAUDE.md, "Every third-party asset is
-  self-hosted or justified". Drives the Signal stack's letter-by-letter
-  word carousel (`assets/signal-stack.js`).
 - **GoatCounter** (every page's `<head>`) — cookie-free visit counting by
   [GoatCounter](https://www.goatcounter.com), whose `count.js` is under the
   [EUPL 1.2](https://github.com/arp242/goatcounter/blob/master/LICENSE).

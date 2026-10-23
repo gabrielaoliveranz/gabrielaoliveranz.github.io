@@ -45,9 +45,8 @@ gabrielaoliveranz.github.io/
 │   ├── fonts/                         # self-hosted Archivo, Source Sans 3 and Bricolage Grotesque
 │   ├── images/                        # headshot, project screenshots, logos, OG cards
 │   ├── preview/hero.png               # this README's cover image
-│   └── (legacy) styles.css, script.js, contact-modal.js, how-i-work-scroll.js,
-│       signal-stack.js, small-business.js, vendor/, icons/
-│                                      # from the previous design, not loaded by any page
+│   └── styles.css                     # previous design's stylesheet, not loaded by any page;
+│                                      # kept because the OG card check reads its --accent token
 ├── scripts/                           # html, link, a11y, overflow, contrast, asset,
 │                                      # canonical, footer and OG card checks, plus the OG card generator
 ├── .github/workflows/checks.yml       # runs the checks on every push

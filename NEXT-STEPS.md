@@ -27,10 +27,9 @@ each has given written permission to use their name and logo there. One
 client isn't a credible logo row on its own, and a logo used without
 written permission is a real problem, not just a design one.
 
-## Legacy files from the previous design
+## `assets/styles.css`
 
-`assets/styles.css`, `script.js`, `contact-modal.js`,
-`how-i-work-scroll.js`, `signal-stack.js`, `small-business.js`,
-`vendor/` and `icons/` are no longer loaded by any page. Decide whether
-to delete them; if they go, remove their entries from `LICENSE.md` in
-the same change (Matter.js and the Flaticon icons).
+The previous design's stylesheet is no longer loaded by any page, but
+`scripts/check-og-card.mjs` reads `--accent` from it. Retire it only
+together with pointing that script (and the OG card generator) at
+`assets/site.css`.

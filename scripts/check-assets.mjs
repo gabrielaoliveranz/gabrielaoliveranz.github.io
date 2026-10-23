@@ -87,9 +87,9 @@ function main() {
     }
   }
 
-  // Both stylesheets: styles.css (still used by the case-study pages) and
-  // site.css (the October 2026 redesign, used by the main pages).
-  const cssPaths = ["assets/styles.css", "assets/site.css"];
+  // The stylesheets the pages actually load. assets/styles.css (the previous
+  // design) is no longer loaded by any page, so it isn't scanned here.
+  const cssPaths = ["assets/site.css", "assets/case-study-v2.css"];
   for (const cssPath of cssPaths) {
     const css = readFileSync(join(ROOT, cssPath), "utf8");
     for (const match of css.matchAll(CSS_URL_RE)) {
@@ -99,7 +99,7 @@ function main() {
     }
   }
 
-  console.log(`${failed ? "FAIL" : "OK"}  checked ${checked} local asset reference(s) across ${[...PAGES, "assets/styles.css", "assets/site.css"].join(", ")}`);
+  console.log(`${failed ? "FAIL" : "OK"}  checked ${checked} local asset reference(s) across ${[...PAGES, ...cssPaths].join(", ")}`);
   process.exit(failed ? 1 : 0);
 }
 
