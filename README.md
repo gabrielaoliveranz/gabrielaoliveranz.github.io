@@ -36,28 +36,29 @@ gabrielaoliveranz.github.io/
 ├── sitemap.xml
 ├── robots.txt
 ├── assets/
-│   ├── site.css / site.js             # current design, used by every page
+│   ├── site.css / site.js             # the site's styles and scripts, used by every page
 │   ├── case-study-v2.css              # extra styles for the case study page
+│   ├── styles.css                     # previous design's stylesheet: no page loads it, but check:og-card
+│   │                                  # still reads --accent from it (see NEXT-STEPS.md)
 │   ├── favicon.png
 │   ├── cv/gabriela-olivera-cv.pdf     # the real CV
-│   ├── case-studies/                  # downloadable case study PDF
 │   ├── email/                         # images used by the newsletter emails
 │   ├── fonts/                         # self-hosted Archivo, Source Sans 3 and Bricolage Grotesque
 │   ├── images/                        # headshot, project screenshots, logos, OG cards
-│   ├── preview/hero.png               # this README's cover image
-│   └── styles.css                     # previous design's stylesheet, not loaded by any page;
-│                                      # kept because the OG card check reads its --accent token
+│   │   └── case-studies/              # client logo and dashboard images for the case study
+│   └── preview/hero.png               # this README's cover image
 ├── scripts/                           # html, link, a11y, overflow, contrast, asset,
 │                                      # canonical, footer and OG card checks, plus the OG card generator
 ├── .github/workflows/checks.yml       # runs the checks on every push
-├── package.json
-├── .htmlvalidate.json
+├── package.json / package-lock.json
+├── .htmlvalidate.json / .htmlvalidateignore
+├── .gitattributes / .gitignore
 ├── LICENSE.md
 └── NEXT-STEPS.md                      # what's pending
 ```
 
-Working notes for editing the site (`CLAUDE.md`) are kept locally and
-are not part of this repository.
+Working notes for editing the site (`CLAUDE.md`) and the Litchfields Grain
+case study PDF are kept locally and are not part of this repository.
 
 ## Replacing content later
 
@@ -78,13 +79,16 @@ npm run serve   # http://localhost:8080
 
 ```bash
 npm run check   # html-validate, linkinator, axe-core, overflow, contrast states, asset paths,
-                # untracked files, OG cards, canonical URLs, footer: same as CI
+                # untracked files, OG cards, canonical URLs, footer (CI runs all of these
+                # except the small-business OG card check)
 ```
 
 ## Regenerating the OG cards
 
 `assets/images/og-card.png` and `assets/images/og-card-small-business.png`
-are rendered from templates in `scripts/`, not hand-edited.
+are rendered from templates in `scripts/`, not hand-edited. The case study
+card (`assets/images/og-card-litchfields-grain.png`) is a static image with
+no generator.
 
 ```bash
 npm run generate:og-card                  # home page card

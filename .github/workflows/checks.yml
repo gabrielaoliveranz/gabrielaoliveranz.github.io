@@ -43,3 +43,6 @@ jobs:
 
       - name: Canonical URL agrees everywhere
         run: npm run check:canonical
+
+      - name: Footer is identical on every page
+        run: npm run check:footer
