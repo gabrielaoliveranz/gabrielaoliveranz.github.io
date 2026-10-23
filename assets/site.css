@@ -98,6 +98,14 @@ h1,h2,h3{text-wrap:balance}
   .door:active .go{color:var(--neon)}
   .door:active .arrow{background:var(--neon);border-color:var(--neon);color:var(--navy)}
 }
+/* when the two cards stack (phones), the small-business card stays navy all the time so the pair reads clearly */
+@media (max-width:760px){
+  .door:last-child::before{transform:none}
+  .door:last-child .q{color:var(--on-dark)}
+  .door:last-child .d,.door:last-child .eyebrow{color:var(--on-dark-body)}
+  .door:last-child .go{color:var(--neon)}
+  .door:last-child .arrow{background:var(--neon);border-color:var(--neon);color:var(--navy)}
+}
 
 .statement{padding-block:clamp(96px,14vw,180px)}
 .statement .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:40px}
@@ -241,6 +249,7 @@ h1,h2,h3{text-wrap:balance}
 .tools-head{margin-top:72px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
 .tools-head .eyebrow{white-space:nowrap}
 .tools-head .eyebrow:last-child{margin-left:auto}
+@media (max-width:640px){.tools-head{flex-direction:column;align-items:center;text-align:center}.tools-head .eyebrow:last-child{margin-left:0}}
 .dq .marquee{margin-top:18px}
 
 /* question carousel */
@@ -623,6 +632,8 @@ h1,h2,h3{text-wrap:balance}
 @media (max-width:860px){.faq-grid,.sf-grid{grid-template-columns:minmax(0,1fr)}.faq-left{position:static}}
 @media (max-width:860px){.sf-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px}.sf-brand{grid-column:1/-1}}
 @media (max-width:640px){.sf-bottom{flex-direction:column;align-items:flex-start;gap:14px;padding-bottom:84px}}
+/* line the legal links up with the place name, not with the pin icon before it (16px icon + 10px gap) */
+@media (max-width:640px){.sf-legal{padding-left:26px}}
 
 /* live demo dashboard */
 .demo{padding-block:clamp(72px,9vw,130px);background:var(--bg-2)}
