@@ -1,0 +1,76 @@
+/* Plain Numbers issue pages: the web version of the newsletter email.
+   Sits on top of site.css and reuses its tokens and fonts. Mirrors the email
+   design (stone ground, navy band with a diagonal cut, cream example cards,
+   outlined step numbers). See CLAUDE.md, "Newsletter issues on the site". */
+
+.nl{padding:clamp(108px,12vw,140px) 0 clamp(56px,8vw,96px)}
+.nl-col{max-width:720px;margin:0 auto;padding-inline:var(--gut)}
+.nl-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.nl-meta time{color:var(--subtle)}
+.nl-kicker{display:flex;align-items:center;gap:14px;margin-top:clamp(28px,4vw,40px);font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--label)}
+.nl-kicker::before{content:"";width:40px;height:4px;border-radius:3px;background:var(--accent);flex:none}
+.nl h1{margin-top:16px;font-family:var(--f-display);font-weight:800;font-size:clamp(38px,6vw,60px);line-height:1;letter-spacing:-.035em;color:var(--ink)}
+.nl-rule{height:2px;background:var(--ink);margin-top:clamp(24px,3vw,32px);border:0}
+.nl-body p{margin-top:16px;font-size:18px;line-height:1.65;color:var(--body)}
+.nl-body p b,.nl-body li b{color:var(--ink)}
+.nl-lead{margin-top:28px!important}
+
+/* navy figures band, full column width with the signature diagonal cut */
+.nl-band{margin:40px 0 0;background:var(--navy);color:var(--on-dark);padding:56px clamp(22px,4vw,40px) 30px;clip-path:polygon(0 26px,100% 0,100% 100%,0 100%);border-radius:0 0 14px 14px}
+.nl-band .nl-label{font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--stage)}
+.nl-stats{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.nl-stats li{padding:4px 16px 4px 18px;border-left:1px solid var(--navy-line)}
+.nl-stats li:first-child{padding-left:0;border-left:0}
+.nl-stats b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(34px,5vw,46px);line-height:1;letter-spacing:-.04em;color:var(--on-dark)}
+.nl-stats li:last-child b{color:var(--neon)}
+.nl-stats span{display:block;margin-top:12px;font-family:var(--f-head);font-weight:700;font-size:11px;line-height:1.45;letter-spacing:.12em;text-transform:uppercase;color:var(--stage)}
+.nl-band .nl-src{margin-top:26px;padding-top:16px;border-top:1px solid var(--navy-line);font-size:14px;line-height:1.5;color:var(--on-dark-body)}
+
+.nl-body h2{margin-top:44px;font-family:var(--f-display);font-weight:800;font-size:clamp(25px,3vw,30px);line-height:1.12;letter-spacing:-.025em;color:var(--ink)}
+.nl-body h2 small{display:block;margin-bottom:6px;font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+
+/* cream example cards */
+.nl-card{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 18px}
+.nl-card .nl-label{font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.nl-rows{margin:8px 0 0;padding:0}
+.nl-rows div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #dedbd2}
+.nl-rows dt{font-size:17px;color:var(--body)}
+.nl-rows dd{margin:0;font-family:var(--f-head);font-weight:700;font-size:17px;color:var(--accent);white-space:nowrap}
+.nl-rows .strong dt{font-weight:700;color:var(--ink)}
+.nl-card .nl-note{margin-top:12px;font-size:14.5px;line-height:1.5;color:var(--subtle)}
+
+/* try this: outlined step numbers like the email */
+.nl-steps{list-style:none;margin:10px 0 0;padding:0;counter-reset:step}
+.nl-steps li{counter-increment:step;display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:6px;padding:12px 0}
+.nl-steps li::before{content:counter(step,decimal-leading-zero);font-family:var(--f-display);font-weight:800;font-size:50px;line-height:1;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:2px var(--accent)}
+.nl-steps b{display:block;font-family:var(--f-head);font-size:17.5px;color:var(--ink)}
+.nl-steps span{display:block;font-size:16.5px;line-height:1.45;color:var(--body)}
+
+.nl-news{list-style:none;margin:14px 0 0;padding:0}
+.nl-news li{position:relative;padding:0 0 14px 24px;font-size:17px;line-height:1.6;color:var(--body)}
+.nl-news li::before{content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;border-radius:50%;background:var(--neon)}
+.nl-body a{color:var(--accent);font-weight:700}
+.nl-small{font-size:15px!important;color:var(--subtle)!important}
+
+.nl-cta{margin-top:36px;background:var(--pale);border:1px solid var(--line);border-radius:14px;padding:24px 24px 26px}
+.nl-cta .nl-label{font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--label)}
+.nl-cta h2{margin-top:10px}
+.nl-cta p{margin-top:8px!important}
+.nl-sign{margin-top:36px}
+.nl-sign b{display:block;font-family:var(--f-display);font-weight:800;font-size:24px;letter-spacing:-.02em;color:var(--ink)}
+.nl-sign span{font-size:15px;color:var(--subtle)}
+
+/* join band at the end, like the email footer */
+.nl-join{margin-top:48px;background:var(--navy);color:var(--on-dark);padding:56px clamp(22px,4vw,40px) 40px;clip-path:polygon(0 26px,100% 0,100% 100%,0 100%);border-radius:0 0 14px 14px;text-align:center}
+.nl-join .dotmark{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--neon)}
+.nl-join h2{margin-top:12px;font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.025em;color:var(--on-dark)}
+.nl-join p{margin:10px auto 0;max-width:46ch;color:var(--on-dark-body);font-size:16.5px;line-height:1.55}
+.nl-join .btn{margin-top:22px;background:var(--neon);color:var(--navy)}
+
+@media (max-width:620px){
+  .nl-stats{grid-template-columns:minmax(0,1fr)}
+  .nl-stats li{padding:0 0 18px;border-left:0}
+  .nl-rows div{flex-direction:column;gap:2px}
+  .nl-steps li{grid-template-columns:60px minmax(0,1fr)}
+  .nl-steps li::before{font-size:40px}
+}

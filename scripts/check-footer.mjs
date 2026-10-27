@@ -13,6 +13,8 @@ const PAGES = [
   "small-business/index.html",
   "privacy/index.html",
   "case-studies/litchfields-grain/index.html",
+  "newsletter/costs-went-up/index.html",
+  "terms/index.html",
 ];
 
 function footer(path) {

@@ -17,6 +17,8 @@ the [Terroir case study](https://github.com/gabrielaoliveranz/terroir-case-study
 | `small-business/index.html` (`/small-business/`) | Live, linked from the header nav |
 | `case-studies/litchfields-grain/index.html` (`/case-studies/litchfields-grain/`) | Live, linked from the home page and the small-business page |
 | `privacy/index.html` (`/privacy/`) | Live, linked from every page's footer |
+| `newsletter/costs-went-up/index.html` (`/newsletter/costs-went-up/`) | Live, web version of Plain Numbers (27 Oct 2026), linked from the newsletter section on the home and small-business pages |
+| `terms/index.html` (`/terms/`) | Live, linked from every page's footer |
 | `404.html` | Live, deliberately not in `sitemap.xml` (`noindex`) |
 
 Every indexable page is listed in `sitemap.xml`.
@@ -30,6 +32,8 @@ gabrielaoliveranz.github.io/
 ├── small-business/index.html
 ├── case-studies/litchfields-grain/index.html
 ├── privacy/index.html
+├── terms/index.html
+├── newsletter/<issue>/index.html       # web versions of Plain Numbers issues
 ├── favicon.ico                        # root icon for search engines (the pages link assets/favicon.png)
 ├── CNAME                              # custom domain: gabrielaolivera.nz
 ├── google081f77d423ca3a8e.html        # Google Search Console verification, keep as is
@@ -38,6 +42,7 @@ gabrielaoliveranz.github.io/
 ├── assets/
 │   ├── site.css / site.js             # the site's styles and scripts, used by every page
 │   ├── case-study-v2.css              # extra styles for the case study page
+│   ├── newsletter.css                 # extra styles for newsletter issue pages
 │   ├── styles.css                     # previous design's stylesheet: no page loads it, but check:og-card
 │   │                                  # still reads --accent from it (see NEXT-STEPS.md)
 │   ├── favicon.png
