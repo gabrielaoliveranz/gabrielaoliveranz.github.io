@@ -4,7 +4,7 @@
   "description": "Automated checks for Gabriela Olivera's portfolio site (static HTML, no build step).",
   "scripts": {
     "check:html": "html-validate index.html 404.html small-business/index.html privacy/index.html case-studies/litchfields-grain/index.html newsletter/costs-went-up/index.html terms/index.html work/index.html",
-    "check:links": "linkinator index.html 404.html small-business/index.html privacy/index.html case-studies/litchfields-grain/index.html newsletter/costs-went-up/index.html terms/index.html work/index.html --recurse --skip \"linkedin\\.com|pinterest\\.com|etsy\\.com|terroir\\.streamlit\\.app|apophenia-nz\\.vercel\\.app|maps\\.google\\.com|gabrielaolivera\\.nz/$|gabrielaolivera\\.nz/work/$\"",
+    "check:links": "linkinator index.html 404.html small-business/index.html privacy/index.html case-studies/litchfields-grain/index.html newsletter/costs-went-up/index.html terms/index.html work/index.html --recurse --skip \"linkedin\\.com|pinterest\\.com|etsy\\.com|terroir\\.streamlit\\.app|apophenia-nz\\.vercel\\.app|maps\\.google\\.com|gabrielaolivera\\.nz/$\"",
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:overflow": "node scripts/check-overflow.mjs",
     "check:contrast-states": "node scripts/check-contrast-states.mjs",
