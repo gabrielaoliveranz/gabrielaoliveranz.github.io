@@ -23,7 +23,8 @@ import {
 const TARGETS = [
   // Rebuilt 2026-10-11 for the October 2026 redesign (assets/site.css).
   // Each selector resolves to its first match in document order on
-  // index.html. Add new interactive elements here.
+  // work/index.html (the portfolio, moved there from index.html on
+  // 2026-10-27). Add new interactive elements here.
   // Primary pill: first match is Terroir's "Read the case study".
   ".btn",
   // Text link: first match is "Open the dashboard".
@@ -116,14 +117,14 @@ async function run() {
   const server = startStaticServer();
   const results = [];
   try {
-    await waitForServer(`${BASE}/index.html`);
+    await waitForServer(`${BASE}/work/index.html`);
     const service = new chrome.ServiceBuilder(chromedriverPath);
     const options = new chrome.Options();
     options.addArguments("headless", "no-sandbox", "disable-gpu", "window-size=1280,1400");
     options.setChromeBinaryPath(chromePath);
     const driver = await new Builder().forBrowser("chrome").setChromeOptions(options).setChromeService(service).build();
     try {
-      await driver.get(`${BASE}/index.html`);
+      await driver.get(`${BASE}/work/index.html`);
       for (const selector of TARGETS) {
         const el = await driver.findElement({ css: selector });
         await driver.executeScript("arguments[0].scrollIntoView({block:'center'});", el);

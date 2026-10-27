@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 const PAGES = [
   "index.html",
   "404.html",
-  "small-business/index.html",
+  "work/index.html",
   "privacy/index.html",
   "case-studies/litchfields-grain/index.html",
   "newsletter/costs-went-up/index.html",

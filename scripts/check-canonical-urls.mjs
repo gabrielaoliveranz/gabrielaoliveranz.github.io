@@ -9,6 +9,10 @@
 // accent colour already did once. See CLAUDE.md, "sitemap.xml and
 // robots.txt reference the canonical URL, not a copy of it".
 //
+// UPDATED 2026-10-27: the home page is now the consultancy page (formerly
+// small-business/), small-business/index.html is a noindex redirect stub to
+// "/", and the portfolio lives at work/. The original note follows.
+//
 // small-business/index.html is deliberately NOT in sitemap.xml or
 // robots.txt yet (it isn't linked or published — see that file's own
 // header comment), so it's checked against origin + "small-business/"
@@ -34,6 +38,7 @@ function main() {
   const indexHtml = readFileSync("index.html", "utf8");
   const notFoundHtml = readFileSync("404.html", "utf8");
   const smallBusinessHtml = readFileSync("small-business/index.html", "utf8");
+  const workHtml = readFileSync("work/index.html", "utf8");
   const sitemapXml = readFileSync("sitemap.xml", "utf8");
   const robotsTxt = readFileSync("robots.txt", "utf8");
 
@@ -48,6 +53,8 @@ function main() {
     '404.html <link rel="canonical">': extract(notFoundHtml, '404.html canonical', /<link rel="canonical" href="([^"]+)">/),
     'small-business/index.html <link rel="canonical">': extract(smallBusinessHtml, 'small-business/index.html canonical', /<link rel="canonical" href="([^"]+)">/),
     'small-business/index.html <meta property="og:url">': extract(smallBusinessHtml, 'small-business/index.html og:url', /<meta property="og:url" content="([^"]+)">/),
+    'work/index.html <link rel="canonical">': extract(workHtml, 'work/index.html canonical', /<link rel="canonical" href="([^"]+)">/),
+    'work/index.html <meta property="og:url">': extract(workHtml, 'work/index.html og:url', /<meta property="og:url" content="([^"]+)">/),
     'sitemap.xml <loc>': extract(sitemapXml, 'sitemap.xml <loc>', /<loc>([^<]+)<\/loc>/),
     'robots.txt Sitemap:': extract(robotsTxt, 'robots.txt Sitemap:', /Sitemap:\s*(\S+)/),
   };
@@ -55,11 +62,14 @@ function main() {
   const expected = {
     'index.html <link rel="canonical">': origin,
     'index.html <meta property="og:url">': origin,
-    'index.html <meta property="og:image">': `${origin}assets/images/og-card.png`,
-    'index.html <meta name="twitter:image">': `${origin}assets/images/og-card.png`,
+    'index.html <meta property="og:image">': `${origin}assets/images/og-card-small-business.png`,
+    'index.html <meta name="twitter:image">': `${origin}assets/images/og-card-small-business.png`,
     '404.html <link rel="canonical">': `${origin}404.html`,
-    'small-business/index.html <link rel="canonical">': `${origin}small-business/`,
-    'small-business/index.html <meta property="og:url">': `${origin}small-business/`,
+    // small-business/ is a redirect stub to the home page since 2026-10-27.
+    'small-business/index.html <link rel="canonical">': origin,
+    'small-business/index.html <meta property="og:url">': origin,
+    'work/index.html <link rel="canonical">': `${origin}work/`,
+    'work/index.html <meta property="og:url">': `${origin}work/`,
     'sitemap.xml <loc>': origin,
     'robots.txt Sitemap:': `${origin}sitemap.xml`,
   };

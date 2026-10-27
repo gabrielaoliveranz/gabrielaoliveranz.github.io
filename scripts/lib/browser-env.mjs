@@ -11,7 +11,7 @@ import { join } from "node:path";
 
 export const PORT = 8080;
 export const BASE = `http://localhost:${PORT}`;
-export const PAGES = ["index.html", "404.html", "small-business/index.html", "privacy/index.html", "case-studies/litchfields-grain/index.html", "newsletter/costs-went-up/index.html", "terms/index.html"];
+export const PAGES = ["index.html", "404.html", "work/index.html", "privacy/index.html", "case-studies/litchfields-grain/index.html", "newsletter/costs-went-up/index.html", "terms/index.html"];
 
 const ENV_PATH = join(homedir(), ".browser-driver-manager", ".env");
 

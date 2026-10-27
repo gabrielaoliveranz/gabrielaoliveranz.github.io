@@ -13,8 +13,9 @@ the [Terroir case study](https://github.com/gabrielaoliveranz/terroir-case-study
 
 | Page | Status |
 | --- | --- |
-| `index.html` (`/`) | Live |
-| `small-business/index.html` (`/small-business/`) | Live, linked from the header nav |
+| `index.html` (`/`) | Live, consultancy home (was the small-business page until 2026-10-27) |
+| `work/index.html` (`/work/`) | Live, portfolio (was the home page until 2026-10-27) |
+| `small-business/index.html` (`/small-business/`) | Redirect stub to `/` (noindex), kept so old links still work |
 | `case-studies/litchfields-grain/index.html` (`/case-studies/litchfields-grain/`) | Live, linked from the home page and the small-business page |
 | `privacy/index.html` (`/privacy/`) | Live, linked from every page's footer |
 | `newsletter/costs-went-up/index.html` (`/newsletter/costs-went-up/`) | Live, web version of Plain Numbers (27 Oct 2026), linked from the newsletter section on the home and small-business pages |
