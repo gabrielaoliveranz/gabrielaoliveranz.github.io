@@ -536,3 +536,16 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
   .bento[data-carousel] .bt svg.ic{width:42px;height:42px;padding:9px}
 }
 .nw{white-space:nowrap}
+
+/* ===== round 4 ===== */
+h1 .hl,h3 .hl{font-weight:inherit;padding:0 .1em}
+/* phones: the label sits above the logo strip, not inside it */
+@media (max-width:760px){
+  .tools{background:transparent;border:0}
+  .tools .w{padding-block:28px 0}
+  .trow small{margin-bottom:12px!important;color:var(--muted)}
+  .marq{background:#fff;border-block:1px solid var(--line);margin-inline:calc(-1*var(--g));padding:16px 0}
+}
+/* touch screens: cards never jump when tapped or revealed inside a carousel */
+@media (hover:none){.qc:hover,.plan:hover,.bt:hover,.shot3:hover{transform:none!important;box-shadow:none}}
+@media (max-width:760px){[data-carousel] .rv{transform:none!important;transition:opacity .6s ease!important}}
