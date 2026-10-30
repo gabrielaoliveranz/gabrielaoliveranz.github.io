@@ -419,3 +419,4 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
 @media (prefers-reduced-motion:reduce){.wires circle{display:none}.hub .glow{animation:none}}
 .wires{inset:0;width:100%;height:100%}
 .cc-h small{font-family:var(--sans);letter-spacing:0;font-weight:500}
+.top{background:rgba(250,248,243,.86);backdrop-filter:blur(10px);pointer-events:auto}
