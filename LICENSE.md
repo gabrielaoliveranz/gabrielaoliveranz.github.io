@@ -1,6 +1,6 @@
 # Licence
 
-This repository is a personal portfolio site: prose, visual design, and
+This repository is a business website: prose, visual design, and
 a handful of hand-written HTML/CSS/JS files that present that content
 — not a reusable software library. [Creative Commons Attribution 4.0
 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
@@ -10,7 +10,7 @@ covers it, rather than a software licence like MIT.
 
 - Creative Commons itself recommends against CC licences for software
   — they're not designed for source-code redistribution and carry no
-  patent grant. `assets/site.js` is real code, but it's a small
+  patent grant. `assets/site.js` and `assets/v3.js` are real code, but they're a small
   progressive enhancement (animations, the contact form, a copy-email
   control and similar, none required for the page's content to work)
   attached to what is
@@ -18,7 +18,7 @@ covers it, rather than a software licence like MIT.
   depend on. Splitting it into its own MIT-licensed file the way the
   sister repo splits code from data would be more machinery than this
   amount of code warrants.
-- Of the CC variants, **BY** (attribution only) fits a portfolio piece
+- Of the CC variants, **BY** (attribution only) fits a website like this
   best: the point of publishing this is for it to be read, referenced,
   and reused with credit — not restricted. **NC** (non-commercial) was
   considered and rejected: "non-commercial" is famously ambiguous in
