@@ -33,12 +33,6 @@ The previous design's stylesheet is no longer loaded by any page, but
 together with pointing that script (and the OG card generator) at
 `assets/site.css`.
 
-## OG card images
-
-The social share images (`og-card.png`, `og-card-small-business.png`) still
-use the previous design. Regenerate them from updated templates in
-`scripts/` so links shared on LinkedIn match the October 2026 redesign.
-
 ## Plan prices
 
 Publish "from" prices on the three plan cards once 3 to 4 case studies are

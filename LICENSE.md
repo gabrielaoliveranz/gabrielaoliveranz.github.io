@@ -30,8 +30,9 @@ covers it, rather than a software licence like MIT.
 
 **What this licence does not cover:**
 
-- **`assets/fonts/`** — Archivo, Source Sans 3 and Bricolage Grotesque
-  are Google Fonts, distributed under the [SIL Open Font License 1.1](https://openfontlicense.org/).
+- **`assets/fonts/`** — Archivo, Source Sans 3, Source Serif 4, IBM Plex Mono
+  and Bricolage Grotesque are Google Fonts (Source Serif 4 and IBM Plex Mono
+  were taken from the Fontsource packages of the same files), distributed under the [SIL Open Font License 1.1](https://openfontlicense.org/).
   Self-hosting the `.woff2` files here doesn't relicense them; they
   remain under the OFL, same as if they were loaded from Google's own
   servers.
