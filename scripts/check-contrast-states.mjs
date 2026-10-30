@@ -29,14 +29,17 @@ const TARGETS = [
   ".btn",
   // Text link: first match is "Open the dashboard".
   ".tlink",
-  // Main navigation link (light header at the top of the page).
-  ".nav ul a",
+  // Main navigation link in the shared header pill (assets/chrome.css,
+  // October 2026 consultancy redesign): first match is "Services".
+  ".top .pill a",
+  // The header's Contact button (navy pill).
+  ".top .pill a.cta",
   // Contact section, on the dark band: "Get in touch" (white pill) and
   // "Download CV" (outline). Both real same-tab hrefs, so click-guarded.
   ".btn-light",
   ".btn-ghost",
-  // Footer social icon (first is LinkedIn) and the footer text links.
-  ".site-foot .soc",
+  // Footer social link (first is LinkedIn) and the footer text links.
+  ".site-foot .fs a",
   ".site-foot nav a",
 ];
 
