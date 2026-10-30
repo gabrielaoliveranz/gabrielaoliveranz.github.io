@@ -113,3 +113,18 @@ body:has(.work-head) .hero{padding-top:150px}
 .btn.btn-outline{background:transparent!important;color:var(--c-ink)!important;border:1px solid var(--c-ink)!important;box-shadow:none!important}
 .btn.btn-outline:hover{border-color:var(--c-blue)!important;color:var(--c-blue)!important}
 body:has(.work-head) .hero .floats{top:96px!important}
+/* header turns navy over dark sections */
+.top .lg-d{display:none}
+.top{transition:background .35s,border-color .35s}
+.top.dark{background:rgba(16,27,46,.92);border-bottom-color:#2b3a54}
+.top.dark .lg-l{display:none}.top.dark .lg-d{display:block}
+.top.dark .pill{background:rgba(255,255,255,.08);box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.top.dark .pill a{color:#e7eef6}
+.top.dark .pill a:not(.cta):hover,.top.dark .pill a[aria-current="page"]{background:rgba(255,255,255,.14);color:#fff}
+.top.dark .pill a.cta{background:var(--c-sky);color:var(--c-navy)}
+.top.dark .pill a.cta:hover{background:#fff}
+.top .pill a{transition:background .25s,color .35s}
+.top .tw>a img.lg-d{display:none}
+.top.dark .tw>a img.lg-l{display:none}
+.top.dark .tw>a img.lg-d{display:block}
+.top.dark .tw>a img.lg-d{height:50px;margin:-6px 0}

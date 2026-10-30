@@ -25,7 +25,7 @@
     const y=scrollY;
     bar.style.transform=`scaleX(${clamp(y/Math.max(1,document.documentElement.scrollHeight-vh()),0,1)})`;
     nav.classList.toggle('solid',y>40);
-    nav.classList.toggle('dark',darkSecs.some(s=>{const r=s.getBoundingClientRect(); return r.top+56<30 && r.bottom>60;}));
+    nav.classList.toggle('dark',darkSecs.some(s=>{const r=s.getBoundingClientRect(); return r.top<42 && r.bottom>42;}));
     let cur=null; navLinks.forEach(a=>{ const t=document.querySelector(a.getAttribute('href')); if(!t) return; const r=t.getBoundingClientRect(); if(r.top<vh()*.4 && r.bottom>vh()*.4) cur=a; });
     navLinks.forEach(a=>a.classList.toggle('on',a===cur));
     requestAnimationFrame(navFrame);

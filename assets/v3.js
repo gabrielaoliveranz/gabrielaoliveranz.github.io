@@ -42,3 +42,8 @@
     .catch(()=>{note.textContent="Sorry, that didn't send. Please email me at hello@gabrielaolivera.nz.";note.className='mnote on err';}).finally(()=>{send.disabled=false;});});
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;const t=a.textContent.trim();if(/^(Get in touch|Ask me|Got a different question)/.test(t)||(a.classList.contains('cta')&&location.pathname==='/')){e.preventDefault();open();}},true);
 })();
+/* header goes dark over dark sections (home + case study) */
+(()=>{const top=document.querySelector('.top');if(!top||window.__siteJs)return;
+  const dk=[...document.querySelectorAll('.proc,.close,.csnums,.site-foot')];
+  const f=()=>{const y=top.offsetHeight/2;top.classList.toggle('dark',dk.some(s=>{const r=s.getBoundingClientRect();return r.top<=y&&r.bottom>y;}));};
+  addEventListener('scroll',f,{passive:true});addEventListener('resize',f);f();})();

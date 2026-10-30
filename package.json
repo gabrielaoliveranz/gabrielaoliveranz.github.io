@@ -16,7 +16,7 @@
     "check:footer": "node scripts/check-footer.mjs",
     "generate:og-card": "node scripts/generate-og-card.mjs",
     "generate:og-card:small-business": "node scripts/generate-og-card.mjs scripts/og-card-small-business-template.html assets/images/og-card-small-business.png",
-    "serve": "http-server . -p 8080 -s",
+    "serve": "http-server . -p 8080 -s -c-1",
     "check": "npm run check:html && npm run check:links && npm run check:a11y && npm run check:overflow && npm run check:contrast-states && npm run check:assets && npm run check:untracked && npm run check:og-card && npm run check:og-card:small-business && npm run check:canonical && npm run check:footer"
   },
   "devDependencies": {
