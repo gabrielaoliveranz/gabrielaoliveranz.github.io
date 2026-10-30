@@ -189,3 +189,7 @@ body{background:#faf8f3}
 /* work page: project images stay still (no reveal or parallax), framed with soft rounded corners */
 body:has(.work-head) .shot{clip-path:none!important;border-radius:14px;box-shadow:0 0 0 1px rgba(16,27,46,.08),0 24px 40px -28px rgba(16,27,46,.35)}
 body:has(.work-head) .shot .inner{transform:none!important;inset:0!important}
+/* work page hero: same soft blue wash as the home page */
+body:has(.work-head) .hero{isolation:isolate}
+body:has(.work-head) .hero::before{content:"";position:absolute;width:680px;height:680px;right:-140px;top:-40px;border-radius:50%;
+  background:radial-gradient(circle at 40% 40%,rgba(79,195,255,.28),rgba(46,111,176,.14) 45%,transparent 70%);filter:blur(60px);z-index:-1;pointer-events:none}
