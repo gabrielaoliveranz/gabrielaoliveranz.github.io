@@ -535,3 +535,4 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
   .bento[data-carousel] .bt p{font-size:17px;line-height:1.55}
   .bento[data-carousel] .bt svg.ic{width:42px;height:42px;padding:9px}
 }
+.nw{white-space:nowrap}
