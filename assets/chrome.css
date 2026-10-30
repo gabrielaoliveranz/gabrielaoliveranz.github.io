@@ -182,3 +182,7 @@ body:has(.work-head) .hero .floats{top:96px!important}
 .totop .ring{margin:0!important;display:block!important;gap:0!important}
 /* larger, easier-to-read labels everywhere */
 .eyebrow,.nl-kicker,.nl-meta,.nl-label,.pp-top small,.pp-body h4,.pp-body h2.pp-h4,.nl-body h2 small{font-size:14px!important;letter-spacing:.05em!important}
+/* no white strip when the page bounces past the footer on phones */
+html,body{overscroll-behavior-y:none}
+html{background:#101b2e}
+body{background:#faf8f3}
