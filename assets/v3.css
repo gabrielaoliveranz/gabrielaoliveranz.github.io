@@ -549,3 +549,13 @@ h1 .hl,h3 .hl{font-weight:inherit;padding:0 .1em}
 /* touch screens: cards never jump when tapped or revealed inside a carousel */
 @media (hover:none){.qc:hover,.plan:hover,.bt:hover,.shot3:hover{transform:none!important;box-shadow:none}}
 @media (max-width:760px){[data-carousel] .rv{transform:none!important;transition:opacity .6s ease!important}}
+/* plans: compact on every screen so a whole card fits in view */
+.plan{padding:26px 26px 24px}
+.plan h3{font-size:27px;margin-top:8px}
+.plan .desc{min-height:0;font-size:15.5px;line-height:1.5;margin-top:10px}
+.plan .tool{margin-top:12px}
+.plan ul{margin-top:14px}
+.plan li{padding:8px 0 8px 26px;font-size:15px;line-height:1.4}
+.plan li::before{top:13px}
+.plan .price{margin-top:12px}
+.plan .btn{margin-top:14px;min-height:44px}

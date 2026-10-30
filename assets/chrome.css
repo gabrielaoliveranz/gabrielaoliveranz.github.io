@@ -186,3 +186,6 @@ body:has(.work-head) .hero .floats{top:96px!important}
 html,body{overscroll-behavior-y:none}
 html{background:#101b2e}
 body{background:#faf8f3}
+/* work page: project images stay still (no reveal or parallax), framed with soft rounded corners */
+body:has(.work-head) .shot{clip-path:none!important;border-radius:14px;box-shadow:0 0 0 1px rgba(16,27,46,.08),0 24px 40px -28px rgba(16,27,46,.35)}
+body:has(.work-head) .shot .inner{transform:none!important;inset:0!important}
