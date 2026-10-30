@@ -53,7 +53,6 @@ gabrielaoliveranz.github.io/
 │   ├── styles.css                     # previous design's stylesheet: no page loads it, but check:og-card
 │   │                                  # still reads --accent from it (see NEXT-STEPS.md)
 │   ├── favicon.png
-│   ├── cv/gabriela-olivera-cv.pdf     # the real CV
 │   ├── email/                         # images used by the newsletter emails
 │   ├── fonts/                         # self-hosted Archivo, Source Sans 3, Source Serif 4, IBM Plex Mono
 │   │                                  # and Bricolage Grotesque (no Google Fonts requests)
@@ -77,9 +76,8 @@ case study PDF are kept locally and are not part of this repository.
 
 - `assets/images/headshot.jpg`: 800×800px, square crop
 - Project screenshots in `assets/images/`: 1600×900px (16:9) or 1600×1000px
-- `assets/cv/gabriela-olivera-cv.pdf`: whenever the CV is replaced, swap
-  this repo's copy in the same change. There is no visible "last updated"
-  date on the site to keep in sync.
+- The CV is not published on the site (removed 30 Oct 2026). It is sent
+  directly on request.
 
 ## Local preview
 
