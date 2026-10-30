@@ -161,3 +161,18 @@ body:has(.work-head) .hero .floats{top:96px!important}
 .totop .ring{position:absolute;inset:-4px;width:72px;height:72px;transform:rotate(-90deg)}
 @media (max-width:640px){.totop{width:52px;height:52px}.totop .ring{width:60px;height:60px}}
 .back-link{display:block;width:fit-content}
+
+/* ===== readability + mobile fixes (round 2) ===== */
+/* labels on dark sections use the light sky tone, not the dark blue */
+#how-i-work .eyebrow,#contact .eyebrow,.how .eyebrow,.contact .eyebrow,.tl .eyebrow,#bizContact .eyebrow,.cs2-findings .eyebrow,.cs2-method .eyebrow{color:#7fd3ff!important}
+/* work page tools heading */
+.tools-head{display:block!important}
+.tools-head .th2{margin:12px 0 0;font:400 clamp(28px,3.4vw,44px)/1.1 var(--c-serif);letter-spacing:-.02em;color:var(--c-ink)}
+/* back-to-top: keep its original size so the progress ring lines up; no sticky hover on touch screens */
+@media (max-width:640px){.totop{width:64px!important;height:64px!important}.totop .ring{width:72px!important;height:72px!important}}
+@media (hover:none){.totop:hover{background:#1a4a82!important;color:#fff!important}}
+/* contact form on phones: a steady sheet from the top that scrolls inside */
+@media (max-width:640px){
+  .modal{place-items:start center!important;align-items:start!important;padding:10px!important}
+  .modal .mbox{transform:none!important;transition:none!important;max-height:calc(100dvh - 20px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+}

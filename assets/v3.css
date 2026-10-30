@@ -472,3 +472,29 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
   .step::before{left:-30px;top:4px}
   .step b{font-size:30px;margin-top:8px}
 }
+
+/* ===== round 2 ===== */
+.about img{height:auto!important;aspect-ratio:1/1}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .draw{stroke-dashoffset:0!important;animation:none!important}
+  .area{opacity:1!important;animation:none!important}
+  .rg{transition:none!important}.bars rect{transition:none!important;transform:none!important}
+  .plan.rec::before{animation:none}
+}
+/* carousels on phones (plans, privacy cards) */
+.cctl{display:none}
+@media (max-width:760px){
+  [data-carousel]{display:flex!important;grid-template-columns:none!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px!important;
+    scrollbar-width:none;margin-inline:calc(-1*var(--g));padding:4px var(--g) 8px;scroll-padding-inline:var(--g);border:0!important;background:transparent!important}
+  [data-carousel]::-webkit-scrollbar{display:none}
+  [data-carousel]>*{flex:0 0 86%;scroll-snap-align:start}
+  [data-carousel] .plan+.plan{border-top:1px solid var(--line)!important;border-left:1px solid var(--line)!important}
+  .bento[data-carousel] .bt:last-child{display:block!important}
+  .bento[data-carousel] .bt.hero2{min-height:320px}
+  [data-carousel]:focus-visible{outline:2px solid var(--blue-2);outline-offset:4px}
+  .cctl{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px}
+  .cctl button{width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);background:#fff;color:var(--ink);font:600 20px/1 var(--label);cursor:pointer;display:grid;place-items:center}
+  .cctl button:disabled{opacity:.35;cursor:default}
+  .cctl output{font:500 14px var(--mono);color:var(--ink);min-width:56px;text-align:center}
+}
