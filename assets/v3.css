@@ -423,3 +423,52 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
 /* v3.3: header is fixed (chrome.css); offset content */
 #main{padding-top:84px}
 .top{position:fixed}
+
+/* ===================== mobile polish ===================== */
+@media (max-width:860px){#main{padding-top:72px}}
+@media (max-width:640px){
+  /* hero: one clean data card plus the "so what" note */
+  .hero{padding-top:36px}
+  .cluster{display:block!important;height:auto;margin-top:4px}
+  .cluster .c2,.cluster .c3,.cluster .cursor{display:none!important}
+  .cluster .c1{position:relative;width:100%;inset:auto}
+  .cluster .chip2{position:relative;left:auto;bottom:auto;display:block;width:auto;max-width:86%;margin:-26px 14px 0 auto}
+  .cluster .cl-note{position:static;margin-top:12px;text-align:right}
+  .proof{margin-top:32px}
+  .proof div{padding:14px 0;border-bottom:1px solid var(--line)}
+  .proof b{font-size:20px}
+  /* tools strip */
+  .trow small{font-size:11px;letter-spacing:.04em;text-align:left!important;padding:0!important;border:0!important}
+  .trow small br{display:none}
+  .track span{padding:0 22px;font-size:18px}
+  /* about: photo beside the name */
+  .about .w{grid-template-columns:76px 1fr!important;gap:16px 18px;align-items:start}
+  .about img{width:76px;border-radius:50%}
+  .about p.q2{font-size:22px}
+}
+@media (max-width:860px){
+  /* data flow: chips, a moving connector, then the hub */
+  .flowbox{display:flex;flex-direction:column;align-items:center;gap:0;padding:28px 18px;min-height:0}
+  .flowbox .wires{display:none}
+  .flowbox .col{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px}
+  .flowbox .col.out{align-items:center}
+  .flowbox .node{font-size:12px;padding:9px 13px}
+  .flowbox .hub{width:170px;height:170px}
+  .flowbox .hub::before{content:"";position:absolute;left:50%;top:-46px;width:2px;height:40px;transform:translateX(-50%);
+    background:linear-gradient(var(--sky),var(--sky)) 0 0/2px 12px no-repeat,var(--line);animation:drop 1.6s linear infinite}
+  .flowbox .col.out{position:relative;margin-top:46px}
+  .flowbox .col.out::before{content:"";position:absolute;left:50%;top:-46px;width:2px;height:40px;transform:translateX(-50%);
+    background:linear-gradient(var(--blue),var(--blue)) 0 0/2px 12px no-repeat,var(--line);animation:drop 1.6s .8s linear infinite}
+  .flowbox .hub{margin-top:46px}
+}
+@keyframes drop{from{background-position:0 -12px,0 0}to{background-position:0 40px,0 0}}
+@media (prefers-reduced-motion:reduce){.flowbox .hub::before,.flowbox .col.out::before{animation:none}}
+@media (max-width:760px){
+  /* process: vertical timeline that fills as you scroll */
+  .steps{grid-template-columns:1fr!important;row-gap:0!important;padding:0 0 0 30px;margin-top:40px}
+  .steps::before,.steps::after{left:4px;right:auto;top:6px;bottom:6px;width:2px;height:auto}
+  .steps::after{height:calc(var(--p)*100%);bottom:auto;background:linear-gradient(var(--blue-2),var(--sky))}
+  .step{padding:0 0 30px}
+  .step::before{left:-30px;top:4px}
+  .step b{font-size:30px;margin-top:8px}
+}

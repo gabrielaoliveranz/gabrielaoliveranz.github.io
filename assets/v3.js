@@ -51,3 +51,9 @@
 (()=>{const host=document.querySelector('.ml-embedded');if(!host)return;
   const fix=()=>host.querySelectorAll('.ml-form-embedContent > h4').forEach(h=>h.setAttribute('aria-level','3'));
   fix();new MutationObserver(fix).observe(host,{childList:true,subtree:true});})();
+/* back to top, with a ring that fills as you read (pages without site.js) */
+(()=>{const b=document.getElementById('totop'),ring=document.getElementById('totopRing');if(!b||window.__siteJs)return;
+  const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  b.addEventListener('click',()=>scrollTo({top:0,behavior:rm?'auto':'smooth'}));
+  const f=()=>{const y=scrollY,max=Math.max(1,document.documentElement.scrollHeight-innerHeight);b.classList.toggle('show',y>600);ring&&ring.setAttribute('stroke-dashoffset',(213.6*(1-Math.min(1,y/max))).toFixed(1));};
+  addEventListener('scroll',f,{passive:true});f();})();
