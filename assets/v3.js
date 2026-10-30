@@ -47,3 +47,7 @@
   const dk=[...document.querySelectorAll('.proc,.close,.csnums,.site-foot')];
   const f=()=>{const y=top.offsetHeight/2;top.classList.toggle('dark',dk.some(s=>{const r=s.getBoundingClientRect();return r.top<=y&&r.bottom>y;}));};
   addEventListener('scroll',f,{passive:true});addEventListener('resize',f);f();})();
+/* The MailerLite form injects an h4 after the section's h2; announce it as level 3 (we don't control its markup). */
+(()=>{const host=document.querySelector('.ml-embedded');if(!host)return;
+  const fix=()=>host.querySelectorAll('.ml-form-embedContent > h4').forEach(h=>h.setAttribute('aria-level','3'));
+  fix();new MutationObserver(fix).observe(host,{childList:true,subtree:true});})();
