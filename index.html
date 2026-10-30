@@ -82,7 +82,7 @@
     ml('account', '2716789');
 </script>
 <!-- End MailerLite Universal -->
-<link rel="stylesheet" href="assets/v3.css?v=20261030a">
+<link rel="stylesheet" href="assets/v3.css?v=20261030d">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -110,43 +110,48 @@
         <div><b>Private</b>Your files are never entered into AI tools.</div>
       </div>
     </div>
-    <figure class="rep" aria-label="Example Snapshot Report for an invented business">
-      <div class="rep-h"><b>Harbour Orchard Supplies</b><span>Snapshot report · example</span></div>
-      <div class="kpis">
-        <div class="kpi"><small>Sales, 12 mo</small><b>$1.42m</b><i>↑ 8.4% on last year</i></div>
-        <div class="kpi"><small>Gross margin</small><b>31.6%</b><i>↓ 1.2 pts</i></div>
-        <div class="kpi"><small>Cost per order</small><b>$18.40</b><i>↑ 14% on Route C</i></div>
+    <div class="cluster rv" role="img" aria-label="Example dashboard cards for an invented business: sales trend, revenue and profitability">
+      <div class="cc c1 f1">
+        <div class="cc-h"><i>↗</i><div>Sales trend<small>This year vs last year · Harbour Orchard Supplies</small></div></div>
+        <svg viewBox="0 0 360 130" aria-hidden="true">
+          <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fc3ff" stop-opacity=".35"/><stop offset="1" stop-color="#4fc3ff" stop-opacity="0"/></linearGradient></defs>
+          <g stroke="#efeee8"><path d="M0 30H360M0 70H360M0 110H360"/></g>
+          <path class="area" d="M0 100 C40 92 60 96 90 84 S150 70 180 66 S240 52 270 44 S330 30 360 22 V130 H0Z" fill="url(#ga)"/>
+          <path d="M0 106 C40 100 70 104 100 96 S160 86 190 84 S250 74 280 70 S330 62 360 58" fill="none" stroke="#c9c6bd" stroke-width="2" stroke-dasharray="4 5"/>
+          <path class="draw" d="M0 100 C40 92 60 96 90 84 S150 70 180 66 S240 52 270 44 S330 30 360 22" fill="none" stroke="#101b2e" stroke-width="2.5"/>
+          <line x1="270" y1="10" x2="270" y2="130" stroke="#1a4a82" stroke-dasharray="3 4"/>
+          <circle cx="270" cy="44" r="5" fill="#4fc3ff" stroke="#fff" stroke-width="2"/>
+          <g><rect x="196" y="6" width="66" height="22" rx="6" fill="#101b2e"/><text x="229" y="21" text-anchor="middle" font-size="10.5" font-family="Archivo,sans-serif" font-weight="600" fill="#fff">Jun $142k</text></g>
+        </svg>
       </div>
-      <svg viewBox="0 0 400 120" aria-hidden="true">
-        <g stroke="#e8e8e3" stroke-width="1"><path d="M0 20H400M0 60H400M0 100H400"/></g>
-        <path d="M0 92 L33 86 L66 90 L100 76 L133 80 L166 66 L200 70 L233 58 L266 60 L300 44 L333 48 L366 34 L400 28" fill="none" stroke="#c9c6bd" stroke-width="2" stroke-dasharray="4 5"/>
-        <path d="M0 98 L33 90 L66 94 L100 80 L133 84 L166 70 L200 64 L233 60 L266 52 L300 46 L333 38 L366 30 L400 22" fill="none" stroke="#101b2e" stroke-width="2.5"/>
-        <circle cx="400" cy="22" r="5" fill="#4fc3ff"/>
-      </svg>
-      <div class="sowhat"><b>So what</b><span>Sales are growing, but Route C delivery is eating the margin. Worth a second look.</span></div>
-      <p class="rep-note">Example business, invented numbers.</p>
-    </figure>
+      <div class="cc c2 f2">
+        <div class="cc-h"><i>$</i><div>Revenue<small>Last 12 months</small></div></div>
+        <div class="big" data-count="1.42" data-dec="2" data-pre="$" data-suf="m">$1.42m</div>
+        <div class="sub">↑ 8.4% on $1.31m last year</div>
+        <svg class="bars" viewBox="0 0 160 46" aria-hidden="true"><g fill="#dfe7f0"><rect x="0" y="26" width="14" height="20" rx="2"/><rect x="20" y="20" width="14" height="26" rx="2"/><rect x="40" y="24" width="14" height="22" rx="2"/><rect x="60" y="16" width="14" height="30" rx="2"/><rect x="80" y="18" width="14" height="28" rx="2"/><rect x="100" y="10" width="14" height="36" rx="2"/><rect x="120" y="8" width="14" height="38" rx="2"/><rect x="140" y="2" width="14" height="44" rx="2" fill="#1a4a82"/></g></svg>
+      </div>
+      <div class="cc c3 f3">
+        <div class="cc-h"><i>%</i><div>Profitability<small>Share of sales</small></div></div>
+        <div class="ring"><div class="ringc"><svg viewBox="0 0 110 110" aria-hidden="true"><circle cx="55" cy="55" r="48" fill="none" stroke="#efeee8" stroke-width="10"/><circle class="rg" cx="55" cy="55" r="48" fill="none" stroke="#1a4a82" stroke-width="10" stroke-linecap="round" style="--v:95"/></svg><b>31.6%</b></div>
+        <ul><li style="--c:#1a4a82">Gross margin</li><li style="--c:#4fc3ff">Delivery 9.8%</li><li style="--c:#c9c6bd">Overheads 14.2%</li></ul></div>
+      </div>
+      <div class="chip2 f2"><b>SO WHAT</b>Sales are growing, but Route C delivery is eating the margin.</div>
+      <div class="cursor" style="left:34%;top:150px" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#1a4a82"><path d="M3 2l7 19 2.5-7.5L20 11z"/></svg><span>You</span></div>
+      <p class="cl-note">Example business, invented numbers.</p>
+    </div>
   </div>
 </section>
 
 <section class="tools" aria-label="Works with">
-  <div class="w"><small>Works with what you already use</small><span>Xero</span><span>MYOB</span><span>QuickBooks</span><span>Shopify</span><span>Square</span><span>Excel</span><span>Google Sheets</span><span>Power BI</span></div>
+  <div class="w"><small>Works with the systems and files you already use</small>
+  <div class="marq"><div class="track"><span>Xero</span><span>MYOB</span><span>QuickBooks</span><span>Shopify</span><span>Square</span><span>Lightspeed</span><span>Unleashed</span><span>Cin7</span><span>Excel</span><span>Google Sheets</span><span>Power BI</span><span>CSV exports</span><span aria-hidden="true"></span><span aria-hidden="true">Xero</span><span aria-hidden="true">MYOB</span><span aria-hidden="true">QuickBooks</span><span aria-hidden="true">Shopify</span><span aria-hidden="true">Square</span><span aria-hidden="true">Lightspeed</span><span aria-hidden="true">Unleashed</span><span aria-hidden="true">Cin7</span><span aria-hidden="true">Excel</span><span aria-hidden="true">Google Sheets</span><span aria-hidden="true">Power BI</span><span aria-hidden="true">CSV exports</span></div></div></div>
 </section>
 
-<section class="sec" id="questions" aria-label="The questions this usually starts with">
-  <div class="w qgrid">
-    <div class="side">
-      <span class="lab">The questions this usually starts with</span>
-      <h2 class="h2">Most of the time, the answer is already in your numbers.</h2>
-      <p class="lead">I start from the exports and spreadsheets you already have. Nothing to install, nothing to change. You get back an Excel file you already know how to open.</p>
-      <p style="margin-top:24px"><a class="link" href="mailto:hello@gabrielaolivera.nz">Got a different question? Ask me</a></p>
-    </div>
-    <div class="qs">
-      <article class="q"><span class="n">01 · Sales</span><h3>Are sales actually growing, or does it just feel that way?</h3><p>The real trend behind the headline number, once seasonality and one-off spikes are stripped out.</p><div class="get">The real trend line, month by month</div></article>
-      <article class="q"><span class="n">02 · Customers</span><h3>Which customers have quietly started ordering less?</h3><p>An early warning on customers drifting away, before they're gone for good.</p><div class="get">A short list of who to call this month</div></article>
-      <article class="q"><span class="n">03 · Profit</span><h3>Which products or customers are actually making you money?</h3><p>Profitability by product and by customer, not just top-line revenue.</p><div class="get">Every product ranked by what it really earns</div></article>
-      <article class="q"><span class="n">04 · Delivery</span><h3>Why is delivery costing more than it used to?</h3><p>Cost per order, per route and per customer, so you can see exactly where it's coming from.</p><div class="get">The route worth a second look</div></article>
-    </div>
+<section class="sec" id="questions" aria-label="What I can answer">
+  <div class="w">
+    <div class="qhead rv"><div><span class="lab">What your numbers can tell you</span><h2 class="h2">Real questions, answered with your own data.</h2></div><p class="lead" style="margin:0">I start from the exports and spreadsheets you already have. Nothing to install, nothing to change.</p></div>
+    <div class="qcards"><article class="qc rv" style="--d:0.0s"><div class="viz" aria-hidden="true"><svg viewBox="0 0 260 88"><path d="M0 60 L20 40 L40 66 L60 30 L80 58 L100 36 L120 70 L140 34 L160 52 L180 26 L200 50 L220 24 L240 40 L260 20" fill="none" stroke="#c9c6bd" stroke-width="1.5"/><path class="draw" d="M0 66 L260 22" fill="none" stroke="#1a4a82" stroke-width="2.5"/><circle cx="260" cy="22" r="4" fill="#4fc3ff"/></svg></div><div class="body"><span class="n">01 · Sales</span><h3>Are sales actually growing, or does it just feel that way?</h3><p>The real trend behind the headline number, once seasonality and one-off spikes are stripped out.</p><div class="get">The real trend line, month by month</div></div></article><article class="qc rv" style="--d:0.1s"><div class="viz" aria-hidden="true"><svg viewBox="0 0 260 88" class="bars"><g fill="#dfe7f0"><rect x="0" y="4" width="230" height="12" rx="3" transform-origin="left"/><rect x="0" y="26" width="190" height="12" rx="3"/><rect x="0" y="48" width="96" height="12" rx="3" fill="#4fc3ff"/><rect x="0" y="70" width="160" height="12" rx="3"/></g><text x="104" y="58" font-size="10" font-family="Archivo,sans-serif" font-weight="700" fill="#1a4a82">↓ ordering less</text></svg></div><div class="body"><span class="n">02 · Customers</span><h3>Which customers have quietly started ordering less?</h3><p>An early warning on customers drifting away, before they're gone for good.</p><div class="get">A short list of who to call this month</div></div></article><article class="qc rv" style="--d:0.2s"><div class="viz" aria-hidden="true"><svg viewBox="0 0 260 88" class="bars"><g><rect x="10" y="20" width="34" height="68" rx="3" fill="#1a4a82"/><rect x="58" y="34" width="34" height="54" rx="3" fill="#2e6fb0"/><rect x="106" y="48" width="34" height="40" rx="3" fill="#7fa3c9"/><rect x="154" y="62" width="34" height="26" rx="3" fill="#c3d2e3"/><rect x="202" y="76" width="34" height="12" rx="3" fill="#dfe7f0"/></g></svg></div><div class="body"><span class="n">03 · Profit</span><h3>Which products or customers are actually making you money?</h3><p>Profitability by product and by customer, not just top-line revenue.</p><div class="get">Every product ranked by what it really earns</div></div></article><article class="qc rv" style="--d:0.3s"><div class="viz" aria-hidden="true"><svg viewBox="0 0 260 88"><circle cx="20" cy="44" r="6" fill="#101b2e"/><path class="draw" d="M20 44 Q120 0 240 14" fill="none" stroke="#c9c6bd" stroke-width="2"/><path class="draw" d="M20 44 Q130 48 240 44" fill="none" stroke="#c9c6bd" stroke-width="2"/><path class="draw" d="M20 44 Q120 96 220 78" fill="none" stroke="#4fc3ff" stroke-width="3" stroke-dasharray="6 6"/><circle cx="220" cy="78" r="6" fill="#4fc3ff"/><text x="150" y="72" font-size="10" font-family="Archivo,sans-serif" font-weight="700" fill="#1a4a82">Route C</text></svg></div><div class="body"><span class="n">04 · Delivery</span><h3>Why is delivery costing more than it used to?</h3><p>Cost per order, per route and per customer, so you can see exactly where it's coming from.</p><div class="get">The route worth a second look</div></div></article></div>
+    <div class="qcta rv"><a class="link" href="mailto:hello@gabrielaolivera.nz">Got a different question? Ask me</a></div>
   </div>
 </section>
 
@@ -154,17 +159,17 @@
   <div class="w">
     <div class="phead"><div><span class="lab">How I can help</span><h2 class="h2">Three ways to work together.</h2></div><p class="lead" style="margin:0">Every plan has a fixed price, confirmed in writing before any work starts.</p></div>
     <div class="table">
-      <article class="plan rec"><span class="tag">START HERE</span><span class="kind">One-off</span><h3>Snapshot Report</h3>
+      <article class="plan rec rv"><span class="tag">START HERE</span><span class="kind">One-off</span><h3>Snapshot Report</h3>
         <p class="desc">A one-off look at your numbers as they stand today (sales, customers, costs, whatever you send). An interactive Excel dashboard, plus a plain-English summary of what it's telling you and what to do next.</p>
         <span class="tool">Excel · One-off</span>
         <ul><li>Up to 5 questions you choose</li><li>Interactive Excel dashboard, 4–6 charts</li><li>Plain-English summary and next steps</li><li>A 20–30 minute walkthrough call</li></ul>
         <p class="price">Fixed price, confirmed in writing.</p><a class="btn btn-l" href="mailto:hello@gabrielaolivera.nz">Get in touch →</a></article>
-      <article class="plan"><span class="kind">Quarterly</span><h3>Quarterly Check-in</h3>
+      <article class="plan rv" style="--d:.12s"><span class="kind">Quarterly</span><h3>Quarterly Check-in</h3>
         <p class="desc">An ongoing view of the numbers that matter (sales, margins, customers, delivery costs), rebuilt every quarter from the data you send each month, with a written summary of what's changed.</p>
         <span class="tool">Excel · Every quarter</span>
         <ul><li>Up to 8 questions, swap one each quarter</li><li>Your data folded in every month</li><li>Updated Excel dashboard every quarter</li><li>Written summary and review call</li></ul>
         <p class="price">Fixed monthly price, confirmed in writing.</p><a class="btn btn-o" href="mailto:hello@gabrielaolivera.nz">Get in touch →</a></article>
-      <article class="plan"><span class="kind">Quarterly</span><h3>Growth Dashboard</h3>
+      <article class="plan rv" style="--d:.24s"><span class="kind">Quarterly</span><h3>Growth Dashboard</h3>
         <p class="desc">An interactive Power BI dashboard built around your business, refreshed every quarter, with a simple forecast of where your key numbers are heading, not just where they've been.</p>
         <span class="tool">Power BI · Every quarter · Forecast</span>
         <ul><li>Up to 12 questions</li><li>Interactive Power BI dashboard</li><li>A simple forecast of your key numbers</li><li>Written summary and review call</li></ul>
@@ -194,7 +199,7 @@
   <div class="w">
     <span class="lab">Case studies</span>
     <h2 class="h2">Real projects, more on the way.</h2>
-    <article class="case">
+    <article class="case rv">
       <div class="txt">
         <div class="meta"><span>Agriculture</span><span>Excel · Power Query</span></div>
         <h3>Litchfields Grain: from scattered records to one clear view.</h3>
@@ -207,17 +212,18 @@
   </div>
 </section>
 
+<section class="sec tst3" aria-label="Client review">
+  <div class="w rv">
+    <blockquote><p>She took a lot of messy sales information and turned it into something clear and easy to act on. The report showed us trends we hadn't spotted, and it's already shaping our pricing and planning decisions.</p>
+    <div class="stars" aria-label="5 star review">★★★★★</div>
+    <footer>Adriana Litchfield<span>Litchfields Grain, Te Puke · <a class="link" href="https://maps.google.com/?cid=10537156818243418534" target="_blank" rel="noopener">Read the review on Google</a></span></footer></blockquote>
+  </div>
+</section>
+
 <section class="sec" id="privacy" aria-label="Privacy and security" style="padding-top:0">
-  <div class="w privg">
-    <div><span class="lab">Privacy and security</span><h2 class="h2">Your data stays yours.</h2></div>
-    <div class="pl">
-      <div><h3>Never entered into AI tools.</h3><p>Your data is never entered into AI tools.</p></div>
-      <div><h3>A private folder, just for your project.</h3><p>Everything is shared through a private Microsoft OneDrive folder, not loose email attachments.</p></div>
-      <div><h3>Protected at every step.</h3><p>Up-to-date antivirus, full-disk encryption, and two-step verification on your folder.</p></div>
-      <div><h3>Deleted within 30 days.</h3><p>Within 30 days of the project finishing, or of an ongoing plan ending.</p></div>
-      <div><h3>In line with the Privacy Act 2020.</h3><p>Everything is handled in line with the Privacy Act 2020.</p></div>
-      <div><h3>Nothing published without your approval.</h3><p>Case studies change all figures and private details. Your business name appears only if you choose.</p></div>
-    </div>
+  <div class="w">
+    <div class="qhead rv"><div><span class="lab">Privacy and security</span><h2 class="h2">Your data stays yours.</h2></div><p class="lead" style="margin:0">Small business numbers are sensitive. Here is exactly how yours are handled.</p></div>
+    <div class="bento"><div class="bt hero2 rv"><div class="shield" aria-hidden="true"><i></i><i></i><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Your data is never entered into AI tools.</h3><p>A commitment written into every client agreement.</p></div><div class="bt rv" style="--d:0.1s"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><h3>A private folder, just for your project.</h3><p>Everything is shared through a private Microsoft OneDrive folder, not loose email attachments.</p></div><div class="bt rv" style="--d:0.2s"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><h3>Protected at every step.</h3><p>Up-to-date antivirus, full-disk encryption, and two-step verification on your folder.</p></div><div class="bt rv" style="--d:0.3s"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><h3>Deleted within 30 days.</h3><p>Within 30 days of the project finishing, or of an ongoing plan ending.</p></div><div class="bt rv" style="--d:0.4s"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><h3>In line with the Privacy Act 2020.</h3><p>Everything is handled in line with the Privacy Act 2020.</p></div><div class="bt rv" style="--d:0.5s"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-3.2 3.8M6.5 7.5C4.3 9 3 12 3 12s4 6 9 6a9 9 0 0 0 3.5-.7"/></svg><h3>Nothing published without your approval.</h3><p>Case studies change all figures and private details. Your business name appears only if you choose.</p></div></div>
   </div>
 </section>
 
@@ -280,5 +286,6 @@
     <div class="sf-bottom"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Mount Maunganui, Bay of Plenty · New Zealand</span><span class="sf-legal"><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms of use</a><span>© 2026 Gabriela Olivera</span></span></div>
   </div>
 </footer>
+<script src="assets/v3.js?v=20261030d" defer></script>
 </body>
 </html>

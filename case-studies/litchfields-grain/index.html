@@ -25,156 +25,112 @@
 <meta name="twitter:image" content="https://gabrielaolivera.nz/assets/images/og-card-litchfields-grain.png">
 <meta name="twitter:image:alt" content="Litchfields Grain: from scattered records to one clear view. A case study by Gabriela Olivera.">
 <link rel="icon" type="image/png" href="../../assets/favicon.png">
-<link rel="stylesheet" href="../../assets/site.css?v=20261024a">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
-<link rel="stylesheet" href="../../assets/pro.css?v=20261030a">
-<link rel="stylesheet" href="../../assets/case-study-v2.css?v=20261023e">
+<link rel="stylesheet" href="../../assets/v3.css?v=20261030d">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
-<div class="progress" id="progress" aria-hidden="true"></div>
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="brand" href="/" aria-label="Gabriela Olivera, home"><img class="logo-light" src="../../assets/images/logo-wordmark.png" alt="" width="256" height="112"><img class="logo-dark" src="../../assets/images/logo-wordmark-dark.png" alt="" width="380" height="190"></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu"><span></span><span></span></button>
-    <ul id="navMenu">
-      <li><a href="/#plans">Services</a></li>
-      <li><a href="/#case-studies">Case studies</a></li>
-      <li><a href="/work/">Work</a></li>
-      <li><a href="/#newsletter">Newsletter</a></li>
-      <li><a href="/#bizContact">Contact</a></li>
-    </ul>
+<header class="top">
+  <div class="w">
+    <a href="/" aria-label="Gabriela Olivera, data analyst, home"><img src="../../assets/images/logo-wordmark.png" alt="Gabriela Olivera, data analyst" width="380" height="190"></a>
+    <nav aria-label="Main">
+      <a href="/#services">Services</a><a href="/#approach">Approach</a><a href="/#case-studies">Case studies</a><a href="/#faq">FAQ</a><a href="/work/">Work</a>
+      <a class="btn btn-p" href="mailto:hello@gabrielaolivera.nz">Get in touch</a>
+    </nav>
   </div>
 </header>
-
 <main id="main">
-
-  <section class="cs2-hero">
-    <div class="wrap cs2-top">
-      <div>
-        <a class="tlink cs2-back" href="/#case-studies">&larr; All case studies</a>
-        <p class="eyebrow">Case study &middot; Data consolidation</p>
-        <h1 class="disp">Litchfields Grain: sales data analysis for a Bay of Plenty <span class="hl">maize supplier</span></h1>
-        <p class="cs2-lede"><b>From scattered records to one clear view of the business.</b> Litchfields Grain is a family-run maize company in Te Puke, Bay of Plenty. I brought three separate sets of records into one dashboard, and left the business with a short list of practical next steps.</p>
-      </div>
-      <p class="cs2-client"><span>Client</span><img src="../../assets/images/case-studies/litchfields-grain/client-logo.png" alt="Litchfields Grain" width="511" height="153"></p>
+<section class="hero csh" aria-label="Case study introduction">
+  <div class="w">
+    <div>
+      <a class="link" href="/#case-studies">← All case studies</a>
+      <p class="lab" style="margin-top:28px">Case study · Data consolidation</p>
+      <h1>Litchfields Grain: sales data analysis for a Bay of Plenty <em>maize supplier.</em></h1>
+      <p class="lead">From scattered records to one clear view of the business. Litchfields Grain is a family-run maize company in Te Puke, Bay of Plenty. I brought three separate sets of records into one dashboard, and left the business with a short list of practical next steps.</p>
     </div>
-    <div class="wrap cs2-figures">
-      <div class="nums">
-        <div><b data-count="377" data-prefix="$" data-suffix="K">$377K</b><small>2026 sales</small></div>
-        <div><b data-count="92" data-suffix="%">92%</b><small>Expenses as % of sales</small></div>
-        <div><b data-count="7.6" data-dec="1" data-suffix="%">7.6%</b><small>Margin, 2026</small></div>
-        <div><b data-count="190">190</b><small>Tonnes picked up, Apr&ndash;Sep</small></div>
-      </div>
-      <p class="cs2-note">Sales, expenses and margin are full-year 2026 figures. Tonnes picked up covers April to September 2026, the period for which pickup records were available.</p>
-    </div>
-  </section>
-
-  <div class="wrap">
-    <section class="cs2-section" aria-labelledby="project-title">
-      <div>
-        <p class="eyebrow">The project</p>
-        <h2 id="project-title">Three places, three layouts, <span class="bl">no joined-up picture</span></h2>
-      </div>
-      <div>
-        <p>The business kept its numbers in three places: an income and expenses report from Xero, a sales-by-product inventory report, and records of grain picked up from suppliers. Each used its own layout, and product codes were written differently in each, so nothing could be compared.</p>
-        <p>I combined the three sources into a single Excel data model with Power Query and built a shared product key so the reports could finally be matched. Every data-quality issue and cleaning decision was logged (18 findings and 17 decisions), so the work can be checked.</p>
-        <p>On top I built an interactive dashboard with four headline measures, nine charts, and filters by month, supplier and transport type, plus a one-page report with recommendations.</p>
-      </div>
-    </section>
+    <aside class="csclient rv"><small>Client</small><img src="../../assets/images/case-studies/litchfields-grain/client-logo.png" alt="Litchfields Grain" loading="lazy"><dl><dt>Sector</dt><dd>Agriculture · Te Puke</dd><dt>Tools</dt><dd>Excel · Power Query · Data model</dd><dt>Delivered</dt><dd>Dashboard and one-page report</dd></dl></aside>
   </div>
-
-  <section class="cs2-shots" aria-labelledby="dashboard-title">
-    <div class="wrap">
-      <p class="eyebrow">The dashboard</p>
-      <h2 id="dashboard-title">What the <span class="bl">owner sees</span></h2>
-      <div class="cs2-shot-pair">
-        <figure class="cs2-shot"><a href="../../assets/images/case-studies/litchfields-grain/dashboard-1.png" target="_blank" rel="noopener"><img src="../../assets/images/case-studies/litchfields-grain/dashboard-1.png" alt="Top half of the dashboard: headline measures, monthly tonnes picked up and key costs as a percentage of sales" width="1203" height="646" loading="lazy"></a><figcaption>Headline measures and trends<span>Open full size</span></figcaption></figure>
-        <figure class="cs2-shot"><a href="../../assets/images/case-studies/litchfields-grain/dashboard-2.png" target="_blank" rel="noopener"><img src="../../assets/images/case-studies/litchfields-grain/dashboard-2.png" alt="Bottom half of the dashboard: tonnes by supplier, sales by product and top expenses" width="1206" height="631" loading="lazy"></a><figcaption>Suppliers, products and costs<span>Open full size</span></figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs2-findings" aria-labelledby="findings-title">
-    <div class="wrap">
-      <span class="eyebrow">What the data showed</span>
-      <h2 id="findings-title">Four sales and cost insights from the data.</h2>
-      <div class="cs2-find-grid">
-        <div class="cs2-find">
-          <b class="stat">92%</b><h3>Expenses as a share of sales decreased</h3>
-          <p>Expenses fell from just over 100% of sales in the start-up period to 92% in 2026.</p>
-        </div>
-        <div class="cs2-find">
-          <b class="stat">80%+</b><h3>Two products carry the business</h3>
-          <p>Two products generate more than 80% of product sales.</p>
-        </div>
-        <div class="cs2-find">
-          <b class="stat">Price</b><h3>Price is the main lever</h3>
-          <p>Wages and raw materials make up most of the costs, so adjusting price is more realistic than cutting spend.</p>
-        </div>
-        <div class="cs2-find">
-          <b class="stat">27–37%</b><h3>Supply is well spread</h3>
-          <p>Three suppliers each provide between 27% and 37% of the grain, so there is no heavy reliance on one.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap">
-    <section class="cs2-recs" aria-labelledby="recs-title">
-      <p class="eyebrow">What happens next</p>
-      <h2 id="recs-title">Recommendations to improve <span class="bl">margin and cash flow</span></h2>
-      <ol class="cs2-rows">
-        <li class="cs2-row"><span class="n" aria-hidden="true">01</span><div class="what"><span class="kind">PRICING</span><h3>Set the price of the two main products</h3><p class="why"><b>Because</b> two products generate more than 80% of product sales, and price is the main lever.</p></div><p class="act">Put it at the level that reaches the target margin, and review it whenever costs change.</p></li>
-        <li class="cs2-row"><span class="n" aria-hidden="true">02</span><div class="what"><span class="kind">SUPPLIERS</span><h3>Record the price per tonne from each supplier</h3><p class="why"><b>Because</b> three suppliers each provide 27% to 37% of the grain.</p></div><p class="act">Also note the type of grain on each pickup. Comparing suppliers shows where there is room to negotiate, while keeping the supply spread across all three.</p></li>
-        <li class="cs2-row"><span class="n" aria-hidden="true">03</span><div class="what"><span class="kind">COSTS</span><h3>Record purchase and delivery costs</h3><p class="why"><b>Because</b> wages and raw materials make up most of the costs.</p></div><p class="act">The cost of the five best sellers, and the cost of providing free local delivery, so the margin on each product is visible.</p></li>
-        <li class="cs2-row"><span class="n" aria-hidden="true">04</span><div class="what"><span class="kind">PLANNING</span><h3>Plan cash flow and storage around the peak months</h3><p class="why"><b>Because</b> tonnes picked up vary a lot from month to month.</p></div><p class="act">Pickups peak in May and July, so those are the months to plan for.</p></li>
-      </ol>
-      <div class="cs2-result">
-        <p class="eyebrow">The result</p>
-        <p class="line">The business went from three disconnected sets of records to <span class="bl">one view of sales, costs, margin and supply</span>, and now knows what to record so future pricing decisions rest on better information.</p>
-      </div>
-      <figure class="tst tst--long cs2-tst"><p class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg></p><blockquote><p>&ldquo;Gabriela Olivera put together a data report for Litchfields Grain, and it&rsquo;s been genuinely useful. She took a lot of messy sales information and turned it into something clear and easy to act on. The report showed us trends we hadn&rsquo;t spotted, and it&rsquo;s already shaping our pricing and planning decisions. Gabriela was quick, thorough and great to work with. I&rsquo;d happily recommend her to any small business that wants to understand its numbers better.&rdquo;</p></blockquote><figcaption><b>Adriana Litchfield</b>, Litchfields Grain, Te Puke<a class="src" href="https://maps.google.com/?cid=10537156818243418534" target="_blank" rel="noopener">Read the review on Google &rarr;</a></figcaption></figure>
-    </section>
-
-    <section class="cs2-end">
-      <div class="cs2-method">
-        <div class="txt">
-          <p class="eyebrow">Under the hood</p>
-          <h2>Want to see how it was built?</h2>
-          <p>The method behind this project (sources, data model, quality checks and the decisions I made along the way) is documented step by step. It contains no client data.</p>
-          <a class="btn" href="https://github.com/gabrielaoliveranz/grain-case" target="_blank" rel="noopener">See the methodology on GitHub &rarr;</a>
-        </div>
-        <div class="about">
-          <p class="eyebrow">About this case study</p>
-          <ul class="chips"><li>Free portfolio project</li><li>Figures and supplier names changed</li><li>Published with the client's permission</li></ul>
-          <p>The client's data is not shared. The structure and proportions of the business are real, with the amounts changed for confidentiality.</p>
-        </div>
-      </div>
-      <p class="cs2-next"><a class="tlink" href="/">See how I work with small businesses &rarr;</a></p>
-    </section>
+</section>
+<section class="csnums" aria-label="Headline figures">
+  <div class="w"><div class="nums4">
+    <div class="rv"><b data-count="377" data-pre="$" data-suf="K">$377K</b><span>2026 sales</span></div>
+    <div class="rv" style="--d:.1s"><b data-count="92" data-suf="%">92%</b><span>Expenses as % of sales</span></div>
+    <div class="rv" style="--d:.2s"><b data-count="7.6" data-dec="1" data-suf="%">7.6%</b><span>Margin, 2026</span></div>
+    <div class="rv" style="--d:.3s"><b data-count="190">190</b><span>Tonnes picked up, Apr–Sep</span></div>
   </div>
-
+  <p class="nnote">Sales, expenses and margin are full-year 2026 figures. Tonnes picked up covers April to September 2026, the period for which pickup records were available.</p></div>
+</section>
+<section class="sec" aria-label="The project">
+  <div class="w faqg">
+    <div class="rv"><span class="lab">The project</span><h2 class="h2">Three places, three layouts, no joined-up picture.</h2></div>
+    <div class="prose rv" style="--d:.1s">
+      <p>The business kept its numbers in three places: an income and expenses report from Xero, a sales-by-product inventory report, and records of grain picked up from suppliers. Each used its own layout, and product codes were written differently in each, so nothing could be compared.</p>
+      <p>I combined the three sources into a single Excel data model with Power Query and built a shared product key so the reports could finally be matched. Every data-quality issue and cleaning decision was logged (18 findings and 17 decisions), so the work can be checked.</p>
+      <p>On top I built an interactive dashboard with four headline measures, nine charts, and filters by month, supplier and transport type, plus a one-page report with recommendations.</p>
+      <div class="flow" aria-label="Three sources into one dashboard"><span>Xero income and expenses</span><span>Sales by product</span><span>Grain pickups</span><i>→</i><b>One Excel data model and dashboard</b></div>
+    </div>
+  </div>
+</section>
+<section class="sec shots" aria-label="The dashboard">
+  <div class="w">
+    <div class="qhead rv"><div><span class="lab">The dashboard</span><h2 class="h2">What the owner sees.</h2></div></div>
+    <div class="shotg">
+      <figure class="shot3 rv"><div class="bar"><i></i><i></i><i></i><span>Headline measures and trends</span></div><a href="../../assets/images/case-studies/litchfields-grain/dashboard-1.png" target="_blank" rel="noopener"><img src="../../assets/images/case-studies/litchfields-grain/dashboard-1.png" alt="Top half of the dashboard: headline measures, monthly tonnes picked up and key costs as a percentage of sales" loading="lazy"></a><figcaption>Open full size →</figcaption></figure>
+      <figure class="shot3 rv" style="--d:.15s"><div class="bar"><i></i><i></i><i></i><span>Suppliers, products and costs</span></div><a href="../../assets/images/case-studies/litchfields-grain/dashboard-2.png" target="_blank" rel="noopener"><img src="../../assets/images/case-studies/litchfields-grain/dashboard-2.png" alt="Bottom half of the dashboard: tonnes by supplier, sales by product and top expenses" loading="lazy"></a><figcaption>Open full size →</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section class="sec" aria-label="Findings">
+  <div class="w">
+    <div class="qhead rv"><div><span class="lab">What the data showed</span><h2 class="h2">Four sales and cost insights.</h2></div></div>
+    <div class="find4">
+      <div class="rv"><b>92%</b><h3>Expenses as a share of sales decreased</h3><p>Expenses fell from just over 100% of sales in the start-up period to 92% in 2026.</p></div>
+      <div class="rv" style="--d:.1s"><b>80%+</b><h3>Two products carry the business</h3><p>Two products generate more than 80% of product sales.</p></div>
+      <div class="rv" style="--d:.2s"><b>Price</b><h3>Price is the main lever</h3><p>Wages and raw materials make up most of the costs, so adjusting price is more realistic than cutting spend.</p></div>
+      <div class="rv" style="--d:.3s"><b>27–37%</b><h3>Supply is well spread</h3><p>Three suppliers each provide between 27% and 37% of the grain, so there is no heavy reliance on one.</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec proc" aria-label="Recommendations">
+  <div class="w">
+    <span class="lab">What happens next</span><h2 class="h2">Recommendations to improve margin and cash flow.</h2>
+    <div class="recs">
+      <div class="rv"><span class="rn">01</span><small>Pricing</small><h3>Set the price of the two main products</h3><p class="why">Because two products generate more than 80% of product sales, and price is the main lever.</p><p>Put it at the level that reaches the target margin, and review it whenever costs change.</p></div>
+      <div class="rv" style="--d:.1s"><span class="rn">02</span><small>Suppliers</small><h3>Record the price per tonne from each supplier</h3><p class="why">Because three suppliers each provide 27% to 37% of the grain.</p><p>Also note the type of grain on each pickup. Comparing suppliers shows where there is room to negotiate, while keeping the supply spread across all three.</p></div>
+      <div class="rv"><span class="rn">03</span><small>Costs</small><h3>Record purchase and delivery costs</h3><p class="why">Because wages and raw materials make up most of the costs.</p><p>The cost of the five best sellers, and the cost of providing free local delivery, so the margin on each product is visible.</p></div>
+      <div class="rv" style="--d:.1s"><span class="rn">04</span><small>Planning</small><h3>Plan cash flow and storage around the peak months</h3><p class="why">Because tonnes picked up vary a lot from month to month.</p><p>Pickups peak in May and July, so those are the months to plan for.</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec" aria-label="The result">
+  <div class="w faqg">
+    <div class="rv"><span class="lab">The result</span><h2 class="h2">One view of the business.</h2></div>
+    <p class="lead rv" style="margin:0;max-width:none;font-size:clamp(19px,1.7vw,23px);color:var(--ink)">The business went from three disconnected sets of records to one view of sales, costs, margin and supply, and now knows what to record so future pricing decisions rest on better information.</p>
+  </div>
+</section>
+<section class="sec tst3" aria-label="Client review">
+  <div class="w rv"><blockquote><p>Gabriela Olivera put together a data report for Litchfields Grain, and it’s been genuinely useful. She took a lot of messy sales information and turned it into something clear and easy to act on. The report showed us trends we hadn’t spotted, and it’s already shaping our pricing and planning decisions. Gabriela was quick, thorough and great to work with. I’d happily recommend her to any small business that wants to understand its numbers better.</p>
+  <div class="stars" aria-label="5 star review">★★★★★</div>
+  <footer>Adriana Litchfield<span>Litchfields Grain, Te Puke · <a class="link" href="https://maps.google.com/?cid=10537156818243418534" target="_blank" rel="noopener">Read the review on Google</a></span></footer></blockquote></div>
+</section>
+<section class="sec" aria-label="Method and about this case study">
+  <div class="w end2">
+    <div class="bt rv"><span class="lab">Under the hood</span><h3 class="h3b">Want to see how it was built?</h3><p>The method behind this project (sources, data model, quality checks and the decisions I made along the way) is documented step by step. It contains no client data.</p><p style="margin-top:18px"><a class="link" href="https://github.com/gabrielaoliveranz/grain-case">See the methodology on GitHub</a></p></div>
+    <div class="bt rv" style="--d:.1s"><span class="lab">About this case study</span><ul class="ticks"><li>Free introductory project</li><li>Figures and supplier names changed</li><li>Published with the client's permission</li></ul><p>The client's data is not shared. The structure and proportions of the business are real, with the amounts changed for confidentiality.</p><p style="margin-top:18px"><a class="link" href="/">See how I work with small businesses</a></p></div>
+  </div>
+</section>
+<section class="sec close" id="bizContact" aria-label="Contact">
+  <div class="w">
+    <span class="lab">Start here</span>
+    <h2>Let's find out what your numbers are telling you.</h2>
+    <p>Tell me a little about your business and the question on your mind. I'll reply with which plan fits and a fixed price.</p>
+    <a class="btn btn-l" href="mailto:hello@gabrielaolivera.nz">Get in touch →</a>
+    <small>I reply within 2 working days.</small>
+  </div>
+</section>
 </main>
-
-<button type="button" class="totop" id="totop" aria-label="Back to top"><svg class="ring" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34" fill="none" stroke="#4fc3ff" stroke-width="2.5" stroke-dasharray="213.6" stroke-dashoffset="213.6" id="totopRing"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-
-<footer class="site-foot" aria-label="Site">
-  <div class="wrap">
-    <div class="sf-grid">
-      <div class="sf-brand"><img src="../../assets/images/logo-wordmark-dark.png" alt="Gabriela Olivera, data analyst" width="380" height="190"><p>Data analysis for small businesses and teams in New Zealand.</p>
-      <div class="socials">
-        <a class="soc" href="https://www.linkedin.com/in/gabriela-olivera-nz/" target="_blank" rel="noopener" aria-label="Gabriela Olivera on LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span>LinkedIn</span></a>
-        <a class="soc" href="https://github.com/gabrielaoliveranz" target="_blank" rel="noopener" aria-label="Gabriela Olivera on GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg><span>GitHub</span></a>
-      </div></div>
-      <nav aria-label="Explore"><h2 class="sf-h">Explore</h2><a href="/">Home</a><a href="/#plans">Services</a><a href="/#case-studies">Case studies</a><a href="/work/">Work</a><a href="/work/#how-i-work">How I work</a><a href="/#newsletter">Newsletter</a></nav>
-      <nav aria-label="For business"><h2 class="sf-h">For business</h2><a href="/#plans">Plans</a><a href="/#ask">Ask your numbers</a><a href="/#faq">FAQs</a><a href="/#bizPriv">Your data stays yours</a></nav>
-    </div>
-    <div class="sf-bottom"><span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Mount Maunganui, Bay of Plenty · New Zealand</span><span class="sf-legal"><a href="/privacy/">Privacy policy</a><a href="/terms/">Terms of use</a><span>© 2026 Gabriela Olivera</span></span></div>
-  </div>
-</footer>
-
-<script src="../../assets/site.js?v=20261023e"></script>
+<footer>Adriana Litchfield<span>Litchfields Grain, Te Puke · <a class="link" href="https://maps.google.com/?cid=10537156818243418534" target="_blank" rel="noopener">Read the review on Google</a></span></footer>
+<script src="../../assets/v3.js?v=20261030d" defer></script>
 </body>
 </html>
