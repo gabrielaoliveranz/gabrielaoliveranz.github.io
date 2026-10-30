@@ -28,3 +28,17 @@
     src.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.right-b.left,y=r.top-b.top+r.height/2,m=(x+hl)/2;svg.querySelector('#w'+(i+1)).setAttribute('d',`M${x} ${y} C${m} ${y} ${m} ${hy} ${hl} ${hy}`);});
     out.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.left-b.left,y=r.top-b.top+r.height/2,m=(x+hr)/2;svg.querySelector('#w'+(i+5)).setAttribute('d',`M${hr} ${hy} C${m} ${hy} ${m} ${y} ${x} ${y}`);});};
   draw();addEventListener('resize',draw);document.fonts&&document.fonts.ready.then(draw);})();
+/* header border on scroll + contact modal (pages without site.js) */
+(()=>{const top=document.querySelector('.top');if(top){const f=()=>top.classList.toggle('scrolled',scrollY>20);addEventListener('scroll',f,{passive:true});f();}
+  const cm=document.getElementById('cmodal');if(!cm||window.__siteJs)return;
+  const form=document.getElementById('cmForm'),note=document.getElementById('cmNote'),send=form.querySelector('button[type="submit"]'),mbox=cm.querySelector('.mbox'),title=document.getElementById('cmTitle'),sub=mbox.querySelector('.msub'),t0=title.textContent,s0=sub.textContent;let last=null;
+  const done=document.createElement('div');done.className='mdone';done.innerHTML='<button class="btn" type="button">Close</button>';mbox.appendChild(done);
+  const open=()=>{last=document.activeElement;mbox.classList.remove('sent');title.textContent=t0;sub.textContent=s0;note.className='mnote';note.textContent='';cm.removeAttribute('inert');cm.classList.add('open');cm.setAttribute('aria-hidden','false');document.documentElement.style.overflow='hidden';setTimeout(()=>document.getElementById('cmName').focus(),60);};
+  const close=()=>{cm.classList.remove('open');cm.setAttribute('aria-hidden','true');cm.setAttribute('inert','');document.documentElement.style.overflow='';if(last)last.focus();};
+  document.getElementById('cmClose').addEventListener('click',close);done.querySelector('button').addEventListener('click',close);
+  cm.addEventListener('click',e=>{if(e.target===cm)close();});cm.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  form.addEventListener('submit',e=>{if(!window.fetch)return;e.preventDefault();send.disabled=true;note.textContent='Sending…';note.className='mnote on';
+    fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}).then(r=>{if(!r.ok)throw 0;form.reset();mbox.classList.add('sent');title.textContent='Message sent';sub.textContent="Thanks for getting in touch. I'll reply within 2 working days.";note.className='mnote';})
+    .catch(()=>{note.textContent="Sorry, that didn't send. Please email me at hello@gabrielaolivera.nz.";note.className='mnote on err';}).finally(()=>{send.disabled=false;});});
+  document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;const t=a.textContent.trim();if(/^(Get in touch|Ask me|Got a different question)/.test(t)||(a.classList.contains('cta')&&location.pathname==='/')){e.preventDefault();open();}},true);
+})();
