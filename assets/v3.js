@@ -20,3 +20,11 @@
       if(rm)p=1;proc.style.setProperty('--p',p);st.forEach((s,i)=>s.classList.toggle('on',p>=i/st.length));};
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();}
 })();
+/* pipeline wires: connect nodes to the hub from their real positions */
+(()=>{const box=document.querySelector('.flowbox');if(!box)return;const svg=box.querySelector('.wires');
+  const src=[...box.querySelectorAll('.src .node')],out=[...box.querySelectorAll('.out .node')],hub=box.querySelector('.hub');
+  const draw=()=>{const b=box.getBoundingClientRect(),h=hub.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${b.width} ${b.height}`);
+    const hl=h.left-b.left,hr=h.right-b.left,hy=h.top-b.top+h.height/2;
+    src.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.right-b.left,y=r.top-b.top+r.height/2,m=(x+hl)/2;svg.querySelector('#w'+(i+1)).setAttribute('d',`M${x} ${y} C${m} ${y} ${m} ${hy} ${hl} ${hy}`);});
+    out.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.left-b.left,y=r.top-b.top+r.height/2,m=(x+hr)/2;svg.querySelector('#w'+(i+5)).setAttribute('d',`M${hr} ${hy} C${m} ${hy} ${m} ${y} ${x} ${y}`);});};
+  draw();addEventListener('resize',draw);document.fonts&&document.fonts.ready.then(draw);})();
