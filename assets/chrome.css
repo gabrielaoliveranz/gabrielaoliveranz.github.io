@@ -176,3 +176,9 @@ body:has(.work-head) .hero .floats{top:96px!important}
   .modal{place-items:start center!important;align-items:start!important;padding:10px!important}
   .modal .mbox{transform:none!important;transition:none!important;max-height:calc(100dvh - 20px);overflow-y:auto;-webkit-overflow-scrolling:touch}
 }
+
+/* ===== round 3 ===== */
+/* back-to-top ring: never inherit the dashboard ring styles */
+.totop .ring{margin:0!important;display:block!important;gap:0!important}
+/* larger, easier-to-read labels everywhere */
+.eyebrow,.nl-kicker,.nl-meta,.nl-label,.pp-top small,.pp-body h4,.pp-body h2.pp-h4,.nl-body h2 small{font-size:14px!important;letter-spacing:.05em!important}

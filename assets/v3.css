@@ -498,3 +498,40 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
   .cctl button:disabled{opacity:.35;cursor:default}
   .cctl output{font:500 14px var(--mono);color:var(--ink);min-width:56px;text-align:center}
 }
+
+/* ===== round 3 ===== */
+/* labels: larger for readability */
+.lab{font-size:14px;letter-spacing:.05em}
+.qc .n,.plan .kind,.step small,.recs small,.nums4 span{font-size:13px}
+.kpi small,.cc-h small,.plan .tool{font-size:12.5px}
+.tools small{font-size:13px}
+.step small{color:#9fc2e4}
+/* highlight for names (same treatment as the work page) */
+.hl{background:linear-gradient(to bottom,transparent 0 .2em,#e1e8ef .2em);color:var(--blue);padding:0 .14em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone;font-weight:600}
+/* privacy cards: a touch of colour and an accent line */
+.bt:not(.hero2){background:linear-gradient(180deg,#fff 0%,#f5f8fc 100%);position:relative;overflow:hidden}
+.bt:not(.hero2)::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--blue-2),var(--sky));transform:scaleX(.18);transform-origin:left;transition:transform .6s cubic-bezier(.16,.84,.24,1)}
+.bt:not(.hero2):hover::before,.bt.rv.in:not(.hero2)::before{transform:scaleX(1)}
+.bt h3{font-size:19px}.bt p{font-size:16px}
+@media (max-width:760px){
+  /* plans: compact so one card fits on a phone screen; all cards the same height */
+  [data-carousel]{align-items:stretch}
+  [data-carousel]>*{flex-basis:88%}
+  .table[data-carousel] .plan{padding:22px 20px 20px}
+  .table[data-carousel] .plan h3{font-size:25px;margin-top:6px}
+  .table[data-carousel] .plan .desc{min-height:0;font-size:15px;line-height:1.5;margin-top:8px}
+  .table[data-carousel] .plan .tool{margin-top:10px}
+  .table[data-carousel] .plan ul{margin-top:12px}
+  .table[data-carousel] .plan li{padding:7px 0 7px 24px;font-size:14.5px;line-height:1.4}
+  .table[data-carousel] .plan li::before{top:12px}
+  .table[data-carousel] .plan .price{margin-top:10px;font-size:13px}
+  .table[data-carousel] .plan .btn{margin-top:12px;min-height:44px}
+  .table[data-carousel] .plan .tag{right:20px}
+  /* privacy cards: bigger text, no big empty space */
+  .bento[data-carousel] .bt{padding:24px 22px}
+  .bento[data-carousel] .bt.hero2{min-height:0;justify-content:flex-start;padding-top:170px}
+  .bento[data-carousel] .bt h3{font-size:21px}
+  .bento[data-carousel] .bt.hero2 h3{font-size:28px}
+  .bento[data-carousel] .bt p{font-size:17px;line-height:1.55}
+  .bento[data-carousel] .bt svg.ic{width:42px;height:42px;padding:9px}
+}
