@@ -19,10 +19,10 @@ const PAGES = [
 
 function footer(path) {
   const html = readFileSync(path, "utf8");
-  const m = html.match(/<footer class="site-foot"[\s\S]*?<\/footer>/);
+  const m = html.match(/<footer class="site-foot[^"]*"[\s\S]*?<\/footer>/);
   if (!m) throw new Error(`${path}: no <footer class="site-foot"> found`);
   return m[0]
-    .replace(/src="(?:\.\.\/)*\/?assets\//g, 'src="ASSETS/')
+    .replace(/(src|href)="(?:\.\.\/)*\/?assets\//g, '$1="ASSETS/')
     .replace('href="/#newsletter"', 'href="#newsletter"')
     .replace(/\s+/g, " ")
     .trim();
