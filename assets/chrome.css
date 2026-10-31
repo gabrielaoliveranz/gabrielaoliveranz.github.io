@@ -198,3 +198,9 @@ body:has(.work-head) .hero::before{content:"";position:absolute;width:680px;heig
 .marquee span,.marquee span.f{font-family:"Source Serif 4",Georgia,serif!important;font-weight:400!important;letter-spacing:-.01em!important;color:#1a4a82!important;-webkit-text-stroke:0!important}
 /* 31 Oct 2026: on phones the highlight behind a headline name looks like a smudge, so drop it there */
 @media (max-width:760px){h1 .hl{background:none!important;box-shadow:none!important;padding:0!important}}
+/* 31 Oct 2026: header matches the section under it (colour set by menu.js) */
+.top.tint{background:var(--hbg)!important;transition:background-color .35s,border-color .3s}
+.top.tint:not(.dark) .pill{background:color-mix(in srgb,var(--hbg) 45%,#fff)}
+.top.tint.dark .pill{background:color-mix(in srgb,var(--hbg) 86%,#fff);box-shadow:none}
+.top.tint.dark .pill a:not(.cta):hover,.top.tint.dark .pill a[aria-current="page"]{background:color-mix(in srgb,var(--hbg) 72%,#fff)}
+.top.tint.dark{border-bottom-color:color-mix(in srgb,var(--hbg) 80%,#fff)}
