@@ -204,3 +204,17 @@ body:has(.work-head) .hero::before{content:"";position:absolute;width:680px;heig
 .top.tint.dark .pill{background:color-mix(in srgb,var(--hbg) 86%,#fff);box-shadow:none}
 .top.tint.dark .pill a:not(.cta):hover,.top.tint.dark .pill a[aria-current="page"]{background:color-mix(in srgb,var(--hbg) 72%,#fff)}
 .top.tint.dark{border-bottom-color:color-mix(in srgb,var(--hbg) 80%,#fff)}
+
+/* ===== v4 cards (redesign-cards): Work page screenshots float in a window on a tinted panel (Kai / ToDesktop) ===== */
+body:has(.work-head) .shot{border-radius:18px;box-shadow:0 0 0 1px rgba(16,27,46,.06),0 2px 8px rgba(16,27,46,.04),0 8px 24px rgba(16,27,46,.08),0 16px 48px rgba(16,27,46,.12);
+  background:radial-gradient(110% 90% at 85% 0%,rgba(79,195,255,.4),transparent 55%),linear-gradient(160deg,#1a4a82,#101b2e 75%)}
+body:has(.work-head) .ex:nth-of-type(even) .shot{background:radial-gradient(110% 90% at 15% 0%,rgba(79,195,255,.45),transparent 55%),linear-gradient(200deg,#cfe3f5,#e8e8e3 80%)}
+body:has(.work-head) .shot .inner{inset:9% 7% -3% 7%!important;border-radius:10px 10px 0 0;overflow:hidden;background:#fff;
+  box-shadow:0 0 0 1px rgba(255,255,255,.14),0 30px 60px -24px rgba(0,0,0,.5);transition:transform .8s cubic-bezier(.16,.84,.24,1)}
+body:has(.work-head) .shot .inner::before{content:"";position:absolute;left:0;right:0;top:0;height:24px;z-index:1;border-bottom:1px solid #ebe8e1;
+  background:radial-gradient(circle at 14px 12px,#4fc3ff 3.5px,transparent 4.5px),radial-gradient(circle at 28px 12px,#dcd9d0 3.5px,transparent 4.5px),radial-gradient(circle at 42px 12px,#dcd9d0 3.5px,transparent 4.5px),#fbfaf7}
+body:has(.work-head) .shot .inner img{top:24px!important;height:calc(100% - 24px)!important}
+body:has(.work-head) .shot .inner img.crop-b{height:calc(118% - 24px)!important}
+body:has(.work-head) .ex:hover .shot .inner{transform:translateY(-6px)!important}
+body:has(.work-head) .shot .tag{z-index:2;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;letter-spacing:.06em;box-shadow:0 8px 20px -8px rgba(16,27,46,.35)}
+@media (hover:none),(prefers-reduced-motion:reduce){body:has(.work-head) .ex:hover .shot .inner{transform:none!important}}

@@ -559,3 +559,88 @@ h1 .hl,h3 .hl{font-weight:inherit;padding:0 .1em}
 .plan li::before{top:13px}
 .plan .price{margin-top:12px}
 .plan .btn{margin-top:14px;min-height:44px}
+
+/* ===================== v4 cards (redesign-cards) =====================
+   Ideas adapted from Slab (soft circle behind a document), ToDesktop (window chrome, mono tags,
+   tinted icon boxes, small floating UI pieces), Osmo (one tilt, mono stamps) and Flox (layered
+   shadow on one hero mockup, tiled grid). Brand colours and fonts only. */
+:root{--tint:#e3eefa;--sh-1:0 1px 2px rgba(16,27,46,.05),0 4px 12px -2px rgba(16,27,46,.06);
+  --sh-3:0 2px 8px rgba(16,27,46,.04),0 8px 24px rgba(16,27,46,.08),0 16px 48px rgba(16,27,46,.12)}
+/* shared window chrome */
+.win{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px rgba(16,27,46,.08),var(--sh-1)}
+.wbar{display:flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-bottom:1px solid #ebe8e1;background:#fbfaf7}
+.wbar i{width:8px;height:8px;border-radius:50%;background:#dcd9d0}
+.wbar i:first-child{background:#4fc3ff}
+.wbar span{margin-left:8px;font:500 11px/1 var(--mono);color:#6a645a;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* questions: a small file window on a soft circle (Slab) */
+.qc{border-radius:16px;border-color:#e4e1d9;box-shadow:var(--sh-1)}
+.qc::after{display:none}
+.qc .viz{height:auto;padding:26px 20px 0;background:var(--paper);border-bottom:1px solid #ebe8e1;position:relative;overflow:hidden}
+.qc .viz::before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:var(--tint);right:-40px;top:-50px;transition:transform .8s cubic-bezier(.16,.84,.24,1)}
+.qc:nth-child(2) .viz::before{left:-50px;right:auto;top:10px;background:#eaf6fd}
+.qc:nth-child(3) .viz::before{right:20px;top:30px;background:#e8edf3}
+.qc:nth-child(4) .viz::before{left:30px;right:auto;top:-70px;background:#eaf6fd}
+.qc .win{position:relative;border-radius:10px 10px 0 0;transform:translateY(6px);transition:transform .6s cubic-bezier(.16,.84,.24,1),box-shadow .6s}
+.qc .viz svg{display:block;width:100%;height:96px;padding:12px 14px 14px}
+.qc .n{display:inline-block;align-self:flex-start;background:var(--tint);color:var(--blue);padding:5px 9px;border-radius:6px}
+.qc h3{font-size:22px;letter-spacing:-.012em}
+.qc .get{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid #ebe8e1}
+.qc .get::before{content:none}
+.qc .get::after{content:"→";flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--blue);transition:background .3s,color .3s,transform .3s}
+.qc .body{padding-bottom:20px}
+.qc:hover{transform:translateY(-6px);box-shadow:var(--sh-3);border-color:#d6dfe9}
+.qc:hover .win{transform:translateY(0) rotate(-1.5deg);box-shadow:0 0 0 1px rgba(16,27,46,.08),0 18px 30px -16px rgba(16,27,46,.3)}
+.qc:hover .viz::before{transform:scale(1.12)}
+.qc:hover .get::after{background:var(--navy);color:#fff;transform:translateX(3px)}
+
+/* case study: dashboard in a window on a navy gradient panel (Kai), layered shadow (Flox) */
+.case{border-radius:18px;border-color:#e4e1d9;box-shadow:var(--sh-3)}
+.case .img{position:relative;overflow:hidden;padding:clamp(28px,4vw,52px) clamp(20px,3vw,40px);
+  background:radial-gradient(120% 90% at 85% 10%,rgba(79,195,255,.38),transparent 55%),
+             linear-gradient(160deg,#1a4a82 0%,#101b2e 70%)}
+.case .img::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/32px 32px;
+  -webkit-mask:radial-gradient(80% 80% at 70% 30%,#000,transparent);mask:radial-gradient(80% 80% at 70% 30%,#000,transparent)}
+.case .img .win{position:relative;width:100%;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 30px 60px -20px rgba(0,0,0,.55);transition:transform .8s cubic-bezier(.16,.84,.24,1)}
+.case .img img{border-radius:0;box-shadow:none;display:block}
+.case:hover .img .win{transform:translateY(-6px) scale(1.01)}
+.case .cchip{position:absolute;z-index:1;display:flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:8px 14px 8px 8px;font:600 13px/1 var(--label);color:var(--ink);box-shadow:var(--sh-3)}
+.case .cchip b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--sky);color:var(--navy);font:500 13px/1 var(--mono)}
+.case .cchip.k1{left:14px;top:16px;transform:rotate(-3deg)}
+.case .cchip.k2{right:14px;bottom:16px;transform:rotate(2deg)}
+.case .cchip.k2 b{background:var(--navy);color:#fff}
+.soon{border-radius:14px;background:#fff;border-style:dashed}
+.soon .stamp{display:inline-flex;align-items:center;gap:8px;font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:var(--tint);padding:8px 12px;border-radius:6px}
+.soon .stamp i{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 0 rgba(79,195,255,.6);animation:ping4 2.4s ease-out infinite}
+@keyframes ping4{0%{box-shadow:0 0 0 0 rgba(79,195,255,.6)}80%,100%{box-shadow:0 0 0 10px rgba(79,195,255,0)}}
+
+/* privacy: tiles with a mono tag, a tinted icon box and one small piece of UI (ToDesktop) */
+#privacy{background:var(--paper) linear-gradient(rgba(16,27,46,.035) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(16,27,46,.035) 1px,transparent 1px) 0 0/40px 40px}
+.bt{border-radius:18px;border-color:#e4e1d9;box-shadow:var(--sh-1)}
+.bt:not(.hero2){background:#fff;display:flex;flex-direction:column}
+.bt:not(.hero2)::before{display:none}
+.bt svg.ic{background:var(--tint);border-radius:10px;width:40px;height:40px;padding:9px}
+.btag{display:block;font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-top:18px}
+.bt h3{margin-top:8px}
+.frag{margin-top:auto;padding-top:18px;display:flex;flex-wrap:wrap;gap:8px;font:600 13px/1 var(--label);color:var(--ink)}
+.frag .row{display:flex;align-items:center;gap:10px;width:100%;background:var(--paper);border:1px solid #ebe8e1;border-radius:10px;padding:10px 12px}
+.frag .row svg{width:16px;height:16px;color:var(--blue)}
+.frag em{margin-left:auto;font:500 12px/1 var(--mono);font-style:normal;color:var(--blue);background:var(--tint);padding:5px 8px;border-radius:999px}
+.frag em.ask{background:var(--navy);color:#fff}
+.frag .tg{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:1px solid #ebe8e1;border-radius:999px;padding:6px 6px 6px 12px}
+.frag .tg u{width:30px;height:18px;border-radius:999px;background:var(--blue);position:relative}
+.frag .tg u::after{content:"";position:absolute;right:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff}
+.frag .bar{flex:1 1 100%;height:8px;border-radius:999px;background:#ebe8e1;overflow:hidden}
+.frag .bar s{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--blue-2),var(--sky));transform-origin:left;transform:scaleX(.25);transition:transform 1.6s cubic-bezier(.16,.84,.24,1) .3s}
+.bt.in .frag .bar s{transform:scaleX(1)}
+.frag .cap{font:500 12px/1 var(--mono);color:#6a645a}
+.bt:not(.hero2):hover{box-shadow:var(--sh-3)}
+.bt.hero2{border-radius:18px;background:radial-gradient(90% 70% at 50% 18%,rgba(79,195,255,.22),transparent 60%),var(--navy)}
+.bento .bt:last-child{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(220px,auto);grid-template-rows:auto auto auto;gap:4px 20px;align-items:center}
+.bento .bt:last-child svg.ic{grid-row:1/4}
+.bento .bt:last-child .btag{margin:0}
+.bento .bt:last-child .frag{grid-column:3;grid-row:1/4;margin:0;padding:0}
+@media (max-width:760px){.bento .bt:last-child{display:flex!important}.bento .bt:last-child .frag{padding-top:18px}.case .cchip{font-size:12px}.case .cchip.k1{display:none}}
+@media (prefers-reduced-motion:reduce){.soon .stamp i{animation:none}.frag .bar s{transition:none;transform:none}.qc .win,.case .img .win,.qc .viz::before{transition:none}}
+@media (hover:none){.qc:hover .win{transform:translateY(6px)}.case:hover .img .win{transform:none}}
