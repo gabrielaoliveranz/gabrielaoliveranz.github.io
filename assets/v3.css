@@ -360,7 +360,7 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
 .find4 p{font-size:15px;color:var(--muted);margin-top:8px}
 .recs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
 .recs div{background:var(--navy-2);border:1px solid var(--line-d);border-radius:12px;padding:28px;position:relative}
-.recs .rn{position:absolute;top:22px;right:24px;font:400 44px/1 var(--serif);color:transparent;-webkit-text-stroke:1px #4a6a8f}
+.recs .rn{position:absolute;top:22px;right:24px;font:400 44px/1 var(--serif);color:#7d9bc1;-webkit-text-stroke:0}
 .recs small{font:600 11px var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
 .recs h3{font:400 23px/1.25 var(--serif);color:#fff;margin-top:10px;max-width:85%}
 .recs p{font-size:15px;margin-top:10px}.recs .why{color:#e7eef6;font-style:italic}
