@@ -34,10 +34,10 @@ const TARGETS = [
   ".top .pill a",
   // The header's Contact button (navy pill).
   ".top .pill a.cta",
-  // Contact section, on the dark band: "Get in touch" (white pill) and
-  // "Download CV" (outline). Both real same-tab hrefs, so click-guarded.
+  // "Start here" section, on the dark band: "Get in touch" (white pill).
+  // A real href, so click-guarded. (.btn-ghost left with the old contact
+  // section on 4 Nov 2026.)
   ".btn-light",
-  ".btn-ghost",
   // Footer social link (first is LinkedIn) and the footer text links.
   ".site-foot .fs a",
   ".site-foot nav a",
