@@ -77,7 +77,7 @@
   upd();});})();
 /* questions on phones: cards sit on an arc as you swipe */
 document.querySelectorAll('.arc').forEach(c=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const mq=matchMedia('(max-width:760px)'),cards=[...c.children];let raf=0;
+  const mq=matchMedia('(max-width:760px), (max-width:1024px) and (orientation:portrait)'),cards=[...c.children];let raf=0;
   const upd=()=>{raf=0;if(!mq.matches){cards.forEach(k=>{k.style.removeProperty('--ay');k.style.removeProperty('--ar')});return;}
     const b=c.getBoundingClientRect(),mid=b.left+b.width/2;
     cards.forEach(k=>{const r=k.getBoundingClientRect(),d=Math.max(-1.6,Math.min(1.6,(r.left+r.width/2-mid)/r.width));
