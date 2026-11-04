@@ -60,3 +60,12 @@ covers it, rather than a software licence like MIT.
   GoatCounter's server anyway, so a local copy would add a file to keep in
   sync without keeping any traffic off a third party. Described in the
   privacy policy (sections 02 and 06).
+- **`assets/video/promo-1080.mp4`** — the home page promo video, made for
+  this site (animation, voiceover and captions). All rights reserved, like
+  the headshot it includes. Its music is "Corporate Advertising" by
+  [AtlasAudio](https://pixabay.com/users/atlasaudio-54514918/), used under the
+  [Pixabay Content License](https://pixabay.com/service/license-summary/)
+  (free for commercial use, no attribution required). The track is registered
+  with YouTube Content ID, so a YouTube upload may need the Pixabay licence
+  certificate to clear a claim. The voiceover is synthetic (Kokoro TTS,
+  Apache 2.0). Self-hosted, so playing it sends nothing to a third party.
