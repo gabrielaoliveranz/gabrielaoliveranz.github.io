@@ -23,7 +23,12 @@
 /* pipeline wires: connect nodes to the hub from their real positions */
 (()=>{const box=document.querySelector('.flowbox');if(!box)return;const svg=box.querySelector('.wires');
   const src=[...box.querySelectorAll('.src .node')],out=[...box.querySelectorAll('.out .node')],hub=box.querySelector('.hub');
-  const draw=()=>{const b=box.getBoundingClientRect(),h=hub.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${b.width} ${b.height}`);
+  const narrow=matchMedia('(max-width:860px)');
+  const drawV=()=>{const b=box.getBoundingClientRect(),h=hub.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${b.width} ${b.height}`);
+    const hx=h.left-b.left+h.width/2,ht=h.top-b.top,hb=h.bottom-b.top;
+    src.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.left-b.left+r.width/2,y=r.bottom-b.top,m=(y+ht)/2;svg.querySelector('#w'+(i+1)).setAttribute('d',`M${x} ${y} C${x} ${m} ${hx} ${m} ${hx} ${ht}`);});
+    out.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.left-b.left+r.width/2,y=r.top-b.top,m=(hb+y)/2;svg.querySelector('#w'+(i+5)).setAttribute('d',`M${hx} ${hb} C${hx} ${m} ${x} ${m} ${x} ${y}`);});};
+  const draw=()=>{if(narrow.matches)return drawV();const b=box.getBoundingClientRect(),h=hub.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${b.width} ${b.height}`);
     const hl=h.left-b.left,hr=h.right-b.left,hy=h.top-b.top+h.height/2;
     src.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.right-b.left,y=r.top-b.top+r.height/2,m=(x+hl)/2;svg.querySelector('#w'+(i+1)).setAttribute('d',`M${x} ${y} C${m} ${y} ${m} ${hy} ${hl} ${hy}`);});
     out.forEach((n,i)=>{const r=n.getBoundingClientRect(),x=r.left-b.left,y=r.top-b.top+r.height/2,m=(x+hr)/2;svg.querySelector('#w'+(i+5)).setAttribute('d',`M${hr} ${hy} C${m} ${hy} ${m} ${y} ${x} ${y}`);});};
@@ -70,3 +75,26 @@
   c.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
   c.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1)}});
   upd();});})();
+/* questions on phones: cards sit on an arc as you swipe */
+document.querySelectorAll('.arc').forEach(c=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const mq=matchMedia('(max-width:760px)'),cards=[...c.children];let raf=0;
+  const upd=()=>{raf=0;if(!mq.matches){cards.forEach(k=>{k.style.removeProperty('--ay');k.style.removeProperty('--ar')});return;}
+    const b=c.getBoundingClientRect(),mid=b.left+b.width/2;
+    cards.forEach(k=>{const r=k.getBoundingClientRect(),d=Math.max(-1.6,Math.min(1.6,(r.left+r.width/2-mid)/r.width));
+      k.style.setProperty('--ay',(d*d*34).toFixed(1)+'px');k.style.setProperty('--ar',(d*9).toFixed(2)+'deg');});};
+  const q=()=>{if(!raf)raf=requestAnimationFrame(upd)};
+  c.addEventListener('scroll',q,{passive:true});addEventListener('resize',q);mq.addEventListener('change',q);upd();});
+/* question cards on phones: the arrow in each card moves to the next one */
+(()=>{const c=document.querySelector('.qcards.arc');if(!c)return;const cards=[...c.children];
+  c.querySelectorAll('.qnx').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.to;
+    c.scrollTo({left:cards[i].offsetLeft-cards[0].offsetLeft,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    setTimeout(()=>cards[i].querySelector('.qnx').focus({preventScroll:true}),450);}));})();
+/* phones: every carousel card gets its own arrow (next card; the last one goes back to the first), instead of separate buttons below */
+(()=>{const R='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  B='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>';
+  document.querySelectorAll('[data-carousel]:not(.qcards)').forEach(c=>{const items=[...c.children],n=items.length;
+    items.forEach((it,i)=>{const b=document.createElement('button');b.type='button';
+      b.className='cnx'+(it.matches('.hero2,.rec')?' lt':'');b.setAttribute('aria-label',i<n-1?'Next':'Back to the first');b.innerHTML=i<n-1?R:B;
+      b.addEventListener('click',()=>{const j=(i+1)%n;c.scrollTo({left:items[j].offsetLeft-items[0].offsetLeft,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+        setTimeout(()=>items[j].querySelector('.cnx').focus({preventScroll:true}),450);});
+      it.appendChild(b);});});})();

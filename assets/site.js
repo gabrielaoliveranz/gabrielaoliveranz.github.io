@@ -193,7 +193,7 @@
   const colEls=cols?[...cols.children]:[], tiles=dash?[...dash.querySelectorAll('.tile')]:[], band=dash&&dash.querySelector('.band'), hb=[...document.querySelectorAll('#hbars i')];
 
   /* contact: every dot converges on one */
-  const ec=document.getElementById('endField'); let E=fit(ec);
+  const ec=document.getElementById('endField'); let E=ec?fit(ec):null;
   const EN=mobile()?80:160;
   const ep=[...Array(EN)].map(()=>({x:rnd(),y:rnd(),a:rnd()*6.283}));
   function endDraw(time){
@@ -232,10 +232,10 @@
       colEls.forEach((c,i)=>c.style.transform=`scaleY(${Math.max(.04,clamp((p-.45-i*.025)/.25,0,1)).toFixed(3)})`);
       hb.forEach((c,i)=>c.style.transform=`scaleX(${Math.max(.04,clamp((p-.55-i*.05)/.25,0,1)).toFixed(3)})`);
     }
-    if(inView(ec)) endDraw(time);
+    if(ec&&inView(ec)) endDraw(time);
     requestAnimationFrame(homeFrame);
   }
-  addEventListener('resize',()=>{H=fit(hc); S=fit(hcv); E=fit(ec); layouts();});
+  addEventListener('resize',()=>{H=fit(hc); S=fit(hcv); E=ec?fit(ec):null; layouts();});
   requestAnimationFrame(homeFrame);
   }
 

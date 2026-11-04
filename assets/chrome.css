@@ -16,6 +16,7 @@
 .top .pill a:not(.cta):hover,.top .pill a[aria-current="page"]{background:#fff}
 .top .pill a.cta{background:var(--c-navy);color:#fff;margin-left:4px}
 .top .pill a.cta:hover{background:var(--c-blue)}
+@media (max-width:1120px){.top .pill a{padding:10px 11px;font-size:14px}}
 @media (max-width:860px){.top .pill{background:transparent;box-shadow:none}.top .pill a:not(.cta){display:none}}
 /* footer */
 .site-foot.v3f{background:var(--c-navy);color:#9fb4ca;padding-block:56px 32px;font:400 15px/1.6 var(--c-sans);margin:0}
@@ -24,7 +25,8 @@
 .v3f .fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px}
 .v3f .fb img{height:56px;width:auto;margin-bottom:14px;display:block}
 .v3f .fb p{margin:0;color:#9fb4ca}
-.v3f .fs{display:flex;gap:18px;margin-top:16px}.v3f .fs a{display:inline-flex;align-items:center;gap:8px}.v3f svg{width:16px;height:16px;flex:0 0 16px}
+.v3f svg{width:16px;height:16px;flex:0 0 16px}
+.v3f .fs{display:flex;gap:10px;margin-top:18px}.v3f .fs a{display:inline-grid;place-items:center;width:40px;height:40px;padding:0;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:#dbe8f5;transition:background .25s,color .25s,border-color .25s}.v3f .fs a:hover{background:#4fc3ff;border-color:#4fc3ff;color:#101b2e}.v3f .fs a:focus-visible{outline:2px solid #4fc3ff;outline-offset:3px}.v3f .fs svg{width:18px;height:18px;flex:0 0 18px}
 .v3f h2{font:600 11px/1.2 var(--c-label);letter-spacing:.14em;text-transform:uppercase;color:#7fa3c9;margin:0 0 12px}
 .v3f nav a{display:block;padding:4px 0}
 .v3f .fbot{margin-top:40px;padding-top:20px;border-top:1px solid var(--c-lined);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:13.5px}
@@ -218,3 +220,85 @@ body:has(.work-head) .shot .inner img.crop-b{height:calc(118% - 24px)!important}
 body:has(.work-head) .ex:hover .shot .inner{transform:translateY(-6px)!important}
 body:has(.work-head) .shot .tag{z-index:2;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;letter-spacing:.06em;box-shadow:0 8px 20px -8px rgba(16,27,46,.35)}
 @media (hover:none),(prefers-reduced-motion:reduce){body:has(.work-head) .ex:hover .shot .inner{transform:none!important}}
+
+
+/* ===== Work page: projects carousel (swipe, drag, tabs) ===== */
+.pcar{margin-top:clamp(28px,4vw,44px)}
+.pcar-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.pcar-tabs{position:relative;display:flex;gap:4px;padding:5px;background:#e8e8e3;border-radius:999px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.pcar-tabs::-webkit-scrollbar{display:none}
+.pcar-tabs button{position:relative;z-index:1;flex:none;display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;border-radius:999px;padding:10px 16px;
+  font:600 15px/1 Archivo,system-ui,sans-serif;color:#3d3a34;cursor:pointer;transition:color .3s}
+.pcar-tabs button span{font:500 12px/1 "IBM Plex Mono",ui-monospace,monospace;color:#5c574e}
+.pcar-tabs button[aria-current="true"]{color:#fff}
+.pcar-tabs button[aria-current="true"] span{color:#9fe0ff}
+.pcar-tabs button:focus-visible{outline:2px solid #1a4a82;outline-offset:2px}
+.pcar-ink{position:absolute;left:0;top:5px;bottom:5px;width:0;border-radius:999px;background:#101b2e;transition:transform .5s cubic-bezier(.16,.84,.24,1),width .5s cubic-bezier(.16,.84,.24,1)}
+.pcar-nav{display:flex;align-items:center;gap:10px}
+.pcar-nav output{font:500 14px/1 "IBM Plex Mono",ui-monospace,monospace;color:#3d3a34;margin-right:6px;min-width:62px}
+.pcar-nav button{width:46px;height:46px;border-radius:50%;border:1px solid #101b2e;background:#fff;color:#101b2e;font-size:18px;cursor:pointer;transition:background .25s,color .25s}
+.pcar-nav button:hover:not(:disabled){background:#101b2e;color:#fff}
+.pcar-nav button:disabled{border-color:#c9c6bd;color:#8a857b;cursor:default}
+.pcar-track{display:flex;gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;
+  padding:6px 2px 30px;margin:0 -2px;cursor:grab;-webkit-user-select:none;user-select:none}
+.pcar-track::-webkit-scrollbar{display:none}
+.pcar-track.drag{scroll-snap-type:none;cursor:grabbing}
+.pcar-track:focus-visible{outline:2px solid #1a4a82;outline-offset:4px;border-radius:24px}
+.pcar-track>.ex{flex:0 0 min(1080px,90%);scroll-snap-align:start;margin:0;background:#fff;border:1px solid #e4e1d9;border-bottom:1px solid #e4e1d9;border-radius:26px;
+  padding:clamp(22px,3.6vw,48px);grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  box-shadow:0 1px 2px rgba(16,27,46,.04),0 12px 32px -18px rgba(16,27,46,.25);transform-origin:left center;transition:transform .6s cubic-bezier(.16,.84,.24,1),box-shadow .6s}
+.pcar-track>.ex .copy{order:0}
+.pcar.ready .pcar-track>.ex:not(.on){transform:scale(.95)}
+.pcar.ready .pcar-track>.ex:not(.on) .shot img{filter:grayscale(.7)}
+.pcar-track>.ex.on{box-shadow:0 2px 8px rgba(16,27,46,.04),0 8px 24px rgba(16,27,46,.08),0 16px 48px rgba(16,27,46,.12)}
+.pcar-track>.ex .idx{font-size:clamp(56px,6vw,96px)}
+.pcar-track img{-webkit-user-drag:none}
+.pcar-hint{display:none;margin:0;font:500 13px/1 "IBM Plex Mono",ui-monospace,monospace;color:#5c574e;text-align:right}
+/* progress line under the cards */
+.pcar::after{content:"";display:block;height:2px;margin-top:-14px;background:linear-gradient(90deg,#2e6fb0,#4fc3ff) 0 0/calc(var(--prog,.25)*100%) 100% no-repeat,#dcd9d0;transition:background-size .5s}
+@media (max-width:900px){
+  .pcar-track>.ex{flex-basis:88%;grid-template-columns:minmax(0,1fr);gap:22px}
+  .pcar-track>.ex .shot{order:-1}
+  .pcar-hint{display:block;margin-top:2px}
+  .pcar-nav button{width:42px;height:42px}
+  .pcar.ready .pcar-track>.ex:not(.on){transform:scale(.97)}
+}
+@media (prefers-reduced-motion:reduce){.pcar-track>.ex,.pcar-ink,.pcar::after{transition:none}}
+.pcar-track>.ex h3{font-size:clamp(26px,2.6vw,38px)}
+.pcar-track>.ex .copy{gap:14px}
+@media (max-width:900px){.pcar-track>.ex .idx{font-size:44px}.pcar-bar{gap:12px}}
+.pcar.ready .pcar-track>.ex:not(.on){cursor:pointer}.pcar.ready .pcar-track>.ex:not(.on):hover{transform:scale(.96)}
+/* carousel: progress line first, then the swipe hint with some air */
+.pcar{display:flex;flex-direction:column}
+.pcar::after{order:3}
+.pcar-hint{order:4}
+@media (max-width:900px){.pcar-hint{margin-top:16px}}
+.pcar-nav button{display:grid;place-items:center;padding:0}
+/* the arrow lives in each card on every screen; the separate counter and buttons are only kept for screen readers */
+.pcar-track>.ex .copy{position:relative}
+.pnx{display:grid;place-items:center;position:absolute;top:4px;right:0;width:44px;height:44px;border:0;border-radius:50%;background:#e3eefa;color:#1a4a82;cursor:pointer}
+.pnx svg{width:16px;height:16px}
+.pnx:hover,.pnx:active{background:#101b2e;color:#fff}
+.pnx:focus-visible{outline:2px solid #1a4a82;outline-offset:2px}
+.pcar-nav button{display:none}
+.pcar-nav{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Taste review fixes, kept from the 4 Nov 2026 review */
+/* small labels at the 14px minimum */
+.qc .n,.btag,.plan .kind,.plan .tool,.plan .tag,.wbar span,.frag em,.frag .cap{font-size:14px}
+.site-foot.v3f h2{font-size:14px}
+/* cards that are not links do not lift on hover */
+.plan:hover,.qc:hover,.bt:hover,.shot3:hover,.find4 .fc:hover{transform:none!important}
+/* back to top: smaller on phones, no progress ring */
+@media (max-width:640px){.totop{width:44px!important;height:44px!important}.totop .ring{display:none!important}.totop svg{width:20px;height:20px}}
+/* Work: headlines at 400 like the rest of the site, content aligned with the header */
+body:has(.work-head) .how-top h2,body:has(.work-head) .ex h3{font-weight:400}
+@media (min-width:861px){body:has(.work-head) .wrap{max-width:1200px;padding-inline:40px}}
+/* privacy and terms: short-version cards in the same style as the home privacy cards (4 Nov 2026) */
+.pp-short{gap:14px!important}
+.pp-short>div{background:#fff!important;border:1px solid #e4e1d9!important;border-radius:18px!important;padding:22px!important;box-shadow:0 1px 2px rgba(16,27,46,.05),0 4px 12px -2px rgba(16,27,46,.06)}
+.pp-short .ic{display:block;width:40px;height:40px;padding:9px;border-radius:10px;background:#e3eefa;color:#1a4a82;margin-bottom:16px}
+.pp-short b{font:600 17px/1.3 "Archivo",system-ui,sans-serif!important;color:#201c17}
+.pp-short span{font-size:15.5px!important;line-height:1.5!important;margin-top:8px!important}
+/* header: Contact keeps white text on its blue hover, like the other states */
+.top:not(.dark) .pill a.cta:hover,.top:not(.dark) .pill a.cta:focus-visible{color:#fff!important}
+/* cta hover: white text */

@@ -354,7 +354,7 @@ h1,h2,h3,p{margin:0}h1,h2,h3{text-wrap:balance}
 .shot3 a{display:block;overflow:hidden}.shot3 img{transition:transform .8s cubic-bezier(.16,.84,.24,1)}.shot3:hover img{transform:scale(1.03)}
 .shot3 figcaption{padding:12px 16px;font:600 13px var(--label);color:var(--blue)}
 .find4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
-.find4 div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;border-top:3px solid var(--sky)}
+.find4>div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;border-top:3px solid var(--sky)}
 .find4 b{display:block;font:400 42px/1 var(--serif);color:var(--blue);letter-spacing:-.02em}
 .find4 h3{font:600 16.5px/1.3 var(--label);color:var(--ink);margin-top:16px}
 .find4 p{font-size:15px;color:var(--muted);margin-top:8px}
@@ -644,3 +644,141 @@ h1 .hl,h3 .hl{font-weight:inherit;padding:0 .1em}
 @media (max-width:760px){.bento .bt:last-child{display:flex!important}.bento .bt:last-child .frag{padding-top:18px}.case .cchip{font-size:12px}.case .cchip.k1{display:none}}
 @media (prefers-reduced-motion:reduce){.soon .stamp i{animation:none}.frag .bar s{transition:none;transform:none}.qc .win,.case .img .win,.qc .viz::before{transition:none}}
 @media (hover:none){.qc:hover .win{transform:translateY(6px)}.case:hover .img .win{transform:none}}
+
+/* ===== v4: review in big editorial serif (Sketch) ===== */
+.tst3{position:relative;overflow:hidden}
+.tst3 blockquote{max-width:1040px;text-align:left}
+.tst3 blockquote p{font:400 clamp(26px,3.4vw,46px)/1.22 var(--serif);letter-spacing:-.022em}
+.tst3 blockquote p::before{content:"“";display:block;font:400 clamp(100px,11vw,150px)/.5 var(--serif);color:var(--sky);margin-bottom:-.05em;height:.5em}
+.tst3 blockquote mark{background:linear-gradient(to bottom,transparent 0 .55em,rgba(79,195,255,.38) .55em .92em,transparent .92em);color:inherit;padding:0 .04em}
+.tst3 .who3{display:flex;align-items:center;gap:16px;margin-top:36px;flex-wrap:wrap}
+.tst3 .av{width:52px;height:52px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:400 24px/1 var(--serif)}
+.tst3 .stars{margin:0}
+.tst3 footer{margin:0}
+.tst3 .gchip{margin-left:auto;display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:9px 16px;font:600 14px/1 var(--label);color:var(--ink);box-shadow:var(--sh-1)}
+@media (max-width:640px){.tst3 .gchip{margin-left:0}}
+
+/* ===== v4: privacy hero card, bigger shield centred in the space, bigger type ===== */
+.bt.hero2{justify-content:flex-start;gap:20px}
+.bt.hero2 .shield{position:relative;top:auto;left:auto;transform:none;margin:auto;width:clamp(170px,16vw,220px);height:clamp(170px,16vw,220px);flex:none}
+.bt.hero2 .shield svg{width:clamp(64px,6vw,84px);height:clamp(64px,6vw,84px)}
+.bt.hero2 .shield::after{content:"";position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle,rgba(79,195,255,.22),transparent 70%)}
+.bt.hero2 h3{font-size:clamp(30px,3vw,42px);line-height:1.1;margin-top:0}
+.bt.hero2 p{font-size:18px;line-height:1.5}
+@media (max-width:760px){.bento[data-carousel] .bt.hero2{padding-top:28px}.bento[data-carousel] .bt.hero2 .shield{margin:8px auto 18px}.bento[data-carousel] .bt.hero2 h3{font-size:32px}}
+
+/* ===== v4: phones get the same converging wires as desktop (files in, results out) ===== */
+@media (max-width:860px){
+  .flowbox .wires{display:block;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .flowbox .hub::before,.flowbox .col.out::before{display:none}
+  .flowbox .col{position:relative;z-index:1;row-gap:10px}
+  .flowbox .hub{margin-top:84px}
+  .flowbox .col.out{margin-top:84px}
+}
+@media (max-width:860px){
+  .flowbox .col{display:grid!important;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:440px}
+  .flowbox .col.out{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .flowbox .node{width:auto;justify-content:center;text-align:center;line-height:1.3;padding:9px 10px;border-radius:14px}
+  .flowbox .node::before{flex:none}
+}
+@media (max-width:520px){.flowbox{padding-inline:12px}.flowbox .col.out .node::before{display:none}.flowbox .col.out .node{font-size:11.5px;padding:10px 6px}.flowbox .col.out{gap:8px}}
+
+/* ===== v4: phones ===== */
+/* case study title: name in blue, no highlight box (it competed with the tags above) */
+.case h3 .hl{background:none;padding:0}
+@media (max-width:760px){
+  /* privacy cards: the small UI piece sits right under the text, cards keep their natural height */
+  .bento[data-carousel]{align-items:flex-start}
+  .bento[data-carousel] .frag{margin-top:0;padding-top:20px}
+  .bento[data-carousel] .bt:last-child .frag{padding-top:20px}
+  /* questions: a curved carousel, the card in the middle sits up front and the ones beside it drop away on an arc (Osmo) */
+  .arc{scroll-padding-inline:0;padding:18px 12vw 46px;margin-inline:calc(-1*var(--g));gap:12px!important;align-items:stretch}
+  .qcards.arc>.qc,.find4.arc>.fc{flex:0 0 76vw!important;scroll-snap-align:center;transform-origin:50% 100%;
+    transform:translateY(var(--ay,0px)) rotate(var(--ar,0deg))!important;transition:none!important;opacity:1!important}
+  .arc+.cctl{margin-top:0}
+}
+
+/* question cards: arrow drawn as an icon so it sits exactly in the middle of its circle */
+.qc .get::after{content:"";background:var(--tint) url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%231a4a82%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2012h14M13%206l6%206-6%206%22/%3E%3C/svg%3E") center/14px 14px no-repeat}
+.qc:hover .get::after{background:var(--navy) url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2012h14M13%206l6%206-6%206%22/%3E%3C/svg%3E") center/14px 14px no-repeat}
+/* question cards: on phones the blue arrow in each card is the control (next question); on larger screens it is decoration */
+.qnx{display:none}
+@media (max-width:760px){
+  .qc .get::after{display:none}
+  .qnx{display:grid;place-items:center;flex:none;width:44px;height:44px;margin:-7px -7px -7px 0;border:0;border-radius:50%;background:var(--tint);color:var(--blue);cursor:pointer;transition:background .25s,color .25s}
+  .qnx svg{width:16px;height:16px}
+  .qnx:active{background:var(--navy);color:#fff}
+  .qnx:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .qcards.arc+.cctl button{display:none}
+  .qcards.arc+.cctl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
+}
+/* in-card arrows (phones only) */
+.cnx{display:none}
+@media (max-width:760px){
+  .cnx{display:grid;place-items:center;position:absolute;top:16px;right:16px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:var(--tint);color:var(--blue);cursor:pointer}
+  .cnx svg{width:16px;height:16px}
+  .cnx.lt{background:rgba(255,255,255,.12);color:#fff}
+  .cnx:active{background:var(--navy);color:#fff}.cnx.lt:active{background:var(--sky);color:var(--navy)}
+  .cnx:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+  [data-carousel]>*{position:relative}
+  .table[data-carousel] .plan .tag{right:auto;left:20px}
+  .table[data-carousel] .plan.rec .kind{margin-top:22px}
+  .table[data-carousel] .plan h3,.bento[data-carousel] .bt h3{padding-right:44px}
+  .cctl button{display:none!important}
+  .cctl{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0!important}
+}
+@media (max-width:760px){[data-carousel]>.rv{opacity:1!important}}
+
+/* case study: insight cards in the privacy-card style (4 Nov 2026) */
+.find4 .fc{background:#fff;border:1px solid #e4e1d9;border-top:1px solid #e4e1d9;border-radius:18px;box-shadow:var(--sh-1);padding:24px;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.16,.84,.24,1),box-shadow .5s}
+.find4 .fc:hover{transform:translateY(-4px);box-shadow:var(--sh-3)}
+.fct{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.fct svg.ic{width:40px;height:40px;padding:9px;border-radius:10px;background:var(--tint);color:var(--blue);flex:0 0 40px}
+.fct .btag{margin:0}
+.find4 .fc b{font:400 40px/1 var(--serif);color:var(--blue);letter-spacing:-.02em;margin-top:22px}
+.find4 .fc h3{margin-top:12px}
+.fc .bar s{transform:scaleX(0)}
+.fc.in .bar s{transform:scaleX(var(--v,1))}
+.fc .frag .row{flex-wrap:wrap;justify-content:center;text-align:center;gap:8px}
+.fc .frag .row em{margin:0;text-align:center}
+@media (prefers-reduced-motion:reduce){.fc .bar s{transform:scaleX(var(--v,1));transition:none}}
+@media (hover:none){.find4 .fc:hover{transform:none;box-shadow:var(--sh-1)}}
+/* case study: three sources into one model */
+.flow2{display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr);margin-top:32px}
+.flow2 ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.flow2 li{display:flex;align-items:center;gap:12px;margin:0;background:#fff;border:1px solid #e4e1d9;border-radius:14px;padding:12px 14px;box-shadow:var(--sh-1);font:600 15px/1.25 var(--label);color:var(--ink)}
+.flow2 li::before{content:none}
+.flow2 svg.ic{width:36px;height:36px;padding:8px;border-radius:10px;background:var(--tint);color:var(--blue);flex:0 0 36px}
+.flow2 small{display:block;font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.flow2 .wire{width:100%;height:100%;fill:none;stroke:#7fa3c9;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.flow2 .wire path{vector-effect:non-scaling-stroke}
+.flow2 .down{display:none;text-align:center;color:var(--sky);font-size:22px;line-height:1;padding:10px 0}
+.f2out{border-radius:18px;padding:22px;background:radial-gradient(90% 70% at 50% 18%,rgba(79,195,255,.22),transparent 60%),var(--navy);color:#9fb4ca;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.f2out .fct{justify-content:flex-start}
+.f2out svg.ic{background:rgba(79,195,255,.14);color:var(--sky)}
+.f2out small{color:var(--sky);margin:0}
+.f2out b{font:400 24px/1.2 var(--serif);color:#fff;letter-spacing:-.01em}
+.f2tags{display:flex;flex-wrap:wrap;gap:8px}
+.f2tags em{font:500 13px/1 var(--mono);font-style:normal;color:#dbe8f5;background:rgba(255,255,255,.08);padding:7px 10px;border-radius:999px}
+@media (max-width:640px){.flow2{grid-template-columns:minmax(0,1fr)}.flow2 .wire{display:none}.flow2 .down{display:block}}
+/* case study insights on phones: the same arc carousel as the question cards, arrow in each card */
+@media (max-width:760px){
+  .find4.arc>.fc{padding:22px}
+  .find4.arc .fct{justify-content:flex-start;padding-right:52px}
+}
+/* privacy cards on phones: a compact 2-column grid like the tablet layout (4 Nov 2026) */
+@media (max-width:640px){
+  .bento{grid-template-columns:1fr 1fr!important;gap:10px!important}
+  .bento .bt{padding:16px!important}
+  .bento .bt.hero2{grid-column:1/-1;grid-row:auto;min-height:0;padding:132px 18px 20px!important}
+  .bento .bt.hero2 h3{font-size:24px}
+  .bento .bt.hero2 .shield{transform:scale(.62);transform-origin:top center}
+  .bento .bt:not(.hero2) svg.ic{width:32px;height:32px;padding:7px}
+  .bento .btag{margin-top:12px;font-size:14px}
+  .bento .bt:not(.hero2) h3{font-size:15.5px;line-height:1.3}
+  .bento .bt:not(.hero2) p{font-size:14px;line-height:1.45}
+  .bento .bt .frag{display:none}
+  .bento .bt:last-child{grid-column:1/-1;display:flex!important;flex-direction:column;align-items:flex-start;text-align:left}
+}
+/* review: stars line up with the name and business lines (4 Nov 2026) */
+.tst3 .stars{line-height:1;display:inline-flex;align-items:center;align-self:center;padding-top:3px}

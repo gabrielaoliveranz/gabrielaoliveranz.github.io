@@ -962,3 +962,9 @@ h1,h2,h3{text-wrap:balance}
 .tst a.src:hover{color:var(--hilite)}
 .tst--long blockquote p{font-family:var(--f-body);font-weight:400;font-size:clamp(18px,1.6vw,21px);line-height:1.6;letter-spacing:0;color:var(--body)}
 .cs2-tst{max-width:980px;margin-top:clamp(32px,4vw,48px)}
+/* Work: same closing "Start here" block as home and the case study (4 Nov 2026) */
+section.close{background:#101b2e;color:#c3d2e3;text-align:center;padding-block:clamp(88px,11vw,140px)}
+section.close h2{font:400 clamp(34px,4.6vw,60px)/1.08 "Source Serif 4",Georgia,serif;color:#fff;letter-spacing:-.025em;max-width:18ch;margin:16px auto 0}
+section.close p{max-width:520px;margin:20px auto 0;color:#c3d2e3}
+section.close .btn{margin-top:32px}
+section.close small{display:block;margin-top:14px;font-size:14px;color:#9fb4ca}
