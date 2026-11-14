@@ -74,3 +74,7 @@
   .nl-steps li{grid-template-columns:60px minmax(0,1fr)}
   .nl-steps li::before{font-size:40px}
 }
+
+/* Rows whose values are phrases, not figures: let them wrap (figures keep nowrap). */
+.nl-rows--text dd{white-space:normal;text-align:right;max-width:62%}
+@media (max-width:620px){.nl-rows--text dd{text-align:left;max-width:none}}

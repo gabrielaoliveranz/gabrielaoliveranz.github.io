@@ -14,6 +14,7 @@ const PAGES = [
   "privacy/index.html",
   "case-studies/litchfields-grain/index.html",
   "newsletter/costs-went-up/index.html",
+  "newsletter/ai-and-customer-data/index.html",
   "terms/index.html",
 ];
 
