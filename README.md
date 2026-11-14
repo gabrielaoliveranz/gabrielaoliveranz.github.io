@@ -18,7 +18,7 @@ the [Terroir case study](https://github.com/gabrielaoliveranz/terroir-case-study
 | `small-business/index.html` (`/small-business/`) | Redirect stub to `/` (noindex), kept so old links still work |
 | `case-studies/litchfields-grain/index.html` (`/case-studies/litchfields-grain/`) | Live, linked from the home page |
 | `privacy/index.html` (`/privacy/`) | Live, linked from every page's footer |
-| `newsletter/ai-and-customer-data/index.html` (`/newsletter/ai-and-customer-data/`) | Live, web version of Plain Numbers issue 2 (14 Nov 2026), AI and customer data; linked as the latest issue from the newsletter section |
+| `newsletter/ai-and-customer-data/index.html` (`/newsletter/ai-and-customer-data/`) | Live, web version of Plain Numbers issue 2 (17 Nov 2026), AI and customer data; linked as the latest issue from the newsletter section |
 | `newsletter/costs-went-up/index.html` (`/newsletter/costs-went-up/`) | Live, web version of Plain Numbers issue 1 (27 Oct 2026) |
 | `terms/index.html` (`/terms/`) | Live, linked from every page's footer |
 | `404.html` | Live, deliberately not in `sitemap.xml` (`noindex`) |
