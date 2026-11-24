@@ -720,6 +720,7 @@ h1 .hl,h3 .hl{font-weight:inherit;padding:0 .1em}
   .cnx.lt{background:rgba(255,255,255,.12);color:#fff}
   .cnx:active{background:var(--navy);color:#fff}.cnx.lt:active{background:var(--sky);color:var(--navy)}
   .cnx:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+  .shot3 .cnx{top:auto;bottom:4px;right:12px}
   [data-carousel]>*{position:relative}
   .table[data-carousel] .plan .tag{right:auto;left:20px}
   .table[data-carousel] .plan.rec .kind{margin-top:22px}
